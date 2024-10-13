@@ -1,0 +1,20 @@
+.campoContraseña{
+    -fx-border-color: black; 
+    -fx-border-width: 2px 2px 2px 2px; 
+    -fx-border-radius: 5 5 5 5;
+}
+
+.campoTexto{
+    -fx-border-color: black; 
+    -fx-border-width: 2px 2px 2px 2px; 
+    -fx-border-radius: 5 5 5 5;
+}
+
+.botonSesion{
+    -fx-background-color: #008B;
+    -fx-border-radius: 5 5 5 5;
+}
+
+.AnclaIzq{
+    -fx-background-color: white;
+}

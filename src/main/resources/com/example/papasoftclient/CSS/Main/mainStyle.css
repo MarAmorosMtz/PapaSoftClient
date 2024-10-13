@@ -1,0 +1,39 @@
+.topBorder{
+-fx-background-color: #00008b;
+}
+
+.vbox-DashBoard{
+    -fx-background-color: white;
+    -fx-spacing: 10;
+    -fx-padding: 10;
+}
+
+.buttonDashBoard{
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    -fx-border-color: transparent;
+    -fx-cursor: hand;
+    -fx-font-size: 17px;
+}
+
+.buttonDashBoard:hover{
+    -fx-background-color: white;
+    -fx-border-color: black;
+    -fx-border-width: 0 0 0 4;
+}
+
+.buttonDashBoard:pressed{
+    -fx-background-color: #ccc;
+}
+
+.buttonDashBoard.selected {
+    -fx-background-color: #AECDFF;
+    -fx-border-color: black;
+    -fx-border-width: 0 0 0 4;
+}
+
+.topLabel{
+    -fx-text-fill: white;
+    -fx-font-family: Verdana;
+    -fx-font-size: 50;
+}

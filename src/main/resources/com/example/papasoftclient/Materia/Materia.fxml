@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Pagination?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" stylesheets="@../CSS/Maestro/maestrosStyle.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.papasoftclient.MateriaController">
+   <top>
+      <StackPane alignment="TOP_LEFT" pickOnBounds="false" prefHeight="108.0" prefWidth="1080.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="BOTTOM_LEFT" pickOnBounds="false" prefHeight="100.0" prefWidth="200.0" styleClass="topBoxA">
+               <children>
+                  <TextField prefHeight="42.0" prefWidth="310.0" promptText="🔎 Buscar Por Nombre" styleClass="txfSearch" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" pickOnBounds="false" prefHeight="100.0" prefWidth="200.0" styleClass="topBoxA">
+               <children>
+                  <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="212.0" styleClass="btnAdd" text="✚ Nueva Materia" onAction="#handleButtonAction"/>
+               </children>
+            </HBox>
+            <Label styleClass="topLabel" text="Materias">
+               <StackPane.margin>
+                  <Insets left="20.0" top="8.0" />
+               </StackPane.margin>
+            </Label>
+         </children>
+      </StackPane>
+   </top>
+   <bottom>
+      <HBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="1080.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label styleClass="bottomLabel" text="Registros encontrados 0 de 0" />
+         </children>
+         <padding>
+            <Insets left="15.0" />
+         </padding>
+      </HBox>
+   </bottom>
+   <center>
+      <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <TableView prefHeight="200.0" prefWidth="200.0">
+              <columns>
+                <TableColumn prefWidth="150.39999079704285" text="C1" />
+                <TableColumn minWidth="0.0" prefWidth="75.19998168945312" text="C2" />
+                  <TableColumn minWidth="0.0" prefWidth="808.0" text="Column X" />
+              </columns>
+            </TableView>
+            <Pagination prefHeight="200.0" prefWidth="200.0" styleClass="paginationStyle" />
+         </children>
+      </StackPane>
+   </center>
+</BorderPane>

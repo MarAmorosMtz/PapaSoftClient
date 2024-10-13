@@ -1,0 +1,45 @@
+.Pane{
+-fx-background-color: #00008b;
+}
+
+.label{
+-fx-font-family: verdana;
+-fx-font-size: 30;
+-fx-padding: 10px;
+-fx-border-insets: 10px;
+-fx-background-insets: 10px;
+}
+
+.hBox{
+-fx-spacing: 35;
+}
+
+.btnSi{
+-fx-background-radius: 10;
+-fx-border-radius: 10;
+-fx-text-fill: white;
+-fx-font-family: Verdana;
+-fx-font-size: 15;
+-fx-background-color: #00008b;
+-fx-border-color: black;
+-fx-font-weight: bold;
+}
+
+.btnSi:hover{
+-fx-cursor: hand;
+}
+
+.btnCancelar{
+-fx-background-radius: 10;
+-fx-border-radius: 10;
+-fx-text-fill: #00008b;
+-fx-font-family: Verdana;
+-fx-font-size: 15;
+-fx-background-color: withe;
+-fx-border-color: #00008b;
+-fx-font-weight: bold;
+}
+
+.btnCancelar:hover{
+-fx-cursor: hand;
+}
