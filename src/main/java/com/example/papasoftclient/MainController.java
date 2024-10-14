@@ -33,8 +33,8 @@ public class MainController {
                 return "";
             case "Asesorados":
                 return "";
-            case "Reportes":
-                return "";
+            case "Carreras":
+                return "Carrera/Carrera";
             case "Asesorias":
                 return "";
             default:

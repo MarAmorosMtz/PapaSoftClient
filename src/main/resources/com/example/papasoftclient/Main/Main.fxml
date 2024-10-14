@@ -17,15 +17,15 @@
                   <!-- Image url="/ImagenesPerronas/papasLogo.png" /-->
                </image>
             </ImageView>
-            <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="136.0" styleClass="buttonDashBoard" text="Materias" onAction="#handleButtonAction"/>
-            <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="136.0" styleClass="buttonDashBoard" text="Maestros" />
-            <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="136.0" styleClass="buttonDashBoard" text="Asesores" />
-            <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="136.0" styleClass="buttonDashBoard" text="Asesorados" />
-            <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="136.0" styleClass="buttonDashBoard" text="Reportes" />
-            <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="136.0" styleClass="buttonDashBoard" text="Asesorias" />
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="55.0" prefWidth="136.0" styleClass="buttonDashBoard" text="Materias" VBox.vgrow="ALWAYS" />
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="55.0" prefWidth="136.0" styleClass="buttonDashBoard" text="Maestros" VBox.vgrow="ALWAYS" />
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="55.0" prefWidth="136.0" styleClass="buttonDashBoard" text="Asesores" VBox.vgrow="ALWAYS" />
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="55.0" prefWidth="136.0" styleClass="buttonDashBoard" text="Asesorados" VBox.vgrow="ALWAYS" />
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="55.0" prefWidth="136.0" styleClass="buttonDashBoard" text="Carreras" VBox.vgrow="ALWAYS" />
+            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="55.0" prefWidth="136.0" styleClass="buttonDashBoard" text="Asesorias" VBox.vgrow="ALWAYS" />
             <VBox alignment="BOTTOM_CENTER" maxHeight="1.7976931348623157E308" prefHeight="200.0" prefWidth="157.0" VBox.vgrow="ALWAYS">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="136.0" styleClass="buttonDashBoard" text="Configuracion" />
+                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="55.0" prefWidth="136.0" styleClass="buttonDashBoard" text="Configuracion" VBox.vgrow="ALWAYS" />
                </children>
             </VBox>
          </children>
