@@ -25,6 +25,8 @@ public class MainController {
 
     private String getViewForButton(Button button) {
         switch (button.getText()) {
+            case "Carreras":
+                return "Carrera/fmxlCarrera";
             case "Maestros":
                 return "";
             case "Materias":
