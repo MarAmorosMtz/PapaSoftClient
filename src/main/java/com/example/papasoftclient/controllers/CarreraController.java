@@ -19,6 +19,7 @@ import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
 import org.apache.hc.client5.http.impl.classic.HttpClients;
 
 import java.io.IOException;
+import java.sql.SQLOutput;
 import java.util.UUID;
 
 import javafx.stage.Popup;
@@ -100,7 +101,6 @@ public class CarreraController
             return cell;
         };
         paginadorCarreras.setPageFactory(this::updateTable);
-        updateTable(1);
     }
 
     public void loadCarreras(CarreraPage page){
@@ -110,8 +110,9 @@ public class CarreraController
     public Node updateTable(int pageIndex){
         CarreraPage tmp = carreraRepository.search(pageIndex);
         if(tmp != null){
+            System.out.println("Cargando datos...");
             loadCarreras(tmp);
-        }
+        }else System.out.println("La pagina es nula");
         return tablaCarreras;
     }
 

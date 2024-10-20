@@ -30,17 +30,19 @@ public class CarreraRepository implements Repository<CarreraBase, CarreraModel>{
 
     @Override
     public CarreraPage search(int page) {
+        CarreraPage carreraPage;
         try{
             HttpGet request = new HttpGet(host+"?pagina="+page);
-            CarreraPage carreraPage = httpClient.execute(request,response->{
+            carreraPage = httpClient.execute(request,response->{
                 if (response.getCode() != 200) return null;
                 return mapper.readValue(EntityUtils.toString(response.getEntity()),CarreraPage.class);
             });
 
         }catch(Exception e){
+            System.out.println("Se capturó una excepción");
             return null;
         }
-        return null;
+        return carreraPage;
     }
 
     @Override

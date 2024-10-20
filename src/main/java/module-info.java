@@ -12,6 +12,7 @@ module com.example.papasoftclient {
     requires com.fasterxml.jackson.databind;
     requires org.apache.httpcomponents.httpcore;
     requires org.apache.httpcomponents.core5.httpcore5;
+    requires java.sql;
 
     opens com.example.papasoftclient to javafx.fxml;
     opens com.example.papasoftclient.controllers to javafx.fxml;
