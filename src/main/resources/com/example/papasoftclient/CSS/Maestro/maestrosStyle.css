@@ -120,3 +120,15 @@
     -fx-font-size: 15;
     -fx-text-fill: black;
 }
+
+.actionButton{
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+    -fx-text-fill: black;
+    -fx-font-size: 15;
+    -fx-font-weight: bold;
+}
+
+.actionButton:pressed{
+    -fx-text-fill: -fx-text-fill: #0062ff;
+}

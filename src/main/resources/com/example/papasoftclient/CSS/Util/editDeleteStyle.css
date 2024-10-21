@@ -1,9 +1,9 @@
 .Button{
 -fx-background-color: withe;
 -fx-font-family: Verdana;
--fx-font-size: 17;
+-fx-font-size: 12;
 -fx-alignment: center-left;
--fx-graphic-text-gap: 15;
+-fx-graphic-text-gap: 8;
 }
 
 .Button:hover{
