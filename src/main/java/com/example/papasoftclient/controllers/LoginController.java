@@ -22,6 +22,7 @@ public class LoginController {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/com/example/papasoftclient/Main/Dashboard.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
             Stage stage = new Stage();
+            stage.setTitle("PapaSoft");
             stage.setScene(scene);
             stage.setMaximized(true);
             stage.setResizable(false);
