@@ -19,7 +19,7 @@ public class LoginController {
     @FXML
     private void entrar() throws IOException {
         if(!usuario.getText().equals("") || !pass.getText().equals("")) {
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/com/example/papasoftclient/Main/Main.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/com/example/papasoftclient/Main/Dashboard.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
             Stage stage = new Stage();
             stage.setScene(scene);

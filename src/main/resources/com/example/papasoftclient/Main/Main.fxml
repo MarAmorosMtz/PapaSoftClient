@@ -10,27 +10,30 @@
 
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" stylesheets="@../CSS/Main/mainStyle.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.papasoftclient.MainController">
    <children>
-      <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="720.0" prefWidth="291.0" styleClass="vbox-DashBoard" HBox.hgrow="ALWAYS">
-         <children>
-            <ImageView fitHeight="86.0" fitWidth="117.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <!-- Image url="/ImagenesPerronas/papasLogo.png" /-->
-               </image>
-            </ImageView>
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="55.0" prefWidth="136.0" styleClass="buttonDashBoard" text="Materias" VBox.vgrow="ALWAYS" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="55.0" prefWidth="136.0" styleClass="buttonDashBoard" text="Maestros" VBox.vgrow="ALWAYS" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="55.0" prefWidth="136.0" styleClass="buttonDashBoard" text="Asesores" VBox.vgrow="ALWAYS" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="55.0" prefWidth="136.0" styleClass="buttonDashBoard" text="Asesorados" VBox.vgrow="ALWAYS" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="55.0" prefWidth="136.0" styleClass="buttonDashBoard" text="Carreras" VBox.vgrow="ALWAYS" />
-            <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="55.0" prefWidth="136.0" styleClass="buttonDashBoard" text="Asesorias" VBox.vgrow="ALWAYS" />
-            <VBox alignment="BOTTOM_CENTER" maxHeight="1.7976931348623157E308" prefHeight="200.0" prefWidth="157.0" VBox.vgrow="ALWAYS">
+
+      <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="678.0" prefWidth="1016.0" HBox.hgrow="ALWAYS">
+         <left>
+            <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="720.0" prefWidth="291.0" styleClass="vbox-DashBoard" HBox.hgrow="ALWAYS"  BorderPane.alignment="CENTER_LEFT">
                <children>
-                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="55.0" prefWidth="136.0" styleClass="buttonDashBoard" text="Configuracion" VBox.vgrow="ALWAYS" />
+                  <ImageView fitHeight="86.0" fitWidth="117.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <!-- Image url="/ImagenesPerronas/papasLogo.png" /-->
+                     </image>
+                  </ImageView>
+                  <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="55.0" prefWidth="136.0" styleClass="buttonDashBoard" text="Materias" VBox.vgrow="ALWAYS" />
+                  <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="55.0" prefWidth="136.0" styleClass="buttonDashBoard" text="Maestros" VBox.vgrow="ALWAYS" />
+                  <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="55.0" prefWidth="136.0" styleClass="buttonDashBoard" text="Asesores" VBox.vgrow="ALWAYS" />
+                  <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="55.0" prefWidth="136.0" styleClass="buttonDashBoard" text="Asesorados" VBox.vgrow="ALWAYS" />
+                  <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="55.0" prefWidth="136.0" styleClass="buttonDashBoard" text="Carreras" VBox.vgrow="ALWAYS" />
+                  <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="55.0" prefWidth="136.0" styleClass="buttonDashBoard" text="Asesorias" VBox.vgrow="ALWAYS" />
+                  <VBox alignment="BOTTOM_CENTER" maxHeight="1.7976931348623157E308" prefHeight="200.0" prefWidth="157.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="55.0" prefWidth="136.0" styleClass="buttonDashBoard" text="Configuracion" VBox.vgrow="ALWAYS" />
+                     </children>
+                  </VBox>
                </children>
             </VBox>
-         </children>
-      </VBox>
-      <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="678.0" prefWidth="1016.0" HBox.hgrow="ALWAYS">
+         </left>
          <top>
             <StackPane prefHeight="83.0" prefWidth="921.0" styleClass="topBorder" BorderPane.alignment="CENTER">
                <children>
