@@ -5,13 +5,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.BorderPane;
 
 import java.io.IOException;
 
 public class MainController {
     @FXML
-    private StackPane Display;
+    private BorderPane vista;
 
     @FXML
     private void handleButtonAction(ActionEvent event) throws IOException {
@@ -47,10 +47,8 @@ public class MainController {
 
     private void loadView(String fxml) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml + ".fxml"));
-        Parent view = loader.load();
+        Parent nuevaVista = loader.load();
 
-        Display.getChildren().clear();
-
-        Display.getChildren().add(view);
+        vista.setCenter(nuevaVista);
     }
 }

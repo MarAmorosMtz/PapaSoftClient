@@ -16,19 +16,30 @@
          <children>
             <ImageView fitHeight="67.0" fitWidth="312.0" layoutX="9.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
+<<<<<<< HEAD
 
+=======
+>>>>>>> b0a2427277233a95b70f9a2e224e694c290e9283
                </image>
             </ImageView>
             <ImageView fitHeight="90.0" fitWidth="254.0" layoutX="44.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
                <image>
+<<<<<<< HEAD
 
+=======
+>>>>>>> b0a2427277233a95b70f9a2e224e694c290e9283
                </image>
             </ImageView>
             <Label layoutX="44.0" layoutY="171.0" text="Número de Control" />
-            <TextField layoutX="42.0" layoutY="194.0" prefHeight="25.0" prefWidth="251.0" promptText="Número de Control" style="-fx-border-color: black; -fx-border-width: 2px 2px 2px 2px; -fx-border-radius: 5 5 5 5;" />
+            <TextField layoutX="42.0" layoutY="194.0" prefHeight="25.0" prefWidth="251.0" promptText="Número de Control" style="-fx-border-color: black; -fx-border-width: 2px 2px 2px 2px; -fx-border-radius: 5 5 5 5;" fx:id="usuario" />
             <Label layoutX="44.0" layoutY="230.0" text="Contraseña" />
+<<<<<<< HEAD
             <PasswordField layoutX="42.0" layoutY="252.0" prefHeight="25.0" prefWidth="251.0" promptText="Contraseña" style="-fx-border-color: black; -fx-border-width: 2px 2px 2px 2px; -fx-border-radius: 5 5 5 5;" />
             <Button fx:id="btn" layoutX="117.0" layoutY="290.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="102.0" style="-fx-background-color: #008B;" text="Iniciar Sesión" textFill="WHITE" onAction="#handleButtonAction"/>
+=======
+            <PasswordField layoutX="42.0" layoutY="252.0" prefHeight="25.0" prefWidth="251.0" promptText="Contraseña" style="-fx-border-color: black; -fx-border-width: 2px 2px 2px 2px; -fx-border-radius: 5 5 5 5;" fx:id="pass"/>
+            <Button layoutX="117.0" layoutY="290.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="102.0" style="-fx-background-color: #008B;" text="Iniciar Sesión" textFill="WHITE" onAction="#entrar"/>
+>>>>>>> b0a2427277233a95b70f9a2e224e694c290e9283
             <Hyperlink layoutX="96.0" layoutY="330.0" text="¿Olvidaste tu contraseña?" underline="true" />
          </children>
       </AnchorPane>
@@ -36,7 +47,10 @@
    <right>
       <ImageView fitHeight="294.0" fitWidth="268.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
          <image>
+<<<<<<< HEAD
 
+=======
+>>>>>>> b0a2427277233a95b70f9a2e224e694c290e9283
          </image>
       </ImageView>
    </right>
