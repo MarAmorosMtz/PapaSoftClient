@@ -1,9 +1,7 @@
 package com.example.papasoftclient.controllers;
 
-import com.example.papasoftclient.models.CarreraBase;
-import com.example.papasoftclient.models.CarreraModel;
-import com.example.papasoftclient.models.CarreraPage;
-import com.example.papasoftclient.repositories.CarreraRepository;
+import com.example.papasoftclient.models.*;
+import com.example.papasoftclient.repositories.PeriodoRepository;
 import com.example.papasoftclient.repositories.RestAPI;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.collections.FXCollections;
@@ -23,44 +21,50 @@ import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
 import org.apache.hc.client5.http.impl.classic.HttpClients;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.UUID;
 
 import javafx.util.Callback;
 
-public class CarreraController
-{
+public class PeriodoController{
 
     @FXML
-    private TableView<CarreraModel> tablaCarreras;
+    private TableView<PeriodoModel> tablaPeriodo;
     @FXML
-    private TableColumn<CarreraModel, UUID> columnaId;
+    private TableColumn<PeriodoModel, UUID> columnaID;
     @FXML
-    private TableColumn<CarreraModel,String> columnaNombre;
+    private TableColumn<PeriodoModel,String> columnaNombre;
     @FXML
-    private TableColumn<CarreraModel,String> columnaAcciones;
+    private TableColumn<PeriodoModel, Date> columnaFechaI;
     @FXML
-    private Pagination paginadorCarreras;
+    private TableColumn<PeriodoModel, Date> columnaFechaF;
+    @FXML
+    private TableColumn<PeriodoModel,String> columnaAcciones;
+    @FXML
+    private Pagination paginadorPeriodo;
     private CloseableHttpClient httpClient;
-    private CarreraRepository carreraRepository;
+    private PeriodoRepository periodoRepository;
     private ObjectMapper mapper;
 
-    public CarreraController(){
+    public PeriodoController(){
         httpClient = HttpClients.createDefault();
         mapper = new ObjectMapper();
-        carreraRepository = new CarreraRepository(httpClient, mapper ,RestAPI.CARRERAS_ENDPOINT);
+        periodoRepository = new PeriodoRepository(httpClient, mapper ,RestAPI.PERIODO_ENDPOINT);
     }
 
     @FXML
     public void initialize() {
 
-        columnaId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        columnaID.setCellValueFactory(new PropertyValueFactory<>("id"));
         columnaNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        columnaFechaI.setCellValueFactory(new PropertyValueFactory<>("fecha_inicio"));
+        columnaFechaF.setCellValueFactory(new PropertyValueFactory<>("fecha_fin"));
 
-        Callback<TableColumn<CarreraModel, String>, TableCell<CarreraModel, String>> cellFactory
-                = new Callback<TableColumn<CarreraModel, String>, TableCell<CarreraModel, String>>() {
+        Callback<TableColumn<PeriodoModel, String>, TableCell<PeriodoModel, String>> cellFactory
+                = new Callback<TableColumn<PeriodoModel, String>, TableCell<PeriodoModel, String>>() {
             @Override
-            public TableCell<CarreraModel, String> call(final TableColumn<CarreraModel, String> param) {
-                final TableCell<CarreraModel, String> cell = new TableCell<CarreraModel, String>() {
+            public TableCell<PeriodoModel, String> call(final TableColumn<PeriodoModel, String> param) {
+                final TableCell<PeriodoModel, String> cell = new TableCell<PeriodoModel, String>() {
                     final Button btn = new Button("● ● ●");
 
                     @Override
@@ -72,12 +76,12 @@ public class CarreraController
                         } else {
 
                             int rowIndex = getIndex();
-                            CarreraModel carrera = tablaCarreras.getItems().get(rowIndex);
-                            CarreraBase carreraBase = tablaCarreras.getItems().get(rowIndex);
+                            PeriodoModel periodo = tablaPeriodo.getItems().get(rowIndex);
+                            PeriodoBase periodoBase = tablaPeriodo.getItems().get(rowIndex);
 
                             btn.setOnMouseClicked(mouseEvent -> {
                                 try {
-                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/papasoftclient/Util/EditDeleteCarrera.fxml"));
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/papasoftclient/Util/EditDeletePeriodo.fxml"));
                                     Parent root = loader.load();
 
                                     Stage popupStage = new Stage(StageStyle.UNDECORATED);
@@ -97,11 +101,10 @@ public class CarreraController
                                         }
                                     });
 
-                                    DialogoCarreraController controller = loader.getController();
+                                    DialogoPeriodoController controller = loader.getController();
                                     controller.setStage(popupStage);
-                                    controller.setModel(carrera);
-                                    controller.setBase(carreraBase);
-                                    System.out.println(carrera.getNombre());
+                                    controller.setModel(periodo);
+                                    controller.setBase(periodoBase);
 
                                     popupStage.show();
 
@@ -122,29 +125,29 @@ public class CarreraController
 
         columnaAcciones.setCellFactory(cellFactory);
 
-        paginadorCarreras.setPageFactory(this::updateTable);
+        paginadorPeriodo.setPageFactory(this::updateTable);
     }
 
 
 
 
 
-    public void loadCarreras(CarreraPage page){
-        tablaCarreras.setItems(FXCollections.observableArrayList(page.getCarreras()));
+    public void loadPeriodos(PeriodoPage page){
+        tablaPeriodo.setItems(FXCollections.observableArrayList(page.getPeriodos()));
     }
 
     public Node updateTable(int pageIndex){
-        CarreraPage tmp = carreraRepository.search(pageIndex);
+        PeriodoPage tmp = periodoRepository.search(pageIndex);
         if(tmp != null){
             System.out.println("Cargando datos...");
-            loadCarreras(tmp);
+            loadPeriodos(tmp);
         }else System.out.println("La pagina es nula");
-        return tablaCarreras;
+        return tablaPeriodo;
     }
 
     @FXML
     private void handleButtonAction(ActionEvent event) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource("/com/example/papasoftclient/Carrera/AgregarCarrera.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("/com/example/papasoftclient/Periodo/AgregarPeriodo.fxml"));
         Scene scene = new Scene(parent);
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL); // Hacer que el Stage sea modal

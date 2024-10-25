@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" stylesheets="@../CSS/Maestro/maestrosStyle.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.papasoftclient.MateriaController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" stylesheets="@../CSS/Maestro/maestrosStyle.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.papasoftclient.controllers.MateriaController">
    <top>
       <StackPane alignment="TOP_LEFT" pickOnBounds="false" prefHeight="108.0" prefWidth="1080.0" BorderPane.alignment="CENTER">
          <children>
@@ -46,14 +46,14 @@
    <center>
       <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView prefHeight="200.0" prefWidth="200.0">
+            <TableView prefHeight="200.0" prefWidth="200.0" fx:id="tablaMaterias">
               <columns>
-                <TableColumn prefWidth="150.39999079704285" text="C1" />
-                <TableColumn minWidth="0.0" prefWidth="75.19998168945312" text="C2" />
-                  <TableColumn minWidth="0.0" prefWidth="808.0" text="Column X" />
+                <TableColumn prefWidth="150.39999079704285" text="C1" fx:id="columnaId"/>
+                <TableColumn minWidth="0.0" prefWidth="75.19998168945312" text="C2" fx:id="columnaNombre"/>
+                  <TableColumn minWidth="0.0" prefWidth="808.0" text="Column X" fx:id="columnaCarrera"/>
               </columns>
             </TableView>
-            <Pagination prefHeight="200.0" prefWidth="200.0" styleClass="paginationStyle" />
+            <Pagination prefHeight="200.0" prefWidth="200.0" styleClass="paginationStyle" fx:id="paginadorMaterias"/>
          </children>
       </StackPane>
    </center>

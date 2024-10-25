@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.image.Image?>
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="106.0" prefWidth="102.0" stylesheets="@../CSS/Util/editDeleteStyle.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.papasoftclient.controllers.DialogoController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="106.0" prefWidth="102.0" stylesheets="@../CSS/Util/editDeleteStyle.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.papasoftclient.controllers.DialogoPeriodoController">
    <children>
       <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#edit" prefHeight="55.0" prefWidth="150.0" styleClass="Button" text="Editar">
          <graphic>

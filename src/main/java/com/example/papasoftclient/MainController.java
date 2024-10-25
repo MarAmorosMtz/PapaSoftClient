@@ -25,10 +25,10 @@ public class MainController {
 
     private String getViewForButton(Button button) {
         switch (button.getText()) {
-            case "pene":
-                return "";
+            case "Perioido":
+                return "Periodo";
             case "Maestros":
-                return "";
+                return "Maestro/Maestros";
             case "Materias":
                 return "Materia/Materia";
             case "Asesores":

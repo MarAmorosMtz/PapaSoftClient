@@ -12,7 +12,7 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
-public class DialogoController {
+public class DialogoCarreraController {
     private Stage stage;
     private CarreraModel carrera;
     private  CarreraBase carreraBase;
@@ -43,7 +43,7 @@ public class DialogoController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/papasoftclient/Carrera/ConfirmacionCarrera.fxml"));
         Parent parent = loader.load();
 
-        ConfirmacionController confirmacionController = loader.getController();
+        ConfirmacionCarreraController confirmacionController = loader.getController();
         confirmacionController.setCarrera(carrera);
 
         Stage stage = new Stage(StageStyle.UNDECORATED);

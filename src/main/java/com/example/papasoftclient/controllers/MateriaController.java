@@ -62,7 +62,6 @@ public class MateriaController
 
     public Node updateTable(int pageIndex){
         MateriaPage tmp = materiaRepository.search(pageIndex);
-        System.out.println("hola");
         if(tmp != null){
             loadMaterias(tmp);paginadorMaterias.setMaxPageIndicatorCount(tmp.getPaginas());
         }
