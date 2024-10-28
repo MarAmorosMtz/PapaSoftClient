@@ -25,7 +25,7 @@ public class ConfirmacionPeriodoController {
     private void confirmar(){
         httpClient = HttpClients.createDefault();
         mapper = new ObjectMapper();
-        periodoRepository = new MaestroRepository(httpClient, mapper , RestAPI.PERIODO_ENDPOINT);
+        periodoRepository = new PeriodoRepository(httpClient, mapper , RestAPI.PERIODO_ENDPOINT);
         periodoRepository.remove(periodo.getId());
         cancelar();
     }

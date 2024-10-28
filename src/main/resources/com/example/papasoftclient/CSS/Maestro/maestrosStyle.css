@@ -130,5 +130,5 @@
 }
 
 .actionButton:pressed{
-    -fx-text-fill: -fx-text-fill: #0062ff;
+    -fx-text-fill: #0062ff;
 }

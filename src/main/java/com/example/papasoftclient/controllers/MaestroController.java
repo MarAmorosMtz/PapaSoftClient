@@ -53,7 +53,6 @@ public class MaestroController {
 
     @FXML
     public void initialize() {
-
         columnaID.setCellValueFactory(new PropertyValueFactory<>("id"));
         columnaNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         columnaApellidoP.setCellValueFactory(new PropertyValueFactory<>("apellido_p"));

@@ -16,4 +16,8 @@ public class CarreraModel extends CarreraBase{
     public void setId(UUID id) {
         this.id = id;
     }
+
+    public String toString(){
+        return this.nombre;
+    }
 }

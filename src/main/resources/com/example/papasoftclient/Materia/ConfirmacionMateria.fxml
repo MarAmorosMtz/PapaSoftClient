@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="202.0" prefWidth="822.0" stylesheets="@../../css/Util/confirmacionStyle.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="202.0" prefWidth="822.0" stylesheets="@../CSS/Util/confirmacionStyle.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.papasoftclient.controllers.ConfirmacionMateriaController">
    <left>
       <Pane prefHeight="227.0" prefWidth="30.0" styleClass="Pane" BorderPane.alignment="CENTER" />
    </left>
@@ -17,8 +17,8 @@
             <Label text="¿Estás seguro de eliminar la materia?" />
             <HBox alignment="CENTER" prefHeight="77.0" prefWidth="792.0" styleClass="hBox">
                <children>
-                  <Button mnemonicParsing="false" styleClass="btnSi" text="✔ Si" />
-                  <Button mnemonicParsing="false" styleClass="btnCancelar" text="✕ Cancelar" />
+                  <Button fx:id="btnConfirmar" mnemonicParsing="false" onAction="#confirmar" styleClass="btnSi" text="✔ Si" />
+                  <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#cancelar" styleClass="btnCancelar" text="✕ Cancelar" />
                </children>
             </HBox>
          </children>

@@ -22,7 +22,7 @@
             </HBox>
             <HBox alignment="CENTER_RIGHT" pickOnBounds="false" prefHeight="100.0" prefWidth="200.0" styleClass="topBoxA">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="212.0" styleClass="btnAdd" text="✚ Nueva Materia" onAction="#handleButtonAction"/>
+                  <Button mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="45.0" prefWidth="212.0" styleClass="btnAdd" text="✚ Nueva Materia" />
                </children>
             </HBox>
             <Label styleClass="topLabel" text="Materias">
@@ -46,14 +46,15 @@
    <center>
       <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView prefHeight="200.0" prefWidth="200.0" fx:id="tablaMaterias">
+            <TableView fx:id="tablaMaterias" prefHeight="200.0" prefWidth="200.0">
               <columns>
-                <TableColumn prefWidth="150.39999079704285" text="C1" fx:id="columnaId"/>
-                <TableColumn minWidth="0.0" prefWidth="75.19998168945312" text="C2" fx:id="columnaNombre"/>
-                  <TableColumn minWidth="0.0" prefWidth="808.0" text="Column X" fx:id="columnaCarrera"/>
+                <TableColumn fx:id="columnaId" prefWidth="150.39999079704285" text="ID" />
+                <TableColumn fx:id="columnaNombre" minWidth="0.0" prefWidth="75.19998168945312" text="Nombre" />
+                  <TableColumn fx:id="columnaCarrera" minWidth="0.0" prefWidth="808.0" text="Carrera" />
+                  <TableColumn fx:id="columnaAcciones" prefWidth="75.0" text="Acciones" />
               </columns>
             </TableView>
-            <Pagination prefHeight="200.0" prefWidth="200.0" styleClass="paginationStyle" fx:id="paginadorMaterias"/>
+            <Pagination fx:id="paginadorMaterias" prefHeight="200.0" prefWidth="200.0" styleClass="paginationStyle" />
          </children>
       </StackPane>
    </center>

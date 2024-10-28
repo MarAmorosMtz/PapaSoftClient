@@ -1,15 +1,19 @@
 package com.example.papasoftclient.models;
 
+import java.io.CharArrayReader;
 import java.util.UUID;
 
-public class MateriaModel extends MateriaBase{
+public class MateriaModel{
     private UUID id;
+    private String nombre;
+    private CarreraModel carrera;
 
     public MateriaModel() {}
 
-    public MateriaModel( UUID id, String nombre, UUID carrera) {
-        super(nombre, carrera);
+    public MateriaModel( UUID id, String nombre, CarreraModel carrera) {
         this.id = id;
+        this.nombre = nombre;
+        this.carrera = carrera;
     }
 
     public UUID getId() {
@@ -18,5 +22,21 @@ public class MateriaModel extends MateriaBase{
 
     public void setId(UUID id) {
         this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public CarreraModel getCarrera() {
+        return carrera;
+    }
+
+    public void setCarrera(CarreraModel carrera) {
+        this.carrera = carrera;
     }
 }

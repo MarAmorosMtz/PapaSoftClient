@@ -3,7 +3,7 @@ package com.example.papasoftclient.models;
 import java.util.UUID;
 
 public class CarreraBase {
-    private String nombre;
+    protected String nombre;
 
     public CarreraBase() {}
 

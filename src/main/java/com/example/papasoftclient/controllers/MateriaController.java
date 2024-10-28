@@ -1,22 +1,30 @@
 package com.example.papasoftclient.controllers;
 
 import com.example.papasoftclient.Main;
+import com.example.papasoftclient.models.MaestroModel;
+import com.example.papasoftclient.models.MateriaBase;
 import com.example.papasoftclient.models.MateriaModel;
 import com.example.papasoftclient.models.MateriaPage;
 import com.example.papasoftclient.repositories.MateriaRepository;
 import com.example.papasoftclient.repositories.RestAPI;
+import com.example.papasoftclient.utils.Observador;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Pagination;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.util.Callback;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
 import org.apache.hc.client5.http.impl.classic.HttpClients;
 
@@ -24,8 +32,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class MateriaController
-{
+public class MateriaController  implements Observador{
 
     @FXML
     private TableView<MateriaModel> tablaMaterias;
@@ -34,26 +41,90 @@ public class MateriaController
     @FXML
     private TableColumn<MateriaModel,String> columnaNombre;
     @FXML
-    private TableColumn<MateriaModel,UUID> columnaCarrera;
+    private TableColumn<MateriaModel,String> columnaCarrera;
+    @FXML
+    private TableColumn<MateriaModel,String> columnaAcciones;
     @FXML
     private Pagination paginadorMaterias;
-    private CloseableHttpClient httpClient;
     private MateriaRepository materiaRepository;
-    private ObjectMapper mapper;
+    private int currentPage;
 
     public MateriaController(){
-        httpClient = HttpClients.createDefault();
-        mapper = new ObjectMapper();
-        materiaRepository = new MateriaRepository(httpClient, mapper ,RestAPI.MATERIAS_ENDPOINT);
+        materiaRepository = new MateriaRepository();
     }
 
     @FXML
     public void initialize() {
         columnaId.setCellValueFactory(new PropertyValueFactory<>("id"));
         columnaNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
-        columnaCarrera.setCellValueFactory(new PropertyValueFactory<>("carrera"));
+        columnaCarrera.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getCarrera().getNombre())
+        );
+
+        Callback<TableColumn<MateriaModel, String>, TableCell<MateriaModel, String>> cellFactory
+                = new Callback<TableColumn<MateriaModel, String>, TableCell<MateriaModel, String>>() {
+            @Override
+            public TableCell<MateriaModel, String> call(final TableColumn<MateriaModel, String> param) {
+                final TableCell<MateriaModel, String> cell = new TableCell<MateriaModel, String>() {
+                    final Button btn = new Button("● ● ●");
+
+                    @Override
+                    public void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                            setText(null);
+                        } else {
+
+                            int rowIndex = getIndex();
+                            MateriaModel materia = tablaMaterias.getItems().get(rowIndex);
+                            MateriaModel materiaBase = tablaMaterias.getItems().get(rowIndex);
+
+                            btn.setOnMouseClicked(mouseEvent -> {
+                                try {
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/papasoftclient/Util/EditDeleteMateria.fxml"));
+                                    Parent root = loader.load();
+
+                                    Stage popupStage = new Stage(StageStyle.UNDECORATED);
+                                    popupStage.initModality(Modality.NONE);
+                                    popupStage.initOwner(btn.getScene().getWindow());
+                                    popupStage.setScene(new Scene(root));
+
+                                    popupStage.setX(mouseEvent.getScreenX());
+                                    popupStage.setY(mouseEvent.getScreenY());
+
+                                    popupStage.setAlwaysOnTop(true);
+
+                                    Scene mainScene = btn.getScene();
+                                    mainScene.addEventFilter(MouseEvent.MOUSE_PRESSED, event -> {
+                                        if (!popupStage.getScene().getWindow().equals(event.getTarget())) {
+                                            popupStage.close();
+                                        }
+                                    });
+
+                                    DialogoMateriaController controller = loader.getController();
+                                    controller.setStage(popupStage);
+                                    controller.setModel(materia);
+                                    controller.setBase(materiaBase);
+                                    popupStage.show();
+
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            });
+
+                            btn.getStyleClass().add("actionButton");
+                            setGraphic(btn);
+                            setText(null);
+                        }
+                    }
+                };
+                return cell;
+            }
+        };
+        columnaAcciones.setCellFactory(cellFactory);
         paginadorMaterias.setPageFactory(this::updateTable);
-        updateTable(1);
+        updateTable(paginadorMaterias.getCurrentPageIndex());
     }
 
     public void loadMaterias(MateriaPage page){
@@ -70,14 +141,20 @@ public class MateriaController
 
     @FXML
     private void handleButtonAction(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Materia/AgregarMateria.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/com/example/papasoftclient/Materia/AgregarMateria.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-
+        AddMateriaController controller = fxmlLoader.getController();
+        controller.agregarObservador(this);
         Stage newStage = new Stage();
         newStage.setScene(scene);
 
         newStage.setResizable(false);
 
         newStage.show();
+    }
+
+    @Override
+    public void actualizar() {
+        updateTable(paginadorMaterias.getCurrentPageIndex());
     }
 }

@@ -4,21 +4,22 @@ import com.example.papasoftclient.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-<<<<<<< HEAD
 import javafx.scene.control.Button;
-=======
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
->>>>>>> b0a2427277233a95b70f9a2e224e694c290e9283
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class LoginController {
     @FXML
-<<<<<<< HEAD
     Button btn;
     @FXML
+
+    TextField usuario;
+    @FXML
+    PasswordField pass;
+
     private void handleButtonAction() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Main/Main.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
@@ -26,17 +27,14 @@ public class LoginController {
         stage.setScene(scene);
         stage.setMaximized(true);
         stage.setResizable(false);
-        Stage stg = (Stage)btn.getScene().getWindow();
+        Stage stg = (Stage) btn.getScene().getWindow();
         stg.close();
         stage.show();
-=======
-    TextField usuario;
-    @FXML
-    PasswordField pass;
+    }
 
     @FXML
     private void entrar() throws IOException {
-        if(!usuario.getText().equals("") || !pass.getText().equals("")) {
+        if(usuario.getText().equals("admin") && pass.getText().equals("admin")) {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/com/example/papasoftclient/Main/Dashboard.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
             Stage stage = new Stage();
@@ -48,8 +46,7 @@ public class LoginController {
             Stage cerrar = (Stage)usuario.getScene().getWindow();
             cerrar.close();
         }else{
-            System.out.println("no seas choto");
+            System.out.println("Usuario o contraseña incorrectos.");
         }
->>>>>>> b0a2427277233a95b70f9a2e224e694c290e9283
     }
 }

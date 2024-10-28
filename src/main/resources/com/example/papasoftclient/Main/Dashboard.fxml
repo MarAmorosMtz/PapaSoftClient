@@ -15,7 +15,7 @@
                <children>
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Media/papas%20.png" />
+                        <Image url="@../Media/papas.png" />
                      </image>
                   </ImageView>
                   <Button mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="38.0" prefWidth="163.0" styleClass="buttonDashBoard" text="Asesorias" VBox.vgrow="ALWAYS">

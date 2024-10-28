@@ -1,6 +1,8 @@
 package com.example.papasoftclient.repositories;
 
 import com.example.papasoftclient.models.*;
+import com.example.papasoftclient.utils.HttpClient;
+import com.example.papasoftclient.utils.JsonMapper;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.hc.client5.http.classic.methods.HttpDelete;
 import org.apache.hc.client5.http.classic.methods.HttpPost;
@@ -19,10 +21,10 @@ public class MateriaRepository implements Repository<MateriaBase, MateriaModel>{
     private ObjectMapper mapper;
     private String host;
 
-    public MateriaRepository(CloseableHttpClient httpClient, ObjectMapper mapper, String host) {
-        this.httpClient = httpClient;
-        this.mapper = mapper;
-        this.host = host;
+    public MateriaRepository() {
+        this.httpClient = HttpClient.getClient();
+        this.mapper = JsonMapper.getMapper();
+        this.host = RestAPI.MATERIAS_ENDPOINT;
     }
 
     @Override

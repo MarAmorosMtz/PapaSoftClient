@@ -5,6 +5,8 @@ import com.example.papasoftclient.models.CarreraBase;
 import com.example.papasoftclient.models.CarreraModel;
 import com.example.papasoftclient.models.CarreraPage;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.apache.hc.client5.http.classic.methods.HttpDelete;
 import org.apache.hc.client5.http.classic.methods.HttpPost;
 import org.apache.hc.client5.http.classic.methods.HttpPut;
@@ -14,6 +16,7 @@ import org.apache.hc.client5.http.classic.methods.HttpGet;
 import org.apache.hc.core5.http.io.entity.EntityUtils;
 import org.apache.hc.core5.http.io.entity.StringEntity;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 public class CarreraRepository implements Repository<CarreraBase, CarreraModel>{
@@ -26,6 +29,18 @@ public class CarreraRepository implements Repository<CarreraBase, CarreraModel>{
         this.httpClient = httpClient;
         this.mapper = mapper;
         this.host = host;
+    }
+
+    public ObservableList<CarreraModel> getCatalogoCarreras(){
+        ArrayList<CarreraModel> catalogoCarreras = new ArrayList<CarreraModel>();
+        CarreraPage tmp = this.search(1);
+        if(tmp != null){
+            catalogoCarreras.addAll(tmp.getCarreras());
+            for(int p=2;p<=tmp.getPaginas();p++){
+                catalogoCarreras.addAll(this.search(p).getCarreras());
+            }
+        }
+        return FXCollections.observableArrayList(catalogoCarreras);
     }
 
     @Override
@@ -50,7 +65,7 @@ public class CarreraRepository implements Repository<CarreraBase, CarreraModel>{
         try{
             HttpGet request = new HttpGet(host+id.toString());
             CarreraModel carrera = httpClient.execute(request,response->{
-                if (response.getCode() == 200) return null;
+                if (response.getCode() != 200) return null;
                 return mapper.readValue(EntityUtils.toString(response.getEntity()),CarreraModel.class);
             });
         }catch (Exception ex){
