@@ -49,9 +49,9 @@
  }
 
 .table-view .cell {
-    -fx-font-size: 15;
-    -fx-text-align: right;
- }
+    -fx-font-size: 20;
+    -fx-alignment: CENTER;
+}
 
  .paginationStyle {
      -fx-background-color: white;

@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" stylesheets="@../CSS/Maestro/maestrosStyle.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.papasoftclient.controllers.MateriaController">
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" stylesheets="@../CSS/Maestro/maestrosStyle.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.papasoftclient.controllers.MateriaController">
    <top>
       <StackPane alignment="TOP_LEFT" pickOnBounds="false" prefHeight="108.0" prefWidth="1080.0" BorderPane.alignment="CENTER">
          <children>
@@ -48,11 +48,14 @@
          <children>
             <TableView fx:id="tablaMaterias" prefHeight="200.0" prefWidth="200.0">
               <columns>
-                <TableColumn fx:id="columnaId" prefWidth="150.39999079704285" text="ID" />
-                <TableColumn fx:id="columnaNombre" minWidth="0.0" prefWidth="75.19998168945312" text="Nombre" />
-                  <TableColumn fx:id="columnaCarrera" minWidth="0.0" prefWidth="808.0" text="Carrera" />
-                  <TableColumn fx:id="columnaAcciones" prefWidth="75.0" text="Acciones" />
+                <TableColumn fx:id="columnaId" prefWidth="214.0" text="ID" />
+                <TableColumn fx:id="columnaNombre" minWidth="0.0" prefWidth="281.0" text="Nombre" />
+                  <TableColumn fx:id="columnaCarrera" minWidth="0.0" prefWidth="315.0" text="Carrera" />
+                  <TableColumn fx:id="columnaAcciones" prefWidth="269.0" text="Acciones" />
               </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
             </TableView>
             <Pagination fx:id="paginadorMaterias" prefHeight="200.0" prefWidth="200.0" styleClass="paginationStyle" />
          </children>
