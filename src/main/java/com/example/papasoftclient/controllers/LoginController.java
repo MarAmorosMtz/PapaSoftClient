@@ -41,7 +41,6 @@ public class LoginController {
             stage.setTitle("PapaSoft");
             stage.setScene(scene);
             stage.setMaximized(true);
-            stage.setResizable(false);
             stage.show();
             Stage cerrar = (Stage)usuario.getScene().getWindow();
             cerrar.close();
