@@ -18,7 +18,7 @@ public class DialogoPeriodoController {
 
     @FXML
     private void edit() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/papasoftclient/Periodo/EditarPeriodo.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/papasoftclient/periodo/vistaEditarPeriodo.fxml"));
         Parent parent = loader.load();
 
 
@@ -39,7 +39,7 @@ public class DialogoPeriodoController {
 
     @FXML
     private void delete() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/papasoftclient/Periodo/ConfirmacionPeriodo.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/papasoftclient/periodo/vistaConfirmacionPeriodo.fxml"));
         Parent parent = loader.load();
 
         ConfirmacionPeriodoController confirmacionController = loader.getController();

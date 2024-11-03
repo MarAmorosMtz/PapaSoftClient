@@ -11,7 +11,7 @@
          <graphic>
             <ImageView fitHeight="29.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Media/editIcon.png" />
+                  <Image url="@../media/editIcon.png" />
                </image>
             </ImageView>
          </graphic>
@@ -20,7 +20,7 @@
          <graphic>
             <ImageView fitHeight="27.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Media/deleteIcon.png" />
+                  <Image url="@../media/deleteIcon.png" />
                </image>
             </ImageView>
          </graphic>

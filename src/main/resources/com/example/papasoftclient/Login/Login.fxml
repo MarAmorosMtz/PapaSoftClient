@@ -16,7 +16,7 @@
             <children>
                 <ImageView fitHeight="229.0" fitWidth="443.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../Media/login_header.png" />
+                        <Image url="@../media/login_header.png" />
                     </image>
                 </ImageView>
                 <Label layoutX="63.0" layoutY="257.0" text="Número de Control" />
@@ -31,7 +31,7 @@
    <right>
         <ImageView fitHeight="384.0" fitWidth="554.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
             <image>
-                <Image url="@../Media/login_background.jpg" />
+                <Image url="@../media/login_background.jpg" />
             </image>
         </ImageView>
    </right>

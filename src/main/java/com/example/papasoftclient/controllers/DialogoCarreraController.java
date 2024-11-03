@@ -19,7 +19,7 @@ public class DialogoCarreraController {
 
     @FXML
     private void edit() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/papasoftclient/Carrera/EditarCarrera.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/papasoftclient/carrera/vistaEditarCarrera.fxml"));
         Parent parent = loader.load();
 
 
@@ -40,7 +40,7 @@ public class DialogoCarreraController {
 
     @FXML
     private void delete() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/papasoftclient/Carrera/ConfirmacionCarrera.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/papasoftclient/carrera/vistaConfirmacionCarrera.fxml"));
         Parent parent = loader.load();
 
         ConfirmacionCarreraController confirmacionController = loader.getController();

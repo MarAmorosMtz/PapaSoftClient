@@ -39,6 +39,8 @@ public class MainController {
                 return "Carrera/Carrera";
             case "Asesorias":
                 return "asesoria/vistaAsesoria";
+            case "Salones":
+                return "salon/vistaSalon";
             default:
                 return null;
         }

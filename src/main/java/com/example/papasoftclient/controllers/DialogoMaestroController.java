@@ -1,7 +1,5 @@
 package com.example.papasoftclient.controllers;
 
-import com.example.papasoftclient.models.CarreraBase;
-import com.example.papasoftclient.models.CarreraModel;
 import com.example.papasoftclient.models.MaestroBase;
 import com.example.papasoftclient.models.MaestroModel;
 import javafx.fxml.FXML;
@@ -21,7 +19,7 @@ public class DialogoMaestroController {
 
     @FXML
     private void edit() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/papasoftclient/Maestro/EditarMaestro.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/papasoftclient/maestro/vistaEditarMaestro.fxml"));
         Parent parent = loader.load();
 
 
@@ -42,7 +40,7 @@ public class DialogoMaestroController {
 
     @FXML
     private void delete() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/papasoftclient/Maestro/ConfirmacionMaestro.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/papasoftclient/maestro/vistaConfirmacionMaestro.fxml"));
         Parent parent = loader.load();
 
         ConfirmacionMaestroController confirmacionController = loader.getController();

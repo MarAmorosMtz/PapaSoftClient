@@ -19,7 +19,7 @@ public class DialogoMateriaController extends Observable {
 
     @FXML
     private void edit() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/papasoftclient/Materia/EditarMateria.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/papasoftclient/materia/vistaEditarMateria.fxml"));
         Parent parent = loader.load();
 
 
@@ -40,7 +40,7 @@ public class DialogoMateriaController extends Observable {
 
     @FXML
     private void delete() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/papasoftclient/Materia/ConfirmacionMateria.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/papasoftclient/materia/vistaConfirmacionMateria.fxml"));
         Parent parent = loader.load();
 
         ConfirmacionMateriaController confirmacionController = loader.getController();

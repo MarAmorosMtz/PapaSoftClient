@@ -144,7 +144,7 @@ public class CarreraController
 
     @FXML
     private void handleButtonAction(ActionEvent event) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource("/com/example/papasoftclient/Carrera/AgregarCarrera.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("/com/example/papasoftclient/carrera/vistaAgregarCarrera.fxml"));
         Scene scene = new Scene(parent);
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL); // Hacer que el Stage sea modal

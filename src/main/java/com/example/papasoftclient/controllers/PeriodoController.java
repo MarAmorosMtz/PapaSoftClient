@@ -147,7 +147,7 @@ public class PeriodoController{
 
     @FXML
     private void handleButtonAction(ActionEvent event) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource("/com/example/papasoftclient/Periodo/AgregarPeriodo.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("/com/example/papasoftclient/periodo/vistaAgregarPeriodo.fxml"));
         Scene scene = new Scene(parent);
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL); // Hacer que el Stage sea modal
