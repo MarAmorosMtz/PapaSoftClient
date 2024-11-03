@@ -6,10 +6,9 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-
-<BorderPane fx:id="vista" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="614.0" prefWidth="724.0" stylesheets="@../CSS/Main/mainStyle.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.papasoftclient.MainController">
+<BorderPane fx:id="vista" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="1079.0" stylesheets="@../CSS/Main/mainStyle.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.papasoftclient.MainController">
    <left>
-      <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="614.0" prefWidth="160.0" styleClass="vbox-DashBoard" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="625.0" prefWidth="209.0" styleClass="vbox-DashBoard" BorderPane.alignment="CENTER">
          <children>
             <VBox alignment="CENTER" prefHeight="416.0" prefWidth="182.0" VBox.vgrow="ALWAYS">
                <children>
