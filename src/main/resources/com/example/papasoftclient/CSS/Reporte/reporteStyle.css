@@ -1,0 +1,48 @@
+.radioButton{
+ -fx-font-size: 16;
+ -fx-font-family: Verdana;
+}
+
+.radio-button:selected .radio {
+ -fx-border-radius: 100;
+ -fx-border-color: #00008b;
+}
+
+
+.label{
+ -fx-font-size: 16;
+ -fx-font-family: Verdana;
+}
+
+.topLabel{
+   -fx-text-fill: #00008b;
+   -fx-font-family: Verdana;
+   -fx-font-size: 30;
+-fx-margin-top: 15;
+}
+
+.Button{
+ -fx-background-radius: 10;
+ -fx-border-radius: 10;
+ -fx-text-fill: white;
+ -fx-font-family: Verdana;
+ -fx-font-size: 18;
+ -fx-background-color: #00008b;
+ -fx-border-color: black;
+ -fx-border-width: 1px;
+ -fx-font-weight: bold;
+}
+
+.Button:hover{
+ -fx-cursor: hand;
+}
+
+.grid-pane {
+ -fx-border-color: black;
+ -fx-border-width: 2px;
+}
+
+.comboBox{
+ -fx-background-color: white;
+ -fx-border-color: black;
+}
