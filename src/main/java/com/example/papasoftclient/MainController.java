@@ -26,19 +26,19 @@ public class MainController {
     private String getViewForButton(Button button) {
         switch (button.getText()) {
             case "Perioido":
-                return "Periodo";
+                return "periodo/vistaPeriodo";
             case "Maestros":
                 return "Maestro/Maestros";
             case "Materias":
                 return "Materia/Materia";
             case "Asesores":
-                return "";
+                return "asesor/vistaAsesor";
             case "Asesorados":
-                return "";
+                return "asesorado/vistaAsesorado";
             case "Carreras":
                 return "Carrera/Carrera";
             case "Asesorias":
-                return "";
+                return "asesoria/vistaAsesoria";
             default:
                 return null;
         }
