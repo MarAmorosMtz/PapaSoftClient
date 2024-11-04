@@ -15,7 +15,6 @@ public class LoginController {
     @FXML
     Button btn;
     @FXML
-
     TextField usuario;
     @FXML
     PasswordField pass;
@@ -35,7 +34,7 @@ public class LoginController {
     @FXML
     private void entrar() throws IOException {
         if(usuario.getText().equals("admin") && pass.getText().equals("admin")) {
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/com/example/papasoftclient/Main/Dashboard.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/com/example/papasoftclient/Main/adminDashboard.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
             Stage stage = new Stage();
             stage.setTitle("PapaSoft");
