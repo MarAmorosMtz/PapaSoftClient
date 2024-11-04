@@ -1,8 +1,10 @@
 package com.example.papasoftclient.controllers;
 
+import com.example.papasoftclient.Main;
 import com.example.papasoftclient.models.*;
 import com.example.papasoftclient.repositories.PeriodoRepository;
 import com.example.papasoftclient.repositories.RestAPI;
+import com.example.papasoftclient.utils.Observador;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -26,7 +28,7 @@ import java.util.UUID;
 
 import javafx.util.Callback;
 
-public class PeriodoController{
+public class PeriodoController implements Observador {
 
     @FXML
     private TableView<PeriodoModel> tablaPeriodo;
@@ -42,14 +44,11 @@ public class PeriodoController{
     private TableColumn<PeriodoModel,String> columnaAcciones;
     @FXML
     private Pagination paginadorPeriodo;
-    private CloseableHttpClient httpClient;
+
     private PeriodoRepository periodoRepository;
-    private ObjectMapper mapper;
 
     public PeriodoController(){
-        httpClient = HttpClients.createDefault();
-        mapper = new ObjectMapper();
-        periodoRepository = new PeriodoRepository(httpClient, mapper ,RestAPI.PERIODO_ENDPOINT);
+        periodoRepository = new PeriodoRepository();
     }
 
     @FXML
@@ -139,7 +138,6 @@ public class PeriodoController{
     public Node updateTable(int pageIndex){
         PeriodoPage tmp = periodoRepository.search(pageIndex);
         if(tmp != null){
-            System.out.println("Cargando datos...");
             loadPeriodos(tmp);
         }else System.out.println("La pagina es nula");
         return tablaPeriodo;
@@ -147,8 +145,10 @@ public class PeriodoController{
 
     @FXML
     private void handleButtonAction(ActionEvent event) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource("/com/example/papasoftclient/periodo/vistaAgregarPeriodo.fxml"));
-        Scene scene = new Scene(parent);
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/com/example/papasoftclient/periodo/vistaAgregarPeriodo.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        AddPeriodoController controller = fxmlLoader.getController();
+        controller.agregarObservador(this);
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL); // Hacer que el Stage sea modal
         stage.initOwner(stage.getOwner());
@@ -158,4 +158,8 @@ public class PeriodoController{
         stage.show();
     }
 
+    @Override
+    public void actualizar() {
+        updateTable(paginadorPeriodo.getCurrentPageIndex());
+    }
 }

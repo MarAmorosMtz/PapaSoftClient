@@ -2,6 +2,8 @@ package com.example.papasoftclient.repositories;
 
 
 import com.example.papasoftclient.models.*;
+import com.example.papasoftclient.utils.HttpClient;
+import com.example.papasoftclient.utils.JsonMapper;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.hc.client5.http.classic.methods.HttpDelete;
 import org.apache.hc.client5.http.classic.methods.HttpPost;
@@ -20,10 +22,10 @@ public class PeriodoRepository implements Repository<PeriodoBase, PeriodoModel>{
     private ObjectMapper mapper;
     private String host;
 
-    public PeriodoRepository(CloseableHttpClient httpClient, ObjectMapper mapper, String host) {
-        this.httpClient = httpClient;
-        this.mapper = mapper;
-        this.host = host;
+    public PeriodoRepository() {
+        this.httpClient = HttpClient.getClient();
+        this.mapper = JsonMapper.getMapper();
+        this.host = RestAPI.PERIODOS_ENDPOINT;
     }
 
     @Override
@@ -37,6 +39,7 @@ public class PeriodoRepository implements Repository<PeriodoBase, PeriodoModel>{
             });
 
         }catch(Exception e){
+            e.printStackTrace();
             System.out.println("Se capturó una excepción");
             return null;
         }
@@ -48,7 +51,7 @@ public class PeriodoRepository implements Repository<PeriodoBase, PeriodoModel>{
         try{
             HttpGet request = new HttpGet(host+id.toString());
             PeriodoModel periodoModel = httpClient.execute(request,response->{
-                if (response.getCode() == 200) return null;
+                if (response.getCode() != 200) return null;
                 return mapper.readValue(EntityUtils.toString(response.getEntity()),PeriodoModel.class);
             });
         }catch (Exception ex){

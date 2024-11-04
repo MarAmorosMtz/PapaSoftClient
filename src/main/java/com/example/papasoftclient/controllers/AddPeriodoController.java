@@ -2,7 +2,7 @@ package com.example.papasoftclient.controllers;
 
 import com.example.papasoftclient.models.PeriodoBase;
 import com.example.papasoftclient.repositories.PeriodoRepository;
-import com.example.papasoftclient.repositories.RestAPI;
+import com.example.papasoftclient.utils.Observable;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
@@ -15,7 +15,7 @@ import java.time.ZoneId;
 import java.util.Date;
 
 
-public class AddPeriodoController {
+public class AddPeriodoController extends Observable {
     @FXML
     TextField txtNombre;
     @FXML
@@ -23,21 +23,18 @@ public class AddPeriodoController {
     @FXML
     DatePicker dateFinal;
 
-
-    private CloseableHttpClient httpClient;
     private PeriodoRepository periodoRepository;
-    private ObjectMapper mapper;
+
 
     @FXML
     private void guardar(){
         PeriodoBase periodo = new PeriodoBase();
         periodo.setNombre(txtNombre.getText());
-        periodo.setFechaInicio(Date.from(dateInicio.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
-        periodo.setFechaFinal(Date.from(dateFinal.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
-        httpClient = HttpClients.createDefault();
-        mapper = new ObjectMapper();
-        periodoRepository = new PeriodoRepository(httpClient, mapper , RestAPI.PERIODO_ENDPOINT);
+        periodo.setFecha_inicio(dateInicio.getValue());
+        periodo.setFecha_fin(dateFinal.getValue());
+        periodoRepository = new PeriodoRepository();
         periodoRepository.save(periodo);
+        this.notificar();
         cancelar();
     }
 
