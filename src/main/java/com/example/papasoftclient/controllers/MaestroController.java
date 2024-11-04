@@ -134,7 +134,6 @@ public class MaestroController {
     public Node updateTable(int pageIndex){
         MaestroPage tmp = maestroRepository.search(pageIndex);
         if(tmp != null){
-            System.out.println("Cargando datos...");
             loadMaestros(tmp);
         }else System.out.println("La pagina es nula");
         return tablaMaestro;

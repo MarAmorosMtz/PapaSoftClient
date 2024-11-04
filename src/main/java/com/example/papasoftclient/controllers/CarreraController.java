@@ -136,7 +136,6 @@ public class CarreraController
     public Node updateTable(int pageIndex){
         CarreraPage tmp = carreraRepository.search(pageIndex);
         if(tmp != null){
-            System.out.println("Cargando datos...");
             loadCarreras(tmp);
         }else System.out.println("La pagina es nula");
         return tablaCarreras;
