@@ -6,4 +6,5 @@ public class RestAPI {
     public static final String MATERIAS_ENDPOINT = HOST+"/materias/";
     public static final String MAESTROS_ENDPOINT = HOST+"/maestros/";
     public static final String PERIODOS_ENDPOINT = HOST+"/periodos/";
+    public static final String SALONES_ENDPOINT = HOST+"/salones/";
 }
