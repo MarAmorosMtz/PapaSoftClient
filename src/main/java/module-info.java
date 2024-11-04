@@ -10,6 +10,7 @@ module com.example.papasoftclient {
     requires org.apache.httpcomponents.httpclient;
     requires com.fasterxml.jackson.core;
     requires com.fasterxml.jackson.databind;
+    requires com.fasterxml.jackson.datatype.jsr310;
     requires org.apache.httpcomponents.httpcore;
     requires org.apache.httpcomponents.core5.httpcore5;
     requires java.sql;
