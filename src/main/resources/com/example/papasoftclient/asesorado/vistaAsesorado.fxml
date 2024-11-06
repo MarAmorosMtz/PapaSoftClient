@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" stylesheets="@../CSS/CRUD/vistaPrincipal.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" stylesheets="@../CSS/CRUD/vistaPrincipal.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.papasoftclient.controllers.AsesoradoController">
    <top>
       <StackPane alignment="TOP_LEFT" pickOnBounds="false" prefHeight="108.0" prefWidth="1080.0" BorderPane.alignment="CENTER">
          <children>
@@ -22,7 +22,7 @@
             </HBox>
             <HBox alignment="CENTER_RIGHT" pickOnBounds="false" prefHeight="100.0" prefWidth="200.0" styleClass="topBoxA">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="212.0" styleClass="btnAdd" text="✚ Nuevo Asesorado" />
+                  <Button mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="45.0" prefWidth="212.0" styleClass="btnAdd" text="✚ Nuevo Asesorado" />
                </children>
             </HBox>
             <Label styleClass="topLabel" text="Asesorados">
@@ -46,14 +46,17 @@
    <center>
       <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView prefHeight="200.0" prefWidth="200.0">
+            <TableView fx:id="tablaAsesorados" prefHeight="200.0" prefWidth="200.0">
               <columns>
-                <TableColumn prefWidth="150.39999079704285" text="ID" />
-                <TableColumn minWidth="0.0" prefWidth="75.19998168945312" text="No. Control" />
-                  <TableColumn minWidth="0.0" prefWidth="808.0" text="Nombre" />
+                <TableColumn fx:id="columnaId" prefWidth="150.39999079704285" text="ID" />
+                <TableColumn fx:id="columnaNumCtrl" minWidth="0.0" prefWidth="75.19998168945312" text="No. Control" />
+                  <TableColumn fx:id="columnaApellidoP" minWidth="0.0" prefWidth="808.0" text="Apellido Paterno" />
+                  <TableColumn fx:id="columnaApellidoM" minWidth="0.0" prefWidth="808.0" text="Apellido Materno" />
+                  <TableColumn fx:id="columnaNombre" minWidth="0.0" prefWidth="808.0" text="Nombre" />
+                  <TableColumn fx:id="columnaAcciones" prefWidth="75.0" text="Acciones" />
               </columns>
             </TableView>
-            <Pagination prefHeight="200.0" prefWidth="200.0" styleClass="paginationStyle" />
+            <Pagination fx:id="paginadorAsesorados" prefHeight="200.0" prefWidth="200.0" styleClass="paginationStyle" />
          </children>
       </StackPane>
    </center>
