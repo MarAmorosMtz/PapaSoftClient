@@ -33,7 +33,18 @@ public class LoginController {
 
     @FXML
     private void entrar() throws IOException {
-        if(usuario.getText().equals("admin") && pass.getText().equals("admin")) {
+
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/com/example/papasoftclient/Main/adminDashboard.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage stage = new Stage();
+        stage.setTitle("PapaSoft");
+        stage.setScene(scene);
+        stage.setMaximized(true);
+        stage.show();
+        Stage cerrar = (Stage)usuario.getScene().getWindow();
+        cerrar.close();
+
+        /*if(usuario.getText().equals("admin") && pass.getText().equals("admin")) {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/com/example/papasoftclient/Main/adminDashboard.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
             Stage stage = new Stage();
@@ -45,6 +56,6 @@ public class LoginController {
             cerrar.close();
         }else{
             System.out.println("Usuario o contraseña incorrectos.");
-        }
+        }*/
     }
 }

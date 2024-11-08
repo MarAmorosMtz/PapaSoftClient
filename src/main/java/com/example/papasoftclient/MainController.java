@@ -41,6 +41,10 @@ public class MainController {
                 return "asesoria/vistaAsesoria";
             case "Salones":
                 return "salon/vistaSalon";
+            case "Horarios":
+                return "horarios/vistaHorarios";
+            case "Reportes":
+                return "reporte/vistaReporte";
             default:
                 return null;
         }

@@ -32,12 +32,12 @@ public class CarreraController
 
     @FXML
     private TableView<CarreraModel> tablaCarreras;
-    @FXML
-    private TableColumn<CarreraModel, UUID> columnaId;
+//    @FXML
+//    private TableColumn<CarreraModel, UUID> columnaId;
     @FXML
     private TableColumn<CarreraModel,String> columnaNombre;
-    @FXML
-    private TableColumn<CarreraModel,String> columnaAcciones;
+//    @FXML
+//    private TableColumn<CarreraModel,String> columnaAcciones;
     @FXML
     private Pagination paginadorCarreras;
     private CloseableHttpClient httpClient;
@@ -53,74 +53,74 @@ public class CarreraController
     @FXML
     public void initialize() {
 
-        columnaId.setCellValueFactory(new PropertyValueFactory<>("id"));
+//        columnaId.setCellValueFactory(new PropertyValueFactory<>("id"));
         columnaNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
 
-        Callback<TableColumn<CarreraModel, String>, TableCell<CarreraModel, String>> cellFactory
-                = new Callback<TableColumn<CarreraModel, String>, TableCell<CarreraModel, String>>() {
-            @Override
-            public TableCell<CarreraModel, String> call(final TableColumn<CarreraModel, String> param) {
-                final TableCell<CarreraModel, String> cell = new TableCell<CarreraModel, String>() {
-                    final Button btn = new Button("● ● ●");
-
-                    @Override
-                    public void updateItem(String item, boolean empty) {
-                        super.updateItem(item, empty);
-                        if (empty) {
-                            setGraphic(null);
-                            setText(null);
-                        } else {
-
-                            int rowIndex = getIndex();
-                            CarreraModel carrera = tablaCarreras.getItems().get(rowIndex);
-                            CarreraBase carreraBase = tablaCarreras.getItems().get(rowIndex);
-
-                            btn.setOnMouseClicked(mouseEvent -> {
-                                try {
-                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/papasoftclient/Util/EditDeleteCarrera.fxml"));
-                                    Parent root = loader.load();
-
-                                    Stage popupStage = new Stage(StageStyle.UNDECORATED);
-                                    popupStage.initModality(Modality.NONE);
-                                    popupStage.initOwner(btn.getScene().getWindow());
-                                    popupStage.setScene(new Scene(root));
-
-                                    popupStage.setX(mouseEvent.getScreenX());
-                                    popupStage.setY(mouseEvent.getScreenY());
-
-                                    popupStage.setAlwaysOnTop(true);
-
-                                    Scene mainScene = btn.getScene();
-                                    mainScene.addEventFilter(MouseEvent.MOUSE_PRESSED, event -> {
-                                        if (!popupStage.getScene().getWindow().equals(event.getTarget())) {
-                                            popupStage.close();
-                                        }
-                                    });
-
-                                    DialogoCarreraController controller = loader.getController();
-                                    controller.setStage(popupStage);
-                                    controller.setModel(carrera);
-                                    controller.setBase(carreraBase);
-                                    System.out.println(carrera.getNombre());
-
-                                    popupStage.show();
-
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
-                            });
-
-                            btn.getStyleClass().add("actionButton");
-                            setGraphic(btn);
-                            setText(null);
-                        }
-                    }
-                };
-                return cell;
-            }
-        };
-
-        columnaAcciones.setCellFactory(cellFactory);
+//        Callback<TableColumn<CarreraModel, String>, TableCell<CarreraModel, String>> cellFactory
+//                = new Callback<TableColumn<CarreraModel, String>, TableCell<CarreraModel, String>>() {
+//            @Override
+//            public TableCell<CarreraModel, String> call(final TableColumn<CarreraModel, String> param) {
+//                final TableCell<CarreraModel, String> cell = new TableCell<CarreraModel, String>() {
+//                    final Button btn = new Button("● ● ●");
+//
+//                    @Override
+//                    public void updateItem(String item, boolean empty) {
+//                        super.updateItem(item, empty);
+//                        if (empty) {
+//                            setGraphic(null);
+//                            setText(null);
+//                        } else {
+//
+//                            int rowIndex = getIndex();
+//                            CarreraModel carrera = tablaCarreras.getItems().get(rowIndex);
+//                            CarreraBase carreraBase = tablaCarreras.getItems().get(rowIndex);
+//
+//                            btn.setOnMouseClicked(mouseEvent -> {
+//                                try {
+//                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/papasoftclient/Util/EditDeleteCarrera.fxml"));
+//                                    Parent root = loader.load();
+//
+//                                    Stage popupStage = new Stage(StageStyle.UNDECORATED);
+//                                    popupStage.initModality(Modality.NONE);
+//                                    popupStage.initOwner(btn.getScene().getWindow());
+//                                    popupStage.setScene(new Scene(root));
+//
+//                                    popupStage.setX(mouseEvent.getScreenX());
+//                                    popupStage.setY(mouseEvent.getScreenY());
+//
+//                                    popupStage.setAlwaysOnTop(true);
+//
+//                                    Scene mainScene = btn.getScene();
+//                                    mainScene.addEventFilter(MouseEvent.MOUSE_PRESSED, event -> {
+//                                        if (!popupStage.getScene().getWindow().equals(event.getTarget())) {
+//                                            popupStage.close();
+//                                        }
+//                                    });
+//
+//                                    DialogoCarreraController controller = loader.getController();
+//                                    controller.setStage(popupStage);
+//                                    controller.setModel(carrera);
+//                                    controller.setBase(carreraBase);
+//                                    System.out.println(carrera.getNombre());
+//
+//                                    popupStage.show();
+//
+//                                } catch (Exception e) {
+//                                    e.printStackTrace();
+//                                }
+//                            });
+//
+//                            btn.getStyleClass().add("actionButton");
+//                            setGraphic(btn);
+//                            setText(null);
+//                        }
+//                    }
+//                };
+//                return cell;
+//            }
+//        };
+//
+//        columnaAcciones.setCellFactory(cellFactory);
 
         paginadorCarreras.setPageFactory(this::updateTable);
     }

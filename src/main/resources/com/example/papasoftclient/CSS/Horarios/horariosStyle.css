@@ -1,0 +1,59 @@
+.label{
+ -fx-font-size: 16;
+ -fx-font-family: Verdana;
+}
+
+.btnAdd{
+    -fx-background-radius: 20;
+    -fx-text-fill: white;
+    -fx-font-family: Verdana;
+    -fx-font-size: 15;
+    -fx-background-color: #00008b;
+    -fx-border-radius: 20;
+    -fx-border-color: black;
+    -fx-font-weight: bold;
+}
+
+.btnAdd:hover{
+-fx-cursor: hand;
+}
+
+.tab{
+-fx-font-size: 16;
+-fx-font-family: Verdana;
+}
+
+.comboBox{
+ -fx-background-color: white;
+ -fx-border-color: black;
+}
+
+.btnGuardar{
+-fx-background-radius: 10;
+-fx-border-radius: 10;
+-fx-text-fill: white;
+-fx-font-family: Verdana;
+-fx-font-size: 15;
+-fx-background-color: #00008b;
+-fx-border-color: black;
+-fx-font-weight: bold;
+}
+
+.btnGuardar:hover{
+-fx-cursor: hand;
+}
+
+.btnCancelar{
+-fx-background-radius: 10;
+-fx-border-radius: 10;
+-fx-text-fill: red;
+-fx-font-family: Verdana;
+-fx-font-size: 15;
+-fx-background-color: white;
+-fx-border-color: red;
+-fx-font-weight: bold;
+}
+
+.btnCancelar:hover{
+-fx-cursor: hand;
+}

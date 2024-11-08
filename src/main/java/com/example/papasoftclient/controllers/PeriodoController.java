@@ -32,16 +32,16 @@ public class PeriodoController implements Observador {
 
     @FXML
     private TableView<PeriodoModel> tablaPeriodo;
-    @FXML
-    private TableColumn<PeriodoModel, UUID> columnaID;
+//    @FXML
+//    private TableColumn<PeriodoModel, UUID> columnaID;
     @FXML
     private TableColumn<PeriodoModel,String> columnaNombre;
     @FXML
     private TableColumn<PeriodoModel, Date> columnaFechaI;
     @FXML
     private TableColumn<PeriodoModel, Date> columnaFechaF;
-    @FXML
-    private TableColumn<PeriodoModel,String> columnaAcciones;
+//    @FXML
+//    private TableColumn<PeriodoModel,String> columnaAcciones;
     @FXML
     private Pagination paginadorPeriodo;
 
@@ -53,76 +53,75 @@ public class PeriodoController implements Observador {
 
     @FXML
     public void initialize() {
-
-        columnaID.setCellValueFactory(new PropertyValueFactory<>("id"));
+//        columnaID.setCellValueFactory(new PropertyValueFactory<>("id"));
         columnaNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         columnaFechaI.setCellValueFactory(new PropertyValueFactory<>("fecha_inicio"));
         columnaFechaF.setCellValueFactory(new PropertyValueFactory<>("fecha_fin"));
 
-        Callback<TableColumn<PeriodoModel, String>, TableCell<PeriodoModel, String>> cellFactory
-                = new Callback<TableColumn<PeriodoModel, String>, TableCell<PeriodoModel, String>>() {
-            @Override
-            public TableCell<PeriodoModel, String> call(final TableColumn<PeriodoModel, String> param) {
-                final TableCell<PeriodoModel, String> cell = new TableCell<PeriodoModel, String>() {
-                    final Button btn = new Button("● ● ●");
-
-                    @Override
-                    public void updateItem(String item, boolean empty) {
-                        super.updateItem(item, empty);
-                        if (empty) {
-                            setGraphic(null);
-                            setText(null);
-                        } else {
-
-                            int rowIndex = getIndex();
-                            PeriodoModel periodo = tablaPeriodo.getItems().get(rowIndex);
-                            PeriodoBase periodoBase = tablaPeriodo.getItems().get(rowIndex);
-
-                            btn.setOnMouseClicked(mouseEvent -> {
-                                try {
-                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/papasoftclient/Util/EditDeletePeriodo.fxml"));
-                                    Parent root = loader.load();
-
-                                    Stage popupStage = new Stage(StageStyle.UNDECORATED);
-                                    popupStage.initModality(Modality.NONE);
-                                    popupStage.initOwner(btn.getScene().getWindow());
-                                    popupStage.setScene(new Scene(root));
-
-                                    popupStage.setX(mouseEvent.getScreenX());
-                                    popupStage.setY(mouseEvent.getScreenY());
-
-                                    popupStage.setAlwaysOnTop(true);
-
-                                    Scene mainScene = btn.getScene();
-                                    mainScene.addEventFilter(MouseEvent.MOUSE_PRESSED, event -> {
-                                        if (!popupStage.getScene().getWindow().equals(event.getTarget())) {
-                                            popupStage.close();
-                                        }
-                                    });
-
-                                    DialogoPeriodoController controller = loader.getController();
-                                    controller.setStage(popupStage);
-                                    controller.setModel(periodo);
-                                    controller.setBase(periodoBase);
-
-                                    popupStage.show();
-
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
-                            });
-
-                            btn.getStyleClass().add("actionButton");
-                            setGraphic(btn);
-                            setText(null);
-                        }
-                    }
-                };
-                return cell;
-            }
-        };
-
-        columnaAcciones.setCellFactory(cellFactory);
+//        Callback<TableColumn<PeriodoModel, String>, TableCell<PeriodoModel, String>> cellFactory
+//                = new Callback<TableColumn<PeriodoModel, String>, TableCell<PeriodoModel, String>>() {
+//            @Override
+//            public TableCell<PeriodoModel, String> call(final TableColumn<PeriodoModel, String> param) {
+//                final TableCell<PeriodoModel, String> cell = new TableCell<PeriodoModel, String>() {
+//                    final Button btn = new Button("● ● ●");
+//
+//                    @Override
+//                    public void updateItem(String item, boolean empty) {
+//                        super.updateItem(item, empty);
+//                        if (empty) {
+//                            setGraphic(null);
+//                            setText(null);
+//                        } else {
+//
+//                            int rowIndex = getIndex();
+//                            PeriodoModel periodo = tablaPeriodo.getItems().get(rowIndex);
+//                            PeriodoBase periodoBase = tablaPeriodo.getItems().get(rowIndex);
+//
+//                            btn.setOnMouseClicked(mouseEvent -> {
+//                                try {
+//                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/papasoftclient/Util/EditDeletePeriodo.fxml"));
+//                                    Parent root = loader.load();
+//
+//                                    Stage popupStage = new Stage(StageStyle.UNDECORATED);
+//                                    popupStage.initModality(Modality.NONE);
+//                                    popupStage.initOwner(btn.getScene().getWindow());
+//                                    popupStage.setScene(new Scene(root));
+//
+//                                    popupStage.setX(mouseEvent.getScreenX());
+//                                    popupStage.setY(mouseEvent.getScreenY());
+//
+//                                    popupStage.setAlwaysOnTop(true);
+//
+//                                    Scene mainScene = btn.getScene();
+//                                    mainScene.addEventFilter(MouseEvent.MOUSE_PRESSED, event -> {
+//                                        if (!popupStage.getScene().getWindow().equals(event.getTarget())) {
+//                                            popupStage.close();
+//                                        }
+//                                    });
+//
+//                                    DialogoPeriodoController controller = loader.getController();
+//                                    controller.setStage(popupStage);
+//                                    controller.setModel(periodo);
+//                                    controller.setBase(periodoBase);
+//
+//                                    popupStage.show();
+//
+//                                } catch (Exception e) {
+//                                    e.printStackTrace();
+//                                }
+//                            });
+//
+//                            btn.getStyleClass().add("actionButton");
+//                            setGraphic(btn);
+//                            setText(null);
+//                        }
+//                    }
+//                };
+//                return cell;
+//            }
+//        };
+//
+//        columnaAcciones.setCellFactory(cellFactory);
 
         paginadorPeriodo.setPageFactory(this::updateTable);
     }
