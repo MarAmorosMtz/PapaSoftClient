@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="589.0" prefWidth="909.0" stylesheets="@../CSS/CRUD/vistaPrincipal.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.papasoftclient.controllers.MaestroController">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="589.0" prefWidth="909.0" stylesheets="@../CSS/CRUD/vistaPrincipal.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.papasoftclient.controllers.main.MaestroController">
    <children>
       <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -60,8 +60,8 @@
                   </HBox>
                   <VBox alignment="TOP_CENTER" prefHeight="374.0" prefWidth="202.0" spacing="20.0" styleClass="CentervBoxR" HBox.hgrow="SOMETIMES">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="47.0" prefWidth="132.0" styleClass="btnEdit" text="Editar" />
-                        <Button mnemonicParsing="false" prefHeight="47.0" prefWidth="132.0" styleClass="btnDelete" text="Eliminar" />
+                        <Button mnemonicParsing="false" prefHeight="47.0" prefWidth="132.0" styleClass="btnEdit" text="Editar" onAction="#edit"/>
+                        <Button mnemonicParsing="false" prefHeight="47.0" prefWidth="132.0" styleClass="btnDelete" text="Eliminar" onAction="#delete"/>
                      </children>
                   </VBox>
                </children>
