@@ -4,14 +4,16 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Accordion;
 import javafx.scene.control.Button;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 
 public class MainController {
     @FXML
-    private BorderPane vista;
+    private AnchorPane vista;
+
 
     @FXML
     private void handleButtonAction(ActionEvent event) throws IOException {
@@ -55,6 +57,11 @@ public class MainController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml + ".fxml"));
         Parent nuevaVista = loader.load();
 
-        vista.setCenter(nuevaVista);
+        vista.getChildren().clear();
+        vista.getChildren().add(nuevaVista);
+        AnchorPane.setTopAnchor(nuevaVista, 0.0);
+        AnchorPane.setBottomAnchor(nuevaVista, 0.0);
+        AnchorPane.setLeftAnchor(nuevaVista, 0.0);
+        AnchorPane.setRightAnchor(nuevaVista, 0.0);
     }
 }

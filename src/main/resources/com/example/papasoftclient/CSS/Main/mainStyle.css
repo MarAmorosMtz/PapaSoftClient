@@ -1,11 +1,11 @@
-.topBorder{
--fx-background-color: #00008b;
+.vBoxL{
+    -fx-spacing: 10px;
+    -fx-padding: 5px;
 }
 
 .vbox-DashBoard{
     -fx-background-color: white;
-    -fx-spacing: 10;
-    -fx-padding: 10;
+    -fx-spacing: 10px;
 }
 
 .buttonDashBoard{
@@ -14,7 +14,15 @@
     -fx-border-color: transparent;
     -fx-cursor: hand;
     -fx-font-size: 17px;
+    -fx-alignment: CENTER-LEFT;
+    -fx-font-family: Verdana;
+    -fx-spacing: 10px;
 }
+
+.buttonDashBoard .image-view{
+    -fx-margin-right: 10px;
+}
+
 
 .buttonDashBoard:hover{
     -fx-background-color: white;
@@ -32,8 +40,7 @@
     -fx-border-width: 0 0 0 4;
 }
 
-.topLabel{
-    -fx-text-fill: white;
+.titlePane .text{
     -fx-font-family: Verdana;
-    -fx-font-size: 50;
+    -fx-font-size: 15px;
 }
