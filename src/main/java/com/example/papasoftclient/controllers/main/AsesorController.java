@@ -1,14 +1,11 @@
 package com.example.papasoftclient.controllers.main;
 
 import com.example.papasoftclient.controllers.delete.ConfirmacionAsesorController;
-import com.example.papasoftclient.controllers.delete.ConfirmacionMaestroController;
 import com.example.papasoftclient.controllers.edit.EditAsesorController;
-import com.example.papasoftclient.controllers.edit.EditMaestroController;
 import com.example.papasoftclient.models.*;
 import com.example.papasoftclient.repositories.AsesorRepository;
-import com.example.papasoftclient.repositories.MaestroRepository;
-import com.example.papasoftclient.repositories.RestAPI;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.example.papasoftclient.utils.Observador;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,14 +20,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
-import org.apache.hc.client5.http.impl.classic.HttpClients;
 
 import java.io.IOException;
 import java.util.Date;
 import java.util.UUID;
 
-public class AsesorController {
+public class AsesorController implements Observador {
     @FXML
     TableView<AsesorModel> tablaAsesor;
     @FXML
@@ -50,20 +45,16 @@ public class AsesorController {
     @FXML
     TableColumn<AsesorModel, Integer> columnaSemestre;
     @FXML
-    TableColumn<AsesorModel, UUID> columnaCarrera;
+    TableColumn<AsesorModel, String> columnaCarrera;
     @FXML
     TableColumn<AsesorModel, String> columnaContrato;
     @FXML
     Pagination paginadorAsesor;
 
-    private CloseableHttpClient httpClient;
     private AsesorRepository asesorRepository;
-    private ObjectMapper mapper;
 
     public AsesorController(){
-        httpClient = HttpClients.createDefault();
-        mapper = new ObjectMapper();
-        asesorRepository = new AsesorRepository(httpClient, mapper , RestAPI.ASESORES_ENDPOINT);
+        asesorRepository = new AsesorRepository();
     }
 
     @FXML
@@ -77,7 +68,9 @@ public class AsesorController {
         columnaTelefono.setCellValueFactory(new PropertyValueFactory<>("telefono"));
         columnaFecha.setCellValueFactory(new PropertyValueFactory<>("fecha_inscripcion"));
         columnaSemestre.setCellValueFactory(new PropertyValueFactory<>("semestre"));
-        columnaCarrera.setCellValueFactory(new PropertyValueFactory<>("carrera"));
+        columnaCarrera.setCellValueFactory(cellData ->
+                new SimpleStringProperty(cellData.getValue().getCarrera().getNombre())
+        );
         columnaContrato.setCellValueFactory(new PropertyValueFactory<>("contrato"));
 
         paginadorAsesor.setPageFactory(this::updateTable);
@@ -91,7 +84,8 @@ public class AsesorController {
         AsesorPage tmp = asesorRepository.search(pageIndex);
         if(tmp != null){
             loadAsesores(tmp);
-        }else System.out.println("La pagina es nula");
+            paginadorAsesor.setMaxPageIndicatorCount(tmp.getPaginas());
+        }
         return tablaAsesor;
     }
 
@@ -151,4 +145,10 @@ public class AsesorController {
 
         stage.show();
     }
+
+    @Override
+    public void actualizar() {
+        updateTable(paginadorAsesor.getCurrentPageIndex());
+    }
+
 }

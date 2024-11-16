@@ -7,8 +7,7 @@ public class AsesorPage extends Page{
 
     public AsesorPage() {}
 
-    public AsesorPage(int total, int paginas, ArrayList<AsesorModel> asesores) {
-        super(total, paginas);
+    public AsesorPage(ArrayList<AsesorModel> asesores) {
         this.asesores = asesores;
     }
 
