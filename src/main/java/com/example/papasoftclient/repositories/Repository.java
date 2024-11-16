@@ -3,7 +3,6 @@ package com.example.papasoftclient.repositories;
 
 
 import com.example.papasoftclient.models.Page;
-import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
 
 import java.util.UUID;
 

@@ -1,7 +1,9 @@
 package com.example.papasoftclient.repositories;
 
 
-import com.example.papasoftclient.models.*;
+import com.example.papasoftclient.models.PeriodoBase;
+import com.example.papasoftclient.models.PeriodoModel;
+import com.example.papasoftclient.models.PeriodoPage;
 import com.example.papasoftclient.utils.HttpClient;
 import com.example.papasoftclient.utils.JsonMapper;
 import com.fasterxml.jackson.databind.ObjectMapper;

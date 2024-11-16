@@ -1,6 +1,8 @@
 package com.example.papasoftclient.repositories;
 
-import com.example.papasoftclient.models.*;
+import com.example.papasoftclient.models.MaestroBase;
+import com.example.papasoftclient.models.MaestroModel;
+import com.example.papasoftclient.models.MaestroPage;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.hc.client5.http.classic.methods.HttpDelete;
 import org.apache.hc.client5.http.classic.methods.HttpPost;

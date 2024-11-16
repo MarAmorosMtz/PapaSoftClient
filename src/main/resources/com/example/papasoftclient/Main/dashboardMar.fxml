@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="798.0" prefWidth="1084.0" stylesheets="@../CSS/Main/mainStyle.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.papasoftclient.MainController">
+   <children>
+      <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <VBox prefHeight="717.0" prefWidth="269.0" styleClass="vBoxL">
+               <children>
+                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="vBoxL" VBox.vgrow="ALWAYS">
+                     <children>
+                        <ImageView fitHeight="173.0" fitWidth="176.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../media/papas.png" />
+                           </image>
+                        </ImageView>
+                        <Accordion prefHeight="451.0" prefWidth="249.0" VBox.vgrow="ALWAYS" >
+                          <panes>
+                            <TitledPane animated="false" styleClass="titlePane" text="Recursos Humanos">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="vbox-DashBoard" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="buttonDashBoard" text="Asesores" onAction="#handleButtonAction">
+                                                   <graphic>
+                                                      <ImageView fitHeight="50.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../media/asesor.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </Button>
+                                                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="buttonDashBoard" text="Asesorados" onAction="#handleButtonAction">
+                                                   <graphic>
+                                                      <ImageView fitHeight="50.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../media/asesorado.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </Button>
+                                                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="buttonDashBoard" text="Maestros" onAction="#handleButtonAction">
+                                                   <graphic>
+                                                      <ImageView fitHeight="50.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../media/maestro.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </Button>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                              </content>
+                            </TitledPane>
+                            <TitledPane animated="false" styleClass="titlePane" text="Educación">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="vbox-DashBoard" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="buttonDashBoard" text="Asesorias" onAction="#handleButtonAction" >
+                                                   <graphic>
+                                                      <ImageView fitHeight="50.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../media/asesoria.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </Button>
+                                                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="buttonDashBoard" text="Carreras" onAction="#handleButtonAction" >
+                                                   <graphic>
+                                                      <ImageView fitHeight="50.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../media/carrera.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </Button>
+                                                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="buttonDashBoard" text="Materias" onAction="#handleButtonAction" >
+                                                   <graphic>
+                                                      <ImageView fitHeight="50.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../media/materias.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </Button>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                              </content>
+                            </TitledPane>
+                            <TitledPane animated="false" styleClass="titlePane" text="Administracion">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="vbox-DashBoard" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="buttonDashBoard" text="Salones" onAction="#handleButtonAction" >
+                                                   <graphic>
+                                                      <ImageView fitHeight="50.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../media/salon.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </Button>
+                                                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="buttonDashBoard" text="Reportes" onAction="#handleButtonAction" >
+                                                   <graphic>
+                                                      <ImageView fitHeight="50.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../media/reporte.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </Button>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                              </content>
+                            </TitledPane>
+                          </panes>
+                        </Accordion>
+                     </children>
+                  </VBox>
+                  <VBox alignment="BOTTOM_CENTER" prefHeight="88.0" prefWidth="171.0" styleClass="vbox-DashBoard">
+                     <children>
+                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="buttonDashBoard" text="Configuracion" onAction="#handleButtonAction">
+                           <graphic>
+                              <ImageView fitHeight="50.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../media/configuracion.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children></VBox>
+               </children>
+            </VBox>
+            <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" fx:id="vista"/>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

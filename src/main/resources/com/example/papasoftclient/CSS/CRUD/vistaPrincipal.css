@@ -1,7 +1,3 @@
-.topBoxA{
--fx-padding: 15;
-}
-
 .topLabel{
    -fx-text-fill: #00008b;
    -fx-font-family: Verdana;
@@ -9,65 +5,76 @@
 -fx-margin-top: 15;
 }
 
-.txfSearch{
-    -fx-background-radius: 10;
+.txtSearch{
+    -fx-background-radius: 15;
     -fx-border-radius: 15;
     -fx-border-color: black;
 -fx-font-size: 15;
 }
 
+.topVBoxL{
+-fx-padding: 15;
+-fx-spacing: 10;
+}
+
 .btnAdd{
-    -fx-background-radius: 20;
+    -fx-background-radius: 15;
     -fx-text-fill: white;
     -fx-font-family: Verdana;
     -fx-font-size: 15;
     -fx-background-color: #00008b;
-    -fx-border-radius: 20;
+    -fx-border-radius: 15;
     -fx-border-color: black;
     -fx-font-weight: bold;
 }
 
 .btnAdd:hover{
 -fx-cursor: hand;
+-fx-background-color: white;
+-fx-text-fill: #00008b;
 }
 
-.table-view{
+.btnEdit{
+-fx-background-radius: 15;
+-fx-border-radius: 15;
+-fx-text-fill: #00008b;
+-fx-font-family: Verdana;
+-fx-font-size: 15;
+-fx-background-color: white;
+-fx-border-color: #00008b;
+-fx-font-weight: bold;
+}
+
+.btnEdit:hover{
+-fx-cursor: hand;
+-fx-background-color: #00008b;
+-fx-text-fill: white;
+}
+
+.btnDelete{
+-fx-background-radius: 15;
+-fx-border-radius: 15;
+-fx-text-fill: red;
+-fx-font-family: Verdana;
+-fx-font-size: 15;
+-fx-background-color: white;
+-fx-border-color: red;
+-fx-font-weight: bold;
+}
+
+.btnDelete:hover{
+-fx-cursor: hand;
+-fx-background-color: red;
+-fx-text-fill: white;
+}
+
+.CentervBoxR{
+-fx-padding: 15px;
+}
+
+.paginationStyle .pagination-control .button, .paginationStyle .toggle-button{
     -fx-background-color: white;
-    -fx-border-color: white;
-}
-
-.table-view .column-header-background{
-    -fx-background-color: white;
-}
-
-.table-view .column-header, .table-view .column-header .label {
-     -fx-background-color: white;
-     -fx-text-fill: #00003b;
-     -fx-font-size: 18;
-     -fx-text-align: center;
-     -fx-font-weight: bold;
- }
-
-.table-view .cell {
-    -fx-font-size: 20;
-    -fx-alignment: CENTER;
-}
-
- .paginationStyle {
-     -fx-background-color: white;
-     -fx-border-color: white;
-     -fx-border-width: 1;
-     -fx-padding: 10;
- }
-
- .paginationStyle .control-box {
-     -fx-background-color: white;
-     -fx-border-color: white;
-     -fx-border-radius: 15;
- }
-
- .paginationStyle .pagination-control .button, .paginationStyle .toggle-button{
-    -fx-background-color: white;
+-fx-font-family: Verdana;
     -fx-border-color: white;
     -fx-text-fill: #00008b;
     -fx-font-size: 18;
@@ -75,36 +82,11 @@
     -fx-border-radius: 5;
  }
 
- .paginationStyle .pagination-control .toggle-button:selected{
+.paginationStyle .pagination-control .toggle-button:selected{
     -fx-background-color:  #00008b;
     -fx-text-fill: white;
     -fx-background-radius: 5;
     -fx-border-radius: 5;
- }
-
- .paginationStyle > .pagination-control > .control-box {
-     -fx-spacing: 5;
- }
-
- .paginationStyle > .pagination-control > .control-box > .number-button,
- .paginationStyle > .pagination-control > .control-box > .bullet-button,
- .paginationStyle > .pagination-control > .control-box > .left-arrow-button,
- .paginationStyle > .pagination-control > .control-box > .right-arrow-button {
-     -fx-background-insets: 0, 1;
-     -fx-min-width: 35;
-     -fx-min-height: 35;
- }
-
- .paginationStyle > .pagination-control > .control-box > .number-button:hover,
- .paginationStyle > .pagination-control > .control-box > .bullet-button:hover,
- .paginationStyle > .pagination-control > .control-box > .left-arrow-button:hover,
- .paginationStyle > .pagination-control > .control-box > .right-arrow-button:hover {
-     -fx-background-insets: 0;
-     -fx-background-color: lightgray;
-     -fx-text-fill: black;
-     -fx-background-radius: 5;
-     -fx-border-radius: 5;
-     -fx-cursor: hand;
  }
 
 .paginationStyle {
@@ -121,14 +103,15 @@
     -fx-text-fill: black;
 }
 
-.actionButton{
-    -fx-background-color: transparent;
-    -fx-cursor: hand;
-    -fx-text-fill: black;
-    -fx-font-size: 15;
-    -fx-font-weight: bold;
-}
+.table-view .column-header, .table-view .column-header .label {
+     -fx-background-color: white;
+     -fx-text-fill: #00003b;
+     -fx-font-size: 18;
+     -fx-text-align: center;
+     -fx-font-weight: bold;
+ }
 
-.actionButton:pressed{
-    -fx-text-fill: #0062ff;
+.table-view .cell {
+    -fx-font-size: 20;
+    -fx-alignment: CENTER;
 }
