@@ -6,6 +6,7 @@ import com.example.papasoftclient.models.MaestroModel;
 import com.example.papasoftclient.models.MaestroPage;
 import com.example.papasoftclient.repositories.MaestroRepository;
 import com.example.papasoftclient.repositories.RestAPI;
+import com.example.papasoftclient.utils.Observador;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -24,7 +25,7 @@ import org.apache.hc.client5.http.impl.classic.HttpClients;
 
 import java.io.IOException;
 
-public class MaestroController {
+public class MaestroController implements Observador {
     @FXML
     TableView <MaestroModel> tablaMaestro;
     @FXML
@@ -60,9 +61,11 @@ public class MaestroController {
     }
 
     public Node updateTable(int pageIndex){
-        MaestroPage tmp = maestroRepository.search(pageIndex);
+        MaestroPage tmp = maestroRepository.search(pageIndex+1);
         if(tmp != null){
             loadMaestros(tmp);
+            paginadorMaestros.setMaxPageIndicatorCount(tmp.getPaginas());
+            paginadorMaestros.setPageCount(tmp.getPaginas());
         }else System.out.println("La pagina es nula");
         return tablaMaestro;
     }
@@ -124,4 +127,8 @@ public class MaestroController {
         stage.show();
     }
 
+    @Override
+    public void actualizar() {
+        updateTable(paginadorMaestros.getCurrentPageIndex());
+    }
 }

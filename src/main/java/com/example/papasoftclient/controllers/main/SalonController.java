@@ -115,9 +115,11 @@ public class SalonController  implements Observador{
     }
 
     public Node updateTable(int pageIndex){
-        SalonPage tmp = salonRepository.search(pageIndex);
+        SalonPage tmp = salonRepository.search(pageIndex+1);
         if(tmp != null){
             loadMaterias(tmp);paginadorSalones.setMaxPageIndicatorCount(tmp.getPaginas());
+            paginadorSalones.setMaxPageIndicatorCount(tmp.getPaginas());
+            paginadorSalones.setPageCount(tmp.getPaginas());
         }
         return tablaSalones;
     }

@@ -59,9 +59,11 @@ public class AsesoradoController  implements Observador{
     }
 
     public Node updateTable(int pageIndex){
-        AsesoradoPage tmp = asesoradoRepository.search(pageIndex);
+        AsesoradoPage tmp = asesoradoRepository.search(pageIndex+1);
         if(tmp != null){
             loadMaterias(tmp);
+            paginadorAsesorados.setMaxPageIndicatorCount(tmp.getPaginas());
+            paginadorAsesorados.setPageCount(tmp.getPaginas());
         }else System.out.println("La pagina es nula");
         return tablaAsesorados;
     }
