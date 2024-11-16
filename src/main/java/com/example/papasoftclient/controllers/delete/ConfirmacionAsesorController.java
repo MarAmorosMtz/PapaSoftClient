@@ -3,6 +3,7 @@ package com.example.papasoftclient.controllers.delete;
 import com.example.papasoftclient.models.AsesorModel;
 import com.example.papasoftclient.repositories.AsesorRepository;
 import com.example.papasoftclient.repositories.RestAPI;
+import com.example.papasoftclient.utils.Observable;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -11,22 +12,17 @@ import javafx.stage.Stage;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
 import org.apache.hc.client5.http.impl.classic.HttpClients;
 
-public class ConfirmacionAsesorController {
+public class ConfirmacionAsesorController extends Observable {
 
     @FXML
     Button close;
 
     AsesorModel asesor;
 
-    private CloseableHttpClient httpClient;
     private AsesorRepository asesorRepository;
-    private ObjectMapper mapper;
-
     @FXML
     private void confirmar(){
-        httpClient = HttpClients.createDefault();
-        mapper = new ObjectMapper();
-        asesorRepository = new AsesorRepository(httpClient, mapper , RestAPI.ASESORES_ENDPOINT);
+        asesorRepository = new AsesorRepository();
         if(asesorRepository.remove(asesor.getId())){
             asesorRepository.remove(asesor.getId());
         }else{

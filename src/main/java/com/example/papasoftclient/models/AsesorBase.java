@@ -14,12 +14,15 @@ public class AsesorBase {
     private int semestre;
     private String contrato;
     private String foto;
+    private UUID carrera;
 
     public AsesorBase() {}
 
     public AsesorBase(String num_ctrl) {
         this.num_ctrl = num_ctrl;
     }
+
+    public void setCarrera(UUID carrera){ this.carrera = carrera; }
 
     public void setFoto(String foto) {
         this.foto = foto;

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="908.0" prefWidth="734.0" styleClass="vBox" stylesheets="@../CSS/Util/agregarStyle.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="908.0" prefWidth="734.0" styleClass="vBox" stylesheets="@../CSS/Util/agregarStyle.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.papasoftclient.controllers.add.AddAsesorController">
    <children>
       <Label text="Agregar Asesorado" />
       <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="892.0" prefWidth="684.0" styleClass="hBoxTop">
@@ -31,25 +31,25 @@
                   <VBox prefHeight="114.0" prefWidth="449.0">
                      <children>
                         <Label text="No. de Control:" />
-                        <TextField prefHeight="43.0" prefWidth="419.0" promptText="Ejemlpo: 21020339" styleClass="textField" />
+                        <TextField prefHeight="43.0" prefWidth="419.0" promptText="Ejemlpo: 21020339" styleClass="textField" fx:id="txtNControl" />
                      </children>
                   </VBox>
                   <VBox prefHeight="114.0" prefWidth="449.0">
                      <children>
                         <Label text="Nombre(s):" />
-                        <TextField prefHeight="43.0" prefWidth="419.0" promptText="Ejemlpo: Kevin Antoine" styleClass="textField" />
+                        <TextField prefHeight="43.0" prefWidth="419.0" promptText="Ejemlpo: Kevin Antoine" styleClass="textField" fx:id="txtNombre" />
                      </children>
                   </VBox>
                   <VBox prefHeight="114.0" prefWidth="449.0">
                      <children>
                         <Label text="Apellido Paterno:" />
-                        <TextField prefHeight="43.0" prefWidth="419.0" promptText="Ejemplo: Amoros" styleClass="textField" />
+                        <TextField prefHeight="43.0" prefWidth="419.0" promptText="Ejemplo: Amoros" styleClass="textField" fx:id="txtApellidoP" />
                      </children>
                   </VBox>
                   <VBox prefHeight="114.0" prefWidth="449.0">
                      <children>
                         <Label text="Apellido Materno:" />
-                        <TextField prefHeight="43.0" prefWidth="419.0" promptText="Ejemplo: Luna" styleClass="textField" />
+                        <TextField prefHeight="43.0" prefWidth="419.0" promptText="Ejemplo: Luna" styleClass="textField" fx:id="txtApellidoM" />
                      </children>
                   </VBox>
                </children>
@@ -59,37 +59,37 @@
                   <VBox prefHeight="114.0" prefWidth="449.0">
                      <children>
                         <Label text="Correo electronico:" />
-                        <TextField prefHeight="43.0" prefWidth="419.0" promptText="Ejemlpo: L21020339@veracruz.tecnm.mx" styleClass="textField" />
+                        <TextField prefHeight="43.0" prefWidth="419.0" promptText="Ejemlpo: L21020339@veracruz.tecnm.mx" styleClass="textField" fx:id="txtCorreo" />
                      </children>
                   </VBox>
                   <VBox prefHeight="114.0" prefWidth="449.0">
                      <children>
                         <Label text="Telefono:" />
-                        <TextField prefHeight="43.0" prefWidth="419.0" promptText="Ejemlpo: 2294583230" styleClass="textField" />
+                        <TextField prefHeight="43.0" prefWidth="419.0" promptText="Ejemlpo: 2294583230" styleClass="textField" fx:id="txtTelefono"/>
                      </children>
                   </VBox>
                   <VBox prefHeight="114.0" prefWidth="449.0">
                      <children>
                         <Label text="Fecha de Inscripcion:" />
-                        <DatePicker maxWidth="1.7976931348623157E308" prefHeight="43.0" prefWidth="235.0" styleClass="textField" />
+                        <DatePicker maxWidth="1.7976931348623157E308" prefHeight="43.0" prefWidth="235.0" styleClass="textField" fx:id="date" />
                      </children>
                   </VBox>
                   <VBox prefHeight="114.0" prefWidth="449.0">
                      <children>
                         <Label text="Semestre:" />
-                        <Spinner editable="true" maxWidth="1.7976931348623157E308" prefHeight="43.0" styleClass="textField" />
+                        <Spinner editable="true" maxWidth="1.7976931348623157E308" prefHeight="43.0" styleClass="textField" fx:id="spnSemestre" />
                      </children>
                   </VBox>
                   <VBox prefHeight="114.0" prefWidth="449.0">
                      <children>
                         <Label text="Carrera:" />
-                        <ComboBox maxWidth="1.7976931348623157E308" prefHeight="43.0" prefWidth="150.0" styleClass="textField" />
+                        <ComboBox maxWidth="1.7976931348623157E308" prefHeight="43.0" prefWidth="150.0" styleClass="textField" fx:id="comboCarrera" />
                      </children>
                   </VBox>
                   <VBox layoutX="10.0" layoutY="124.0" prefHeight="114.0" prefWidth="449.0">
                      <children>
                         <Label text="Contrato:" />
-                        <TextField prefHeight="43.0" prefWidth="419.0" promptText="Ejemlpo: Ni puta idea puto kevin" styleClass="textField" />
+                        <TextField prefHeight="43.0" prefWidth="419.0" promptText="Ejemlpo: " styleClass="textField" fx:id="txtContrato" />
                      </children>
                   </VBox>
                </children>
@@ -98,8 +98,8 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="108.0" prefWidth="422.0" styleClass="hBoxBottom">
          <children>
-            <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="120.0" styleClass="btnGuardar" text="✔ Guardar" />
-            <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="120.0" styleClass="btnCancelar" text="✕ Cancelar" />
+            <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="120.0" styleClass="btnGuardar" text="✔ Guardar" onAction="#guardar" />
+            <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="120.0" styleClass="btnCancelar" text="✕ Cancelar" onAction="#cancelar" fx:id="cancelarButton" />
          </children>
       </HBox>
    </children>
