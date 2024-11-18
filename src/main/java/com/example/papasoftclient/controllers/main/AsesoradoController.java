@@ -107,7 +107,7 @@ public class AsesoradoController  implements Observador{
 
     @FXML
     private void delete() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/papasoftclient/materia/vistaConfirmacionAsesorado.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/papasoftclient/asesorado/vistaConfirmacionAsesorado.fxml"));
         Parent parent = loader.load();
 
         int rowIndex = tablaAsesorados.getSelectionModel().getSelectedIndex();

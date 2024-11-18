@@ -80,7 +80,7 @@ public class EditAsesoradoController {
     }
 
     public void setModel(AsesoradoModel model){
-        this.asesorado = model;
+        this.asesorado = asesoradoRepository.search(model.getId());
         numCtrl.setText(model.getNum_ctrl());
         nombre.setText(this.asesorado.getNombre());
         apellidoP.setText(this.asesorado.getApellido_p());
