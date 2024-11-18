@@ -2,7 +2,7 @@ package com.example.papasoftclient.controllers.main;
 
 import com.example.papasoftclient.Main;
 import com.example.papasoftclient.controllers.add.AddAsesoradoController;
-import com.example.papasoftclient.controllers.add.EditAsesoradoController;
+import com.example.papasoftclient.controllers.edit.EditAsesoradoController;
 import com.example.papasoftclient.controllers.delete.ConfirmacionAsesoradoController;
 import com.example.papasoftclient.models.AsesoradoModel;
 import com.example.papasoftclient.models.AsesoradoPage;

@@ -1,4 +1,4 @@
-package com.example.papasoftclient.controllers.add;
+package com.example.papasoftclient.controllers.edit;
 
 import com.example.papasoftclient.models.AsesoradoBase;
 import com.example.papasoftclient.models.CarreraModel;

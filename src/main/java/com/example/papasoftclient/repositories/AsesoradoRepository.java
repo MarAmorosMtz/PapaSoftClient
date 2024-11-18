@@ -49,13 +49,13 @@ public class AsesoradoRepository implements Repository<AsesoradoBase,AsesoradoMo
         try{
             HttpGet request = new HttpGet(host+id.toString());
             AsesoradoModel asesorado = httpClient.execute(request,response->{
-                if (response.getCode() == 200) return null;
+                if (response.getCode() != 200) return null;
                 return mapper.readValue(EntityUtils.toString(response.getEntity()),AsesoradoModel.class);
             });
+            return asesorado;
         }catch (Exception ex){
             return null;
         }
-        return null;
     }
 
     @Override
