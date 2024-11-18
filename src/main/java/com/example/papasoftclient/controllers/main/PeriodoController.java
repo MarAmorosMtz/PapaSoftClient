@@ -64,9 +64,11 @@ public class PeriodoController implements Observador {
     }
 
     public Node updateTable(int pageIndex){
-        PeriodoPage tmp = periodoRepository.search(pageIndex);
+        PeriodoPage tmp = periodoRepository.search(pageIndex+1);
         if(tmp != null){
             loadPeriodos(tmp);
+            paginadorPeriodo.setMaxPageIndicatorCount(tmp.getPaginas());
+            paginadorPeriodo.setPageCount(tmp.getPaginas());
         }else System.out.println("La pagina es nula");
         return tablaPeriodo;
     }
