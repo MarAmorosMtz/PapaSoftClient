@@ -81,10 +81,11 @@ public class AsesorController implements Observador {
     }
 
     public Node updateTable(int pageIndex){
-        AsesorPage tmp = asesorRepository.search(pageIndex);
+        AsesorPage tmp = asesorRepository.search(pageIndex+1);
         if(tmp != null){
             loadAsesores(tmp);
             paginadorAsesor.setMaxPageIndicatorCount(tmp.getPaginas());
+            paginadorAsesor.setPageCount(tmp.getPaginas());
         }
         return tablaAsesor;
     }
@@ -109,10 +110,8 @@ public class AsesorController implements Observador {
 
         int rowIndex = tablaAsesor.getSelectionModel().getSelectedIndex();
         AsesorModel asesorModel = tablaAsesor.getItems().get(rowIndex);
-        AsesorBase asesorBase = tablaAsesor.getItems().get(rowIndex);
 
         EditAsesorController editController = loader.getController();
-        editController.setBase(asesorBase);
         editController.setModel(asesorModel);
 
         Stage stage = new Stage();

@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 public class AddAsesorController extends Observable {
 
     @FXML
-    TextField txtNControl, txtNombre, txtApellidoP, txtApellidoM, txtCorreo, txtTelefono, txtContrato;
+    TextField txtNControl, txtNombre, txtApellidoP, txtApellidoM, txtCorreo, txtTelefono;
 
     @FXML
     DatePicker date;
@@ -55,9 +55,10 @@ public class AddAsesorController extends Observable {
         asesor.setApellido_m(txtApellidoM.getText());
         asesor.setCorreo(txtCorreo.getText());
         asesor.setTelefono(txtTelefono.getText());
-        asesor.setContrato(txtContrato.getText());
+        asesor.setContrato("");
+        asesor.setFoto("");
 
-        asesor.setFecha_inscripcion(java.sql.Date.valueOf(date.getValue()));
+        asesor.setFecha_inscripcion(date.getValue());
         asesor.setSemestre(spnSemestre.getValue());
         asesor.setCarrera(comboCarrera.getSelectionModel().getSelectedItem().getId());
 

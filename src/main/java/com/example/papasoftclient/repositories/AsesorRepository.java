@@ -47,13 +47,13 @@ public class AsesorRepository implements Repository<AsesorBase, AsesorModel>{
         try{
             HttpGet request = new HttpGet(host+id.toString());
             AsesorModel asesor = httpClient.execute(request,response->{
-                if (response.getCode() == 200) return null;
+                if (response.getCode() != 200) return null;
                 return mapper.readValue(EntityUtils.toString(response.getEntity()),AsesorModel.class);
             });
+            return asesor;
         }catch (Exception ex){
             return null;
         }
-        return null;
     }
 
     @Override
