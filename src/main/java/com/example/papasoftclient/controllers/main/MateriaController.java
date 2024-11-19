@@ -87,10 +87,10 @@ public class MateriaController  implements Observador{
         MateriaModel materia = tablaMaterias.getItems().get(rowIndex);
         MateriaModel materiaBase = tablaMaterias.getItems().get(rowIndex);
 
-
         EditMateriaController editController = loader.getController();
         editController.setBase(materiaBase);
         editController.setModel(materia);
+        editController.agregarObservador(this);
 
         Stage stage = new Stage();
         stage.setScene(new Scene(parent));
@@ -112,6 +112,7 @@ public class MateriaController  implements Observador{
 
         ConfirmacionMateriaController confirmacionController = loader.getController();
         confirmacionController.setMateria(materia);
+        confirmacionController.agregarObservador(this);
 
         Stage stage = new Stage(StageStyle.UNDECORATED);
         stage.setScene(new Scene(parent));
