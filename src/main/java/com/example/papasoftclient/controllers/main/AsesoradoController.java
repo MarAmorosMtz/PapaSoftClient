@@ -62,8 +62,9 @@ public class AsesoradoController  implements Observador{
         AsesoradoPage tmp = asesoradoRepository.search(pageIndex+1);
         if(tmp != null){
             loadMaterias(tmp);
-            paginadorAsesorados.setMaxPageIndicatorCount(tmp.getPaginas());
-            paginadorAsesorados.setPageCount(tmp.getPaginas());
+            if(tmp.getPaginas() != paginadorAsesorados.getPageCount()){
+                paginadorAsesorados.setPageCount(tmp.getPaginas());
+            }
         }else System.out.println("La pagina es nula");
         return tablaAsesorados;
     }
@@ -92,7 +93,10 @@ public class AsesoradoController  implements Observador{
         AsesoradoModel asesorado = tablaAsesorados.getItems().get(rowIndex);
 
         EditAsesoradoController editController = loader.getController();
+        System.out.println("Objeto enviado");
+        System.out.println(asesorado);
         editController.setModel(asesorado);
+        editController.agregarObservador(this);
 
         Stage stage = new Stage();
         stage.setScene(new Scene(parent));
@@ -114,6 +118,7 @@ public class AsesoradoController  implements Observador{
 
         ConfirmacionAsesoradoController confirmacionController = loader.getController();
         confirmacionController.setAsesorado(asesorado);
+        confirmacionController.agregarObservador(this);
 
         Stage stage = new Stage(StageStyle.UNDECORATED);
         stage.setScene(new Scene(parent));

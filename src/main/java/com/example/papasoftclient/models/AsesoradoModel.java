@@ -59,4 +59,9 @@ public class AsesoradoModel extends Alumno{
     public void setHorario(String horario) {
         this.horario = horario;
     }
+
+    @Override
+    public String toString() {
+        return "{id="+this.id+",numCtrl="+this.num_ctrl+",nombre="+this.nombre+",apellidoP="+this.apellido_p+",apellidoM="+this.apellido_m+"}";
+    }
 }

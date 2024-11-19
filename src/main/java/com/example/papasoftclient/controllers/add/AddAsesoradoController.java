@@ -42,10 +42,13 @@ public class AddAsesoradoController extends Observable {
     private CarreraRepository carreraRepository;
     private ObservableList<CarreraModel> catalogoCarreras;
 
-    public void initialize(){
-        inicializarSpinner();
+    public AddAsesoradoController() {
         carreraRepository = new CarreraRepository();
         asesoradoRepository  = new AsesoradoRepository();
+    }
+
+    public void initialize(){
+        inicializarSpinner();
         catalogoCarreras = carreraRepository.getCatalogoCarreras();
         carrera.setItems(catalogoCarreras);
     }

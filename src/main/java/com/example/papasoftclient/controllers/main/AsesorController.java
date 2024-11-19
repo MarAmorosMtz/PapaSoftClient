@@ -85,8 +85,9 @@ public class AsesorController implements Observador {
         AsesorPage tmp = asesorRepository.search(pageIndex+1);
         if(tmp != null){
             loadAsesores(tmp);
-            paginadorAsesor.setMaxPageIndicatorCount(tmp.getPaginas());
-            paginadorAsesor.setPageCount(tmp.getPaginas());
+            if(tmp.getPaginas() != paginadorAsesor.getPageCount()){
+                paginadorAsesor.setPageCount(tmp.getPaginas());
+            }
         }
         return tablaAsesor;
     }

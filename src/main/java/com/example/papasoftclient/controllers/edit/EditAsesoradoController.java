@@ -8,12 +8,13 @@ import com.example.papasoftclient.repositories.CarreraRepository;
 import com.example.papasoftclient.repositories.RestAPI;
 import com.example.papasoftclient.utils.HttpClient;
 import com.example.papasoftclient.utils.JsonMapper;
+import com.example.papasoftclient.utils.Observable;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
-public class EditAsesoradoController {
+public class EditAsesoradoController extends Observable {
     @FXML
     TextField numCtrl;
     @FXML
@@ -43,10 +44,13 @@ public class EditAsesoradoController {
     private ObservableList<CarreraModel> catalogoCarreras;
     private AsesoradoModel asesorado;
 
-    public void initialize(){
-        inicializarSpinner();
+    public EditAsesoradoController() {
         carreraRepository = new CarreraRepository();
         asesoradoRepository  = new AsesoradoRepository();
+    }
+
+    public void initialize(){
+        inicializarSpinner();
         catalogoCarreras = carreraRepository.getCatalogoCarreras();
         carrera.setItems(catalogoCarreras);
     }
@@ -66,6 +70,7 @@ public class EditAsesoradoController {
                 "");
         asesoradoRepository.update(asesorado.getId(),nuevoAsesorado);
         cancelar();
+        this.notificar();
     }
 
     @FXML
@@ -80,7 +85,11 @@ public class EditAsesoradoController {
     }
 
     public void setModel(AsesoradoModel model){
+        System.out.println("Objeto recibido:");
+        System.out.println(model);
         this.asesorado = asesoradoRepository.search(model.getId());
+        System.out.println("Objeto consultado:");
+        System.out.println(this.asesorado);
         numCtrl.setText(this.asesorado.getNum_ctrl());
         nombre.setText(this.asesorado.getNombre());
         apellidoP.setText(this.asesorado.getApellido_p());
