@@ -53,9 +53,12 @@ public class CarreraController implements Observador {
         CarreraPage tmp = carreraRepository.search(pageIndex+1);
         if(tmp != null){
             loadCarreras(tmp);
-            this.paginadorCarreras.setMaxPageIndicatorCount(tmp.getPaginas());
-            this.paginadorCarreras.setPageCount(tmp.getPaginas());
-        }else System.out.println("La pagina es nula");
+            //No sé por qué funciona este parche, LOL
+            if(tmp.getPaginas()!=paginadorCarreras.getPageCount()){
+                paginadorCarreras.setPageCount(tmp.getPaginas());
+                paginadorCarreras.setMaxPageIndicatorCount(tmp.getPaginas());
+            }
+        }
         return tablaCarreras;
     }
 

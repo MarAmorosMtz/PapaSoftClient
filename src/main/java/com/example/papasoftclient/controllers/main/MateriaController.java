@@ -58,8 +58,10 @@ public class MateriaController  implements Observador{
         MateriaPage tmp = materiaRepository.search(pageIndex+1);
         if(tmp != null){
             loadMaterias(tmp);
-            paginadorMaterias.setMaxPageIndicatorCount(tmp.getPaginas());
-            paginadorMaterias.setPageCount(tmp.getPaginas());
+            if(tmp.getPaginas()!=paginadorMaterias.getPageCount()){
+                paginadorMaterias.setMaxPageIndicatorCount(tmp.getPaginas());
+                paginadorMaterias.setPageCount(tmp.getPaginas());
+            }
         }
         return tablaMaterias;
     }
