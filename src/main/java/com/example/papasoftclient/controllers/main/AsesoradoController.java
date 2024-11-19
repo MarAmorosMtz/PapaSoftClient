@@ -91,7 +91,6 @@ public class AsesoradoController  implements Observador{
         int rowIndex = tablaAsesorados.getSelectionModel().getSelectedIndex();
         AsesoradoModel asesorado = tablaAsesorados.getItems().get(rowIndex);
 
-
         EditAsesoradoController editController = loader.getController();
         editController.setModel(asesorado);
 

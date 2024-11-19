@@ -37,6 +37,7 @@ public class ConfirmacionAsesorController extends Observable {
             alerta.showAndWait();
         }
         cancelar();
+        this.notificar();
     }
 
     @FXML

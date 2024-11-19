@@ -44,7 +44,7 @@ public class AddAsesoradoController extends Observable {
 
     public void initialize(){
         inicializarSpinner();
-        carreraRepository = new CarreraRepository(HttpClient.getClient(), JsonMapper.getMapper(), RestAPI.CARRERAS_ENDPOINT);
+        carreraRepository = new CarreraRepository();
         asesoradoRepository  = new AsesoradoRepository();
         catalogoCarreras = carreraRepository.getCatalogoCarreras();
         carrera.setItems(catalogoCarreras);

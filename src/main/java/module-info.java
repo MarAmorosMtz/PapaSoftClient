@@ -27,4 +27,5 @@ module com.example.papasoftclient {
     exports com.example.papasoftclient.controllers.delete;
     exports com.example.papasoftclient.controllers.edit;
     exports com.example.papasoftclient.controllers.main;
+    exports com.example.papasoftclient.models;
 }

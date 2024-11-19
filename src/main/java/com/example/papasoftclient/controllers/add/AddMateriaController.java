@@ -32,7 +32,7 @@ public class AddMateriaController extends Observable {
     private ObservableList<CarreraModel> catalogoCarreras;
 
     public void initialize(){
-        carreraRepository = new CarreraRepository(HttpClient.getClient(), JsonMapper.getMapper(),RestAPI.CARRERAS_ENDPOINT);
+        carreraRepository = new CarreraRepository();
         materiaRepository  = new MateriaRepository();
         catalogoCarreras = carreraRepository.getCatalogoCarreras();
         carrera.setItems(catalogoCarreras);

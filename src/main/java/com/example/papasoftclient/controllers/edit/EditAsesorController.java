@@ -7,12 +7,13 @@ import com.example.papasoftclient.repositories.CarreraRepository;
 import com.example.papasoftclient.repositories.RestAPI;
 import com.example.papasoftclient.utils.HttpClient;
 import com.example.papasoftclient.utils.JsonMapper;
+import com.example.papasoftclient.utils.Observable;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
-public class EditAsesorController {
+public class EditAsesorController extends Observable {
 
     @FXML
     TextField numCtrl;
@@ -45,7 +46,7 @@ public class EditAsesorController {
 
     public void initialize(){
         inicializarSpinner();
-        carreraRepository = new CarreraRepository(HttpClient.getClient(), JsonMapper.getMapper(), RestAPI.CARRERAS_ENDPOINT);
+        carreraRepository = new CarreraRepository();
         asesorRepository = new AsesorRepository();
         catalogoCarreras = carreraRepository.getCatalogoCarreras();
         carrera.setItems(catalogoCarreras);
@@ -68,6 +69,7 @@ public class EditAsesorController {
         );
         asesorRepository.update(asesor.getId(),nuevoAsesor);
         cancelar();
+        this.notificar();
     }
 
     @FXML
@@ -89,8 +91,8 @@ public class EditAsesorController {
         apellidoM.setText(this.asesor.getApellido_m());
         telefono.setText(this.asesor.getTelefono());
         correo.setText(this.asesor.getCorreo());
-        fechaInscripcion.setValue(model.getFecha_inscripcion());
-        semestre.getValueFactory().setValue(model.getSemestre());
+        fechaInscripcion.setValue(this.asesor.getFecha_inscripcion());
+        semestre.getValueFactory().setValue(this.asesor.getSemestre());
         carrera.setValue(this.asesor.getCarrera());
 
     }

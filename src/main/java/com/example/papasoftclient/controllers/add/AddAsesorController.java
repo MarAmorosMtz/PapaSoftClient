@@ -35,7 +35,7 @@ public class AddAsesorController extends Observable {
     private ObservableList<CarreraModel> catalogoCarreras;
 
     public void initialize(){
-        carreraRepository = new CarreraRepository(HttpClient.getClient(), JsonMapper.getMapper(), RestAPI.CARRERAS_ENDPOINT);
+        carreraRepository = new CarreraRepository();
         asesorRepository = new AsesorRepository();
         catalogoCarreras = carreraRepository.getCatalogoCarreras();
         comboCarrera.setItems(catalogoCarreras);

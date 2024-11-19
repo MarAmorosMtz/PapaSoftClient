@@ -45,7 +45,7 @@ public class EditAsesoradoController {
 
     public void initialize(){
         inicializarSpinner();
-        carreraRepository = new CarreraRepository(HttpClient.getClient(), JsonMapper.getMapper(), RestAPI.CARRERAS_ENDPOINT);
+        carreraRepository = new CarreraRepository();
         asesoradoRepository  = new AsesoradoRepository();
         catalogoCarreras = carreraRepository.getCatalogoCarreras();
         carrera.setItems(catalogoCarreras);
@@ -81,14 +81,14 @@ public class EditAsesoradoController {
 
     public void setModel(AsesoradoModel model){
         this.asesorado = asesoradoRepository.search(model.getId());
-        numCtrl.setText(model.getNum_ctrl());
+        numCtrl.setText(this.asesorado.getNum_ctrl());
         nombre.setText(this.asesorado.getNombre());
         apellidoP.setText(this.asesorado.getApellido_p());
         apellidoM.setText(this.asesorado.getApellido_m());
         telefono.setText(this.asesorado.getTelefono());
         correo.setText(this.asesorado.getCorreo());
-        fechaInscripcion.setValue(model.getFecha_inscripcion());
-        semestre.getValueFactory().setValue(model.getSemestre());
+        fechaInscripcion.setValue(this.asesorado.getFecha_inscripcion());
+        semestre.getValueFactory().setValue(this.asesorado.getSemestre());
         carrera.setValue(this.asesorado.getCarrera());
 
     }

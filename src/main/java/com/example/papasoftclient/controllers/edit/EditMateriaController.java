@@ -35,7 +35,7 @@ public class EditMateriaController extends Observable {
 
     public void initialize(){
         materiaRepository = new MateriaRepository();
-        carreraRepository = new CarreraRepository(HttpClient.getClient(), JsonMapper.getMapper(), RestAPI.CARRERAS_ENDPOINT);
+        carreraRepository = new CarreraRepository();
         catalogoCarreras = carreraRepository.getCatalogoCarreras();
         carrera.setItems(catalogoCarreras);
     }

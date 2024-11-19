@@ -4,6 +4,7 @@ import com.example.papasoftclient.models.CarreraBase;
 import com.example.papasoftclient.models.CarreraModel;
 import com.example.papasoftclient.repositories.CarreraRepository;
 import com.example.papasoftclient.repositories.RestAPI;
+import com.example.papasoftclient.utils.Observable;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -12,29 +13,29 @@ import javafx.stage.Stage;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
 import org.apache.hc.client5.http.impl.classic.HttpClients;
 
-public class EditCarreraController {
+public class EditCarreraController extends Observable {
     @FXML
-    TextField textField;
+    TextField carrera;
     @FXML
     Button close;
 
-    CarreraBase carreraBase;
-    CarreraModel carreraModel;
+    private CarreraModel carreraModel;
 
-    private CloseableHttpClient httpClient;
     private CarreraRepository carreraRepository;
-    private ObjectMapper mapper;
+
+    public EditCarreraController() {
+
+        carreraRepository = new CarreraRepository();
+    }
 
     public void initialize(){   }
 
     @FXML
     private void guardar(){
-        CarreraBase carreraUpdated = new CarreraBase(textField.getText());
-        httpClient = HttpClients.createDefault();
-        mapper = new ObjectMapper();
-        carreraRepository = new CarreraRepository(httpClient, mapper , RestAPI.CARRERAS_ENDPOINT);
+        CarreraBase carreraUpdated = new CarreraBase(carrera.getText());
         carreraRepository.update(carreraModel.getId(), carreraUpdated);
         cancelar();
+        this.notificar();
     }
 
     @FXML
@@ -43,9 +44,8 @@ public class EditCarreraController {
         stage.close();
     }
 
-    public void setBase(CarreraBase base){
-        this.carreraBase = base;
+    public void setModel(CarreraModel model){
+        this.carreraModel = carreraRepository.search(model.getId());
+        this.carrera.setText(carreraModel.getNombre());
     }
-
-    public void setModel(CarreraModel model){ this.carreraModel = model; }
 }

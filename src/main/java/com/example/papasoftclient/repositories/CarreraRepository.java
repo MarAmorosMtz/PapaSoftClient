@@ -4,6 +4,8 @@ package com.example.papasoftclient.repositories;
 import com.example.papasoftclient.models.CarreraBase;
 import com.example.papasoftclient.models.CarreraModel;
 import com.example.papasoftclient.models.CarreraPage;
+import com.example.papasoftclient.utils.HttpClient;
+import com.example.papasoftclient.utils.JsonMapper;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -25,10 +27,10 @@ public class CarreraRepository implements Repository<CarreraBase, CarreraModel>{
     private ObjectMapper mapper;
     private String host;
 
-    public CarreraRepository(CloseableHttpClient httpClient, ObjectMapper mapper, String host) {
-        this.httpClient = httpClient;
-        this.mapper = mapper;
-        this.host = host;
+    public CarreraRepository() {
+        this.httpClient = HttpClient.getClient();
+        this.mapper = JsonMapper.getMapper();
+        this.host = RestAPI.CARRERAS_ENDPOINT;
     }
 
     public ObservableList<CarreraModel> getCatalogoCarreras(){
@@ -68,10 +70,10 @@ public class CarreraRepository implements Repository<CarreraBase, CarreraModel>{
                 if (response.getCode() != 200) return null;
                 return mapper.readValue(EntityUtils.toString(response.getEntity()),CarreraModel.class);
             });
+            return carrera;
         }catch (Exception ex){
             return null;
         }
-        return null;
     }
 
     @Override
