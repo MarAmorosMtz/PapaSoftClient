@@ -27,12 +27,8 @@ public class SalonController  implements Observador{
 
     @FXML
     private TableView<SalonModel> tablaSalones;
-//    @FXML
-//    private TableColumn<SalonModel, UUID> columnaId;
     @FXML
     private TableColumn<SalonModel,String> columnaNombre;
-//    @FXML
-//    private TableColumn<SalonModel,String> columnaAcciones;
     @FXML
     private Pagination paginadorSalones;
     private SalonRepository salonRepository;
@@ -43,70 +39,7 @@ public class SalonController  implements Observador{
 
     @FXML
     public void initialize() {
-//        columnaId.setCellValueFactory(new PropertyValueFactory<>("id"));
         columnaNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
-
-//        Callback<TableColumn<SalonModel, String>, TableCell<SalonModel, String>> cellFactory
-//                = new Callback<TableColumn<SalonModel, String>, TableCell<SalonModel, String>>() {
-//            @Override
-//            public TableCell<SalonModel, String> call(final TableColumn<SalonModel, String> param) {
-//                final TableCell<SalonModel, String> cell = new TableCell<SalonModel, String>() {
-//                    final Button btn = new Button("● ● ●");
-//
-//                    @Override
-//                    public void updateItem(String item, boolean empty) {
-//                        super.updateItem(item, empty);
-//                        if (empty) {
-//                            setGraphic(null);
-//                            setText(null);
-//                        } else {
-//
-//                            int rowIndex = getIndex();
-//                            SalonModel salon = tablaSalones.getItems().get(rowIndex);
-//                            SalonModel salonBase = tablaSalones.getItems().get(rowIndex);
-//
-//                            btn.setOnMouseClicked(mouseEvent -> {
-//                                try {
-//                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/papasoftclient/Util/popupSalon.fxml"));
-//                                    Parent root = loader.load();
-//
-//                                    Stage popupStage = new Stage(StageStyle.UNDECORATED);
-//                                    popupStage.initModality(Modality.NONE);
-//                                    popupStage.initOwner(btn.getScene().getWindow());
-//                                    popupStage.setScene(new Scene(root));
-//
-//                                    popupStage.setX(mouseEvent.getScreenX());
-//                                    popupStage.setY(mouseEvent.getScreenY());
-//
-//                                    popupStage.setAlwaysOnTop(true);
-//
-//                                    Scene mainScene = btn.getScene();
-//                                    mainScene.addEventFilter(MouseEvent.MOUSE_PRESSED, event -> {
-//                                        if (!popupStage.getScene().getWindow().equals(event.getTarget())) {
-//                                            popupStage.close();
-//                                        }
-//                                    });
-//
-//                                    DialogoSalonController controller = loader.getController();
-//                                    controller.setStage(popupStage);
-//                                    controller.setModel(salon);
-//                                    popupStage.show();
-//
-//                                } catch (Exception e) {
-//                                    e.printStackTrace();
-//                                }
-//                            });
-//
-//                            btn.getStyleClass().add("actionButton");
-//                            setGraphic(btn);
-//                            setText(null);
-//                        }
-//                    }
-//                };
-//                return cell;
-//            }
-//        };
-//        columnaAcciones.setCellFactory(cellFactory);
         paginadorSalones.setPageFactory(this::updateTable);
     }
 
@@ -117,9 +50,10 @@ public class SalonController  implements Observador{
     public Node updateTable(int pageIndex){
         SalonPage tmp = salonRepository.search(pageIndex+1);
         if(tmp != null){
-            loadMaterias(tmp);paginadorSalones.setMaxPageIndicatorCount(tmp.getPaginas());
-            paginadorSalones.setMaxPageIndicatorCount(tmp.getPaginas());
-            paginadorSalones.setPageCount(tmp.getPaginas());
+            loadMaterias(tmp);
+            if(tmp.getPaginas() != paginadorSalones.getPageCount()){
+                paginadorSalones.setPageCount(tmp.getPaginas());
+            }
         }
         return tablaSalones;
     }
@@ -148,6 +82,7 @@ public class SalonController  implements Observador{
 
         EditSalonController editController = loader.getController();
         editController.setModel(salon);
+        editController.agregarObservador(this);
 
         Stage stage = new Stage();
         stage.setScene(new Scene(parent));
@@ -169,6 +104,7 @@ public class SalonController  implements Observador{
 
         ConfirmacionSalonController confirmacionController = loader.getController();
         confirmacionController.setSalon(salon);
+        confirmacionController.agregarObservador(this);
 
         Stage stage = new Stage(StageStyle.UNDECORATED);
         stage.setScene(new Scene(parent));

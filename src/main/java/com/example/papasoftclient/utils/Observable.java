@@ -11,7 +11,6 @@ public abstract class Observable {
     }
 
     public void notificar(){
-        System.out.println("Notificando a"+observadores.size()+" observadores...");
         for (Observador observador : observadores) {
             observador.actualizar();
         }

@@ -31,6 +31,7 @@ public class EditSalonController extends Observable {
         salon.setNombre(nombreSalon.getText());
         salonRepository.update(salonModel.getId(), salon);
         cancelar();
+        this.notificar();
     }
 
     @FXML

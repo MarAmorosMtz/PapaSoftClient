@@ -54,9 +54,8 @@ public class CarreraController implements Observador {
         if(tmp != null){
             loadCarreras(tmp);
             //No sé por qué funciona este parche, LOL
-            if(tmp.getPaginas()!=paginadorCarreras.getPageCount()){
+            if(tmp.getPaginas()!=paginadorCarreras.getPageCount()) {
                 paginadorCarreras.setPageCount(tmp.getPaginas());
-                paginadorCarreras.setMaxPageIndicatorCount(tmp.getPaginas());
             }
         }
         return tablaCarreras;

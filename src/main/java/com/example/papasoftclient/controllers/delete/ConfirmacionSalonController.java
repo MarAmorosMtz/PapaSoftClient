@@ -2,12 +2,13 @@ package com.example.papasoftclient.controllers.delete;
 
 import com.example.papasoftclient.models.SalonModel;
 import com.example.papasoftclient.repositories.SalonRepository;
+import com.example.papasoftclient.utils.Observable;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-public class ConfirmacionSalonController {
+public class ConfirmacionSalonController extends Observable {
     @FXML
     Button btnConfirmar;
     @FXML
@@ -20,11 +21,8 @@ public class ConfirmacionSalonController {
     @FXML
     private void confirmar(){
         salonRepository = new SalonRepository();
-
-        if(salonRepository.remove(salon.getId())){
-            salonRepository.remove(salon.getId());
-        }else{
-
+        boolean status = salonRepository.remove(salon.getId());
+        if(!status){
             Alert alerta = new Alert(Alert.AlertType.ERROR);
             alerta.setTitle("Error");
             alerta.setHeaderText("Se ha producido un error");
@@ -34,6 +32,7 @@ public class ConfirmacionSalonController {
         }
 
         cancelar();
+        this.notificar();
     }
 
     @FXML
