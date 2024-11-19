@@ -1,5 +1,6 @@
 package com.example.papasoftclient.controllers.main;
 
+import com.example.papasoftclient.controllers.add.AddMaestroController;
 import com.example.papasoftclient.controllers.delete.ConfirmacionMaestroController;
 import com.example.papasoftclient.controllers.edit.EditMaestroController;
 import com.example.papasoftclient.models.MaestroModel;
@@ -34,18 +35,13 @@ public class MaestroController implements Observador {
     private TableColumn<MaestroModel,String> columnaApellidoP;
     @FXML
     private TableColumn<MaestroModel,String> columnaApellidoM;
-
     @FXML
     private Pagination paginadorMaestros;
 
-    private CloseableHttpClient httpClient;
     private MaestroRepository maestroRepository;
-    private ObjectMapper mapper;
 
     public MaestroController(){
-        httpClient = HttpClients.createDefault();
-        mapper = new ObjectMapper();
-        maestroRepository = new MaestroRepository(httpClient, mapper , RestAPI.MAESTROS_ENDPOINT);
+        maestroRepository = new MaestroRepository();
     }
 
     @FXML
@@ -64,15 +60,21 @@ public class MaestroController implements Observador {
         MaestroPage tmp = maestroRepository.search(pageIndex+1);
         if(tmp != null){
             loadMaestros(tmp);
-            paginadorMaestros.setMaxPageIndicatorCount(tmp.getPaginas());
-            paginadorMaestros.setPageCount(tmp.getPaginas());
-        }else System.out.println("La pagina es nula");
+            if(tmp.getPaginas()!=paginadorMaestros.getPageCount()){
+                paginadorMaestros.setPageCount(tmp.getPaginas());
+            }
+        }
         return tablaMaestro;
     }
 
     @FXML
     private void handleButtonAction(ActionEvent event) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource("/com/example/papasoftclient/maestro/vistaAgregarMaestro.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/papasoftclient/maestro/vistaAgregarMaestro.fxml"));
+        Parent parent = loader.load();
+
+        AddMaestroController controller = loader.getController();
+        controller.agregarObservador(this);
+
         Scene scene = new Scene(parent);
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL); // Hacer que el Stage sea modal
@@ -93,8 +95,8 @@ public class MaestroController implements Observador {
         MaestroModel maestroBase = tablaMaestro.getItems().get(rowIndex);
 
         EditMaestroController editController = loader.getController();
-        editController.setBase(maestroBase);
         editController.setModel(maestro);
+        editController.agregarObservador(this);
 
         Stage stage = new Stage();
         stage.setScene(new Scene(parent));
@@ -116,6 +118,7 @@ public class MaestroController implements Observador {
 
         ConfirmacionMaestroController confirmacionController = loader.getController();
         confirmacionController.setMaestro(maestro);
+        confirmacionController.agregarObservador(this);
 
         Stage stage = new Stage(StageStyle.UNDECORATED);
         stage.setScene(new Scene(parent));

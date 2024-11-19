@@ -3,6 +3,8 @@ package com.example.papasoftclient.controllers.delete;
 import com.example.papasoftclient.models.MaestroModel;
 import com.example.papasoftclient.repositories.MaestroRepository;
 import com.example.papasoftclient.repositories.RestAPI;
+import com.example.papasoftclient.utils.Observable;
+import com.example.papasoftclient.utils.Observador;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -11,25 +13,22 @@ import javafx.stage.Stage;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
 import org.apache.hc.client5.http.impl.classic.HttpClients;
 
-public class ConfirmacionMaestroController {
+public class ConfirmacionMaestroController extends Observable {
     @FXML
-    Button close;
+    private Button btnCancelar;
 
-    MaestroModel maestro;
+    private MaestroModel maestro;
 
-    private CloseableHttpClient httpClient;
     private MaestroRepository maestroRepository;
-    private ObjectMapper mapper;
+
+    public ConfirmacionMaestroController() {
+        maestroRepository = new MaestroRepository();
+    }
 
     @FXML
     private void confirmar(){
-        httpClient = HttpClients.createDefault();
-        mapper = new ObjectMapper();
-        maestroRepository = new MaestroRepository(httpClient, mapper , RestAPI.MAESTROS_ENDPOINT);
-        if(maestroRepository.remove(maestro.getId())){
-            maestroRepository.remove(maestro.getId());
-        }else{
-
+        boolean status = maestroRepository.remove(maestro.getId());;
+        if(!status){
             Alert alerta = new Alert(Alert.AlertType.ERROR);
             alerta.setTitle("Error");
             alerta.setHeaderText("Se ha producido un error");
@@ -38,15 +37,16 @@ public class ConfirmacionMaestroController {
             alerta.showAndWait();
         }
         cancelar();
+        this.notificar();
     }
 
     @FXML
     private void cancelar(){
-        Stage stage = (Stage)close.getScene().getWindow();
+        Stage stage = (Stage)btnCancelar.getScene().getWindow();
         stage.close();
     }
 
     public void setMaestro(MaestroModel maestro){
-        this.maestro = maestro;
+        this.maestro = maestroRepository.search(maestro.getId());
     }
 }
