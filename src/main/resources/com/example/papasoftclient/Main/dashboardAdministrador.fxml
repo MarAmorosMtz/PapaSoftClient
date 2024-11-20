@@ -117,6 +117,15 @@
                                                       </ImageView>
                                                    </graphic>
                                                 </Button>
+                                                <Button fx:id="btnPeriodos" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonAction" styleClass="buttonDashBoard" text="Periodos">
+                                                   <graphic>
+                                                      <ImageView fitHeight="50.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../media/periodo.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </Button>
                                                 <Button fx:id="btnReportes" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonAction" styleClass="buttonDashBoard" text="Reportes">
                                                    <graphic>
                                                       <ImageView fitHeight="50.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">

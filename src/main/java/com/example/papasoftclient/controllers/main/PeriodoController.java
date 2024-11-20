@@ -55,10 +55,6 @@ public class PeriodoController implements Observador {
         paginadorPeriodo.setPageFactory(this::updateTable);
     }
 
-
-
-
-
     public void loadPeriodos(PeriodoPage page){
         tablaPeriodo.setItems(FXCollections.observableArrayList(page.getPeriodos()));
     }
@@ -67,9 +63,10 @@ public class PeriodoController implements Observador {
         PeriodoPage tmp = periodoRepository.search(pageIndex+1);
         if(tmp != null){
             loadPeriodos(tmp);
-            paginadorPeriodo.setMaxPageIndicatorCount(tmp.getPaginas());
-            paginadorPeriodo.setPageCount(tmp.getPaginas());
-        }else System.out.println("La pagina es nula");
+            if(tmp.getPaginas()!=paginadorPeriodo.getPageCount()){
+                paginadorPeriodo.setPageCount(tmp.getPaginas());
+            }
+        }
         return tablaPeriodo;
     }
 
@@ -94,21 +91,24 @@ public class PeriodoController implements Observador {
         Parent parent = loader.load();
 
         int rowIndex = tablaPeriodo.getSelectionModel().getSelectedIndex();
-        PeriodoModel periodo = tablaPeriodo.getItems().get(rowIndex);
-        PeriodoBase periodoBase = tablaPeriodo.getItems().get(rowIndex);
+        if(rowIndex != -1){
+            PeriodoModel periodo = tablaPeriodo.getItems().get(rowIndex);
 
-        EditPeriodoController editController = loader.getController();
-        editController.setBase(periodoBase);
-        editController.setModel(periodo);
+            EditPeriodoController editController = loader.getController();
+            editController.agregarObservador(this);
+            editController.setModel(periodo);
 
-        Stage stage = new Stage();
-        stage.setScene(new Scene(parent));
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.initOwner(stage.getOwner());
-        stage.setMaximized(false);
-        stage.setResizable(false);
 
-        stage.show();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(parent));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initOwner(stage.getOwner());
+            stage.setMaximized(false);
+            stage.setResizable(false);
+
+            stage.show();
+        }
+
     }
 
     @FXML
@@ -117,19 +117,22 @@ public class PeriodoController implements Observador {
         Parent parent = loader.load();
 
         int rowIndex = tablaPeriodo.getSelectionModel().getSelectedIndex();
-        PeriodoModel periodo = tablaPeriodo.getItems().get(rowIndex);
+        if(rowIndex != -1){
+            PeriodoModel periodo = tablaPeriodo.getItems().get(rowIndex);
+            ConfirmacionPeriodoController confirmacionController = loader.getController();
+            confirmacionController.agregarObservador(this);
+            confirmacionController.setPeriodo(periodo);
 
-        ConfirmacionPeriodoController confirmacionController = loader.getController();
-        confirmacionController.setPeriodo(periodo);
+            Stage stage = new Stage(StageStyle.UNDECORATED);
+            stage.setScene(new Scene(parent));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initOwner(stage.getOwner());
+            stage.setMaximized(false);
+            stage.setResizable(false);
 
-        Stage stage = new Stage(StageStyle.UNDECORATED);
-        stage.setScene(new Scene(parent));
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.initOwner(stage.getOwner());
-        stage.setMaximized(false);
-        stage.setResizable(false);
+            stage.show();
+        }
 
-        stage.show();
     }
 
     @Override
