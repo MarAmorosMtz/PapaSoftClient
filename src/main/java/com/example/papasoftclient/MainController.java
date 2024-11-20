@@ -25,27 +25,31 @@ public class MainController {
     }
 
     private String getViewForButton(Button button) {
-        switch (button.getText()) {
-            case "Periodos":
+        switch (button.getId()) {
+            case "btnPeriodos":
                 return "periodo/vistaPeriodo";
-            case "Maestros":
+            case "btnMaestros":
                 return "maestro/vistaMaestro";
-            case "Materias":
+            case "btnMaterias":
                 return "materia/vistaMateria";
-            case "Asesores":
+            case "btnAsesores":
                 return "asesor/vistaAsesor";
-            case "Asesorados":
+            case "btnAsesorados":
                 return "asesorado/vistaAsesorado";
-            case "Carreras":
+            case "btnCarreras":
                 return "carrera/vistaCarrera";
-            case "Asesorias":
+            case "btnAsesorias":
                 return "asesoria/vistaAsesoria";
-            case "Salones":
+            case "btnSalones":
                 return "salon/vistaSalon";
-            case "Horarios":
+            case "btnHorarios":
                 return "horarios/vistaHorarios";
-            case "Reportes":
+            case "btnReportes":
                 return "reporte/vistaReporte";
+            case "btnHorariosSalones":
+                return "horariosSalon/vistaHorariosSalon";
+            case "btnHorariosAsesores":
+                return "horariosAsesor/vistaHorariosAsesor";
             default:
                 return null;
         }

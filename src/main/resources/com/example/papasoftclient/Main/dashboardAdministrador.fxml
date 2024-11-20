@@ -22,7 +22,7 @@
                               <Image url="@../media/papas.png" />
                            </image>
                         </ImageView>
-                        <Accordion prefHeight="451.0" prefWidth="249.0" VBox.vgrow="ALWAYS" >
+                        <Accordion prefHeight="451.0" prefWidth="249.0" VBox.vgrow="ALWAYS">
                           <panes>
                             <TitledPane animated="false" styleClass="titlePane" text="Recursos Humanos">
                               <content>
@@ -30,7 +30,7 @@
                                        <children>
                                           <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="vbox-DashBoard" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <children>
-                                                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="buttonDashBoard" text="Asesores" onAction="#handleButtonAction">
+                                                <Button fx:id="btnAsesores" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonAction" styleClass="buttonDashBoard" text="Asesores">
                                                    <graphic>
                                                       <ImageView fitHeight="50.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
@@ -39,7 +39,7 @@
                                                       </ImageView>
                                                    </graphic>
                                                 </Button>
-                                                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="buttonDashBoard" text="Asesorados" onAction="#handleButtonAction">
+                                                <Button fx:id="btnAsesorados" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonAction" styleClass="buttonDashBoard" text="Asesorados">
                                                    <graphic>
                                                       <ImageView fitHeight="50.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
@@ -48,7 +48,7 @@
                                                       </ImageView>
                                                    </graphic>
                                                 </Button>
-                                                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="buttonDashBoard" text="Maestros" onAction="#handleButtonAction">
+                                                <Button fx:id="btnMaestros" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonAction" styleClass="buttonDashBoard" text="Maestros">
                                                    <graphic>
                                                       <ImageView fitHeight="50.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
@@ -69,7 +69,7 @@
                                        <children>
                                           <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="vbox-DashBoard" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <children>
-                                                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="buttonDashBoard" text="Asesorias" onAction="#handleButtonAction" >
+                                                <Button fx:id="btnAsesorias" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonAction" styleClass="buttonDashBoard" text="Asesorias">
                                                    <graphic>
                                                       <ImageView fitHeight="50.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
@@ -78,7 +78,7 @@
                                                       </ImageView>
                                                    </graphic>
                                                 </Button>
-                                                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="buttonDashBoard" text="Carreras" onAction="#handleButtonAction" >
+                                                <Button fx:id="btnCarreras" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonAction" styleClass="buttonDashBoard" text="Carreras">
                                                    <graphic>
                                                       <ImageView fitHeight="50.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
@@ -87,7 +87,7 @@
                                                       </ImageView>
                                                    </graphic>
                                                 </Button>
-                                                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="buttonDashBoard" text="Materias" onAction="#handleButtonAction" >
+                                                <Button fx:id="btnMaterias" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonAction" styleClass="buttonDashBoard" text="Materias">
                                                    <graphic>
                                                       <ImageView fitHeight="50.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
@@ -108,7 +108,7 @@
                                        <children>
                                           <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="vbox-DashBoard" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <children>
-                                                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="buttonDashBoard" text="Salones" onAction="#handleButtonAction" >
+                                                <Button fx:id="btnSalones" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonAction" styleClass="buttonDashBoard" text="Salones">
                                                    <graphic>
                                                       <ImageView fitHeight="50.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
@@ -117,7 +117,7 @@
                                                       </ImageView>
                                                    </graphic>
                                                 </Button>
-                                                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="buttonDashBoard" text="Reportes" onAction="#handleButtonAction" >
+                                                <Button fx:id="btnReportes" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonAction" styleClass="buttonDashBoard" text="Reportes">
                                                    <graphic>
                                                       <ImageView fitHeight="50.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
@@ -132,13 +132,43 @@
                                     </AnchorPane>
                               </content>
                             </TitledPane>
+                            <TitledPane animated="false" styleClass="titlePane" text="Horarios">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="vbox-DashBoard" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <Button fx:id="btnHorariosAsesores" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonAction" styleClass="buttonDashBoard" text="Asesores">
+                                                   <graphic>
+                                                      <ImageView fitHeight="50.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../media/asesor.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </Button>
+                                                <Button fx:id="btnHorariosSalones" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonAction" styleClass="buttonDashBoard" text="Salones">
+                                                   <graphic>
+                                                      <ImageView fitHeight="50.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../media/salon.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </Button>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </TitledPane>
                           </panes>
                         </Accordion>
                      </children>
                   </VBox>
                   <VBox alignment="BOTTOM_CENTER" prefHeight="88.0" prefWidth="171.0" styleClass="vbox-DashBoard">
                      <children>
-                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="buttonDashBoard" text="Configuracion" onAction="#handleButtonAction">
+                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonAction" styleClass="buttonDashBoard" text="Configuracion">
                            <graphic>
                               <ImageView fitHeight="50.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -150,7 +180,7 @@
                      </children></VBox>
                </children>
             </VBox>
-            <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" fx:id="vista"/>
+            <AnchorPane fx:id="vista" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
    </children>
