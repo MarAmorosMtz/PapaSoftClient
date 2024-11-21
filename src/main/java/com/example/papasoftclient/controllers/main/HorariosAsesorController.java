@@ -4,12 +4,15 @@ import com.example.papasoftclient.Main;
 import com.example.papasoftclient.controllers.add.AddHorarioAsesorController;
 import com.example.papasoftclient.controllers.delete.ConfirmacionHorarioAsesorController;
 import com.example.papasoftclient.controllers.delete.ConfirmacionPeriodoController;
+import com.example.papasoftclient.controllers.edit.EditHorarioAsesorController;
+import com.example.papasoftclient.controllers.edit.EditPeriodoController;
 import com.example.papasoftclient.models.*;
 import com.example.papasoftclient.repositories.AsesorRepository;
 import com.example.papasoftclient.repositories.AsesoradoRepository;
 import com.example.papasoftclient.repositories.HorariosAsesorRepository;
 import com.example.papasoftclient.repositories.PeriodoRepository;
 import com.example.papasoftclient.utils.Observador;
+import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,6 +28,7 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 
 public class HorariosAsesorController implements Observador {
@@ -48,6 +52,10 @@ public class HorariosAsesorController implements Observador {
     private AsesorRepository asesorRepository;
     private PeriodoRepository periodoRepository;
 
+    private ChangeListener<Object> oyenteSeleccion = (observable, oldValue, newValue) -> {
+        actualizarTabla();
+    };
+
     public HorariosAsesorController() {
         this.horariosAsesorRepository = new HorariosAsesorRepository();
         this.asesorRepository = new AsesorRepository();
@@ -58,6 +66,8 @@ public class HorariosAsesorController implements Observador {
     public void initialize() {
         columnaDiaLibre.setCellValueFactory(new PropertyValueFactory<>("dia_libre"));
         columnaHoraLibre.setCellValueFactory(new PropertyValueFactory<>("hora_libre"));
+        comboAsesor.valueProperty().addListener(oyenteSeleccion);
+        comboPeriodo.valueProperty().addListener(oyenteSeleccion);
         cargarAsesores();
         cargarPeriodos();
     }
@@ -142,10 +152,26 @@ public class HorariosAsesorController implements Observador {
 
 
     @FXML
-    private void edit(){
+    private void edit() throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/papasoftclient/horariosAsesor/vistaEditarHorarioAsesor.fxml"));
+        Parent parent = loader.load();
         int index = this.tablaHorarios.getSelectionModel().getSelectedIndex();
         if(listo() && index!=-1){
+            HorarioModel horario = tablaHorarios.getItems().get(index);
 
+            EditHorarioAsesorController editController = loader.getController();
+            editController.agregarObservador(this);
+            editController.setHorarioModel(horario);
+
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(parent));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initOwner(stage.getOwner());
+            stage.setMaximized(false);
+            stage.setResizable(false);
+
+            stage.show();
         }
     }
 

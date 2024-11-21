@@ -12,13 +12,13 @@
       <VBox prefHeight="114.0" prefWidth="449.0" VBox.vgrow="ALWAYS">
          <children>
             <Label text="Día libre" />
-            <ComboBox fx:id="diaLibre" prefHeight="45.0" prefWidth="449.0" promptText="Selecciona un día" VBox.vgrow="ALWAYS" />
+            <ComboBox fx:id="comboDiaLibre" prefHeight="45.0" prefWidth="449.0" promptText="Selecciona un día" VBox.vgrow="ALWAYS" />
          </children>
       </VBox>
       <VBox prefHeight="114.0" prefWidth="449.0" VBox.vgrow="ALWAYS">
          <children>
             <Label text="Hora libre" />
-            <ComboBox fx:id="horaLibre" prefHeight="45.0" prefWidth="449.0" promptText="Selecciona una hora" VBox.vgrow="ALWAYS" />
+            <ComboBox fx:id="comboHoraLibre" prefHeight="45.0" prefWidth="449.0" promptText="Selecciona una hora" VBox.vgrow="ALWAYS" />
          </children>
       </VBox>
       <HBox alignment="CENTER" prefHeight="108.0" prefWidth="422.0" styleClass="hBoxBottom">

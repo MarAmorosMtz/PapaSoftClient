@@ -1,6 +1,6 @@
-package com.example.papasoftclient.controllers.add;
+package com.example.papasoftclient.controllers.edit;
 
-import com.example.papasoftclient.models.HorarioAsesorBase;
+import com.example.papasoftclient.models.*;
 import com.example.papasoftclient.repositories.HorariosAsesorRepository;
 import com.example.papasoftclient.utils.Observable;
 import javafx.fxml.FXML;
@@ -10,10 +10,8 @@ import javafx.stage.Stage;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.UUID;
 
-
-public class AddHorarioAsesorController extends Observable {
+public class EditHorarioAsesorController extends Observable {
     @FXML
     private ComboBox<String> comboDiaLibre;
     @FXML
@@ -23,16 +21,14 @@ public class AddHorarioAsesorController extends Observable {
     @FXML
     private Button btnCancelar;
 
-    private HorariosAsesorRepository horariosAsesorRepository;
-    private UUID asesor;
-    private UUID periodo;
+    private HorariosAsesorRepository horarioAsesorRepository;
+    private HorarioAsesorModel horarioModel;
 
-    public AddHorarioAsesorController() {
-        horariosAsesorRepository = new HorariosAsesorRepository();
+    public EditHorarioAsesorController() {
+        horarioAsesorRepository = new HorariosAsesorRepository();
     }
 
-    @FXML
-    public void initialize() {
+    public void initialize(){
         cargarDiasSemana(comboDiaLibre);
         cargarHoras(comboHoraLibre);
     }
@@ -51,12 +47,11 @@ public class AddHorarioAsesorController extends Observable {
         }
     }
 
-
     @FXML
     private void guardar(){
-        if(this.comboDiaLibre.getValue()!=null && this.comboHoraLibre.getValue()!=null){
-            HorarioAsesorBase horario = new HorarioAsesorBase(this.comboHoraLibre.getValue(),this.comboDiaLibre.getValue(),periodo,asesor);
-            horariosAsesorRepository.save(horario);
+        if(comboDiaLibre.getValue()!=null && comboHoraLibre.getValue()!=null){
+            HorarioBase horario = new HorarioBase(this.comboHoraLibre.getValue(),this.comboDiaLibre.getValue());
+            horarioAsesorRepository.update(this.horarioModel.getId(),horario);
             cancelar();
             this.notificar();
         }
@@ -64,23 +59,17 @@ public class AddHorarioAsesorController extends Observable {
 
     @FXML
     private void cancelar(){
-        Stage stage = (Stage) btnGuardar.getScene().getWindow();
+        Stage stage = (Stage)btnCancelar.getScene().getWindow();
         stage.close();
     }
 
-    public UUID getPeriodo() {
-        return periodo;
+    public HorarioAsesorModel getHorarioModel() {
+        return horarioModel;
     }
 
-    public void setPeriodo(UUID periodo) {
-        this.periodo = periodo;
-    }
-
-    public UUID getAsesor() {
-        return asesor;
-    }
-
-    public void setAsesor(UUID asesor) {
-        this.asesor = asesor;
+    public void setHorarioModel(HorarioModel horarioModel) {
+        this.horarioModel = horarioAsesorRepository.get(horarioModel.getId());
+        this.comboHoraLibre.setValue(horarioModel.getHora_libre());
+        this.comboDiaLibre.setValue(horarioModel.getDia_libre());
     }
 }
