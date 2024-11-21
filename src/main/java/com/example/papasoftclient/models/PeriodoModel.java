@@ -15,4 +15,9 @@ public class PeriodoModel extends PeriodoBase{
     public void setId(UUID id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return this.nombre;
+    }
 }

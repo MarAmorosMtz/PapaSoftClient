@@ -3,15 +3,14 @@ package com.example.papasoftclient.models;
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class HorarioAsesorPage extends Page{
+public class HorarioAsesorPage{
     private UUID asesor;
     private UUID periodo;
     private ArrayList<HorarioModel> horarios;
 
     public HorarioAsesorPage(){}
 
-    public HorarioAsesorPage(int total, int paginas, UUID asesor, UUID periodo, ArrayList<HorarioModel> horarios) {
-        super(total, paginas);
+    public HorarioAsesorPage(UUID asesor, UUID periodo, ArrayList<HorarioModel> horarios) {
         this.asesor = asesor;
         this.periodo = periodo;
         this.horarios = horarios;

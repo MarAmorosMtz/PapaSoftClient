@@ -37,7 +37,7 @@ public class HorariosAsesorRepository{
             });
 
         }catch(Exception e){
-            System.out.println("Se capturó una excepción");
+            e.printStackTrace();
             return null;
         }
         return horarioPage;

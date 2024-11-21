@@ -66,4 +66,9 @@ public class AsesorModel extends Alumno{
     public void setContrato(String contrato) {
         this.contrato = contrato;
     }
+
+    @Override
+    public String toString() {
+        return this.apellido_p+" "+this.apellido_m+" "+this.nombre;
+    }
 }

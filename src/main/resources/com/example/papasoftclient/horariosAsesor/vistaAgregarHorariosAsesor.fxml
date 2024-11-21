@@ -6,25 +6,25 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="433.0" prefWidth="499.0" styleClass="vBox" stylesheets="@../CSS/Util/agregarStyle.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.papasoftclient.controllers.add.AddMaestroController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="433.0" prefWidth="499.0" styleClass="vBox" stylesheets="@../CSS/Util/agregarStyle.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.papasoftclient.controllers.add.AddHorarioAsesorController">
    <children>
       <Label text="Agregar Horario" />
       <VBox prefHeight="114.0" prefWidth="449.0" VBox.vgrow="ALWAYS">
          <children>
             <Label text="Día libre" />
-            <ComboBox prefHeight="45.0" prefWidth="449.0" promptText="Selecciona un día" VBox.vgrow="ALWAYS" />
+            <ComboBox fx:id="diaLibre" prefHeight="45.0" prefWidth="449.0" promptText="Selecciona un día" VBox.vgrow="ALWAYS" />
          </children>
       </VBox>
       <VBox prefHeight="114.0" prefWidth="449.0" VBox.vgrow="ALWAYS">
          <children>
             <Label text="Hora libre" />
-            <ComboBox prefHeight="45.0" prefWidth="449.0" promptText="Selecciona una hora" VBox.vgrow="ALWAYS" />
+            <ComboBox fx:id="horaLibre" prefHeight="45.0" prefWidth="449.0" promptText="Selecciona una hora" VBox.vgrow="ALWAYS" />
          </children>
       </VBox>
       <HBox alignment="CENTER" prefHeight="108.0" prefWidth="422.0" styleClass="hBoxBottom">
          <children>
-            <Button mnemonicParsing="false" onAction="#guardar" prefHeight="41.0" prefWidth="120.0" styleClass="btnGuardar" text="✔ Guardar" />
-            <Button mnemonicParsing="false" onAction="#cancelar" prefHeight="41.0" prefWidth="120.0" styleClass="btnCancelar" text="✕ Cancelar" />
+            <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#guardar" prefHeight="41.0" prefWidth="120.0" styleClass="btnGuardar" text="✔ Guardar" />
+            <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#cancelar" prefHeight="41.0" prefWidth="120.0" styleClass="btnCancelar" text="✕ Cancelar" />
          </children>
       </HBox>
    </children>
