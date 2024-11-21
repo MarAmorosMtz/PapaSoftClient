@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="589.0" prefWidth="909.0" stylesheets="@../CSS/CRUD/vistaPrincipal.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.papasoftclient.controllers.main.HorariosAsesorController">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="589.0" prefWidth="909.0" stylesheets="@../CSS/CRUD/vistaPrincipal.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.papasoftclient.controllers.main.HorariosSalonController">
    <children>
       <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -31,13 +31,13 @@
                                           <Font name="System Bold" size="13.0" />
                                        </font>
                                     </Label>
-                                    <ComboBox prefWidth="150.0" />
+                                    <ComboBox fx:id="comboSalon" prefWidth="150.0" />
                                     <Label text="Periodo:">
                                        <font>
                                           <Font name="System Bold" size="13.0" />
                                        </font>
                                     </Label>
-                                    <ComboBox prefWidth="150.0" />
+                                    <ComboBox fx:id="comboPeriodo" prefWidth="150.0" />
                                  </children>
                               </FlowPane>
                               <HBox prefHeight="100.0" prefWidth="200.0" />
@@ -47,7 +47,7 @@
                   </HBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="151.0" prefWidth="0.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="50.0" prefWidth="194.0" styleClass="btnAdd" text="✚ Nuevo Horario" HBox.hgrow="SOMETIMES" />
+                        <Button fx:id="btnAgregar" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="50.0" prefWidth="194.0" styleClass="btnAdd" text="✚ Nuevo Horario" HBox.hgrow="SOMETIMES" />
                      </children>
                      <padding>
                         <Insets right="25.0" />
@@ -61,24 +61,24 @@
                      <children>
                         <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                            <children>
-                              <TableView fx:id="tablaMaestro" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                              <TableView fx:id="tablaHorarios" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                                 <columns>
-                                  <TableColumn fx:id="columnaNombre" prefWidth="75.0" text="Día libre" />
-                                    <TableColumn fx:id="columnaApellidoP" prefWidth="75.0" text="Hora libre" />
+                                  <TableColumn fx:id="columnaDiaLibre" prefWidth="75.0" text="Día libre" />
+                                    <TableColumn fx:id="columnaHoraLibre" prefWidth="75.0" text="Hora libre" />
                                 </columns>
                                  <columnResizePolicy>
                                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                  </columnResizePolicy>
                               </TableView>
-                              <Pagination fx:id="paginadorMaestros" maxHeight="Infinity" maxWidth="Infinity" pageCount="1" prefHeight="52.0" prefWidth="707.0" styleClass="paginationStyle" VBox.vgrow="ALWAYS" />
+                              <Pagination fx:id="paginadorHorarios" maxHeight="Infinity" maxWidth="Infinity" pageCount="1" prefHeight="52.0" prefWidth="707.0" styleClass="paginationStyle" VBox.vgrow="ALWAYS" />
                            </children>
                         </VBox>
                      </children>
                   </HBox>
                   <VBox alignment="TOP_CENTER" prefHeight="374.0" prefWidth="202.0" spacing="20.0" styleClass="CentervBoxR" HBox.hgrow="SOMETIMES">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#edit" prefHeight="47.0" prefWidth="132.0" styleClass="btnEdit" text="Editar" />
-                        <Button mnemonicParsing="false" onAction="#delete" prefHeight="47.0" prefWidth="132.0" styleClass="btnDelete" text="Eliminar" />
+                        <Button fx:id="btnEditar" mnemonicParsing="false" onAction="#edit" prefHeight="47.0" prefWidth="132.0" styleClass="btnEdit" text="Editar" />
+                        <Button fx:id="btnEliminar" mnemonicParsing="false" onAction="#delete" prefHeight="47.0" prefWidth="132.0" styleClass="btnDelete" text="Eliminar" />
                      </children>
                   </VBox>
                </children>
