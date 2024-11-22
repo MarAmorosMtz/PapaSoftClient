@@ -14,6 +14,7 @@ module com.example.papasoftclient {
     requires org.apache.httpcomponents.httpcore;
     requires org.apache.httpcomponents.core5.httpcore5;
     requires java.sql;
+    requires java.desktop;
 
     opens com.example.papasoftclient to javafx.fxml;
     opens com.example.papasoftclient.controllers.add to javafx.fxml;
@@ -27,4 +28,5 @@ module com.example.papasoftclient {
     exports com.example.papasoftclient.controllers.delete;
     exports com.example.papasoftclient.controllers.edit;
     exports com.example.papasoftclient.controllers.main;
+    exports com.example.papasoftclient.models;
 }

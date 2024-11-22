@@ -1,11 +1,13 @@
 package com.example.papasoftclient.controllers.main;
 
+import com.example.papasoftclient.controllers.add.AddMaestroController;
 import com.example.papasoftclient.controllers.delete.ConfirmacionMaestroController;
 import com.example.papasoftclient.controllers.edit.EditMaestroController;
 import com.example.papasoftclient.models.MaestroModel;
 import com.example.papasoftclient.models.MaestroPage;
 import com.example.papasoftclient.repositories.MaestroRepository;
 import com.example.papasoftclient.repositories.RestAPI;
+import com.example.papasoftclient.utils.Observador;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -24,7 +26,7 @@ import org.apache.hc.client5.http.impl.classic.HttpClients;
 
 import java.io.IOException;
 
-public class MaestroController {
+public class MaestroController implements Observador {
     @FXML
     TableView <MaestroModel> tablaMaestro;
     @FXML
@@ -33,18 +35,13 @@ public class MaestroController {
     private TableColumn<MaestroModel,String> columnaApellidoP;
     @FXML
     private TableColumn<MaestroModel,String> columnaApellidoM;
-
     @FXML
     private Pagination paginadorMaestros;
 
-    private CloseableHttpClient httpClient;
     private MaestroRepository maestroRepository;
-    private ObjectMapper mapper;
 
     public MaestroController(){
-        httpClient = HttpClients.createDefault();
-        mapper = new ObjectMapper();
-        maestroRepository = new MaestroRepository(httpClient, mapper , RestAPI.MAESTROS_ENDPOINT);
+        maestroRepository = new MaestroRepository();
     }
 
     @FXML
@@ -60,16 +57,24 @@ public class MaestroController {
     }
 
     public Node updateTable(int pageIndex){
-        MaestroPage tmp = maestroRepository.search(pageIndex);
+        MaestroPage tmp = maestroRepository.search(pageIndex+1);
         if(tmp != null){
             loadMaestros(tmp);
-        }else System.out.println("La pagina es nula");
+            if(tmp.getPaginas()!=paginadorMaestros.getPageCount()){
+                paginadorMaestros.setPageCount(tmp.getPaginas());
+            }
+        }
         return tablaMaestro;
     }
 
     @FXML
     private void handleButtonAction(ActionEvent event) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource("/com/example/papasoftclient/maestro/vistaAgregarMaestro.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/papasoftclient/maestro/vistaAgregarMaestro.fxml"));
+        Parent parent = loader.load();
+
+        AddMaestroController controller = loader.getController();
+        controller.agregarObservador(this);
+
         Scene scene = new Scene(parent);
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL); // Hacer que el Stage sea modal
@@ -92,8 +97,8 @@ public class MaestroController {
         MaestroModel maestroBase = tablaMaestro.getItems().get(rowIndex);
 
         EditMaestroController editController = loader.getController();
-        editController.setBase(maestroBase);
         editController.setModel(maestro);
+        editController.agregarObservador(this);
 
         Stage stage = new Stage();
         stage.setScene(new Scene(parent));
@@ -117,6 +122,7 @@ public class MaestroController {
 
         ConfirmacionMaestroController confirmacionController = loader.getController();
         confirmacionController.setMaestro(maestro);
+        confirmacionController.agregarObservador(this);
 
         Stage stage = new Stage(StageStyle.UNDECORATED);
         stage.setScene(new Scene(parent));
@@ -129,4 +135,8 @@ public class MaestroController {
         }
     }
 
+    @Override
+    public void actualizar() {
+        updateTable(paginadorMaestros.getCurrentPageIndex());
+    }
 }

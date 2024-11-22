@@ -2,7 +2,7 @@ package com.example.papasoftclient.controllers.main;
 
 import com.example.papasoftclient.Main;
 import com.example.papasoftclient.controllers.add.AddAsesoradoController;
-import com.example.papasoftclient.controllers.add.EditAsesoradoController;
+import com.example.papasoftclient.controllers.edit.EditAsesoradoController;
 import com.example.papasoftclient.controllers.delete.ConfirmacionAsesoradoController;
 import com.example.papasoftclient.models.AsesoradoModel;
 import com.example.papasoftclient.models.AsesoradoPage;
@@ -59,9 +59,12 @@ public class AsesoradoController  implements Observador{
     }
 
     public Node updateTable(int pageIndex){
-        AsesoradoPage tmp = asesoradoRepository.search(pageIndex);
+        AsesoradoPage tmp = asesoradoRepository.search(pageIndex+1);
         if(tmp != null){
             loadMaterias(tmp);
+            if(tmp.getPaginas() != paginadorAsesorados.getPageCount()){
+                paginadorAsesorados.setPageCount(tmp.getPaginas());
+            }
         }else System.out.println("La pagina es nula");
         return tablaAsesorados;
     }
@@ -91,9 +94,11 @@ public class AsesoradoController  implements Observador{
         if(rowIndex != -1){
         AsesoradoModel asesorado = tablaAsesorados.getItems().get(rowIndex);
 
-
         EditAsesoradoController editController = loader.getController();
+        System.out.println("Objeto enviado");
+        System.out.println(asesorado);
         editController.setModel(asesorado);
+        editController.agregarObservador(this);
 
         Stage stage = new Stage();
         stage.setScene(new Scene(parent));
@@ -108,7 +113,7 @@ public class AsesoradoController  implements Observador{
 
     @FXML
     private void delete() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/papasoftclient/materia/vistaConfirmacionAsesorado.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/papasoftclient/asesorado/vistaConfirmacionAsesorado.fxml"));
         Parent parent = loader.load();
 
         int rowIndex = tablaAsesorados.getSelectionModel().getSelectedIndex();
@@ -118,6 +123,7 @@ public class AsesoradoController  implements Observador{
 
         ConfirmacionAsesoradoController confirmacionController = loader.getController();
         confirmacionController.setAsesorado(asesorado);
+        confirmacionController.agregarObservador(this);
 
         Stage stage = new Stage(StageStyle.UNDECORATED);
         stage.setScene(new Scene(parent));

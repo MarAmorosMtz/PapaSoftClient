@@ -7,31 +7,31 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="592.0" prefWidth="499.0" styleClass="vBox" stylesheets="@../CSS/Util/agregarStyle.css"  xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.papasoftclient.controllers.add.AddPeriodoController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="592.0" prefWidth="499.0" styleClass="vBox" stylesheets="@../CSS/Util/agregarStyle.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.papasoftclient.controllers.add.AddPeriodoController">
    <children>
       <Label text="Agregar Periodo" />
       <VBox prefHeight="114.0" prefWidth="449.0">
          <children>
             <Label text="Nombre:" />
-            <TextField prefHeight="43.0" prefWidth="419.0" promptText="Ejemlpo: Enero - Agosto" styleClass="textField" fx:id="txtNombre"/>
+            <TextField fx:id="nombre" prefHeight="43.0" prefWidth="419.0" promptText="Ejemplo: AD2024" styleClass="textField" />
          </children>
       </VBox>
       <VBox prefHeight="114.0" prefWidth="449.0">
          <children>
             <Label text="Fecha de Inicio:" />
-            <DatePicker maxWidth="1.7976931348623157E308" prefHeight="43.0" styleClass="textField" fx:id="dateInicio"/>
+            <DatePicker fx:id="fechaInicio" maxWidth="1.7976931348623157E308" prefHeight="43.0" styleClass="textField" />
          </children>
       </VBox>
       <VBox prefHeight="114.0" prefWidth="449.0">
          <children>
             <Label text="Fecha de Finalización:" />
-            <DatePicker maxWidth="1.7976931348623157E308" prefHeight="43.0" styleClass="textField" fx:id="dateFinal"/>
+            <DatePicker fx:id="fechaFinal" maxWidth="1.7976931348623157E308" prefHeight="43.0" styleClass="textField" />
          </children>
       </VBox>
       <HBox alignment="CENTER" prefHeight="108.0" prefWidth="422.0" styleClass="hBoxBottom">
          <children>
-            <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="120.0" styleClass="btnGuardar" text="✔ Guardar" onAction="#guardar"/>
-            <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="120.0" styleClass="btnCancelar" text="✕ Cancelar" onAction="#cancelar"/>
+            <Button mnemonicParsing="false" onAction="#guardar" prefHeight="41.0" prefWidth="120.0" styleClass="btnGuardar" text="✔ Guardar" />
+            <Button mnemonicParsing="false" onAction="#cancelar" prefHeight="41.0" prefWidth="120.0" styleClass="btnCancelar" text="✕ Cancelar" />
          </children>
       </HBox>
    </children>

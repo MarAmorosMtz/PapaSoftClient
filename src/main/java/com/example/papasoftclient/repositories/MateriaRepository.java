@@ -50,13 +50,13 @@ public class MateriaRepository implements Repository<MateriaBase, MateriaModel>{
         try{
             HttpGet request = new HttpGet(host+id.toString());
             MateriaModel materia = httpClient.execute(request,response->{
-                if (response.getCode() == 200) return null;
+                if (response.getCode() != 200) return null;
                 return mapper.readValue(EntityUtils.toString(response.getEntity()),MateriaModel.class);
             });
+            return materia;
         }catch (Exception ex){
             return null;
         }
-        return null;
     }
 
     @Override

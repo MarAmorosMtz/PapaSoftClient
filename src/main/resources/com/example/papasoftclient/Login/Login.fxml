@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="666.0" prefWidth="1441.0" stylesheets="@../CSS/Login/login.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.papasoftclient.controllers.main.LoginController">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="769.0" prefWidth="1515.0" stylesheets="@../CSS/Login/login.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.papasoftclient.controllers.main.LoginController">
    <children>
       <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -39,34 +39,34 @@
                         </ImageView>
                         <VBox maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefHeight="621.0" prefWidth="391.0" styleClass="formVbox" StackPane.alignment="CENTER_RIGHT">
                            <children>
-                              <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="321.0" prefWidth="308.0" tabClosingPolicy="UNAVAILABLE">
+                              <TabPane fx:id="tabLogin" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="321.0" prefWidth="308.0" tabClosingPolicy="UNAVAILABLE">
                                 <tabs>
-                                  <Tab text="Alumno">
-                                    <content>
-                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                             <children>
-                                                <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" styleClass="vBoxForm" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                   <children>
-                                                      <Label styleClass="labelForm" text="Acceso Alumnos" />
-                                                      <TextField promptText="Numero de Control" styleClass="labelForm" />
-                                                      <PasswordField styleClass="labelForm" />
-                                                      <Button mnemonicParsing="false" onAction="#entrar" text="Ingresar" />
-                                                   </children>
-                                                </VBox>
-                                             </children>
-                                          </AnchorPane>
-                                    </content>
-                                  </Tab>
-                                  <Tab text="Personal">
+                                  <Tab text="Coordinador">
                                     <content>
                                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                              <children>
                                                 <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" styleClass="vBoxForm" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                    <children>
                                                       <Label styleClass="labelForm" text="Acceso Personal" />
-                                                      <TextField fx:id="usuario" promptText="Numero de Control" styleClass="labelForm" />
-                                                      <PasswordField fx:id="pass" styleClass="labelForm" />
+                                                      <TextField fx:id="usuarioCoordinador" promptText="Numero de Control" styleClass="labelForm" />
+                                                      <PasswordField fx:id="claveCoordinador" styleClass="labelForm" />
                                                       <Button fx:id="btn" mnemonicParsing="false" onAction="#entrar" text="Ingresar" />
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </AnchorPane>
+                                    </content>
+                                  </Tab>
+                                  <Tab text="Secretario">
+                                    <content>
+                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                             <children>
+                                                <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" styleClass="vBoxForm" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                   <children>
+                                                      <Label styleClass="labelForm" text="Acceso Alumnos" />
+                                                      <TextField fx:id="usuarioSecretario" promptText="Numero de Control" styleClass="labelForm" />
+                                                      <PasswordField fx:id="claveSecretario" styleClass="labelForm" />
+                                                      <Button mnemonicParsing="false" onAction="#entrar" text="Ingresar" />
                                                    </children>
                                                 </VBox>
                                              </children>
@@ -86,7 +86,7 @@
                      </children>
                   </StackPane>
                </children></HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox prefHeight="132.0" prefWidth="1441.0">
                <children>
                   <ImageView fitHeight="92.0" fitWidth="321.0" pickOnBounds="true" preserveRatio="true">
                      <image>

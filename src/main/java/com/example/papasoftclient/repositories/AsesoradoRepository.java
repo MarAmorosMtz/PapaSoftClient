@@ -49,13 +49,13 @@ public class AsesoradoRepository implements Repository<AsesoradoBase,AsesoradoMo
         try{
             HttpGet request = new HttpGet(host+id.toString());
             AsesoradoModel asesorado = httpClient.execute(request,response->{
-                if (response.getCode() == 200) return null;
+                if (response.getCode() != 200) return null;
                 return mapper.readValue(EntityUtils.toString(response.getEntity()),AsesoradoModel.class);
             });
+            return asesorado;
         }catch (Exception ex){
             return null;
         }
-        return null;
     }
 
     @Override
@@ -64,7 +64,6 @@ public class AsesoradoRepository implements Repository<AsesoradoBase,AsesoradoMo
             HttpPost request = new HttpPost(host);
             request.setHeader("Content-Type", "application/json");
             request.setEntity(new StringEntity(mapper.writeValueAsString(item)));
-            System.out.println(mapper.writeValueAsString(item));
             CloseableHttpResponse response = httpClient.execute(request);
             AsesoradoModel asesoradoModel = mapper.readValue(EntityUtils.toString(response.getEntity()),AsesoradoModel.class);
             if (response.getCode() == 201) return asesoradoModel.getId();

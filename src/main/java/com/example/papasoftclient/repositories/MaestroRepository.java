@@ -3,6 +3,8 @@ package com.example.papasoftclient.repositories;
 import com.example.papasoftclient.models.MaestroBase;
 import com.example.papasoftclient.models.MaestroModel;
 import com.example.papasoftclient.models.MaestroPage;
+import com.example.papasoftclient.utils.HttpClient;
+import com.example.papasoftclient.utils.JsonMapper;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.hc.client5.http.classic.methods.HttpDelete;
 import org.apache.hc.client5.http.classic.methods.HttpPost;
@@ -10,6 +12,7 @@ import org.apache.hc.client5.http.classic.methods.HttpPut;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
 import org.apache.hc.client5.http.classic.methods.HttpGet;
+import org.apache.hc.client5.http.impl.classic.HttpClients;
 import org.apache.hc.core5.http.io.entity.EntityUtils;
 import org.apache.hc.core5.http.io.entity.StringEntity;
 
@@ -21,10 +24,10 @@ public class MaestroRepository implements Repository<MaestroBase, MaestroModel>{
     private ObjectMapper mapper;
     private String host;
 
-    public MaestroRepository(CloseableHttpClient httpClient, ObjectMapper mapper, String host) {
-        this.httpClient = httpClient;
-        this.mapper = mapper;
-        this.host = host;
+    public MaestroRepository() {
+        this.httpClient = HttpClient.getClient();
+        this.mapper = JsonMapper.getMapper();
+        this.host = RestAPI.MAESTROS_ENDPOINT;
     }
 
     @Override
@@ -47,13 +50,13 @@ public class MaestroRepository implements Repository<MaestroBase, MaestroModel>{
         try{
             HttpGet request = new HttpGet(host+id.toString());
             MaestroModel maestro = httpClient.execute(request,response->{
-                if (response.getCode() == 200) return null;
+                if (response.getCode() != 200) return null;
                 return mapper.readValue(EntityUtils.toString(response.getEntity()),MaestroModel.class);
             });
+            return maestro;
         }catch (Exception ex){
             return null;
         }
-        return null;
     }
 
     @Override

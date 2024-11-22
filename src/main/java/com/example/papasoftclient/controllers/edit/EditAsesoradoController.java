@@ -1,4 +1,4 @@
-package com.example.papasoftclient.controllers.add;
+package com.example.papasoftclient.controllers.edit;
 
 import com.example.papasoftclient.models.AsesoradoBase;
 import com.example.papasoftclient.models.CarreraModel;
@@ -8,12 +8,13 @@ import com.example.papasoftclient.repositories.CarreraRepository;
 import com.example.papasoftclient.repositories.RestAPI;
 import com.example.papasoftclient.utils.HttpClient;
 import com.example.papasoftclient.utils.JsonMapper;
+import com.example.papasoftclient.utils.Observable;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
-public class EditAsesoradoController {
+public class EditAsesoradoController extends Observable {
     @FXML
     TextField numCtrl;
     @FXML
@@ -43,10 +44,13 @@ public class EditAsesoradoController {
     private ObservableList<CarreraModel> catalogoCarreras;
     private AsesoradoModel asesorado;
 
+    public EditAsesoradoController() {
+        carreraRepository = new CarreraRepository();
+        asesoradoRepository  = new AsesoradoRepository();
+    }
+
     public void initialize(){
         inicializarSpinner();
-        carreraRepository = new CarreraRepository(HttpClient.getClient(), JsonMapper.getMapper(), RestAPI.CARRERAS_ENDPOINT);
-        asesoradoRepository  = new AsesoradoRepository();
         catalogoCarreras = carreraRepository.getCatalogoCarreras();
         carrera.setItems(catalogoCarreras);
     }
@@ -66,6 +70,7 @@ public class EditAsesoradoController {
                 "");
         asesoradoRepository.update(asesorado.getId(),nuevoAsesorado);
         cancelar();
+        this.notificar();
     }
 
     @FXML
@@ -80,15 +85,19 @@ public class EditAsesoradoController {
     }
 
     public void setModel(AsesoradoModel model){
-        this.asesorado = model;
-        numCtrl.setText(model.getNum_ctrl());
+        System.out.println("Objeto recibido:");
+        System.out.println(model);
+        this.asesorado = asesoradoRepository.search(model.getId());
+        System.out.println("Objeto consultado:");
+        System.out.println(this.asesorado);
+        numCtrl.setText(this.asesorado.getNum_ctrl());
         nombre.setText(this.asesorado.getNombre());
         apellidoP.setText(this.asesorado.getApellido_p());
         apellidoM.setText(this.asesorado.getApellido_m());
         telefono.setText(this.asesorado.getTelefono());
         correo.setText(this.asesorado.getCorreo());
-        fechaInscripcion.setValue(model.getFecha_inscripcion());
-        semestre.getValueFactory().setValue(model.getSemestre());
+        fechaInscripcion.setValue(this.asesorado.getFecha_inscripcion());
+        semestre.getValueFactory().setValue(this.asesorado.getSemestre());
         carrera.setValue(this.asesorado.getCarrera());
 
     }

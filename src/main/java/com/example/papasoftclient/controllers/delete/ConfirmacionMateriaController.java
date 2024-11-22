@@ -22,9 +22,8 @@ public class ConfirmacionMateriaController extends Observable {
     @FXML
     private void confirmar(){
         materiaRepository = new MateriaRepository();
-        if(materiaRepository.remove(materia.getId())){
-            materiaRepository.remove(materia.getId());
-        }else{
+        boolean status = materiaRepository.remove(materia.getId());
+        if(!status){
 
             Alert alerta = new Alert(Alert.AlertType.ERROR);
             alerta.setTitle("Error");
@@ -34,6 +33,7 @@ public class ConfirmacionMateriaController extends Observable {
             alerta.showAndWait();
         }
         cancelar();
+        this.notificar();
     }
 
     @FXML

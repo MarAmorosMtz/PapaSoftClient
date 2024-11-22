@@ -10,7 +10,8 @@ public class RestAPI {
     public static final String SALONES_ENDPOINT = HOST+"/salones/";
     public static final String ASESORADOS_ENDPOINT = HOST+"/asesorados/";
     public static final String ASESORIAS_ENDPOINT = HOST+"/asesorias/";
-    public static final String HORARIOS_ASESORES_ENDPOINT = HOST+"/horarios/asesores";
-    public static final String HORARIOS_SALONES_ENDPOINT = HOST+"/horarios/salones";
-    public static final String ASESORES_ENDPOINT = HOST+"/asesores";
+    public static final String HORARIOS_ASESORES_ENDPOINT = HOST+"/asesores/horarios/";
+    public static final String HORARIOS_SALONES_ENDPOINT = HOST+"/salones/horarios/";
+    public static final String ASESORES_ENDPOINT = HOST+"/asesores/";
+    public static final String LOGIN_ENDPOINT = HOST+"/login";
 }

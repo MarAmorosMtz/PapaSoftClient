@@ -56,10 +56,10 @@ public class PeriodoRepository implements Repository<PeriodoBase, PeriodoModel>{
                 if (response.getCode() != 200) return null;
                 return mapper.readValue(EntityUtils.toString(response.getEntity()),PeriodoModel.class);
             });
+            return periodoModel;
         }catch (Exception ex){
             return null;
         }
-        return null;
     }
 
     @Override

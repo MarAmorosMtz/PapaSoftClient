@@ -17,8 +17,8 @@
             <Label text="¿Estás seguro de eliminar el periodo?" />
             <HBox alignment="CENTER" prefHeight="77.0" prefWidth="792.0" styleClass="hBox">
                <children>
-                  <Button mnemonicParsing="false" styleClass="btnSi" text="✔ Si" onAction="#confirmar"/>
-                  <Button mnemonicParsing="false" styleClass="btnCancelar" text="✕ Cancelar" onAction="#cancelar" fx:id="close"/>
+                  <Button fx:id="btnConfirmar" mnemonicParsing="false" onAction="#confirmar" styleClass="btnSi" text="✔ Si" />
+                  <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#cancelar" styleClass="btnCancelar" text="✕ Cancelar" />
                </children>
             </HBox>
          </children>

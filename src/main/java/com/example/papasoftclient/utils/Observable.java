@@ -20,7 +20,7 @@ public abstract class Observable {
         this.observadores.add(observador);
     }
 
-    public void eliminarObservador(Observer observer){
+    public void eliminarObservador(Observador observer){
         this.observadores.remove(observer);
     }
 }

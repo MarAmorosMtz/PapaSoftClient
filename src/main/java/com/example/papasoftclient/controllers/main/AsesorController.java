@@ -1,5 +1,6 @@
 package com.example.papasoftclient.controllers.main;
 
+import com.example.papasoftclient.controllers.add.AddAsesorController;
 import com.example.papasoftclient.controllers.delete.ConfirmacionAsesorController;
 import com.example.papasoftclient.controllers.edit.EditAsesorController;
 import com.example.papasoftclient.models.*;
@@ -81,17 +82,22 @@ public class AsesorController implements Observador {
     }
 
     public Node updateTable(int pageIndex){
-        AsesorPage tmp = asesorRepository.search(pageIndex);
+        AsesorPage tmp = asesorRepository.search(pageIndex+1);
         if(tmp != null){
             loadAsesores(tmp);
-            paginadorAsesor.setMaxPageIndicatorCount(tmp.getPaginas());
+            if(tmp.getPaginas() != paginadorAsesor.getPageCount()){
+                paginadorAsesor.setPageCount(tmp.getPaginas());
+            }
         }
         return tablaAsesor;
     }
 
     @FXML
     private void handleButtonAction(ActionEvent event) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource("/com/example/papasoftclient/asesor/vistaAgregarAsesor.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/papasoftclient/asesor/vistaAgregarAsesor.fxml"));
+        Parent parent = loader.load();
+        AddAsesorController controller = loader.getController();
+        controller.agregarObservador(this);
         Scene scene = new Scene(parent);
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL); // Hacer que el Stage sea modal
@@ -111,11 +117,11 @@ public class AsesorController implements Observador {
 
         if(rowIndex != -1){
         AsesorModel asesorModel = tablaAsesor.getItems().get(rowIndex);
-        AsesorBase asesorBase = tablaAsesor.getItems().get(rowIndex);
 
-        EditAsesorController editController = loader.getController();
-        editController.setBase(asesorBase);
-        editController.setModel(asesorModel);
+        EditAsesorController controller = loader.getController();
+        controller.agregarObservador(this);
+        controller.setModel(asesorModel);
+
 
         Stage stage = new Stage();
         stage.setScene(new Scene(parent));
@@ -125,14 +131,17 @@ public class AsesorController implements Observador {
         stage.setResizable(false);
 
         stage.show();
+
         }
+        System.out.println(asesorModel);
     }
 
     @FXML
     private void delete() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/papasoftclient/asesor/vistaConfirmacionAsesor.fxml"));
         Parent parent = loader.load();
-
+        ConfirmacionAsesorController controller = loader.getController();
+        controller.agregarObservador(this);
         int rowIndex = tablaAsesor.getSelectionModel().getSelectedIndex();
         
         if(rowIndex != -1){        

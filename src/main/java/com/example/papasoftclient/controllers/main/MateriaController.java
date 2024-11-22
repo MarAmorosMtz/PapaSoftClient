@@ -55,9 +55,12 @@ public class MateriaController  implements Observador{
     }
 
     public Node updateTable(int pageIndex){
-        MateriaPage tmp = materiaRepository.search(pageIndex);
+        MateriaPage tmp = materiaRepository.search(pageIndex+1);
         if(tmp != null){
-            loadMaterias(tmp);paginadorMaterias.setMaxPageIndicatorCount(tmp.getPaginas());
+            loadMaterias(tmp);
+            if(tmp.getPaginas()!=paginadorMaterias.getPageCount()){
+                paginadorMaterias.setPageCount(tmp.getPaginas());
+            }
         }
         return tablaMaterias;
     }
@@ -87,10 +90,10 @@ public class MateriaController  implements Observador{
         MateriaModel materia = tablaMaterias.getItems().get(rowIndex);
         MateriaModel materiaBase = tablaMaterias.getItems().get(rowIndex);
 
-
         EditMateriaController editController = loader.getController();
         editController.setBase(materiaBase);
         editController.setModel(materia);
+        editController.agregarObservador(this);
 
         Stage stage = new Stage();
         stage.setScene(new Scene(parent));
@@ -115,6 +118,7 @@ public class MateriaController  implements Observador{
 
         ConfirmacionMateriaController confirmacionController = loader.getController();
         confirmacionController.setMateria(materia);
+        confirmacionController.agregarObservador(this);
 
         Stage stage = new Stage(StageStyle.UNDECORATED);
         stage.setScene(new Scene(parent));

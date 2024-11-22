@@ -72,6 +72,12 @@
                   </VBox>
                   <VBox prefHeight="114.0" prefWidth="449.0">
                      <children>
+                        <Label text="Semestre:" />
+                        <Spinner fx:id="semestre" editable="true" maxWidth="1.7976931348623157E308" prefHeight="43.0" styleClass="textField" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="114.0" prefWidth="449.0">
+                     <children>
                         <Label text="Horario:" />
                         <Button mnemonicParsing="false" styleClass="btnGuardar" text="Subir imagen">
                            <graphic>
@@ -80,13 +86,8 @@
                                     <Image url="@../media/upload_image.png" />
                                  </image>
                               </ImageView>
-                           </graphic></Button>
-                     </children>
-                  </VBox>
-                  <VBox prefHeight="114.0" prefWidth="449.0">
-                     <children>
-                        <Label text="Semestre:" />
-                        <Spinner fx:id="semestre" editable="true" maxWidth="1.7976931348623157E308" prefHeight="43.0" styleClass="textField" />
+                           </graphic>
+                        </Button>
                      </children>
                   </VBox>
                </children>

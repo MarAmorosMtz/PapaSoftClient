@@ -3,6 +3,8 @@ package com.example.papasoftclient.controllers.delete;
 import com.example.papasoftclient.models.CarreraModel;
 import com.example.papasoftclient.repositories.CarreraRepository;
 import com.example.papasoftclient.repositories.RestAPI;
+import com.example.papasoftclient.utils.Observable;
+import com.example.papasoftclient.utils.Observador;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -11,25 +13,22 @@ import javafx.stage.Stage;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
 import org.apache.hc.client5.http.impl.classic.HttpClients;
 
-public class ConfirmacionCarreraController {
+public class ConfirmacionCarreraController extends Observable {
     @FXML
     Button close;
 
     CarreraModel carrera;
 
-    private CloseableHttpClient httpClient;
     private CarreraRepository carreraRepository;
-    private ObjectMapper mapper;
+
+    public ConfirmacionCarreraController() {
+        carreraRepository = new CarreraRepository();
+    }
 
     @FXML
     private void confirmar(){
-        httpClient = HttpClients.createDefault();
-        mapper = new ObjectMapper();
-        carreraRepository = new CarreraRepository(httpClient, mapper , RestAPI.CARRERAS_ENDPOINT);
-        if(carreraRepository.remove(carrera.getId())){
-            carreraRepository.remove(carrera.getId());
-        }else{
-
+        boolean status =carreraRepository.remove(carrera.getId());
+        if(!status){
             Alert alerta = new Alert(Alert.AlertType.ERROR);
             alerta.setTitle("Error");
             alerta.setHeaderText("Se ha producido un error");
@@ -37,8 +36,8 @@ public class ConfirmacionCarreraController {
 
             alerta.showAndWait();
         }
-
         cancelar();
+        this.notificar();
     }
 
     @FXML

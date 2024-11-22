@@ -2,12 +2,13 @@ package com.example.papasoftclient.controllers.delete;
 
 import com.example.papasoftclient.models.AsesoradoModel;
 import com.example.papasoftclient.repositories.AsesoradoRepository;
+import com.example.papasoftclient.utils.Observable;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-public class ConfirmacionAsesoradoController {
+public class ConfirmacionAsesoradoController extends Observable {
     @FXML
     Button btnConfirmar;
     @FXML
@@ -17,13 +18,14 @@ public class ConfirmacionAsesoradoController {
 
     private AsesoradoRepository asesoradoRepository;
 
+    public ConfirmacionAsesoradoController() {
+        asesoradoRepository = new AsesoradoRepository();
+    }
+
     @FXML
     private void confirmar(){
-        asesoradoRepository = new AsesoradoRepository();
-        if(asesoradoRepository.remove(asesorado.getId())){
-            asesoradoRepository.remove(asesorado.getId());
-        }else{
-
+        boolean status = asesoradoRepository.remove(asesorado.getId());
+        if(!status){
             Alert alerta = new Alert(Alert.AlertType.ERROR);
             alerta.setTitle("Error");
             alerta.setHeaderText("Se ha producido un error");
@@ -31,8 +33,8 @@ public class ConfirmacionAsesoradoController {
 
             alerta.showAndWait();
         }
-
         cancelar();
+        this.notificar();
     }
 
     @FXML

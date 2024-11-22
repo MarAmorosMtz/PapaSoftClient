@@ -3,26 +3,30 @@ package com.example.papasoftclient.controllers.edit;
 import com.example.papasoftclient.models.PeriodoBase;
 import com.example.papasoftclient.models.PeriodoModel;
 import com.example.papasoftclient.repositories.PeriodoRepository;
+import com.example.papasoftclient.utils.Observable;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class EditPeriodoController {
+public class EditPeriodoController extends Observable {
     @FXML
-    TextField txtNombre;
+    private TextField nombre;
     @FXML
-    DatePicker dateInicio;
+    private DatePicker fechaInicio;
     @FXML
-    DatePicker dateFinal;
+    private DatePicker fechaFin;
     @FXML
-    Button close;
+    private Button close;
 
-    PeriodoBase periodoBase;
-    PeriodoModel periodoModel;
+    private PeriodoModel periodoModel;
 
     private PeriodoRepository periodoRepository;
+
+    public EditPeriodoController() {
+        periodoRepository = new PeriodoRepository();
+    }
 
     public void initialize(){
 
@@ -31,12 +35,12 @@ public class EditPeriodoController {
     @FXML
     private void guardar(){
         PeriodoBase periodoUpdated = new PeriodoBase();
-        periodoUpdated.setNombre(txtNombre.getText());
-        periodoUpdated.setFecha_inicio(dateInicio.getValue());
-        periodoUpdated.setFecha_fin(dateFinal.getValue());
-        periodoRepository = new PeriodoRepository();
+        periodoUpdated.setNombre(nombre.getText());
+        periodoUpdated.setFecha_inicio(fechaInicio.getValue());
+        periodoUpdated.setFecha_fin(fechaFin.getValue());
         periodoRepository.update(periodoModel.getId(), periodoUpdated);
         cancelar();
+        this.notificar();
     }
 
     @FXML
@@ -45,14 +49,10 @@ public class EditPeriodoController {
         stage.close();
     }
 
-    public void setBase(PeriodoBase base){
-        this.periodoBase = base;
-        txtNombre.setText(periodoBase.getNombre());
-        dateInicio.setValue(periodoBase.getFecha_inicio());
-        dateFinal.setValue(periodoBase.getFecha_fin());
-    }
-
     public void setModel(PeriodoModel model){
-        this.periodoModel = model;
+        this.periodoModel = periodoRepository.search(model.getId());
+        nombre.setText(this.periodoModel.getNombre());
+        fechaInicio.setValue(this.periodoModel.getFecha_inicio());
+        fechaFin.setValue(this.periodoModel.getFecha_fin());
     }
 }

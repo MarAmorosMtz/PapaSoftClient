@@ -11,22 +11,24 @@ import javafx.stage.Stage;
 
 public class AddPeriodoController extends Observable {
     @FXML
-    TextField txtNombre;
+    TextField nombre;
     @FXML
-    DatePicker dateInicio;
+    DatePicker fechaInicio;
     @FXML
-    DatePicker dateFinal;
+    DatePicker fechaFin;
 
     private PeriodoRepository periodoRepository;
 
+    public AddPeriodoController() {
+        periodoRepository = new PeriodoRepository();
+    }
 
     @FXML
     private void guardar(){
         PeriodoBase periodo = new PeriodoBase();
-        periodo.setNombre(txtNombre.getText());
-        periodo.setFecha_inicio(dateInicio.getValue());
-        periodo.setFecha_fin(dateFinal.getValue());
-        periodoRepository = new PeriodoRepository();
+        periodo.setNombre(nombre.getText());
+        periodo.setFecha_inicio(fechaInicio.getValue());
+        periodo.setFecha_fin(fechaFin.getValue());
         periodoRepository.save(periodo);
         this.notificar();
         cancelar();
@@ -34,7 +36,7 @@ public class AddPeriodoController extends Observable {
 
     @FXML
     private void cancelar(){
-        Stage stage = (Stage)txtNombre.getScene().getWindow();
+        Stage stage = (Stage) nombre.getScene().getWindow();
         stage.close();
     }
 

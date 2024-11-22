@@ -35,7 +35,7 @@ public class EditMateriaController extends Observable {
 
     public void initialize(){
         materiaRepository = new MateriaRepository();
-        carreraRepository = new CarreraRepository(HttpClient.getClient(), JsonMapper.getMapper(), RestAPI.CARRERAS_ENDPOINT);
+        carreraRepository = new CarreraRepository();
         catalogoCarreras = carreraRepository.getCatalogoCarreras();
         carrera.setItems(catalogoCarreras);
     }
@@ -47,6 +47,7 @@ public class EditMateriaController extends Observable {
         materia.setCarrera(carrera.getSelectionModel().getSelectedItem().getId());
         materiaRepository.update(materiaModel.getId(), materia);
         cancelar();
+        this.notificar();
     }
 
     @FXML
@@ -60,7 +61,7 @@ public class EditMateriaController extends Observable {
     }
 
     public void setModel(MateriaModel model){
-        this.materiaModel = model;
+        this.materiaModel = materiaRepository.search(model.getId());
         nombre.setText(this.materiaModel.getNombre());
         carrera.setValue(this.materiaModel.getCarrera());
     }

@@ -29,7 +29,7 @@
                   </HBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="175.0" styleClass="btnAdd" text="✚ Nueva Asesoría" HBox.hgrow="SOMETIMES" />
+                        <Button mnemonicParsing="false" onAction="#crear" prefHeight="50.0" prefWidth="175.0" styleClass="btnAdd" text="✚ Nueva Asesoría" HBox.hgrow="SOMETIMES" />
                      </children>
                      <padding>
                         <Insets right="25.0" />
@@ -52,15 +52,15 @@
                                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                  </columnResizePolicy>
                               </TableView>
-                              <Pagination prefHeight="52.0" prefWidth="707.0" styleClass="paginationStyle" VBox.vgrow="NEVER" />
+                              <Pagination currentPageIndex="1" pageCount="1" prefHeight="52.0" prefWidth="707.0" styleClass="paginationStyle" VBox.vgrow="NEVER" />
                            </children>
                         </VBox>
                      </children>
                   </HBox>
                   <VBox alignment="TOP_CENTER" prefHeight="374.0" prefWidth="202.0" spacing="20.0" styleClass="CentervBoxR" HBox.hgrow="SOMETIMES">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="47.0" prefWidth="132.0" styleClass="btnEdit" text="Editar" />
-                        <Button mnemonicParsing="false" prefHeight="47.0" prefWidth="132.0" styleClass="btnDelete" text="Eliminar" />
+                        <Button mnemonicParsing="false" onAction="#editar" prefHeight="47.0" prefWidth="132.0" styleClass="btnEdit" text="Editar" />
+                        <Button mnemonicParsing="false" onAction="#eliminar" prefHeight="47.0" prefWidth="132.0" styleClass="btnDelete" text="Eliminar" />
                      </children>
                   </VBox>
                </children>
