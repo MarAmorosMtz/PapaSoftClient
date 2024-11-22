@@ -32,11 +32,16 @@
 -fx-border-color: black;
 -fx-font-family: verdana;
 -fx-font-size: 15;
+-fx-border-width: 2px;
+}
+
+.textField.error{
+-fx-border-color: red;
 }
 
 
 .hBoxTop{
--fx-spacing: 20;;
+-fx-spacing: 20;
 }
 
 .hBoxBottom{
