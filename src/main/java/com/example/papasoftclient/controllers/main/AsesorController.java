@@ -133,7 +133,6 @@ public class AsesorController implements Observador {
         stage.show();
 
         }
-        System.out.println(asesorModel);
     }
 
     @FXML
