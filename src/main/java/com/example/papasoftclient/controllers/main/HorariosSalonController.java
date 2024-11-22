@@ -26,6 +26,7 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.UUID;
 
 
 public class HorariosSalonController implements Observador {
@@ -159,7 +160,10 @@ public class HorariosSalonController implements Observador {
             EditHorarioSalonController editController = loader.getController();
             editController.agregarObservador(this);
             editController.setHorarioModel(horario);
-
+            editController.setHorarioPage(
+                    this.comboSalon.getSelectionModel().getSelectedItem().getId(),
+                    this.comboPeriodo.getSelectionModel().getSelectedItem().getId()
+            );
 
             Stage stage = new Stage();
             stage.setScene(new Scene(parent));
