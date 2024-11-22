@@ -35,6 +35,9 @@ public class AddAsesorController extends Observable {
     private CarreraRepository carreraRepository;
     private ObservableList<CarreraModel> catalogoCarreras;
 
+    private File archivoSeleccionado;
+    private File imagenSeleccionada;
+
 
     public void initialize(){
         carreraRepository = new CarreraRepository();
@@ -73,6 +76,17 @@ public class AddAsesorController extends Observable {
         if(!comboCarrera.getSelectionModel().isEmpty()){ comboCarrera.getStyleClass().remove("error"); }
         else{ comboCarrera.getStyleClass().add("error"); err++; }
 
+        if(archivoSeleccionado == null | imagenSeleccionada == null){
+
+            Alert alerta = new Alert(Alert.AlertType.ERROR);
+            alerta.setTitle("Error");
+            alerta.setHeaderText("Se ha producido un error");
+            alerta.setContentText("Por favor seleccione todos los archivos");
+            alerta.showAndWait();
+
+            err++;
+        }
+
 
         if(err == 0){
             asesor.setNum_ctrl(txtNControl.getText());
@@ -81,14 +95,12 @@ public class AddAsesorController extends Observable {
             asesor.setApellido_m(txtApellidoM.getText().toUpperCase());
             asesor.setCorreo(txtCorreo.getText());
             asesor.setTelefono(txtTelefono.getText());
-            asesor.setContrato("");
-            asesor.setFoto("");
+            asesor.setContrato(archivoSeleccionado.getAbsolutePath());
+            asesor.setFoto(imagenSeleccionada.getAbsolutePath());
 
             asesor.setFecha_inscripcion(date.getValue());
             asesor.setSemestre(spnSemestre.getValue());
             asesor.setCarrera(comboCarrera.getSelectionModel().getSelectedItem().getId());
-
-            asesor.setFoto("/media");
 
             asesorRepository.save(asesor);
             this.notificar();
@@ -112,7 +124,7 @@ public class AddAsesorController extends Observable {
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Todos los archivos", "*.pdf"));
 
         Stage stage = new Stage();
-        File archivoSeleccionado = fileChooser.showOpenDialog(stage);
+        archivoSeleccionado = fileChooser.showOpenDialog(stage);
 
     }
 
@@ -125,7 +137,7 @@ public class AddAsesorController extends Observable {
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Imagenes", "*.jpg", "*.png"));
 
         Stage stage = new Stage();
-        File archivoSeleccionado = fileChooser.showOpenDialog(stage);
+        imagenSeleccionada = fileChooser.showOpenDialog(stage);
 
     }
 }
