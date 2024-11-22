@@ -91,6 +91,12 @@ public class PeriodoController implements Observador {
         Parent parent = loader.load();
 
         int rowIndex = tablaPeriodo.getSelectionModel().getSelectedIndex();
+
+
+        if(rowIndex != -1){
+        PeriodoModel periodo = tablaPeriodo.getItems().get(rowIndex);
+        PeriodoBase periodoBase = tablaPeriodo.getItems().get(rowIndex);
+
         if(rowIndex != -1){
             PeriodoModel periodo = tablaPeriodo.getItems().get(rowIndex);
 
@@ -98,6 +104,8 @@ public class PeriodoController implements Observador {
             editController.agregarObservador(this);
             editController.setModel(periodo);
 
+        stage.show();
+        }
 
             Stage stage = new Stage();
             stage.setScene(new Scene(parent));
@@ -109,6 +117,7 @@ public class PeriodoController implements Observador {
             stage.show();
         }
 
+
     }
 
     @FXML
@@ -117,6 +126,23 @@ public class PeriodoController implements Observador {
         Parent parent = loader.load();
 
         int rowIndex = tablaPeriodo.getSelectionModel().getSelectedIndex();
+
+
+        if(rowIndex != -1){
+        PeriodoModel periodo = tablaPeriodo.getItems().get(rowIndex);
+
+        ConfirmacionPeriodoController confirmacionController = loader.getController();
+        confirmacionController.setPeriodo(periodo);
+
+        Stage stage = new Stage(StageStyle.UNDECORATED);
+        stage.setScene(new Scene(parent));
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initOwner(stage.getOwner());
+        stage.setMaximized(false);
+        stage.setResizable(false);
+
+        stage.show();
+        }
         if(rowIndex != -1){
             PeriodoModel periodo = tablaPeriodo.getItems().get(rowIndex);
             ConfirmacionPeriodoController confirmacionController = loader.getController();
@@ -133,6 +159,7 @@ public class PeriodoController implements Observador {
             stage.show();
         }
 
+      
     }
 
     @Override

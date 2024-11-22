@@ -85,6 +85,8 @@ public class CarreraController implements Observador {
         Parent parent = loader.load();
 
         int rowIndex = tablaCarreras.getSelectionModel().getSelectedIndex();
+
+        if(rowIndex != -1){
         CarreraModel carrera = tablaCarreras.getItems().get(rowIndex);
         CarreraBase carreraBase = tablaCarreras.getItems().get(rowIndex);
 
@@ -100,6 +102,7 @@ public class CarreraController implements Observador {
         stage.setResizable(false);
 
         stage.show();
+        }
     }
 
     @FXML
@@ -108,6 +111,8 @@ public class CarreraController implements Observador {
         Parent parent = loader.load();
 
         int rowIndex = tablaCarreras.getSelectionModel().getSelectedIndex();
+
+        if(rowIndex != -1){
         CarreraModel carrera = tablaCarreras.getItems().get(rowIndex);
 
         ConfirmacionCarreraController confirmacionController = loader.getController();
@@ -122,6 +127,7 @@ public class CarreraController implements Observador {
         stage.setResizable(false);
 
         stage.show();
+        }
     }
 
     @Override

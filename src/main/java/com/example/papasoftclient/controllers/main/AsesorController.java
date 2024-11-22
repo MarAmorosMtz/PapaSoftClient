@@ -114,6 +114,8 @@ public class AsesorController implements Observador {
         Parent parent = loader.load();
 
         int rowIndex = tablaAsesor.getSelectionModel().getSelectedIndex();
+
+        if(rowIndex != -1){
         AsesorModel asesorModel = tablaAsesor.getItems().get(rowIndex);
 
         EditAsesorController controller = loader.getController();
@@ -129,6 +131,8 @@ public class AsesorController implements Observador {
         stage.setResizable(false);
 
         stage.show();
+
+        }
         System.out.println(asesorModel);
     }
 
@@ -139,6 +143,8 @@ public class AsesorController implements Observador {
         ConfirmacionAsesorController controller = loader.getController();
         controller.agregarObservador(this);
         int rowIndex = tablaAsesor.getSelectionModel().getSelectedIndex();
+        
+        if(rowIndex != -1){        
         AsesorModel asesorModel = tablaAsesor.getItems().get(rowIndex);
 
         ConfirmacionAsesorController confirmacionController = loader.getController();
@@ -152,6 +158,7 @@ public class AsesorController implements Observador {
         stage.setResizable(false);
 
         stage.show();
+        }
     }
 
     @Override

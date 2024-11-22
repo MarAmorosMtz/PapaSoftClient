@@ -85,6 +85,8 @@ public class MateriaController  implements Observador{
         Parent parent = loader.load();
 
         int rowIndex = tablaMaterias.getSelectionModel().getSelectedIndex();
+
+        if(rowIndex != -1){
         MateriaModel materia = tablaMaterias.getItems().get(rowIndex);
         MateriaModel materiaBase = tablaMaterias.getItems().get(rowIndex);
 
@@ -101,6 +103,7 @@ public class MateriaController  implements Observador{
         stage.setResizable(false);
 
         stage.show();
+        }
     }
 
     @FXML
@@ -109,6 +112,8 @@ public class MateriaController  implements Observador{
         Parent parent = loader.load();
 
         int rowIndex = tablaMaterias.getSelectionModel().getSelectedIndex();
+
+        if(rowIndex != -1){
         MateriaModel materia = tablaMaterias.getItems().get(rowIndex);
 
         ConfirmacionMateriaController confirmacionController = loader.getController();
@@ -123,6 +128,7 @@ public class MateriaController  implements Observador{
         stage.setResizable(false);
 
         stage.show();
+        }
     }
 
     @Override

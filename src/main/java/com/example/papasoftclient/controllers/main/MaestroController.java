@@ -91,6 +91,8 @@ public class MaestroController implements Observador {
         Parent parent = loader.load();
 
         int rowIndex = tablaMaestro.getSelectionModel().getSelectedIndex();
+
+        if(rowIndex != -1){
         MaestroModel maestro = tablaMaestro.getItems().get(rowIndex);
         MaestroModel maestroBase = tablaMaestro.getItems().get(rowIndex);
 
@@ -106,6 +108,7 @@ public class MaestroController implements Observador {
         stage.setResizable(false);
 
         stage.show();
+        }
     }
 
     @FXML
@@ -114,6 +117,7 @@ public class MaestroController implements Observador {
         Parent parent = loader.load();
 
         int rowIndex = tablaMaestro.getSelectionModel().getSelectedIndex();
+        if(rowIndex != -1){
         MaestroModel maestro = tablaMaestro.getItems().get(rowIndex);
 
         ConfirmacionMaestroController confirmacionController = loader.getController();
@@ -128,6 +132,7 @@ public class MaestroController implements Observador {
         stage.setResizable(false);
 
         stage.show();
+        }
     }
 
     @Override
