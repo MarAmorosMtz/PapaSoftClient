@@ -135,7 +135,7 @@
                                                       </ImageView>
                                                    </graphic>
                                                 </Button>
-                                                <Button fx:id="backups" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonAction" styleClass="buttonDashBoard" text="Copias de seguridad">
+                                                <Button fx:id="btnBackups" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonAction" styleClass="buttonDashBoard" text="Copias de seguridad">
                                                    <graphic>
                                                       <ImageView fitHeight="50.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>

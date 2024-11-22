@@ -50,6 +50,8 @@ public class MainController {
                 return "horariosSalon/vistaHorariosSalon";
             case "btnHorariosAsesores":
                 return "horariosAsesor/vistaHorariosAsesor";
+            case "btnBackups":
+                return "backup/vistaBackup";
             default:
                 return null;
         }

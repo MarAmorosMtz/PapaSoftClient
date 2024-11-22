@@ -28,6 +28,17 @@
     -fx-font-weight: bold;
 }
 
+.btnFile{
+    -fx-background-radius: 15;
+    -fx-text-fill: white;
+    -fx-font-family: Verdana;
+    -fx-font-size: 18;
+    -fx-background-color: #00008b;
+    -fx-border-radius: 15;
+    -fx-border-color: black;
+    -fx-font-weight: bold;
+}
+
 .btnAdd:hover{
 -fx-cursor: hand;
 -fx-background-color: white;
