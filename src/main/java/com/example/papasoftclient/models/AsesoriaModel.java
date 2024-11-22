@@ -1,11 +1,12 @@
 package com.example.papasoftclient.models;
 import java.sql.Time;
+import java.time.LocalDate;
 import java.util.UUID;
 import java.sql.Date;
 
 public class AsesoriaModel {
 
-    private Date fecha;
+    private LocalDate fecha;
     private Time hora;
     private MateriaModel materia;
     private SalonModel salon;
@@ -15,7 +16,7 @@ public class AsesoriaModel {
 
     public AsesoriaModel(){}
 
-    public AsesoriaModel(UUID id, Date fecha, Time hora, MateriaModel materia, SalonModel salon, AsesorModel asesor, String tipo) {
+    public AsesoriaModel(UUID id, LocalDate fecha, Time hora, MateriaModel materia, SalonModel salon, AsesorModel asesor, String tipo) {
         this.id = id;
         this.fecha = fecha;
         this.hora = hora;
@@ -33,11 +34,11 @@ public class AsesoriaModel {
         return id;
     }
 
-    public Date getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 
