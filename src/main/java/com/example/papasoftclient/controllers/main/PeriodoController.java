@@ -92,6 +92,8 @@ public class PeriodoController implements Observador {
         Parent parent = loader.load();
 
         int rowIndex = tablaPeriodo.getSelectionModel().getSelectedIndex();
+
+        if(rowIndex != -1){
         PeriodoModel periodo = tablaPeriodo.getItems().get(rowIndex);
         PeriodoBase periodoBase = tablaPeriodo.getItems().get(rowIndex);
 
@@ -107,6 +109,7 @@ public class PeriodoController implements Observador {
         stage.setResizable(false);
 
         stage.show();
+        }
     }
 
     @FXML
@@ -115,6 +118,8 @@ public class PeriodoController implements Observador {
         Parent parent = loader.load();
 
         int rowIndex = tablaPeriodo.getSelectionModel().getSelectedIndex();
+
+        if(rowIndex != -1){
         PeriodoModel periodo = tablaPeriodo.getItems().get(rowIndex);
 
         ConfirmacionPeriodoController confirmacionController = loader.getController();
@@ -128,6 +133,7 @@ public class PeriodoController implements Observador {
         stage.setResizable(false);
 
         stage.show();
+        }
     }
 
     @Override

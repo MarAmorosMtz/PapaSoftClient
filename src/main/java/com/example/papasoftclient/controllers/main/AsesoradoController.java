@@ -87,6 +87,8 @@ public class AsesoradoController  implements Observador{
         Parent parent = loader.load();
 
         int rowIndex = tablaAsesorados.getSelectionModel().getSelectedIndex();
+
+        if(rowIndex != -1){
         AsesoradoModel asesorado = tablaAsesorados.getItems().get(rowIndex);
 
 
@@ -101,6 +103,7 @@ public class AsesoradoController  implements Observador{
         stage.setResizable(false);
 
         stage.show();
+        }
     }
 
     @FXML
@@ -109,6 +112,8 @@ public class AsesoradoController  implements Observador{
         Parent parent = loader.load();
 
         int rowIndex = tablaAsesorados.getSelectionModel().getSelectedIndex();
+        
+        if(rowIndex != -1){
         AsesoradoModel asesorado = tablaAsesorados.getItems().get(rowIndex);
 
         ConfirmacionAsesoradoController confirmacionController = loader.getController();
@@ -122,6 +127,7 @@ public class AsesoradoController  implements Observador{
         stage.setResizable(false);
 
         stage.show();
+        }
     }
 
     @Override

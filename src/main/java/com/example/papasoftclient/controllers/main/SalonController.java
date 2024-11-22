@@ -142,6 +142,8 @@ public class SalonController  implements Observador{
         Parent parent = loader.load();
 
         int rowIndex = tablaSalones.getSelectionModel().getSelectedIndex();
+
+        if(rowIndex != -1){
         SalonModel salon = tablaSalones.getItems().get(rowIndex);
 
         EditSalonController editController = loader.getController();
@@ -155,6 +157,7 @@ public class SalonController  implements Observador{
         stage.setResizable(false);
 
         stage.show();
+        }
     }
 
     @FXML
@@ -163,6 +166,8 @@ public class SalonController  implements Observador{
         Parent parent = loader.load();
 
         int rowIndex = tablaSalones.getSelectionModel().getSelectedIndex();
+
+        if(rowIndex != -1){
         SalonModel salon = tablaSalones.getItems().get(rowIndex);
 
         ConfirmacionSalonController confirmacionController = loader.getController();
@@ -176,6 +181,7 @@ public class SalonController  implements Observador{
         stage.setResizable(false);
 
         stage.show();
+        }
     }
 
     @Override
