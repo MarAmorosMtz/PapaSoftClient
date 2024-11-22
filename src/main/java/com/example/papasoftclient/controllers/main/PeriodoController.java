@@ -94,17 +94,17 @@ public class PeriodoController implements Observador {
 
 
         if(rowIndex != -1){
-        PeriodoModel periodo = tablaPeriodo.getItems().get(rowIndex);
-        PeriodoBase periodoBase = tablaPeriodo.getItems().get(rowIndex);
-
-        if(rowIndex != -1){
             PeriodoModel periodo = tablaPeriodo.getItems().get(rowIndex);
+            PeriodoBase periodoBase = tablaPeriodo.getItems().get(rowIndex);
 
-            EditPeriodoController editController = loader.getController();
-            editController.agregarObservador(this);
-            editController.setModel(periodo);
+            if(rowIndex != -1){
+//             PeriodoModel periodo = tablaPeriodo.getItems().get(rowIndex);
 
-        stage.show();
+              EditPeriodoController editController = loader.getController();
+                editController.agregarObservador(this);
+             editController.setModel(periodo);
+
+//        stage.show();
         }
 
             Stage stage = new Stage();
