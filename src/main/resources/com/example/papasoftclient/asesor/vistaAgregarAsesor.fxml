@@ -51,7 +51,7 @@
                   <VBox prefHeight="114.0" prefWidth="449.0">
                      <children>
                         <Label text="Contrato" />
-                        <Button mnemonicParsing="false" styleClass="btnGuardar" text="Subir documento">
+                        <Button mnemonicParsing="false" styleClass="btnGuardar" text="Subir documento" onAction="#seleccionarArchivo">
                            <graphic>
                               <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -93,7 +93,7 @@
                   <VBox prefHeight="114.0" prefWidth="449.0">
                      <children>
                         <Label text="Foto" />
-                        <Button mnemonicParsing="false" styleClass="btnGuardar" text="Subir imagen">
+                        <Button mnemonicParsing="false" styleClass="btnGuardar" text="Subir imagen" onAction="#seleccionarImagen">
                            <graphic>
                               <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                                  <image>

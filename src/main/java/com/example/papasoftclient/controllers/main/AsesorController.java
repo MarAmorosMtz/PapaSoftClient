@@ -18,13 +18,14 @@ import javafx.scene.control.Pagination;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.effect.GaussianBlur;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.util.Date;
-import java.util.UUID;
+import javafx.scene.effect.ColorAdjust;
 
 public class AsesorController implements Observador {
     @FXML
@@ -133,7 +134,6 @@ public class AsesorController implements Observador {
         stage.show();
 
         }
-//        System.out.println(asesorModel);
     }
 
     @FXML
@@ -142,24 +142,30 @@ public class AsesorController implements Observador {
         Parent parent = loader.load();
         ConfirmacionAsesorController controller = loader.getController();
         controller.agregarObservador(this);
+
         int rowIndex = tablaAsesor.getSelectionModel().getSelectedIndex();
-        
-        if(rowIndex != -1){        
-        AsesorModel asesorModel = tablaAsesor.getItems().get(rowIndex);
 
-        ConfirmacionAsesorController confirmacionController = loader.getController();
-        confirmacionController.setAsesor(asesorModel);
+        if (rowIndex != -1) {
+            AsesorModel asesorModel = tablaAsesor.getItems().get(rowIndex);
+            ConfirmacionAsesorController confirmacionController = loader.getController();
+            confirmacionController.setAsesor(asesorModel);
 
-        Stage stage = new Stage(StageStyle.UNDECORATED);
-        stage.setScene(new Scene(parent));
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.initOwner(stage.getOwner());
-        stage.setMaximized(false);
-        stage.setResizable(false);
+            GaussianBlur blurEffect = new GaussianBlur();
+            blurEffect.setRadius(10);
 
-        stage.show();
+            Stage mainStage = (Stage) tablaAsesor.getScene().getWindow();
+            mainStage.getScene().getRoot().setEffect(blurEffect);
+
+            Stage stage = new Stage(StageStyle.UNDECORATED);
+            stage.setScene(new Scene(parent));
+            stage.initModality(Modality.APPLICATION_MODAL);
+
+            stage.setOnHiding(event -> mainStage.getScene().getRoot().setEffect(null));
+
+            stage.show();
         }
     }
+
 
     @Override
     public void actualizar() {

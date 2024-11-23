@@ -4,11 +4,10 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="546.0" prefWidth="734.0" styleClass="vBox" stylesheets="@../../css/Util/agregarStyle.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="834.0" prefWidth="734.0" styleClass="vBox" stylesheets="@../CSS/Util/agregarStyle.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.papasoftclient.controllers.main.AsesoriaController">
    <children>
       <Label text="Agregar Asesoría" />
       <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="621.0" prefWidth="684.0" styleClass="hBoxTop">
@@ -18,19 +17,19 @@
                   <VBox prefHeight="114.0" prefWidth="449.0">
                      <children>
                         <Label text="Fecha:" />
-                        <DatePicker maxWidth="1.7976931348623157E308" prefHeight="43.0" prefWidth="235.0" styleClass="textField" />
+                        <DatePicker fx:id="selectorFecha" maxWidth="1.7976931348623157E308" prefHeight="43.0" prefWidth="235.0" promptText="Selecciona una fecha" styleClass="textField" />
                      </children>
                   </VBox>
                   <VBox prefHeight="114.0" prefWidth="449.0">
                      <children>
                         <Label text="Horario:" />
-                        <TextField prefHeight="43.0" prefWidth="419.0" promptText="Formato HH:mm" styleClass="textField" />
+                        <ComboBox fx:id="comboHorario" prefHeight="43.0" prefWidth="327.0" promptText="Selecciona una hora" styleClass="textField" />
                      </children>
                   </VBox>
                   <VBox prefHeight="114.0" prefWidth="449.0">
                      <children>
                         <Label text="Asesor:" />
-                        <ComboBox maxWidth="1.7976931348623157E308" prefHeight="43.0" styleClass="textField" />
+                        <ComboBox fx:id="comboAsesor" maxWidth="1.7976931348623157E308" prefHeight="43.0" promptText="Selecciona un asesor" styleClass="textField" />
                      </children>
                   </VBox>
                </children>
@@ -40,29 +39,57 @@
                   <VBox prefHeight="114.0" prefWidth="449.0">
                      <children>
                         <Label text="Materia:" />
-                        <ComboBox maxWidth="1.7976931348623157E308" prefHeight="43.0" styleClass="textField" />
+                        <ComboBox fx:id="comboMateria" maxWidth="1.7976931348623157E308" prefHeight="43.0" promptText="Selecciona una materia" styleClass="textField" />
                      </children>
                   </VBox>
                   <VBox prefHeight="114.0" prefWidth="449.0">
                      <children>
                         <Label text="Salon:" />
-                        <ComboBox maxWidth="1.7976931348623157E308" prefHeight="43.0" styleClass="textField" />
-                     </children>
-                  </VBox>
-                  <VBox prefHeight="114.0" prefWidth="449.0">
-                     <children>
-                        <Label text="Tipo:" />
-                        <ComboBox maxWidth="1.7976931348623157E308" prefHeight="43.0" styleClass="textField" />
+                        <ComboBox fx:id="comboSalon" maxWidth="1.7976931348623157E308" prefHeight="43.0" promptText="Selecciona un salon" styleClass="textField" />
                      </children>
                   </VBox>
                </children>
             </VBox>
          </children>
       </HBox>
-      <HBox alignment="CENTER" prefHeight="108.0" prefWidth="422.0" styleClass="hBoxBottom">
+      <VBox prefHeight="200.0" prefWidth="100.0">
          <children>
-            <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="120.0" styleClass="btnGuardar" text="✔ Guardar" />
-            <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="120.0" styleClass="btnCancelar" text="✕ Cancelar" />
+            <VBox prefHeight="114.0" prefWidth="449.0">
+               <children>
+                  <Label text="Asesorado 1:" />
+                  <ComboBox fx:id="comboHorario1" prefHeight="35.0" prefWidth="687.0" promptText="Selecciona una hora" styleClass="textField" />
+               </children>
+            </VBox>
+            <VBox prefHeight="114.0" prefWidth="449.0">
+               <children>
+                  <Label text="Asesorado 2:" />
+                  <ComboBox fx:id="comboHorario11" prefHeight="35.0" prefWidth="689.0" promptText="Selecciona una hora" styleClass="textField" />
+               </children>
+            </VBox>
+            <VBox prefHeight="114.0" prefWidth="449.0">
+               <children>
+                  <Label text="Asesorado 3:" />
+                  <ComboBox fx:id="comboHorario12" prefHeight="35.0" prefWidth="744.0" promptText="Selecciona una hora" styleClass="textField" />
+               </children>
+            </VBox>
+            <VBox prefHeight="114.0" prefWidth="449.0">
+               <children>
+                  <Label text="Asesorado 4:" />
+                  <ComboBox fx:id="comboHorario13" prefHeight="35.0" prefWidth="849.0" promptText="Selecciona una hora" styleClass="textField" />
+               </children>
+            </VBox>
+            <VBox prefHeight="114.0" prefWidth="449.0">
+               <children>
+                  <Label text="Asesorado 5:" />
+                  <ComboBox fx:id="comboHorario14" prefHeight="35.0" prefWidth="714.0" promptText="Selecciona una hora" styleClass="textField" />
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+      <HBox alignment="CENTER" prefHeight="56.0" prefWidth="684.0" styleClass="hBoxBottom">
+         <children>
+            <Button fx:id="btnGuardar" mnemonicParsing="false" prefHeight="41.0" prefWidth="120.0" styleClass="btnGuardar" text="✔ Guardar" />
+            <Button fx:id="btnCancelar" mnemonicParsing="false" prefHeight="41.0" prefWidth="120.0" styleClass="btnCancelar" text="✕ Cancelar" />
          </children>
       </HBox>
    </children>
