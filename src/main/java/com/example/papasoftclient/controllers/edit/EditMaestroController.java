@@ -5,6 +5,7 @@ import com.example.papasoftclient.models.MaestroModel;
 import com.example.papasoftclient.repositories.MaestroRepository;
 import com.example.papasoftclient.repositories.RestAPI;
 import com.example.papasoftclient.utils.Observable;
+import com.example.papasoftclient.utils.Validate;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -35,14 +36,28 @@ public class EditMaestroController extends Observable {
 
     @FXML
     private void guardar(){
-        MaestroBase maestroUpdated = new MaestroBase();
-        maestroUpdated.setNombre(txtNombre.getText());
-        maestroUpdated.setApellido_p(txtApellidoP.getText());
-        maestroUpdated.setApellido_m(txtApellidoM.getText());
-        maestroRepository = new MaestroRepository();
-        maestroRepository.update(maestroModel.getId(), maestroUpdated);
-        cancelar();
-        this.notificar();
+        int err = 0;
+
+        if(Validate.name(txtNombre.getText())){ txtNombre.getStyleClass().remove("error"); }
+        else{ txtNombre.getStyleClass().add("error"); err++; }
+
+        if(Validate.lastName(txtApellidoP.getText())){ txtApellidoP.getStyleClass().remove("error"); }
+        else{ txtApellidoP.getStyleClass().add("error"); err++; }
+
+        if(Validate.lastName(txtApellidoM.getText())){ txtApellidoM.getStyleClass().remove("error"); }
+        else{ txtApellidoM.getStyleClass().add("error"); err++; }
+
+        if(err == 0){
+            MaestroBase maestroUpdated = new MaestroBase();
+            maestroUpdated.setNombre(txtNombre.getText());
+            maestroUpdated.setApellido_p(txtApellidoP.getText());
+            maestroUpdated.setApellido_m(txtApellidoM.getText());
+            maestroRepository = new MaestroRepository();
+            maestroRepository.update(maestroModel.getId(), maestroUpdated);
+            cancelar();
+            this.notificar();
+        }
+
     }
 
     @FXML

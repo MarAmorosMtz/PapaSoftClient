@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import com.example.papasoftclient.utils.Validate;
 
 import java.io.File;
+import java.sql.Date;
 
 public class AddAsesorController extends Observable {
 
@@ -73,7 +74,7 @@ public class AddAsesorController extends Observable {
         if(Validate.phone(txtTelefono.getText())){ txtTelefono.getStyleClass().remove("error"); }
         else{ txtTelefono.getStyleClass().add("error"); err++; }
 
-        if(!comboCarrera.getSelectionModel().isEmpty()){ comboCarrera.getStyleClass().remove("error"); }
+        if(comboCarrera.getSelectionModel().getSelectedItem() != null){ comboCarrera.getStyleClass().remove("error"); }
         else{ comboCarrera.getStyleClass().add("error"); err++; }
 
         if(archivoSeleccionado == null | imagenSeleccionada == null){
@@ -87,6 +88,11 @@ public class AddAsesorController extends Observable {
             err++;
         }
 
+        if(date.getValue() != null){
+            if(Validate.date(Date.valueOf(date.getValue()))){ date.getStyleClass().remove("error"); }
+            else{ date.getStyleClass().add("error"); err++; }
+        }else{ date.getStyleClass().add("error"); err++; }
+
 
         if(err == 0){
             asesor.setNum_ctrl(txtNControl.getText());
@@ -97,6 +103,7 @@ public class AddAsesorController extends Observable {
             asesor.setTelefono(txtTelefono.getText());
             asesor.setContrato(archivoSeleccionado.getAbsolutePath());
             asesor.setFoto(imagenSeleccionada.getAbsolutePath());
+            asesor.setContrato(archivoSeleccionado.getAbsolutePath());
 
             asesor.setFecha_inscripcion(date.getValue());
             asesor.setSemestre(spnSemestre.getValue());

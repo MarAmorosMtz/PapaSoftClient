@@ -26,6 +26,7 @@
     -fx-border-radius: 15;
     -fx-border-color: black;
     -fx-font-weight: bold;
+    -fx-transition: 0.3s ease-in-out;
 }
 
 .btnFile{
@@ -45,6 +46,11 @@
 -fx-text-fill: #00008b;
 }
 
+.btnAdd:pressed{
+-fx-scale-x: 0.95;
+-fx-scale-y: 0.95;
+}
+
 .btnEdit{
 -fx-background-radius: 15;
 -fx-border-radius: 15;
@@ -54,12 +60,18 @@
 -fx-background-color: white;
 -fx-border-color: #00008b;
 -fx-font-weight: bold;
+-fx-transition: 0.3s ease-in-out;
 }
 
 .btnEdit:hover{
 -fx-cursor: hand;
 -fx-background-color: #00008b;
 -fx-text-fill: white;
+}
+
+.btnEdit:pressed{
+-fx-scale-x: 0.95;
+-fx-scale-y: 0.95;
 }
 
 .btnDelete{
@@ -71,12 +83,18 @@
 -fx-background-color: white;
 -fx-border-color: red;
 -fx-font-weight: bold;
+-fx-transition: 0.3s ease-in-out;
 }
 
 .btnDelete:hover{
 -fx-cursor: hand;
 -fx-background-color: red;
 -fx-text-fill: white;
+}
+
+.btnDelete:pressed{
+-fx-scale-x: 0.95;
+-fx-scale-y: 0.95;
 }
 
 .CentervBoxR{

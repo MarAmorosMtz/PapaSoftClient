@@ -4,6 +4,7 @@ import com.example.papasoftclient.models.MaestroBase;
 import com.example.papasoftclient.repositories.MaestroRepository;
 import com.example.papasoftclient.repositories.RestAPI;
 import com.example.papasoftclient.utils.Observable;
+import com.example.papasoftclient.utils.Validate;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -28,13 +29,26 @@ public class AddMaestroController extends Observable {
 
     @FXML
     private void guardar(){
-        MaestroBase maestro = new MaestroBase();
-        maestro.setNombre(txtNombre.getText());
-        maestro.setApellido_p(txtApellidoP.getText());
-        maestro.setApellido_m(txtApellidoM.getText());
-        maestroRepository.save(maestro);
-        cancelar();
-        this.notificar();
+        int err = 0;
+
+        if(Validate.name(txtNombre.getText())){ txtNombre.getStyleClass().remove("error"); }
+        else{ txtNombre.getStyleClass().add("error"); err++; }
+
+        if(Validate.lastName(txtApellidoP.getText())){ txtApellidoP.getStyleClass().remove("error"); }
+        else{ txtApellidoP.getStyleClass().add("error"); err++; }
+
+        if(Validate.lastName(txtApellidoM.getText())){ txtApellidoM.getStyleClass().remove("error"); }
+        else{ txtApellidoM.getStyleClass().add("error"); err++; }
+
+        if(err == 0){
+            MaestroBase maestro = new MaestroBase();
+            maestro.setNombre(txtNombre.getText());
+            maestro.setApellido_p(txtApellidoP.getText());
+            maestro.setApellido_m(txtApellidoM.getText());
+            maestroRepository.save(maestro);
+            cancelar();
+            this.notificar();
+        }
     }
 
     @FXML
