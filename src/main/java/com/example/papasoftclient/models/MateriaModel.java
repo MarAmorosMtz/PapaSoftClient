@@ -39,4 +39,9 @@ public class MateriaModel{
     public void setCarrera(CarreraModel carrera) {
         this.carrera = carrera;
     }
+
+    @Override
+    public String toString() {
+        return this.nombre;
+    }
 }

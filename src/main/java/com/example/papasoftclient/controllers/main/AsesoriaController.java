@@ -1,6 +1,8 @@
 package com.example.papasoftclient.controllers.main;
 
 import com.example.papasoftclient.Main;
+import com.example.papasoftclient.controllers.add.AddAsesoriaController;
+import com.example.papasoftclient.controllers.delete.ConfirmacionAsesoriaController;
 import com.example.papasoftclient.models.*;
 import com.example.papasoftclient.repositories.AsesoriaRepository;
 import com.example.papasoftclient.utils.Observador;
@@ -50,7 +52,6 @@ public class AsesoriaController implements Observador {
 
     @FXML
     public void initialize() {
-
         columnaAsesor.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().getAsesor().getNombre())
         );
@@ -62,7 +63,6 @@ public class AsesoriaController implements Observador {
         columnaSalon.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().getSalon().getNombre())
         );
-        columnaTipo.setCellValueFactory(new PropertyValueFactory<>("tipo"));
         paginadorAsesoria.setPageFactory(this::updateTable);
     }
 
@@ -75,6 +75,7 @@ public class AsesoriaController implements Observador {
         if(tmp != null){
             loadAsesorias(tmp);
             if(tmp.getPaginas()!=paginadorAsesoria.getPageCount()){
+
                 paginadorAsesoria.setPageCount(tmp.getPaginas());
             }
         }
@@ -83,10 +84,10 @@ public class AsesoriaController implements Observador {
 
     @FXML
     private void crear(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/com/example/papasoftclient/materia/vistaAgregarAsesoria.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/com/example/papasoftclient/asesoria/vistaAgregarAsesoria.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-//        AddAsesoriaController controller = fxmlLoader.getController();
-//        controller.agregarObservador(this);
+        AddAsesoriaController controller = fxmlLoader.getController();
+        controller.agregarObservador(this);
         Stage newStage = new Stage();
         newStage.setScene(scene);
 
@@ -122,7 +123,7 @@ public class AsesoriaController implements Observador {
 
     @FXML
     private void eliminar() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/papasoftclient/materia/vistaConfirmacionAsesoria.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/papasoftclient/asesoria/vistaConfirmacionAsesoria.fxml"));
         Parent parent = loader.load();
 
         int rowIndex = tablaAsesoria.getSelectionModel().getSelectedIndex();
@@ -130,9 +131,9 @@ public class AsesoriaController implements Observador {
         if(rowIndex != -1){
             AsesoriaModel asesoriaModel = tablaAsesoria.getItems().get(rowIndex);
 
-//            ConfirmacionAsesoriaController confirmacionController = loader.getController();
-//            confirmacionController.setMateria(asesoriaModel);
-//            confirmacionController.agregarObservador(this);
+            ConfirmacionAsesoriaController confirmacionController = loader.getController();
+            confirmacionController.setAsesoria(asesoriaModel);
+            confirmacionController.agregarObservador(this);
 
             Stage stage = new Stage(StageStyle.UNDECORATED);
             stage.setScene(new Scene(parent));
