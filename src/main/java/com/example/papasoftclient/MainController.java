@@ -4,15 +4,42 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class MainController {
     @FXML
     private AnchorPane vista;
+    @FXML
+    Button btnLogOut;
 
+    @FXML
+    public void initialize() {
+        String imagePath = getClass().getResource("media/login_background.jpg").toExternalForm();
+
+        BackgroundImage backgroundImage = new BackgroundImage(
+                new Image(imagePath),
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.CENTER,
+                new BackgroundSize(
+                        BackgroundSize.AUTO,
+                        BackgroundSize.AUTO,
+                        false,
+                        false,
+                        true,
+                        true
+                )
+        );
+
+        // Establecer la imagen como fondo
+        vista.setBackground(new Background(backgroundImage));
+    }
 
     @FXML
     private void handleButtonAction(ActionEvent event) throws IOException {
@@ -24,7 +51,7 @@ public class MainController {
         }
     }
 
-    private String getViewForButton(Button button) {
+    private String getViewForButton(Button button){
         switch (button.getId()) {
             case "btnPeriodos":
                 return "periodo/vistaPeriodo";
@@ -64,9 +91,22 @@ public class MainController {
 
         vista.getChildren().clear();
         vista.getChildren().add(nuevaVista);
-        AnchorPane.setTopAnchor(nuevaVista, 0.0);
-        AnchorPane.setBottomAnchor(nuevaVista, 0.0);
-        AnchorPane.setLeftAnchor(nuevaVista, 0.0);
-        AnchorPane.setRightAnchor(nuevaVista, 0.0);
+        AnchorPane.setTopAnchor(nuevaVista, 5.0);
+        AnchorPane.setBottomAnchor(nuevaVista, 5.0);
+        AnchorPane.setLeftAnchor(nuevaVista, 5.0);
+        AnchorPane.setRightAnchor(nuevaVista, 5.0);
+    }
+
+    @FXML
+    private void logout() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Login/Login.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setMaximized(true);
+        stage.setResizable(false);
+        Stage stg = (Stage) btnLogOut.getScene().getWindow();
+        stg.close();
+        stage.show();
     }
 }
