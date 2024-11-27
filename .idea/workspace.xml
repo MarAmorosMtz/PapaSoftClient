@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="de43c704-91c9-48a0-a671-fbe5f370e360" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/papasoftclient/controllers/add/AddAsesoriaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/papasoftclient/controllers/add/AddAsesoriaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/papasoftclient/controllers/main/AsesoriaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/papasoftclient/controllers/main/AsesoriaController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,6 +103,7 @@
       <workItem from="1732346753462" duration="6998000" />
       <workItem from="1732411684748" duration="3102000" />
       <workItem from="1732668376117" duration="1252000" />
+      <workItem from="1732675666629" duration="2726000" />
     </task>
     <servers />
   </component>
