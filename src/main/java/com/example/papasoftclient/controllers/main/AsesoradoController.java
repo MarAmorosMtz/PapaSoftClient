@@ -17,6 +17,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.effect.GaussianBlur;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -125,12 +126,20 @@ public class AsesoradoController  implements Observador{
         confirmacionController.setAsesorado(asesorado);
         confirmacionController.agregarObservador(this);
 
+        GaussianBlur blurEffect = new GaussianBlur();
+        blurEffect.setRadius(10);
+        Stage mainStage = (Stage) tablaAsesorados.getScene().getWindow();
+        mainStage.getScene().getRoot().setEffect(blurEffect);
+
+
         Stage stage = new Stage(StageStyle.UNDECORATED);
         stage.setScene(new Scene(parent));
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initOwner(stage.getOwner());
         stage.setMaximized(false);
         stage.setResizable(false);
+
+        stage.setOnHiding(event -> mainStage.getScene().getRoot().setEffect(null));
 
         stage.show();
         }

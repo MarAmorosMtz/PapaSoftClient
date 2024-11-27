@@ -1,5 +1,7 @@
 package com.example.papasoftclient.utils;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.regex.Pattern;
 
 public class Validate {
@@ -26,5 +28,9 @@ public class Validate {
     public static boolean phone(String phone){
         String regex = "^\\d{10}$";
         return Pattern.matches(regex, phone);
+    }
+
+    public static boolean date(Date date){
+        return date.before(Date.valueOf(LocalDate.now()));
     }
 }

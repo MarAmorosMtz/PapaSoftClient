@@ -14,4 +14,6 @@ public class RestAPI {
     public static final String HORARIOS_SALONES_ENDPOINT = HOST+"/salones/horarios/";
     public static final String ASESORES_ENDPOINT = HOST+"/asesores/";
     public static final String LOGIN_ENDPOINT = HOST+"/login";
+    public static final String BACKUP_ENDPOINT = HOST+"/backup/";
+    public static final String RESTORE_ENDPOINT = HOST+"/restoreBackup/";
 }

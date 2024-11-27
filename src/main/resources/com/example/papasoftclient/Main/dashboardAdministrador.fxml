@@ -186,11 +186,11 @@
                   </VBox>
                   <VBox alignment="BOTTOM_CENTER" prefHeight="88.0" prefWidth="171.0" styleClass="vbox-DashBoard">
                      <children>
-                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonAction" styleClass="buttonDashBoard" text="Configuracion">
+                        <Button fx:id="btnLogOut" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#logout" styleClass="buttonDashBoard" text="LogOut">
                            <graphic>
                               <ImageView fitHeight="50.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../media/configuracion.png" />
+                                    <Image url="@../media/cerrar-sesion.png" />
                                  </image>
                               </ImageView>
                            </graphic>

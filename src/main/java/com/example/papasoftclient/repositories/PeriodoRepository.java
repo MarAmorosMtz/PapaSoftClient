@@ -42,7 +42,6 @@ public class PeriodoRepository implements Repository<PeriodoBase, PeriodoModel>{
 
         }catch(Exception e){
             e.printStackTrace();
-            System.out.println("Se capturó una excepción");
             return null;
         }
         return periodoPage;

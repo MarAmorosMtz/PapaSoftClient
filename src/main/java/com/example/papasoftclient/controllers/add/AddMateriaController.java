@@ -9,6 +9,7 @@ import com.example.papasoftclient.repositories.RestAPI;
 import com.example.papasoftclient.utils.HttpClient;
 import com.example.papasoftclient.utils.JsonMapper;
 import com.example.papasoftclient.utils.Observable;
+import com.example.papasoftclient.utils.Validate;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -40,10 +41,21 @@ public class AddMateriaController extends Observable {
 
     @FXML
     private void guardar(){
-        MateriaBase nuevaMateria = new MateriaBase(nombre.getText(),carrera.getSelectionModel().getSelectedItem().getId());
-        materiaRepository.save(nuevaMateria);
-        this.notificar();
-        cancelar();
+        int err = 0;
+
+        if(Validate.name(nombre.getText())){ nombre.getStyleClass().remove("error"); }
+        else{ nombre.getStyleClass().add("error"); err++; }
+
+        if(carrera.getSelectionModel().getSelectedItem() != null){ carrera.getStyleClass().remove("error"); }
+        else{ carrera.getStyleClass().add("error"); err++; }
+
+        if(err == 0){
+            MateriaBase nuevaMateria = new MateriaBase(nombre.getText(),carrera.getSelectionModel().getSelectedItem().getId());
+            materiaRepository.save(nuevaMateria);
+            this.notificar();
+            cancelar();
+        }
+
     }
 
     @FXML

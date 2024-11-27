@@ -62,6 +62,6 @@ public class AsesoradoModel extends Alumno{
 
     @Override
     public String toString() {
-        return "{id="+this.id+",numCtrl="+this.num_ctrl+",nombre="+this.nombre+",apellidoP="+this.apellido_p+",apellidoM="+this.apellido_m+"}";
+        return this.nombre+" "+this.apellido_p+" "+this.apellido_m;
     }
 }

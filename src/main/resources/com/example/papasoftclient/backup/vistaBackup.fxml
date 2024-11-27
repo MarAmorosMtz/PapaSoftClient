@@ -54,14 +54,19 @@
                   </Button>
                </children>
             </HBox>
-            <Label styleClass="topLabel" text="Descargar">
+            <Button mnemonicParsing="false" onAction="#restaurarCopia" styleClass="btnFile" text="Restaurar">
+               <VBox.margin>
+                  <Insets bottom="25.0" left="25.0" />
+               </VBox.margin>
+            </Button>
+            <Label styleClass="topLabel" text="Crear">
                <VBox.margin>
                   <Insets left="25.0" />
                </VBox.margin>
             </Label>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                <children>
-                  <Button mnemonicParsing="false" onAction="#crearCopia" prefHeight="50.0" prefWidth="291.0" styleClass="btnFile" text="Crear copia de seguridad">
+                  <Button mnemonicParsing="false" onAction="#crearCopia" prefHeight="50.0" prefWidth="186.0" styleClass="btnFile" text="Descargar">
                      <HBox.margin>
                         <Insets left="25.0" />
                      </HBox.margin>
