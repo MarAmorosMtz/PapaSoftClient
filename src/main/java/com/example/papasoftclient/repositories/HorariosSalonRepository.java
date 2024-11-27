@@ -13,6 +13,7 @@ import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
 import org.apache.hc.core5.http.io.entity.EntityUtils;
 import org.apache.hc.core5.http.io.entity.StringEntity;
 
+import java.nio.charset.StandardCharsets;
 import java.util.UUID;
 
 public class HorariosSalonRepository {
@@ -33,7 +34,7 @@ public class HorariosSalonRepository {
             HttpGet request = new HttpGet(host+"?salon="+salon.toString()+"&periodo="+periodo.toString());
             horarioPage = httpClient.execute(request,response->{
                 if (response.getCode() != 200) return null;
-                return mapper.readValue(EntityUtils.toString(response.getEntity()),HorarioSalonPage.class);
+                return mapper.readValue(EntityUtils.toString(response.getEntity(), StandardCharsets.UTF_8),HorarioSalonPage.class);
             });
 
         }catch(Exception e){
@@ -48,7 +49,7 @@ public class HorariosSalonRepository {
             HttpGet request = new HttpGet(host+id.toString());
             HorarioSalonModel horario = httpClient.execute(request,response->{
                 if (response.getCode() != 200) return null;
-                return mapper.readValue(EntityUtils.toString(response.getEntity()),HorarioSalonModel.class);
+                return mapper.readValue(EntityUtils.toString(response.getEntity(), StandardCharsets.UTF_8),HorarioSalonModel.class);
             });
             return horario;
         }catch (Exception ex){

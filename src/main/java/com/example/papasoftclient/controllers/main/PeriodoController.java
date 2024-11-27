@@ -109,11 +109,7 @@ public class PeriodoController implements Observador {
             stage.setResizable(false);
 
             stage.show();
-
-
         }
-
-
     }
 
     @FXML
@@ -123,22 +119,6 @@ public class PeriodoController implements Observador {
 
         int rowIndex = tablaPeriodo.getSelectionModel().getSelectedIndex();
 
-
-        if(rowIndex != -1){
-        PeriodoModel periodo = tablaPeriodo.getItems().get(rowIndex);
-
-        ConfirmacionPeriodoController confirmacionController = loader.getController();
-        confirmacionController.setPeriodo(periodo);
-
-        Stage stage = new Stage(StageStyle.UNDECORATED);
-        stage.setScene(new Scene(parent));
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.initOwner(stage.getOwner());
-        stage.setMaximized(false);
-        stage.setResizable(false);
-
-        stage.show();
-        }
         if(rowIndex != -1){
             PeriodoModel periodo = tablaPeriodo.getItems().get(rowIndex);
             ConfirmacionPeriodoController confirmacionController = loader.getController();
