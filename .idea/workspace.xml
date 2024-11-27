@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="de43c704-91c9-48a0-a671-fbe5f370e360" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/papasoftclient/controllers/add/AddHorarioSalonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/papasoftclient/controllers/add/AddHorarioSalonController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/papasoftclient/controllers/edit/EditHorarioSalonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/papasoftclient/controllers/edit/EditHorarioSalonController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/papasoftclient/controllers/add/AddAsesoriaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/papasoftclient/controllers/add/AddAsesoriaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/papasoftclient/controllers/main/AsesoriaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/papasoftclient/controllers/main/AsesoriaController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,22 +43,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "cris-dev",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/crist/papasoft/new papasoft/PapaSoftClient",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.keymap",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;cris-dev&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/crist/papasoft/new papasoft/PapaSoftClient/src/main/resources/com/example/papasoftclient/asesoria/vistaAgregarAsesoria.fxml&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.papasoftclient.Main" />
@@ -99,7 +100,11 @@
       <workItem from="1731957917625" duration="1031000" />
       <workItem from="1732134658881" duration="6049000" />
       <workItem from="1732231243952" duration="941000" />
-      <workItem from="1732237306132" duration="12215000" />
+      <workItem from="1732237306132" duration="12905000" />
+      <workItem from="1732306630553" duration="388000" />
+      <workItem from="1732346753462" duration="6998000" />
+      <workItem from="1732411684748" duration="3102000" />
+      <workItem from="1732668376117" duration="1252000" />
     </task>
     <servers />
   </component>
