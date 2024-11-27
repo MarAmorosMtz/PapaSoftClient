@@ -76,10 +76,10 @@
                         <Spinner fx:id="semestre" editable="true" maxWidth="1.7976931348623157E308" prefHeight="43.0" styleClass="textField" />
                      </children>
                   </VBox>
-                  <VBox prefHeight="114.0" prefWidth="449.0">
+                  <VBox prefHeight="114.0" prefWidth="449.0" visible="false">
                      <children>
                         <Label text="Horario:" />
-                        <Button mnemonicParsing="false" styleClass="btnGuardar" text="Subir imagen" onAction="#seleccionarHorario">
+                        <Button mnemonicParsing="false" onAction="#seleccionarHorario" styleClass="btnGuardar" text="Subir imagen">
                            <graphic>
                               <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
