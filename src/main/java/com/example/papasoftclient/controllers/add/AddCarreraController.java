@@ -3,14 +3,11 @@ package com.example.papasoftclient.controllers.add;
 
 import com.example.papasoftclient.models.CarreraBase;
 import com.example.papasoftclient.repositories.CarreraRepository;
-import com.example.papasoftclient.repositories.RestAPI;
 import com.example.papasoftclient.utils.Observable;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.example.papasoftclient.utils.Validate;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
-import org.apache.hc.client5.http.impl.classic.HttpClients;
 
 
 public class AddCarreraController extends Observable {
@@ -26,10 +23,17 @@ public class AddCarreraController extends Observable {
 
     @FXML
     private void guardar(){
-        CarreraBase nuevaCarrera = new CarreraBase(carrera.getText());
-        carreraRepository.save(nuevaCarrera);
-        cancelar();
-        this.notificar();
+        int err = 0;
+
+        if(Validate.name(carrera.getText())){ carrera.getStyleClass().remove("error"); }
+        else{ carrera.getStyleClass().add("error"); err++; }
+
+        if(err == 0){
+            CarreraBase nuevaCarrera = new CarreraBase(carrera.getText());
+            carreraRepository.save(nuevaCarrera);
+            cancelar();
+            this.notificar();
+        }
     }
 
     @FXML

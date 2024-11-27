@@ -9,39 +9,74 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="674.0" stylesheets="@../CSS/CRUD/vistaPrincipal.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.papasoftclient.controllers.main.BackupController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="879.0" stylesheets="@../CSS/CRUD/vistaPrincipal.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.papasoftclient.controllers.main.BackupController">
    <children>
       <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label styleClass="topLabel" text="BackUp">
+            <Label styleClass="topLabel" text="Copia de seguridad">
                <VBox.margin>
                   <Insets left="25.0" top="25.0" />
                </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
             </Label>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="25.0" VBox.vgrow="ALWAYS">
+            <Line endX="884.065185546875" endY="0.2928932309150696" startX="1709.358154296875" startY="0.2926180362701416">
+               <VBox.margin>
+                  <Insets bottom="25.0" left="25.0" top="25.0" />
+               </VBox.margin>
+            </Line>
+            <Label contentDisplay="RIGHT" prefHeight="42.0" prefWidth="149.0" styleClass="topLabel" text="Restaurar">
+               <VBox.margin>
+                  <Insets left="25.0" />
+               </VBox.margin>
+            </Label>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="25.0" VBox.vgrow="ALWAYS">
                <children>
-                  <Button mnemonicParsing="false" onAction="#seleccionarArchivo" prefHeight="68.0" prefWidth="182.0" styleClass="btnFile" text="Restaurar">
+                  <TextField fx:id="txtPath" editable="false" prefHeight="51.0" prefWidth="412.0" promptText="Ruta del Archivo" styleClass="txtSearch">
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin></TextField>
+                  <Button mnemonicParsing="false" onAction="#seleccionarArchivo" prefHeight="53.0" prefWidth="252.0" styleClass="btnFile" text="Seleccionar archivo">
                      <graphic>
                         <ImageView fitHeight="52.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../media/upload_image.png" />
+                              <Image url="@../media/sql.png" />
                            </image>
                         </ImageView>
                      </graphic>
                      <HBox.margin>
-                        <Insets left="25.0" />
+                        <Insets left="5.0" right="25.0" />
                      </HBox.margin>
                   </Button>
-                  <TextField fx:id="txtPath" editable="false" prefHeight="51.0" prefWidth="412.0" promptText="Ruta del Archivo" styleClass="txtSearch">
-                     <HBox.margin>
-                        <Insets right="25.0" />
-                     </HBox.margin></TextField>
                </children>
             </HBox>
-            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+            <Button mnemonicParsing="false" onAction="#restaurarCopia" styleClass="btnFile" text="Restaurar">
+               <VBox.margin>
+                  <Insets bottom="25.0" left="25.0" />
+               </VBox.margin>
+            </Button>
+            <Label styleClass="topLabel" text="Crear">
+               <VBox.margin>
+                  <Insets left="25.0" />
+               </VBox.margin>
+            </Label>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                <children>
-                  <Button mnemonicParsing="false" onAction="#crearCopia" prefHeight="58.0" prefWidth="259.0" styleClass="btnEdit" text="Crear Copia de Seguridad" />
+                  <Button mnemonicParsing="false" onAction="#crearCopia" prefHeight="50.0" prefWidth="186.0" styleClass="btnFile" text="Descargar">
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../media/recovery.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
                </children>
             </HBox>
          </children>

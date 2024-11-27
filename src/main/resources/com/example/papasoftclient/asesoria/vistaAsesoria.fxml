@@ -43,16 +43,19 @@
                      <children>
                         <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                            <children>
-                              <TableView prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                              <TableView fx:id="tablaAsesoria" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                                 <columns>
-                                  <TableColumn prefWidth="75.0" text="C1" />
-                                  <TableColumn prefWidth="75.0" text="C2" />
+                                  <TableColumn fx:id="columnaAsesor" prefWidth="75.0" text="Asesor" />
+                                  <TableColumn fx:id="columnaFecha" prefWidth="75.0" text="Fecha" />
+                                   <TableColumn fx:id="columnaHora" prefWidth="75.0" text="Hora" />
+                                   <TableColumn fx:id="columnaMateria" prefWidth="75.0" text="Materia" />
+                                   <TableColumn fx:id="columnaSalon" prefWidth="75.0" text="Salon" />
                                 </columns>
                                  <columnResizePolicy>
                                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                  </columnResizePolicy>
                               </TableView>
-                              <Pagination currentPageIndex="1" pageCount="1" prefHeight="52.0" prefWidth="707.0" styleClass="paginationStyle" VBox.vgrow="NEVER" />
+                              <Pagination fx:id="paginadorAsesoria" pageCount="1" prefHeight="52.0" prefWidth="707.0" styleClass="paginationStyle" VBox.vgrow="ALWAYS" />
                            </children>
                         </VBox>
                      </children>

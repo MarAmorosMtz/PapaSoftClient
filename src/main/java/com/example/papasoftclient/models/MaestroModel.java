@@ -20,4 +20,9 @@ public class MaestroModel extends MaestroBase{
     public void setId(UUID id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return this.getNombre()+" "+this.getApellido_p()+" "+this.getApellido_m();
+    }
 }

@@ -23,10 +23,18 @@
 -fx-background-color: #00008b;
 -fx-border-color: black;
 -fx-font-weight: bold;
+-fx-transition: 0.3s ease-in-out;
 }
 
 .btnSi:hover{
 -fx-cursor: hand;
+-fx-background-color: white;
+-fx-text-fill: #00008b;
+}
+
+.btnSi:pressed{
+-fx-scale-x: 0.95;
+-fx-scale-y: 0.95;
 }
 
 .btnCancelar{
@@ -38,8 +46,16 @@
 -fx-background-color: white;
 -fx-border-color: #00008b;
 -fx-font-weight: bold;
+-fx-transition: 0.3s ease-in-out;
 }
 
 .btnCancelar:hover{
 -fx-cursor: hand;
+-fx-background-color: red;
+-fx-text-fill: white;
+}
+
+.btnCancelar:pressed{
+-fx-scale-x: 0.95;
+-fx-scale-y: 0.95;
 }

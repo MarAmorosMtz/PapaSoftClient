@@ -32,11 +32,16 @@
 -fx-border-color: black;
 -fx-font-family: verdana;
 -fx-font-size: 15;
+-fx-border-width: 2px;
+}
+
+.textField.error{
+-fx-border-color: red;
 }
 
 
 .hBoxTop{
--fx-spacing: 20;;
+-fx-spacing: 20;
 }
 
 .hBoxBottom{
@@ -52,10 +57,16 @@
 -fx-background-color: #00008b;
 -fx-border-color: black;
 -fx-font-weight: bold;
+-fx-transition: 0.3s ease-in-out;
 }
 
 .btnGuardar:hover{
 -fx-cursor: hand;
+}
+
+.btnGuardar:pressed{
+-fx-scale-x: 0.95;
+-fx-scale-y: 0.95;
 }
 
 .btnCancelar{
@@ -67,8 +78,14 @@
 -fx-background-color: white;
 -fx-border-color: red;
 -fx-font-weight: bold;
+-fx-transition: 0.3s ease-in-out;
 }
 
 .btnCancelar:hover{
 -fx-cursor: hand;
+}
+
+.btnCancelar:pressed{
+-fx-scale-x: 0.95;
+-fx-scale-y: 0.95;
 }
