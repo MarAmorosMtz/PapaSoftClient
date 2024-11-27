@@ -5,7 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="de43c704-91c9-48a0-a671-fbe5f370e360" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/papasoftclient/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/papasoftclient/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/papasoftclient/controllers/add/AddAsesoradoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/papasoftclient/controllers/add/AddAsesoradoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/papasoftclient/controllers/main/AsesoriaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/papasoftclient/controllers/main/AsesoriaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/papasoftclient/models/AsesoriaModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/papasoftclient/models/AsesoriaModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/papasoftclient/Main/dashboardAdministrador.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/papasoftclient/Main/dashboardAdministrador.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/papasoftclient/Main/dashboardSecretario.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/papasoftclient/Main/dashboardSecretario.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/papasoftclient/asesor/vistaAgregarAsesor.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/papasoftclient/asesor/vistaAgregarAsesor.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/papasoftclient/asesor/vistaEditarAsesor.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/papasoftclient/asesor/vistaEditarAsesor.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/papasoftclient/asesorado/vistaAgregarAsesorado.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/papasoftclient/asesorado/vistaAgregarAsesorado.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/papasoftclient/asesorado/vistaEditarAsesorado.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/papasoftclient/asesorado/vistaEditarAsesorado.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/papasoftclient/asesoria/vistaEditarAsesoria.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/papasoftclient/asesoria/vistaEditarAsesoria.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,6 +27,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
@@ -31,6 +44,9 @@
         <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
       </MavenGeneralSettings>
     </option>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -104,6 +120,7 @@
       <workItem from="1732411684748" duration="3102000" />
       <workItem from="1732668376117" duration="1252000" />
       <workItem from="1732675666629" duration="2726000" />
+      <workItem from="1732688876201" duration="8766000" />
     </task>
     <servers />
   </component>
