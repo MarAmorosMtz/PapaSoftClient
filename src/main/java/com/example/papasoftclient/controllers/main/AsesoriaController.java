@@ -99,7 +99,7 @@ public class AsesoriaController implements Observador {
 
     @FXML
     private void editar() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/papasoftclient/materia/vistaEditarAsesoria.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/papasoftclient/asesoria/vistaEditarAsesoria.fxml"));
         Parent parent = loader.load();
 
         int rowIndex = tablaAsesoria.getSelectionModel().getSelectedIndex();
