@@ -42,6 +42,25 @@ public class AsesorRepository implements Repository<AsesorBase, AsesorModel>{
         }
     }
 
+    public AsesorPage search(int page, int day, int month, int year, int hour, int minute) {
+        try{
+            HttpGet request = new HttpGet(host+"?pagina="+page
+                    +"&dia="+day
+                    +"&mes="+month+
+                    "&ano="+year+
+                    "&hora="+hour+
+                    "&minuto="+minute);
+            AsesorPage asesorPage = httpClient.execute(request,response->{
+                if (response.getCode() != 200) return null;
+                return mapper.readValue(EntityUtils.toString(response.getEntity()),AsesorPage.class);
+            });
+            return asesorPage;
+        }catch(Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     @Override
     public AsesorModel search(UUID id) {
         try{
