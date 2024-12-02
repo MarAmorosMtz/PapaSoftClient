@@ -44,3 +44,8 @@
     -fx-font-family: Verdana;
     -fx-font-size: 15px;
 }
+
+.btnAbout{
+-fx-cursor: hand;
+-fx-background-color: transparent;
+}

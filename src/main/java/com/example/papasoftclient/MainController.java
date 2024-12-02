@@ -86,6 +86,18 @@ public class MainController {
         }
     }
 
+    @FXML
+    private void about() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("about/vistaAbout.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setMaximized(false);
+        stage.setResizable(false);
+        stage.show();
+
+    }
+
 
     private void loadView(String fxml) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml + ".fxml"));

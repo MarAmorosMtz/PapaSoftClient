@@ -52,7 +52,7 @@
                         <ComboBox fx:id="carrera" maxWidth="1.7976931348623157E308" prefHeight="43.0" prefWidth="150.0" styleClass="textField" />
                      </children>
                   </VBox>
-                  <VBox prefHeight="114.0" prefWidth="449.0" visible="false">
+                  <VBox prefHeight="114.0" prefWidth="449.0">
                      <children>
                         <Label text="Contrato" />
                         <Button mnemonicParsing="false" onAction="#seleccionarArchivo" styleClass="btnGuardar" text="Subir documento">
@@ -94,10 +94,10 @@
                         <Spinner fx:id="semestre" editable="true" maxWidth="1.7976931348623157E308" prefHeight="43.0" styleClass="textField" />
                      </children>
                   </VBox>
-                  <VBox prefHeight="114.0" prefWidth="449.0" visible="false">
+                  <VBox prefHeight="114.0" prefWidth="449.0">
                      <children>
-                        <Label text="Foto" />
-                        <Button mnemonicParsing="false" onAction="#seleccionarImagen" styleClass="btnGuardar" text="Subir imagen">
+                        <Label text="Foto" visible="false" />
+                        <Button mnemonicParsing="false" onAction="#seleccionarImagen" styleClass="btnGuardar" text="Subir imagen" visible="false">
                            <graphic>
                               <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <image>

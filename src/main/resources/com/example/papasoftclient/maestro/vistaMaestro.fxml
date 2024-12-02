@@ -22,14 +22,14 @@
                         <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="topVBoxL" HBox.hgrow="ALWAYS">
                            <children>
                               <Label styleClass="topLabel" text="Maestros" />
-                              <TextField promptText="🔎 Buscar Por Nombre" styleClass="txtSearch" />
+                              <TextField promptText="🔎 Buscar Por Nombre" styleClass="txtSearch" visible="false" />
                            </children>
                         </VBox>
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="194.0" styleClass="btnAdd" text="✚ Nuevo Maestro" HBox.hgrow="SOMETIMES" onAction="#handleButtonAction"/>
+                        <Button mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="50.0" prefWidth="194.0" styleClass="btnAdd" text="✚ Nuevo Maestro" HBox.hgrow="SOMETIMES" />
                      </children>
                      <padding>
                         <Insets right="25.0" />
@@ -43,25 +43,25 @@
                      <children>
                         <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
                            <children>
-                              <TableView prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" fx:id="tablaMaestro">
+                              <TableView fx:id="tablaMaestro" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                                 <columns>
-                                  <TableColumn prefWidth="75.0" text="Nombre" fx:id="columnaNombre"/>
-                                    <TableColumn prefWidth="75.0" text="Apellido Paterno" fx:id="columnaApellidoP"/>
-                                    <TableColumn prefWidth="75.0" text="Apellido Materno" fx:id="columnaApellidoM"/>
+                                  <TableColumn fx:id="columnaNombre" prefWidth="75.0" text="Nombre" />
+                                    <TableColumn fx:id="columnaApellidoP" prefWidth="75.0" text="Apellido Paterno" />
+                                    <TableColumn fx:id="columnaApellidoM" prefWidth="75.0" text="Apellido Materno" />
                                 </columns>
                                  <columnResizePolicy>
                                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                  </columnResizePolicy>
                               </TableView>
-                              <Pagination prefHeight="52.0" prefWidth="707.0" maxWidth="Infinity" maxHeight="Infinity" styleClass="paginationStyle" VBox.vgrow="ALWAYS" fx:id="paginadorMaestros"/>
+                              <Pagination fx:id="paginadorMaestros" maxHeight="Infinity" maxWidth="Infinity" prefHeight="52.0" prefWidth="707.0" styleClass="paginationStyle" VBox.vgrow="ALWAYS" />
                            </children>
                         </VBox>
                      </children>
                   </HBox>
                   <VBox alignment="TOP_CENTER" prefHeight="374.0" prefWidth="202.0" spacing="20.0" styleClass="CentervBoxR" HBox.hgrow="SOMETIMES">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="47.0" prefWidth="132.0" styleClass="btnEdit" text="Editar" onAction="#edit"/>
-                        <Button mnemonicParsing="false" prefHeight="47.0" prefWidth="132.0" styleClass="btnDelete" text="Eliminar" onAction="#delete"/>
+                        <Button mnemonicParsing="false" onAction="#edit" prefHeight="47.0" prefWidth="132.0" styleClass="btnEdit" text="Editar" />
+                        <Button mnemonicParsing="false" onAction="#delete" prefHeight="47.0" prefWidth="132.0" styleClass="btnDelete" text="Eliminar" />
                      </children>
                   </VBox>
                </children>

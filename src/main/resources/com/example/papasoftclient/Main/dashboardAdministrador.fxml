@@ -15,6 +15,15 @@
          <children>
             <VBox prefHeight="717.0" prefWidth="269.0" styleClass="vBoxL">
                <children>
+                  <Button mnemonicParsing="false" prefHeight="22.0" prefWidth="28.0" styleClass="btnAbout" onAction="#about">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../media/informacion.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                   <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="vBoxL" VBox.vgrow="ALWAYS">
                      <children>
                         <ImageView fitHeight="173.0" fitWidth="176.0" pickOnBounds="true" preserveRatio="true">
