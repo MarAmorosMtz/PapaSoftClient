@@ -25,7 +25,7 @@
       <VBox prefHeight="114.0" prefWidth="449.0">
          <children>
             <Label text="Fecha de Finalización:" />
-            <DatePicker fx:id="fechaFinal" maxWidth="1.7976931348623157E308" prefHeight="43.0" styleClass="textField" />
+            <DatePicker fx:id="fechaFin" maxWidth="1.7976931348623157E308" prefHeight="43.0" styleClass="textField" />
          </children>
       </VBox>
       <HBox alignment="CENTER" prefHeight="108.0" prefWidth="422.0" styleClass="hBoxBottom">

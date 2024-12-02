@@ -78,8 +78,8 @@
                   </VBox>
                   <VBox prefHeight="114.0" prefWidth="449.0">
                      <children>
-                        <Label text="Horario:" />
-                        <Button mnemonicParsing="false" styleClass="btnGuardar" text="Subir imagen" onAction="#seleccionarHorario" >
+                        <Label text="Horario:" visible="false" />
+                        <Button mnemonicParsing="false" onAction="#seleccionarHorario" styleClass="btnGuardar" text="Subir imagen" visible="false">
                            <graphic>
                               <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <image>

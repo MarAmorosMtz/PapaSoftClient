@@ -22,7 +22,7 @@
                         <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" styleClass="topVBoxL" HBox.hgrow="ALWAYS">
                            <children>
                               <Label styleClass="topLabel" text="Asesorado" />
-                              <TextField promptText="🔎 Buscar Por Nombre" styleClass="txtSearch" />
+                              <TextField promptText="🔎 Buscar Por Nombre" styleClass="txtSearch" visible="false" />
                            </children>
                         </VBox>
                      </children>
@@ -61,8 +61,8 @@
                   </HBox>
                   <VBox alignment="TOP_CENTER" prefHeight="374.0" prefWidth="202.0" spacing="20.0" styleClass="CentervBoxR" HBox.hgrow="SOMETIMES">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="47.0" prefWidth="132.0" styleClass="btnEdit" text="Editar" onAction="#edit" />
-                        <Button mnemonicParsing="false" prefHeight="47.0" prefWidth="132.0" styleClass="btnDelete" text="Eliminar" onAction="#delete" />
+                        <Button mnemonicParsing="false" onAction="#edit" prefHeight="47.0" prefWidth="132.0" styleClass="btnEdit" text="Editar" />
+                        <Button mnemonicParsing="false" onAction="#delete" prefHeight="47.0" prefWidth="132.0" styleClass="btnDelete" text="Eliminar" />
                      </children>
                   </VBox>
                </children>

@@ -1,12 +1,12 @@
 package com.example.papasoftclient.repositories;
 
 
-import com.example.papasoftclient.models.PeriodoBase;
-import com.example.papasoftclient.models.PeriodoModel;
-import com.example.papasoftclient.models.PeriodoPage;
+import com.example.papasoftclient.models.*;
 import com.example.papasoftclient.utils.HttpClient;
 import com.example.papasoftclient.utils.JsonMapper;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.apache.hc.client5.http.classic.methods.HttpDelete;
 import org.apache.hc.client5.http.classic.methods.HttpPost;
 import org.apache.hc.client5.http.classic.methods.HttpPut;
@@ -16,6 +16,7 @@ import org.apache.hc.client5.http.classic.methods.HttpGet;
 import org.apache.hc.core5.http.io.entity.EntityUtils;
 import org.apache.hc.core5.http.io.entity.StringEntity;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 public class PeriodoRepository implements Repository<PeriodoBase, PeriodoModel>{
@@ -28,6 +29,18 @@ public class PeriodoRepository implements Repository<PeriodoBase, PeriodoModel>{
         this.httpClient = HttpClient.getClient();
         this.mapper = JsonMapper.getMapper();
         this.host = RestAPI.PERIODOS_ENDPOINT;
+    }
+
+    public ObservableList<PeriodoModel> getCatalogoPeriodo(){
+        ArrayList<PeriodoModel> catalogoPeriodo = new ArrayList<PeriodoModel>();
+        PeriodoPage tmp = this.search(1);
+        if(tmp != null){
+            catalogoPeriodo.addAll(tmp.getPeriodos());
+            for(int p=2;p<=tmp.getPaginas();p++){
+                catalogoPeriodo.addAll(this.search(p).getPeriodos());
+            }
+        }
+        return FXCollections.observableArrayList(catalogoPeriodo);
     }
 
     @Override
