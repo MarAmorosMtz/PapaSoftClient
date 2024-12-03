@@ -79,7 +79,7 @@ public class PeriodoController implements Observador {
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL); // Hacer que el Stage sea modal
         stage.initOwner(stage.getOwner());
-        stage.setResizable(false);
+        stage.setResizable(true);
         stage.setMaximized(false);
         stage.setScene(scene);
         stage.show();
@@ -106,7 +106,7 @@ public class PeriodoController implements Observador {
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.initOwner(stage.getOwner());
             stage.setMaximized(false);
-            stage.setResizable(false);
+            stage.setResizable(true);
 
             stage.show();
         }
@@ -130,7 +130,7 @@ public class PeriodoController implements Observador {
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.initOwner(stage.getOwner());
             stage.setMaximized(false);
-            stage.setResizable(false);
+            stage.setResizable(true);
 
             stage.show();
         }

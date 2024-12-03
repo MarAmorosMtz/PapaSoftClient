@@ -31,7 +31,7 @@ public class EditCarreraController extends Observable {
     private void guardar(){
         int err = 0;
 
-        if(Validate.name(carrera.getText())){ carrera.getStyleClass().remove("error"); }
+        if(Validate.word(carrera.getText())){ carrera.getStyleClass().remove("error"); }
         else{ carrera.getStyleClass().add("error"); err++; }
 
         if(err == 0){

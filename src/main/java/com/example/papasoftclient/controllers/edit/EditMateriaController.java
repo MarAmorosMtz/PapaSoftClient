@@ -45,7 +45,7 @@ public class EditMateriaController extends Observable {
     private void guardar(){
         int err = 0;
 
-        if(Validate.name(nombre.getText())){ nombre.getStyleClass().remove("error"); }
+        if(Validate.word(nombre.getText())){ nombre.getStyleClass().remove("error"); }
         else{ nombre.getStyleClass().add("error"); err++; }
 
         if(carrera.getSelectionModel().getSelectedItem() != null){ carrera.getStyleClass().remove("error"); }

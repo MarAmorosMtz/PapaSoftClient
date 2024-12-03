@@ -16,12 +16,12 @@ public class Validate {
     }
 
     public static boolean name(String name){
-        String regex = "^[a-zA-Z]{3,50}( [a-zA-Z]{3,50})?$";
+        String regex = "^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,50}$";
         return Pattern.matches(regex, name);
     }
 
     public static boolean lastName(String lastName){
-        String regex = "^[a-zA-Z]{3,50}$";
+        String regex = "^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,50}$";
         return Pattern.matches(regex, lastName);
     }
 
@@ -32,5 +32,10 @@ public class Validate {
 
     public static boolean date(Date date){
         return date.before(Date.valueOf(LocalDate.now()));
+    }
+
+    public static boolean word(String word){
+        String regex = "^[a-zA-Z0-9 ]{3,50}$";
+        return Pattern.matches(regex, word);
     }
 }
