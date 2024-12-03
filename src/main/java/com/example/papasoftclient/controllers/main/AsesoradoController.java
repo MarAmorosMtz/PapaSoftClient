@@ -80,7 +80,7 @@ public class AsesoradoController  implements Observador{
         Stage newStage = new Stage();
         newStage.setScene(scene);
 
-        newStage.setResizable(false);
+        newStage.setResizable(true);
 
         newStage.show();
     }
@@ -106,7 +106,7 @@ public class AsesoradoController  implements Observador{
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initOwner(stage.getOwner());
         stage.setMaximized(false);
-        stage.setResizable(false);
+        stage.setResizable(true);
 
         stage.show();
         }
@@ -137,7 +137,7 @@ public class AsesoradoController  implements Observador{
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initOwner(stage.getOwner());
         stage.setMaximized(false);
-        stage.setResizable(false);
+        stage.setResizable(true);
 
         stage.setOnHiding(event -> mainStage.getScene().getRoot().setEffect(null));
 

@@ -49,8 +49,8 @@ public class EditAsesorController extends Observable {
     private ObservableList<CarreraModel> catalogoCarreras;
     private AsesorModel asesor;
 
-    private File archivoSeleccionado;
-    private File imagenSeleccionada;
+    //private File archivoSeleccionado;
+    //private File imagenSeleccionada;
 
     public void initialize(){
         inicializarSpinner();
@@ -85,7 +85,7 @@ public class EditAsesorController extends Observable {
         if(carrera.getSelectionModel().getSelectedItem() != null){ carrera.getStyleClass().remove("error"); }
         else{ carrera.getStyleClass().add("error"); err++; }
 
-        if(archivoSeleccionado == null | imagenSeleccionada == null){
+        /*if(archivoSeleccionado == null | imagenSeleccionada == null){
 
             Alert alerta = new Alert(Alert.AlertType.ERROR);
             alerta.setTitle("Error");
@@ -94,7 +94,7 @@ public class EditAsesorController extends Observable {
             alerta.showAndWait();
 
             err++;
-        }
+        }*/
 
         if(fechaInscripcion.getValue() != null){
             if(Validate.date(Date.valueOf(fechaInscripcion.getValue()))){ fechaInscripcion.getStyleClass().remove("error"); }
@@ -113,8 +113,9 @@ public class EditAsesorController extends Observable {
                     telefono.getText(),
                     fechaInscripcion.getValue(),
                     semestre.getValue(),
-                    archivoSeleccionado.getAbsolutePath(),
-                    imagenSeleccionada.getAbsolutePath(),
+                    //archivoSeleccionado.getAbsolutePath(),
+                    //imagenSeleccionada.getAbsolutePath(),
+                    "", "",
                     carrera.getSelectionModel().getSelectedItem().getId()
             );
             asesorRepository.update(asesor.getId(),nuevoAsesor);
@@ -152,26 +153,26 @@ public class EditAsesorController extends Observable {
     @FXML
     private void seleccionarArchivo() {
 
-        FileChooser fileChooser = new FileChooser();
+        /*FileChooser fileChooser = new FileChooser();
 
         fileChooser.setTitle("Seleccionar archivo");
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Todos los archivos", "*.pdf"));
 
         Stage stage = new Stage();
-        archivoSeleccionado = fileChooser.showOpenDialog(stage);
+        archivoSeleccionado = fileChooser.showOpenDialog(stage);*/
 
     }
 
     @FXML
     private void seleccionarImagen() {
 
-        FileChooser fileChooser = new FileChooser();
+        /*FileChooser fileChooser = new FileChooser();
 
         fileChooser.setTitle("Seleccionar archivo");
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Imagenes", "*.jpg", "*.png"));
 
         Stage stage = new Stage();
-        imagenSeleccionada = fileChooser.showOpenDialog(stage);
+        imagenSeleccionada = fileChooser.showOpenDialog(stage);*/
 
     }
 }

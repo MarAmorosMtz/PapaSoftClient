@@ -2,7 +2,7 @@ package com.example.papasoftclient.repositories;
 
 public class RestAPI {
     public static final String API_VERSION = "v0.5.0";
-    public static final String HOST = "http://localhost:8000/api/"+API_VERSION;
+    public static final String HOST = "http://itverland.com:3203/api/"+API_VERSION;
     public static final String CARRERAS_ENDPOINT = HOST+"/carreras/";
     public static final String MATERIAS_ENDPOINT = HOST+"/materias/";
     public static final String MAESTROS_ENDPOINT = HOST+"/maestros/";

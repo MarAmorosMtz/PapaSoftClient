@@ -47,7 +47,7 @@ public class AddAsesoradoController extends Observable {
     private CarreraRepository carreraRepository;
     private ObservableList<CarreraModel> catalogoCarreras;
 
-    private File horario;
+    //private File horario;
 
     public AddAsesoradoController() {
         carreraRepository = new CarreraRepository();
@@ -90,7 +90,7 @@ public class AddAsesoradoController extends Observable {
             else{ fechaInscripcion.getStyleClass().add("error"); err++; }
         }else{ fechaInscripcion.getStyleClass().add("error"); err++; }
 
-        if(horario == null){
+        /*if(horario == null){
 
             Alert alerta = new Alert(Alert.AlertType.ERROR);
             alerta.setTitle("Error");
@@ -99,20 +99,21 @@ public class AddAsesoradoController extends Observable {
             alerta.showAndWait();
 
             err++;
-        }
+        }*/
 
         if(err == 0){
             AsesoradoBase nuevoAsesorado = new AsesoradoBase(
-                    nombre.getText(),
-                    apellidoP.getText(),
-                    apellidoM.getText(),
+                    nombre.getText().toUpperCase(),
+                    apellidoP.getText().toUpperCase(),
+                    apellidoM.getText().toUpperCase(),
                     numCtrl.getText(),
                     correo.getText(),
                     telefono.getText(),
                     fechaInscripcion.getValue(),
                     semestre.getValue(),
                     carrera.getSelectionModel().getSelectedItem().getId(),
-                    horario.getAbsolutePath());
+                    "");
+                    //horario.getAbsolutePath());
             asesoradoRepository.save(nuevoAsesorado);
             this.notificar();
             cancelar();
@@ -134,13 +135,13 @@ public class AddAsesoradoController extends Observable {
     @FXML
     private void seleccionarHorario() {
 
-        FileChooser fileChooser = new FileChooser();
+        /*FileChooser fileChooser = new FileChooser();
 
         fileChooser.setTitle("Seleccionar archivo");
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Todos los archivos", "*.*"));
 
         Stage stage = new Stage();
-        horario = fileChooser.showOpenDialog(stage);
+        horario = fileChooser.showOpenDialog(stage);*/
 
     }
 }
