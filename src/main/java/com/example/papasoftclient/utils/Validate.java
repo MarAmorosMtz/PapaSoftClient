@@ -16,12 +16,12 @@ public class Validate {
     }
 
     public static boolean name(String name){
-        String regex = "^[a-zA-Z ]{3,50}$";
+        String regex = "^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,50}$";
         return Pattern.matches(regex, name);
     }
 
     public static boolean lastName(String lastName){
-        String regex = "^[a-zA-Z]{3,50}$";
+        String regex = "^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,50}$";
         return Pattern.matches(regex, lastName);
     }
 

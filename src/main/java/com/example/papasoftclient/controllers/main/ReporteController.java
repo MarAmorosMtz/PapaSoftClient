@@ -93,7 +93,7 @@ public class ReporteController {
         if(radioAsesor.isSelected()){
             url = RestAPI.ASESOR_REPORT_ENDPOINT;
         }else if(radioMateria.isSelected()){
-            url = RestAPI.MATERIA_REPORT_ENDPOINT;
+            url = RestAPI.CARRERA_REPORT_ENDPOINT;
         }
         if(!url.isEmpty() & radioSemestral.isSelected()){
             PeriodoModel model = comboPeriodo.getSelectionModel().getSelectedItem();
