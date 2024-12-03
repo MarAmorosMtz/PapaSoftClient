@@ -36,8 +36,17 @@ public class AddAsesoriaController extends Observable {
     private Button btnCancelar;
 
     private ChangeListener<Object> oyenteHorario = ((observable, oldValue, newValue) -> {
-        cargarAsesores();
-        cargarSalones();
+        if (selectorFecha.getValue() != null) {
+            cargarAsesores();
+            cargarSalones();
+        }
+    });
+
+    private ChangeListener<Object> oyenteFecha = ((observable, oldValue, newValue) -> {
+        if (comboHorario.getValue() != null) {
+            cargarAsesores();
+            cargarSalones();
+        }
     });
 
     private AsesorRepository asesorRepository;
@@ -58,6 +67,7 @@ public class AddAsesoriaController extends Observable {
 
     public void initialize(){
         comboHorario.valueProperty().addListener(oyenteHorario);
+        selectorFecha.valueProperty().addListener(oyenteFecha);
         cargarMaterias();
         // cargarSalones();
         // cargarAsesores();
