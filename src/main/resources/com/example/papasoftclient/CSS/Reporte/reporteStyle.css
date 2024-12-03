@@ -1,52 +1,160 @@
-.anchor{
--fx-background-color: white;
-}
-
-.radioButton{
- -fx-font-size: 16;
- -fx-font-family: Verdana;
+/********** Estilos generales **********/
+.radioButton {
+ -fx-font-size: 16px;
+ -fx-font-family: "Segoe UI", Verdana, sans-serif;
+ -fx-text-fill: #495057;
 }
 
 .radio-button:selected .radio {
- -fx-border-radius: 100;
- -fx-border-color: #00008b;
+ -fx-border-radius: 100px;
+ -fx-border-color: #3f51b5;
+ -fx-background-color: #e3f2fd; /* Fondo claro al seleccionar */
 }
 
+/********** Labels **********/
+.label {
+ -fx-font-size: 16px;
+ -fx-font-family: "Segoe UI", Verdana, sans-serif;
+ -fx-text-fill: #6c757d;
+}
 
-.label{
- -fx-font-size: 16;
+.topLabel {
+ -fx-text-fill: #00008b;
  -fx-font-family: Verdana;
+ -fx-font-size: 30;
+ -fx-margin-top: 15;
 }
 
-.topLabel{
-   -fx-text-fill: #00008b;
-   -fx-font-family: Verdana;
-   -fx-font-size: 30;
--fx-margin-top: 15;
-}
-
-.Button{
- -fx-background-radius: 10;
- -fx-border-radius: 10;
+/********** Botón "Hecho" **********/
+.Button {
+ -fx-background-radius: 12px;
+ -fx-border-radius: 12px;
  -fx-text-fill: white;
- -fx-font-family: Verdana;
- -fx-font-size: 18;
- -fx-background-color: #00008b;
- -fx-border-color: black;
+ -fx-font-family: "Segoe UI", Verdana, sans-serif;
+ -fx-font-size: 18px;
+ -fx-background-color: #3f51b5;
+ -fx-border-color: #2c387e;
  -fx-border-width: 1px;
  -fx-font-weight: bold;
+ -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 5, 0.0, 0, 4);
 }
 
-.Button:hover{
+.Button:hover {
  -fx-cursor: hand;
+ -fx-background-color: #5c6bc0;
+ -fx-border-color: #3949ab;
 }
 
+/********** GridPane **********/
 .grid-pane {
- -fx-border-color: black;
- -fx-border-width: 2px;
+ -fx-border-color: #3f51b5;
+ -fx-border-width: 1px;
+ -fx-border-radius: 10px;
+ -fx-background-color: #ffffff;
+ -fx-padding: 10px;
+ -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 5, 0.0, 0, 2);
 }
 
-.comboBox{
- -fx-background-color: white;
- -fx-border-color: black;
+/********** ComboBox **********/
+.comboBox {
+ -fx-background-color: #ffffff;
+ -fx-border-color: #ced4da;
+ -fx-border-radius: 8px;
+ -fx-background-radius: 8px;
+ -fx-padding: 5px;
+ -fx-text-fill: #495057;
+}
+
+.comboBox:focused {
+ -fx-border-color: #3f51b5;
+ -fx-effect: dropshadow(three-pass-box, rgba(63, 81, 181, 0.3), 5, 0.0, 0, 2);
+}
+
+.comboBox:hover {
+ -fx-border-color: #5c6bc0;
+}
+
+.combo-box-popup {
+ -fx-background-color: #ffffff;
+ -fx-border-color: #ced4da;
+ -fx-border-radius: 8px;
+ -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 10, 0.0, 0, 4);
+}
+
+.list-cell {
+ -fx-padding: 8px 10px;
+ -fx-text-fill: #495057;
+ -fx-background-color: transparent;
+}
+
+.list-cell:hover {
+ -fx-background-color: #e3f2fd;
+}
+
+.list-cell:focused {
+ -fx-background-color: #c5cae9;
+ -fx-text-fill: #000000;
+}
+
+/********** VBox y HBox **********/
+.vbox {
+ -fx-spacing: 10px;
+ -fx-padding: 15px;
+ -fx-background-color: #ffffff;
+ -fx-border-radius: 8px;
+ -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 5, 0.0, 0, 2);
+}
+
+.hbox {
+ -fx-spacing: 15px;
+ -fx-padding: 10px;
+}
+
+/********** Radio Button Styles **********/
+.radioButton {
+ -fx-font-size: 16px;
+ -fx-font-family: "Segoe UI", Verdana, sans-serif;
+ -fx-text-fill: #495057; /* Color de texto neutro */
+ -fx-padding: 5px 10px; /* Espaciado para hacerlo más cómodo */
+}
+
+.radio-button {
+ -fx-cursor: hand; /* Cambia el cursor al pasar el mouse */
+ -fx-alignment: CENTER_LEFT; /* Alineación del texto */
+}
+
+.radio-button .radio {
+ -fx-fill: #9e9e9e; /* Color del círculo por defecto */
+ -fx-stroke: #9e9e9e; /* Contorno del círculo */
+ -fx-stroke-width: 2; /* Grosor del contorno */
+ -fx-radius: 6; /* Tamaño del círculo */
+}
+
+.radio-button:selected .radio {
+ -fx-fill: #3f51b5; /* Color del círculo al estar seleccionado */
+ -fx-stroke: #3f51b5; /* Contorno del círculo al estar seleccionado */
+ -fx-stroke-width: 3; /* Grosor del contorno seleccionado */
+}
+
+.radio-button:hover .radio {
+ -fx-fill: #5c6bc0; /* Color del círculo al pasar el mouse */
+ -fx-stroke: #5c6bc0; /* Contorno del círculo al pasar el mouse */
+}
+
+.radio-button .label {
+ -fx-text-fill: #495057; /* Color del texto */
+ -fx-font-weight: bold; /* Texto destacado */
+ -fx-padding: 0 5px; /* Espaciado entre el círculo y el texto */
+}
+
+.radio-button:selected .label {
+ -fx-text-fill: #3f51b5; /* Color del texto al estar seleccionado */
+ -fx-font-weight: bold; /* Mayor énfasis */
+}
+
+/********** Focus Effects **********/
+.radio-button:focused .radio {
+ -fx-effect: dropshadow(three-pass-box, rgba(63, 81, 181, 0.5), 5, 0.0, 0, 0); /* Sombra al enfocarse */
+ -fx-stroke: #3f51b5; /* Contorno al enfocarse */
+ -fx-stroke-width: 3;
 }
