@@ -50,8 +50,8 @@
                   </VBox>
                   <VBox prefHeight="114.0" prefWidth="449.0">
                      <children>
-                        <Label text="Contrato" />
-                        <Button mnemonicParsing="false" onAction="#seleccionarArchivo" styleClass="btnGuardar" text="Subir documento">
+                        <Label text="Contrato" visible="false" />
+                        <Button mnemonicParsing="false" onAction="#seleccionarArchivo" styleClass="btnGuardar" text="Subir documento" visible="false">
                            <graphic>
                               <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                                  <image>

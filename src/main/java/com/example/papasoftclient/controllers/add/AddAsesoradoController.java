@@ -4,6 +4,9 @@ import com.example.papasoftclient.models.AsesoradoBase;
 import com.example.papasoftclient.models.CarreraModel;
 import com.example.papasoftclient.repositories.AsesoradoRepository;
 import com.example.papasoftclient.repositories.CarreraRepository;
+import com.example.papasoftclient.repositories.RestAPI;
+import com.example.papasoftclient.utils.HttpClient;
+import com.example.papasoftclient.utils.JsonMapper;
 import com.example.papasoftclient.utils.Observable;
 import com.example.papasoftclient.utils.Validate;
 import javafx.collections.ObservableList;
@@ -44,7 +47,7 @@ public class AddAsesoradoController extends Observable {
     private CarreraRepository carreraRepository;
     private ObservableList<CarreraModel> catalogoCarreras;
 
-    private File horario;
+    //private File horario;
 
     public AddAsesoradoController() {
         carreraRepository = new CarreraRepository();
@@ -87,7 +90,7 @@ public class AddAsesoradoController extends Observable {
             else{ fechaInscripcion.getStyleClass().add("error"); err++; }
         }else{ fechaInscripcion.getStyleClass().add("error"); err++; }
 
-        if(horario == null){
+        /*if(horario == null){
 
             Alert alerta = new Alert(Alert.AlertType.ERROR);
             alerta.setTitle("Error");
@@ -96,7 +99,7 @@ public class AddAsesoradoController extends Observable {
             alerta.showAndWait();
 
             err++;
-        }
+        }*/
 
         if(err == 0){
             AsesoradoBase nuevoAsesorado = new AsesoradoBase(
@@ -109,7 +112,8 @@ public class AddAsesoradoController extends Observable {
                     fechaInscripcion.getValue(),
                     semestre.getValue(),
                     carrera.getSelectionModel().getSelectedItem().getId(),
-                    horario.getAbsolutePath());
+                    "");
+                    //horario.getAbsolutePath());
             asesoradoRepository.save(nuevoAsesorado);
             this.notificar();
             cancelar();
@@ -131,13 +135,13 @@ public class AddAsesoradoController extends Observable {
     @FXML
     private void seleccionarHorario() {
 
-        FileChooser fileChooser = new FileChooser();
+        /*FileChooser fileChooser = new FileChooser();
 
         fileChooser.setTitle("Seleccionar archivo");
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Todos los archivos", "*.*"));
 
         Stage stage = new Stage();
-        horario = fileChooser.showOpenDialog(stage);
+        horario = fileChooser.showOpenDialog(stage);*/
 
     }
 }

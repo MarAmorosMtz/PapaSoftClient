@@ -49,7 +49,7 @@ public class EditAsesoradoController extends Observable {
     private ObservableList<CarreraModel> catalogoCarreras;
     private AsesoradoModel asesorado;
 
-    private File horario;
+    //private File horario;
 
     public EditAsesoradoController() {
         carreraRepository = new CarreraRepository();
@@ -92,7 +92,7 @@ public class EditAsesoradoController extends Observable {
             else{ fechaInscripcion.getStyleClass().add("error"); err++; }
         }else{ fechaInscripcion.getStyleClass().add("error"); err++; }
 
-        if(horario == null){
+        /*if(horario == null){
 
             Alert alerta = new Alert(Alert.AlertType.ERROR);
             alerta.setTitle("Error");
@@ -101,7 +101,7 @@ public class EditAsesoradoController extends Observable {
             alerta.showAndWait();
 
             err++;
-        }
+        }*/
 
         if(err == 0){
             AsesoradoBase nuevoAsesorado = new AsesoradoBase(
@@ -114,8 +114,9 @@ public class EditAsesoradoController extends Observable {
                     fechaInscripcion.getValue(),
                     semestre.getValue(),
                     carrera.getSelectionModel().getSelectedItem().getId(),
-                    horario.getAbsolutePath());
-            asesoradoRepository.save(nuevoAsesorado);
+                    "");
+                    //horario.getAbsolutePath());
+            asesoradoRepository.update(asesorado.getId(),nuevoAsesorado);
             this.notificar();
             cancelar();
         }
@@ -153,13 +154,13 @@ public class EditAsesoradoController extends Observable {
     @FXML
     private void seleccionarHorario() {
 
-        FileChooser fileChooser = new FileChooser();
+        /*FileChooser fileChooser = new FileChooser();
 
         fileChooser.setTitle("Seleccionar archivo");
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Todos los archivos", "*.*"));
 
         Stage stage = new Stage();
-        horario = fileChooser.showOpenDialog(stage);
+        horario = fileChooser.showOpenDialog(stage);*/
 
     }
 }

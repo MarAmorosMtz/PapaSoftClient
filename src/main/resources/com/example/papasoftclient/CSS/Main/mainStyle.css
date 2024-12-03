@@ -49,3 +49,83 @@
 -fx-cursor: hand;
 -fx-background-color: transparent;
 }
+
+/********** Accordion Styles **********/
+.accordion {
+    -fx-border-color: transparent;
+    -fx-border-radius: 10;
+    -fx-background-color: #f8f9fa;
+    -fx-background-radius: 10;
+}
+
+.accordion-dark {
+    -fx-background-color: #212529;
+}
+
+/********** TitledPane Styles **********/
+.titlePane {
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+}
+
+.titlePane > .title {
+    -fx-font-weight: bold;
+    -fx-padding: 10 20;
+    -fx-text-fill: #495057;
+    -fx-background-color: #e9ecef;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+}
+
+.titlePane-dark > .title {
+    -fx-text-fill: #e9ecef;
+    -fx-background-color: #343a40;
+}
+
+.titlePane > .title:hover {
+    -fx-background-color: #dee2e6;
+    -fx-cursor: hand;
+}
+
+.titlePane-dark > .title:hover {
+    -fx-background-color: #495057;
+}
+
+.titlePane:focused > .title {
+    -fx-background-color: #adb5bd;
+}
+
+.titlePane-dark:focused > .title {
+    -fx-background-color: #6c757d;
+}
+
+/********** Button Styles **********/
+.buttonDashBoard {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #ced4da;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-text-fill: #495057;
+    -fx-padding: 10;
+}
+
+.buttonDashBoard:hover {
+    -fx-background-color: #e9ecef;
+}
+
+.buttonDashBoard-dark {
+    -fx-background-color: #495057;
+    -fx-text-fill: #ffffff;
+    -fx-border-color: #343a40;
+}
+
+.buttonDashBoard-dark:hover {
+    -fx-background-color: #343a40;
+}
+
+/********** VBox Styles **********/
+.vbox-DashBoard {
+    -fx-spacing: 10;
+    -fx-padding: 15;
+    -fx-background-color: transparent;
+}
