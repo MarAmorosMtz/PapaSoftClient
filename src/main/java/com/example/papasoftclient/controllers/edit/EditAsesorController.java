@@ -105,9 +105,9 @@ public class EditAsesorController extends Observable {
 
         if(err == 0){
             AsesorBase nuevoAsesor = new AsesorBase(
-                    nombre.getText().toUpperCase(),
-                    apellidoP.getText().toUpperCase(),
-                    apellidoM.getText().toUpperCase(),
+                    nombre.getText(),
+                    apellidoP.getText(),
+                    apellidoM.getText(),
                     numCtrl.getText(),
                     correo.getText(),
                     telefono.getText(),

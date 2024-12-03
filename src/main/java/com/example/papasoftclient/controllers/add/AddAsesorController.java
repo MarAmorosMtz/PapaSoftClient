@@ -96,9 +96,9 @@ public class AddAsesorController extends Observable {
 
         if(err == 0){
             asesor.setNum_ctrl(txtNControl.getText());
-            asesor.setNombre(txtNombre.getText().toUpperCase());
-            asesor.setApellido_p(txtApellidoP.getText().toUpperCase());
-            asesor.setApellido_m(txtApellidoM.getText().toUpperCase());
+            asesor.setNombre(txtNombre.getText());
+            asesor.setApellido_p(txtApellidoP.getText());
+            asesor.setApellido_m(txtApellidoM.getText());
             asesor.setCorreo(txtCorreo.getText());
             asesor.setTelefono(txtTelefono.getText());
             //asesor.setFoto(imagenSeleccionada.getAbsolutePath());

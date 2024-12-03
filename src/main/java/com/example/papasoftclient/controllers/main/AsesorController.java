@@ -117,22 +117,21 @@ public class AsesorController implements Observador {
         int rowIndex = tablaAsesor.getSelectionModel().getSelectedIndex();
 
         if(rowIndex != -1){
-        AsesorModel asesorModel = tablaAsesor.getItems().get(rowIndex);
+            AsesorModel asesorModel = tablaAsesor.getItems().get(rowIndex);
 
-        EditAsesorController controller = loader.getController();
-        controller.agregarObservador(this);
-        controller.setModel(asesorModel);
+            EditAsesorController controller = loader.getController();
+            controller.agregarObservador(this);
+            controller.setModel(asesorModel);
 
 
-        Stage stage = new Stage();
-        stage.setScene(new Scene(parent));
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.initOwner(stage.getOwner());
-        stage.setMaximized(false);
-        stage.setResizable(true);
+            Stage stage = new Stage();
+            stage.setScene(new Scene(parent));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initOwner(stage.getOwner());
+            stage.setMaximized(false);
+            stage.setResizable(true);
 
-        stage.show();
-
+            stage.show();
         }
     }
 
