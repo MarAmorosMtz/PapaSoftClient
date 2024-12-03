@@ -79,6 +79,8 @@ public class MainController {
                 return "horariosAsesor/vistaHorariosAsesor";
             case "btnBackups":
                 return "backup/vistaBackup";
+            case "btnAcercaDe":
+                return "ayuda/vistaAcercaDe";
             default:
                 return null;
         }

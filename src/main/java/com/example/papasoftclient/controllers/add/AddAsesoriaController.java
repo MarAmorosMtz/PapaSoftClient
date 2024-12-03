@@ -3,14 +3,14 @@ package com.example.papasoftclient.controllers.add;
 import com.example.papasoftclient.models.*;
 import com.example.papasoftclient.repositories.*;
 import com.example.papasoftclient.utils.Observable;
+import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import com.example.papasoftclient.utils.Validate;
 
-import java.sql.Date;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -35,6 +35,11 @@ public class AddAsesoriaController extends Observable {
     @FXML
     private Button btnCancelar;
 
+    private ChangeListener<Object> oyenteHorario = ((observable, oldValue, newValue) -> {
+        cargarAsesores();
+        cargarSalones();
+    });
+
     private AsesorRepository asesorRepository;
     private MateriaRepository materiaRepository;
     private SalonRepository salonRepository;
@@ -52,9 +57,10 @@ public class AddAsesoriaController extends Observable {
     }
 
     public void initialize(){
+        comboHorario.valueProperty().addListener(oyenteHorario);
         cargarMaterias();
-        cargarSalones();
-        cargarAsesores();
+        // cargarSalones();
+        // cargarAsesores();
         cargarMaestros();
         cargarAsesorados();
         cargarHoras(this.comboHorario);
@@ -70,7 +76,19 @@ public class AddAsesoriaController extends Observable {
     }
 
     private void cargarAsesores(){
-        AsesorPage pagina = this.asesorRepository.search(1);
+        String selectedHorario = comboHorario.getSelectionModel().getSelectedItem();
+        LocalDate selectedFecha = selectorFecha.getValue();
+
+        int dia = selectedFecha.getDayOfMonth();
+        int mes = selectedFecha.getMonthValue();
+        int ano = selectedFecha.getYear();
+
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+        LocalTime parsedTime = LocalTime.parse(selectedHorario, timeFormatter);
+        int hora = parsedTime.getHour();
+        int minuto = parsedTime.getMinute();
+
+        AsesorPage pagina = this.asesorRepository.search(1, dia, mes, ano, hora, minuto);
         if(pagina != null){
             this.comboAsesor.setItems(FXCollections.observableArrayList(pagina.getAsesores()));
             for(int i=2; i<=pagina.getPaginas(); i++){
@@ -90,7 +108,19 @@ public class AddAsesoriaController extends Observable {
     }
 
     private void cargarSalones(){
-        SalonPage pagina = this.salonRepository.search(1);
+        String selectedHorario = comboHorario.getSelectionModel().getSelectedItem();
+        LocalDate selectedFecha = selectorFecha.getValue();
+
+        int dia = selectedFecha.getDayOfMonth();
+        int mes = selectedFecha.getMonthValue();
+        int ano = selectedFecha.getYear();
+
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+        LocalTime parsedTime = LocalTime.parse(selectedHorario, timeFormatter);
+        int hora = parsedTime.getHour();
+        int minuto = parsedTime.getMinute();
+
+        SalonPage pagina = this.salonRepository.search(1, dia, mes, ano, hora, minuto);
         if(pagina != null){
             this.comboSalon.setItems(FXCollections.observableArrayList(pagina.getSalones()));
             for(int i=2; i<=pagina.getPaginas(); i++){

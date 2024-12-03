@@ -1,5 +1,6 @@
 package com.example.papasoftclient.repositories;
 
+import com.example.papasoftclient.models.AsesorPage;
 import com.example.papasoftclient.models.SalonBase;
 import com.example.papasoftclient.models.SalonModel;
 import com.example.papasoftclient.models.SalonPage;
@@ -27,6 +28,25 @@ public class SalonRepository implements Repository<SalonBase, SalonModel>{
         this.httpClient = HttpClient.getClient();
         this.mapper = JsonMapper.getMapper();
         this.host = RestAPI.SALONES_ENDPOINT;
+    }
+
+    public SalonPage search(int page, int day, int month, int year, int hour, int minute) {
+        try{
+            HttpGet request = new HttpGet(host+"?pagina="+page
+                    +"&dia="+day
+                    +"&mes="+month+
+                    "&ano="+year+
+                    "&hora="+hour+
+                    "&minuto="+minute);
+            SalonPage salonPage = httpClient.execute(request,response->{
+                if (response.getCode() != 200) return null;
+                return mapper.readValue(EntityUtils.toString(response.getEntity()),SalonPage.class);
+            });
+            return salonPage;
+        }catch(Exception e){
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override

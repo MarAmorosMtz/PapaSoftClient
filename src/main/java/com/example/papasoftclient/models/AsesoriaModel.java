@@ -14,6 +14,7 @@ public class AsesoriaModel {
     private AsesorModel asesor;
     private String tipo;
     private UUID id;
+    private ArrayList<DetalleAsesoradoModel> asesorados;
 
     public AsesoriaModel() {}
 
@@ -25,6 +26,17 @@ public class AsesoriaModel {
         this.asesor = asesor;
         this.tipo = tipo;
         this.id = id;
+    }
+
+    public AsesoriaModel(LocalDate fecha, String hora, MateriaModel materia, SalonModel salon, AsesorModel asesor, String tipo, UUID id, ArrayList<DetalleAsesoradoModel> asesorados) {
+        this.fecha = fecha;
+        this.hora = hora;
+        this.materia = materia;
+        this.salon = salon;
+        this.asesor = asesor;
+        this.tipo = tipo;
+        this.id = id;
+        this.asesorados = asesorados;
     }
 
     public LocalDate getFecha() {
@@ -81,5 +93,13 @@ public class AsesoriaModel {
 
     public void setId(UUID id) {
         this.id = id;
+    }
+
+    public ArrayList<DetalleAsesoradoModel> getAsesorados() {
+        return asesorados;
+    }
+
+    public void setAsesorados(ArrayList<DetalleAsesoradoModel> asesorados) {
+        this.asesorados = asesorados;
     }
 }

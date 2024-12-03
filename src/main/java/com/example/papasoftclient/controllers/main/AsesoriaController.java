@@ -3,6 +3,7 @@ package com.example.papasoftclient.controllers.main;
 import com.example.papasoftclient.Main;
 import com.example.papasoftclient.controllers.add.AddAsesoriaController;
 import com.example.papasoftclient.controllers.delete.ConfirmacionAsesoriaController;
+import com.example.papasoftclient.controllers.edit.EditAsesoriaController;
 import com.example.papasoftclient.models.*;
 import com.example.papasoftclient.repositories.AsesoriaRepository;
 import com.example.papasoftclient.utils.Observador;
@@ -98,7 +99,7 @@ public class AsesoriaController implements Observador {
 
     @FXML
     private void editar() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/papasoftclient/materia/vistaEditarAsesoria.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/papasoftclient/asesoria/vistaEditarAsesoria.fxml"));
         Parent parent = loader.load();
 
         int rowIndex = tablaAsesoria.getSelectionModel().getSelectedIndex();
@@ -106,9 +107,9 @@ public class AsesoriaController implements Observador {
         if(rowIndex != -1){
             AsesoriaModel asesoria = tablaAsesoria.getItems().get(rowIndex);
 
-//            EditAsesoriaController editController = loader.getController();
-//            editController.setModel(asesoria);
-//            editController.agregarObservador(this);
+            EditAsesoriaController editController = loader.getController();
+            editController.setModel(asesoria);
+            editController.agregarObservador(this);
 
             Stage stage = new Stage();
             stage.setScene(new Scene(parent));
