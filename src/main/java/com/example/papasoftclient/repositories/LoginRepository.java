@@ -26,9 +26,9 @@ public class LoginRepository {
             request.setHeader("Content-Type", "application/json");
             request.setEntity(new StringEntity(mapper.writeValueAsString(loginModel)));
             CloseableHttpResponse response = httpClient.execute(request);
-            if (response.getCode() == 201) return true;
+            if (response.getCode() == 200) return true;
         }catch (Exception ex){
-            //ex.printStackTrace();
+            ex.printStackTrace();
             return false;
         }
         return false;

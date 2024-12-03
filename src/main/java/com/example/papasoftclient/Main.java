@@ -15,7 +15,7 @@ public class Main extends Application {
         stage.setTitle("Iniciar Sesión");
         stage.setScene(scene);
         stage.setMaximized(true);
-        stage.setResizable(false);
+        stage.setResizable(true);
         stage.show();
     }
 

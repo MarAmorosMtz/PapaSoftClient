@@ -10,7 +10,9 @@ public class LoginModel {
     public LoginModel() {}
 
     public LoginModel(String usuario, String clave, int tipo) {
-
+        this.usuario = usuario;
+        this.clave = clave;
+        this.tipo = tipo;
     }
 
     public String getUsuario() {
