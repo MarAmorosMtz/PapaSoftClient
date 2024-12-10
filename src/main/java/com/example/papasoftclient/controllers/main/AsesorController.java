@@ -49,6 +49,8 @@ public class AsesorController implements Observador {
     @FXML
     TableColumn<AsesorModel, String> columnaCarrera;
     @FXML
+    TableColumn<AsesorModel, String> columnaEstado;
+    @FXML
     TableColumn<AsesorModel, String> columnaContrato;
     @FXML
     Pagination paginadorAsesor;
@@ -73,6 +75,10 @@ public class AsesorController implements Observador {
         columnaCarrera.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().getCarrera().getNombre())
         );
+        columnaEstado.setCellValueFactory(cellData -> {
+            boolean activo = cellData.getValue().getActivo();
+            return new SimpleStringProperty(activo ? "Activo" : "No Activo");
+        });
         columnaContrato.setCellValueFactory(new PropertyValueFactory<>("contrato"));
 
         paginadorAsesor.setPageFactory(this::updateTable);
@@ -118,6 +124,9 @@ public class AsesorController implements Observador {
 
         if(rowIndex != -1){
             AsesorModel asesorModel = tablaAsesor.getItems().get(rowIndex);
+
+            boolean isActive = "Activo".equalsIgnoreCase(asesorModel.getActivoTexto());
+            asesorModel.setActivo(isActive);
 
             EditAsesorController controller = loader.getController();
             controller.agregarObservador(this);
