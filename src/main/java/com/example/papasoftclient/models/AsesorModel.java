@@ -9,6 +9,8 @@ public class AsesorModel extends Alumno{
     protected CarreraModel carrera;
     protected String foto;
     protected String contrato;
+    protected boolean activo;
+    protected String activoTexto;
 
     public AsesorModel() {}
 
@@ -19,12 +21,22 @@ public class AsesorModel extends Alumno{
         this.contrato = contrato;
     }
 
-    public AsesorModel(String num_ctrl, String correo, String telefono, LocalDate fecha_inscripcion, int semestre, UUID id, CarreraModel carrera, String foto, String contrato) {
+    public AsesorModel(String num_ctrl, String correo, String telefono, LocalDate fecha_inscripcion, int semestre, UUID id, CarreraModel carrera, String foto, String contrato, boolean activo) {
         super(num_ctrl, correo, telefono, fecha_inscripcion, semestre);
         this.id = id;
         this.carrera = carrera;
         this.foto = foto;
         this.contrato = contrato;
+        this.activo = activo;
+    }
+
+    public AsesorModel(String num_ctrl, String correo, String telefono, LocalDate fecha_inscripcion, int semestre, UUID id, CarreraModel carrera, String foto, String contrato, String activoTexto) {
+        super(num_ctrl, correo, telefono, fecha_inscripcion, semestre);
+        this.id = id;
+        this.carrera = carrera;
+        this.foto = foto;
+        this.contrato = contrato;
+        this.activoTexto = activoTexto;
     }
 
     public AsesorModel(String nombre, String apellido_p, String apellido_m, String num_ctrl, String correo, String telefono, LocalDate fecha_inscripcion, int semestre, UUID id, CarreraModel carrera, String foto, String contrato) {
@@ -65,6 +77,23 @@ public class AsesorModel extends Alumno{
 
     public void setContrato(String contrato) {
         this.contrato = contrato;
+    }
+
+    public boolean getActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
+
+    public String getActivoTexto() {
+        return activoTexto;
+    }
+
+    public void setActivoTexto(String activoTexto) {
+        this.activoTexto = activoTexto;
+        this.activo = "Activo".equalsIgnoreCase(activoTexto);
     }
 
     @Override

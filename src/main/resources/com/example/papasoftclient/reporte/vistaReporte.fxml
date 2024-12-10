@@ -86,7 +86,7 @@
                                                       <Insets top="9.0" />
                                                    </padding>
                                                 </Label>
-                                                <ComboBox fx:id="comboAño" maxWidth="1.7976931348623157E308" prefHeight="39.0" prefWidth="156.0" styleClass="comboBox" HBox.hgrow="ALWAYS">
+                                                <ComboBox fx:id="comboAño" maxWidth="1.7976931348623157E308" prefHeight="39.0" prefWidth="156.0" styleClass="comboBox" HBox.hgrow="ALWAYS" promptText="Selecciona un año">
                                                    <HBox.margin>
                                                       <Insets right="10.0" />
                                                    </HBox.margin></ComboBox>
@@ -99,7 +99,7 @@
                                                       <Insets top="9.0" />
                                                    </padding>
                                                 </Label>
-                                                <ComboBox fx:id="comboMes" maxWidth="1.7976931348623157E308" prefHeight="39.0" prefWidth="155.0" styleClass="comboBox" HBox.hgrow="ALWAYS">
+                                                <ComboBox fx:id="comboMes" maxWidth="1.7976931348623157E308" prefHeight="39.0" prefWidth="155.0" styleClass="comboBox" HBox.hgrow="ALWAYS" promptText="Selecciona un mes">
                                                    <HBox.margin>
                                                       <Insets right="10.0" />
                                                    </HBox.margin></ComboBox>
@@ -110,7 +110,7 @@
                                           <Insets right="2.0" />
                                        </padding>
                                     </VBox>
-                                    <ComboBox fx:id="comboPeriodo" maxWidth="1.7976931348623157E308" prefHeight="36.0" prefWidth="180.0" styleClass="comboBox" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS">
+                                    <ComboBox fx:id="comboPeriodo" maxWidth="1.7976931348623157E308" prefHeight="36.0" prefWidth="180.0" styleClass="comboBox" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" promptText="Selecciona un periodo">
                                        <GridPane.margin>
                                           <Insets left="3.0" right="10.0" />
                                        </GridPane.margin>

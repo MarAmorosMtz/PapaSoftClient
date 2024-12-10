@@ -49,7 +49,7 @@
                                                    <children>
                                                       <Label styleClass="labelForm" text="Acceso Coordinador" />
                                                       <TextField fx:id="usuarioCoordinador" promptText="Numero de Control" styleClass="labelForm" />
-                                                      <PasswordField fx:id="claveCoordinador" styleClass="labelForm" />
+                                                      <PasswordField fx:id="claveCoordinador" styleClass="labelForm" promptText="Contraseña" />
                                                       <Button fx:id="btn" mnemonicParsing="false" onAction="#entrar" text="Ingresar" />
                                                    </children>
                                                 </VBox>
@@ -65,7 +65,7 @@
                                                    <children>
                                                       <Label styleClass="labelForm" text="Acceso Secretario" />
                                                       <TextField fx:id="usuarioSecretario" promptText="Numero de Control" styleClass="labelForm" />
-                                                      <PasswordField fx:id="claveSecretario" styleClass="labelForm" />
+                                                      <PasswordField fx:id="claveSecretario" styleClass="labelForm" promptText="Contraseña"/>
                                                       <Button mnemonicParsing="false" onAction="#entrar" text="Ingresar" />
                                                    </children>
                                                 </VBox>

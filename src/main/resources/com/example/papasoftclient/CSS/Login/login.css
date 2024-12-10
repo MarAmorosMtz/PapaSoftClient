@@ -68,3 +68,36 @@
 -fx-scale-y: 0.95;
 }
 
+/********** TextField and PasswordField Styles **********/
+.text-field, .password-field {
+    -fx-background-color: #ffffff; /* Fondo blanco */
+    -fx-border-color: #ced4da; /* Borde gris claro */
+    -fx-border-radius: 8; /* Bordes redondeados */
+    -fx-background-radius: 8;
+    -fx-padding: 8; /* Espaciado interno */
+}
+
+.text-field:focused, .password-field:focused {
+    -fx-border-color: #6200ee; /* Borde púrpura al enfocar */
+    -fx-effect: dropshadow(three-pass-box, rgba(98, 0, 238, 0.3), 5, 0.0, 0, 2); /* Sombra */
+}
+
+/********** Button Styles **********/
+.button {
+    -fx-background-color: #6200ee; /* Fondo púrpura */
+    -fx-text-fill: white; /* Texto blanco */
+    -fx-background-radius: 8; /* Bordes redondeados */
+    -fx-border-radius: 8;
+    -fx-padding: 8 16; /* Espaciado interno */
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #3700b3; /* Color más oscuro al pasar el mouse */
+}
+
+.button:pressed {
+    -fx-background-color: #bb86fc; /* Color más claro al presionar */
+}
+
