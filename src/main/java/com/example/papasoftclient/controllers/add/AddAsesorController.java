@@ -32,9 +32,6 @@ public class AddAsesorController extends Observable {
     @FXML
     Button cancelarButton;
 
-    @FXML
-    CheckBox chkActivo;
-
     private AsesorRepository asesorRepository;
     private CarreraRepository carreraRepository;
     private ObservableList<CarreraModel> catalogoCarreras;
@@ -111,7 +108,6 @@ public class AddAsesorController extends Observable {
             asesor.setFecha_inscripcion(date.getValue());
             asesor.setSemestre(spnSemestre.getValue());
             asesor.setCarrera(comboCarrera.getSelectionModel().getSelectedItem().getId());
-            asesor.setActivo(chkActivo.isSelected());
 
             asesorRepository.save(asesor);
             this.notificar();

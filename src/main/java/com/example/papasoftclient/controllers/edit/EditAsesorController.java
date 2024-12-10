@@ -38,10 +38,6 @@ public class EditAsesorController extends Observable {
     ComboBox<CarreraModel> carrera;
     @FXML
     Spinner<Integer> semestre;
-
-    @FXML
-    CheckBox activo;
-
     @FXML
     Button guardarBtn;
     @FXML
@@ -120,8 +116,7 @@ public class EditAsesorController extends Observable {
                     //archivoSeleccionado.getAbsolutePath(),
                     //imagenSeleccionada.getAbsolutePath(),
                     "", "",
-                    carrera.getSelectionModel().getSelectedItem().getId(),
-                    activo.isSelected()
+                    carrera.getSelectionModel().getSelectedItem().getId()
             );
             asesorRepository.update(asesor.getId(),nuevoAsesor);
             cancelar();
@@ -151,7 +146,6 @@ public class EditAsesorController extends Observable {
         correo.setText(this.asesor.getCorreo());
         fechaInscripcion.setValue(this.asesor.getFecha_inscripcion());
         semestre.getValueFactory().setValue(this.asesor.getSemestre());
-        activo.setSelected(this.asesor.getActivo());
         carrera.setValue(this.asesor.getCarrera());
 
     }
