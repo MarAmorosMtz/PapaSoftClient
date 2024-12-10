@@ -27,6 +27,10 @@ public class EditAsesoriaController extends Observable {
     private ComboBox<SalonModel> comboSalon;
     @FXML
     private ComboBox<AsesorModel> comboAsesor;
+    @FXML
+    private CheckBox confirmada;
+    @FXML
+    private TextField tema;
 //    @FXML
 //    private ComboBox<AsesoradoModel> comboAsesorado1,comboAsesorado2,comboAsesorado3,comboAsesorado4,comboAsesorado5;
 //    @FXML
@@ -195,6 +199,8 @@ public class EditAsesoriaController extends Observable {
         comboHorario.setValue(this.asesoriaModel.getHora());
         comboSalon.setValue(this.asesoriaModel.getSalon());
         comboAsesor.setValue(this.asesoriaModel.getAsesor());
+        confirmada.setSelected(this.asesoriaModel.getConfirmada());
+        tema.setText(this.asesoriaModel.getTema());
         this.listaAsesorados = this.asesoriaModel.getAsesorados();
 
         cargarAsesores();
@@ -211,7 +217,8 @@ public class EditAsesoriaController extends Observable {
                 comboMateria.getValue().getId(),
                 comboSalon.getValue().getId(),
                 comboAsesor.getValue().getId(),
-                "Asesoria académica",
+                tema.getText(),
+                confirmada.isSelected(),
                 listaAsesorados
         );
         asesoriaRepository.update(this.asesoriaModel.getId(),asesoria);

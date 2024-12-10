@@ -33,6 +33,10 @@ public class AddAsesoriaController extends Observable {
     @FXML
     private ComboBox<MaestroModel> comboMaestro1,comboMaestro2,comboMaestro3,comboMaestro4,comboMaestro5;
     @FXML
+    private TextField tema;
+    @FXML
+    private CheckBox confirmada;
+    @FXML
     private Button btnCancelar;
 
     private ChangeListener<Object> oyenteHorario = ((observable, oldValue, newValue) -> {
@@ -208,7 +212,8 @@ public class AddAsesoriaController extends Observable {
                     comboMateria.getValue().getId(),
                     comboSalon.getValue().getId(),
                     comboAsesor.getValue().getId(),
-                    "Asesoria académica",
+                    tema.getText(),
+                    confirmada.isSelected(),
                     listaAsesorados
             );
             asesoriaRepository.save(asesoria);

@@ -2,13 +2,16 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="445.0" prefWidth="735.0" styleClass="vBox" stylesheets="@../CSS/Util/agregarStyle.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.papasoftclient.controllers.edit.EditAsesoriaController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="472.0" prefWidth="735.0" styleClass="vBox" stylesheets="@../CSS/Util/agregarStyle.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.papasoftclient.controllers.edit.EditAsesoriaController">
    <children>
       <Label text="Editar Asesoría" />
       <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="621.0" prefWidth="684.0" styleClass="hBoxTop">
@@ -47,6 +50,20 @@
                      <children>
                         <Label text="Salon:" />
                         <ComboBox fx:id="comboSalon" maxWidth="1.7976931348623157E308" prefHeight="43.0" promptText="Asigna un salon" styleClass="textField" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="114.0" prefWidth="449.0">
+                     <children>
+                        <Label text="Tema:" />
+                        <TextField fx:id="tema" styleClass="textField" />
+                        <FlowPane prefHeight="42.0" prefWidth="337.0">
+                           <children>
+                              <CheckBox fx:id="confirmada" mnemonicParsing="false" text="Confirmada" />
+                           </children>
+                           <padding>
+                              <Insets bottom="25.0" top="25.0" />
+                           </padding>
+                        </FlowPane>
                      </children>
                   </VBox>
                </children>

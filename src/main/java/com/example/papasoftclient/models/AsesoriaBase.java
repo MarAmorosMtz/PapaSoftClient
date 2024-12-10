@@ -10,20 +10,22 @@ public class AsesoriaBase {
 
     private LocalDate fecha;
     private String hora;
+    private String tema;
     private UUID materia, salon, asesor;
-    private String tipo;
+    private boolean confirmada;
     private ArrayList<DetalleAsesoradoModel> asesorados;
 
     public AsesoriaBase(){}
 
-    public AsesoriaBase(LocalDate fecha, String hora, UUID materia, UUID salon, UUID asesor, String tipo, ArrayList<DetalleAsesoradoModel> asesorados) {
+    public AsesoriaBase(LocalDate fecha, String hora, UUID materia, UUID salon, UUID asesor, String tema, boolean confirmada,ArrayList<DetalleAsesoradoModel> asesorados) {
         this.fecha = fecha;
         this.hora = hora;
         this.materia = materia;
         this.salon = salon;
         this.asesor = asesor;
-        this.tipo = tipo;
+        this.tema = tema;
         this.asesorados = asesorados;
+        this.confirmada = confirmada;
     }
 
     public LocalDate getFecha() {
@@ -66,12 +68,20 @@ public class AsesoriaBase {
         this.asesor = asesor;
     }
 
-    public String getTipo() {
-        return tipo;
+    public String getTema() {
+        return tema;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setTema(String tema) {
+        this.tema = tema;
+    }
+
+    public boolean getConfirmada() {
+        return confirmada;
+    }
+
+    public void setConfirmada(boolean confirmada) {
+        this.confirmada = confirmada;
     }
 
     public ArrayList<DetalleAsesoradoModel> getAsesorados() {

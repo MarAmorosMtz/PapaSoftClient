@@ -9,34 +9,37 @@ public class AsesoriaModel {
 
     private LocalDate fecha;
     private String hora;
+    private String tema;
     private MateriaModel materia;
     private SalonModel salon;
     private AsesorModel asesor;
-    private String tipo;
     private UUID id;
+    private boolean confirmada;
     private ArrayList<DetalleAsesoradoModel> asesorados;
 
     public AsesoriaModel() {}
 
-    public AsesoriaModel(LocalDate fecha, String hora, MateriaModel materia, SalonModel salon, AsesorModel asesor, String tipo, UUID id) {
+    public AsesoriaModel(LocalDate fecha, String hora, MateriaModel materia, SalonModel salon, AsesorModel asesor, String tema, UUID id, boolean confirmada) {
         this.fecha = fecha;
         this.hora = hora;
         this.materia = materia;
         this.salon = salon;
         this.asesor = asesor;
-        this.tipo = tipo;
+        this.tema = tema;
         this.id = id;
+        this.confirmada = confirmada;
     }
 
-    public AsesoriaModel(LocalDate fecha, String hora, MateriaModel materia, SalonModel salon, AsesorModel asesor, String tipo, UUID id, ArrayList<DetalleAsesoradoModel> asesorados) {
+    public AsesoriaModel(LocalDate fecha, String hora, MateriaModel materia, SalonModel salon, AsesorModel asesor, String tema, UUID id,boolean confirmada, ArrayList<DetalleAsesoradoModel> asesorados) {
         this.fecha = fecha;
         this.hora = hora;
         this.materia = materia;
         this.salon = salon;
         this.asesor = asesor;
-        this.tipo = tipo;
+        this.tema = tema;
         this.id = id;
         this.asesorados = asesorados;
+        this.confirmada = confirmada;
     }
 
     public LocalDate getFecha() {
@@ -79,12 +82,12 @@ public class AsesoriaModel {
         this.asesor = asesor;
     }
 
-    public String getTipo() {
-        return tipo;
+    public String getTema() {
+        return tema;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setTema(String tipo) {
+        this.tema = tipo;
     }
 
     public UUID getId() {
@@ -93,6 +96,14 @@ public class AsesoriaModel {
 
     public void setId(UUID id) {
         this.id = id;
+    }
+
+    public boolean getConfirmada() {
+        return confirmada;
+    }
+
+    public void setConfirmada(boolean confirmada) {
+        this.confirmada = confirmada;
     }
 
     public ArrayList<DetalleAsesoradoModel> getAsesorados() {

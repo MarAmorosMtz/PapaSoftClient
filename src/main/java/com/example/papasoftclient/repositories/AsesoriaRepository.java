@@ -63,6 +63,7 @@ public class AsesoriaRepository implements Repository<AsesoriaBase, AsesoriaMode
             request.setHeader("Content-Type", "application/json");
             request.setEntity(new StringEntity(mapper.writeValueAsString(item)));
             CloseableHttpResponse response = httpClient.execute(request);
+            System.out.println(EntityUtils.toString(response.getEntity()));
             AsesoriaModel asesoriaModel = mapper.readValue(EntityUtils.toString(response.getEntity()),AsesoriaModel.class);
             if (response.getCode() == 201) return asesoriaModel.getId();
         }catch (Exception ex) {

@@ -42,7 +42,7 @@ public class AsesoriaController implements Observador {
     @FXML
     TableColumn<AsesoriaModel, String> columnaSalon;
     @FXML
-    TableColumn<AsesoriaModel, String> columnaTipo;
+    TableColumn<AsesoriaModel, String> columnaEstado;
 
     @FXML
     Pagination paginadorAsesoria;
@@ -53,6 +53,11 @@ public class AsesoriaController implements Observador {
 
     @FXML
     public void initialize() {
+        columnaEstado.setCellValueFactory(cellData -> {
+                    boolean confirmada = cellData.getValue().getConfirmada();
+                    return new SimpleStringProperty(confirmada ? "Confirmada":"Sin confirmar");
+            }
+        );
         columnaAsesor.setCellValueFactory(cellData ->
                 new SimpleStringProperty(cellData.getValue().getAsesor().getNombre())
         );
