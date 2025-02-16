@@ -15,6 +15,7 @@ module com.example.papasoftclient {
     requires org.apache.httpcomponents.core5.httpcore5;
     requires java.sql;
     requires java.desktop;
+    requires java.net.http;
 
     opens com.example.papasoftclient to javafx.fxml;
     opens com.example.papasoftclient.controllers.add to javafx.fxml;

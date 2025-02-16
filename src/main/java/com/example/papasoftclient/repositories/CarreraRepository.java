@@ -1,35 +1,28 @@
 package com.example.papasoftclient.repositories;
 
 
-import com.example.papasoftclient.models.CarreraBase;
-import com.example.papasoftclient.models.CarreraModel;
-import com.example.papasoftclient.models.CarreraPage;
-import com.example.papasoftclient.utils.HttpClient;
-import com.example.papasoftclient.utils.JsonMapper;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.example.papasoftclient.models.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import org.apache.hc.client5.http.classic.methods.HttpDelete;
-import org.apache.hc.client5.http.classic.methods.HttpPost;
-import org.apache.hc.client5.http.classic.methods.HttpPut;
-import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
-import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
-import org.apache.hc.client5.http.classic.methods.HttpGet;
-import org.apache.hc.core5.http.io.entity.EntityUtils;
-import org.apache.hc.core5.http.io.entity.StringEntity;
-
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.UUID;
 
 public class CarreraRepository implements Repository<CarreraBase, CarreraModel>{
 
-    private CloseableHttpClient httpClient;
+    private HttpClient client;
     private ObjectMapper mapper;
     private String host;
 
     public CarreraRepository() {
-        this.httpClient = HttpClient.getClient();
-        this.mapper = JsonMapper.getMapper();
+        this.client = HttpClient.newHttpClient();
+        this.mapper = new ObjectMapper();
         this.host = RestAPI.CARRERAS_ENDPOINT;
     }
 
@@ -47,46 +40,52 @@ public class CarreraRepository implements Repository<CarreraBase, CarreraModel>{
 
     @Override
     public CarreraPage search(int page) {
-        CarreraPage carreraPage;
         try{
-            HttpGet request = new HttpGet(host+"?pagina="+page);
-            carreraPage = httpClient.execute(request,response->{
-                if (response.getCode() != 200) return null;
-                return mapper.readValue(EntityUtils.toString(response.getEntity()),CarreraPage.class);
-            });
-
-        }catch(Exception e){
-            e.printStackTrace();
-            return null;
+            HttpRequest request = HttpRequest.newBuilder().uri(new URI(host+"?pagina="+page)).GET().build();
+            HttpResponse<String> response = client.send(request,HttpResponse.BodyHandlers.ofString());
+            if(response.statusCode()==200) return mapper.readValue(response.body(), CarreraPage.class);
+        }catch (URISyntaxException urisex){
+            System.err.println("El URI no es valido");
+        }catch (IOException ioex){
+            System.err.println("Ocurrio un error de E/S o el cliente se cerro inesperadamente.");
         }
-        return carreraPage;
+        catch (InterruptedException intex){
+            System.err.println("Se interrumpio la operacion.");
+        }
+        return null;
     }
 
     @Override
     public CarreraModel search(UUID id) {
         try{
-            HttpGet request = new HttpGet(host+id.toString());
-            CarreraModel carrera = httpClient.execute(request,response->{
-                if (response.getCode() != 200) return null;
-                return mapper.readValue(EntityUtils.toString(response.getEntity()),CarreraModel.class);
-            });
-            return carrera;
-        }catch (Exception ex){
-            return null;
+            HttpRequest request = HttpRequest.newBuilder().uri(new URI(host+id.toString())).GET().build();
+            HttpResponse<String> response = client.send(request,HttpResponse.BodyHandlers.ofString());
+            if(response.statusCode()==200) return mapper.readValue(response.body(), CarreraModel.class);
+        }catch (URISyntaxException urisex){
+            System.err.println("El URI no es valido");
+        }catch (IOException ioex){
+            System.err.println("Ocurrio un error de E/S o el cliente se cerro inesperadamente.");
         }
+        catch (InterruptedException intex){
+            System.err.println("Se interrumpio la operacion.");
+        }
+        return null;
     }
 
     @Override
     public UUID save(CarreraBase item) {
         try{
-            HttpPost request = new HttpPost(host);
-            request.setHeader("Content-Type", "application/json");
-            request.setEntity(new StringEntity(mapper.writeValueAsString(item)));
-            CloseableHttpResponse response = httpClient.execute(request);
-            CarreraModel carrera = mapper.readValue(EntityUtils.toString(response.getEntity()),CarreraModel.class);
-            if (response.getCode() == 201) return carrera.getId();
-        }catch (Exception ex) {
-            return null;
+            HttpRequest request = HttpRequest.newBuilder().uri(new URI(host)).POST(HttpRequest.BodyPublishers.ofString(mapper.writeValueAsString(item))).build();
+            HttpResponse<String> response = client.send(request,HttpResponse.BodyHandlers.ofString());
+            CarreraModel carreraModel = mapper.readValue(response.body(), CarreraModel.class);
+            if(response.statusCode()==201) return carreraModel.getId();
+        }catch (URISyntaxException urisex){
+            System.err.println("El URI no es valido");
+        }catch (IOException ioex){
+            System.err.println("Ocurrio un error de E/S o el cliente se cerro inesperadamente.");
+        }
+        catch (InterruptedException intex){
+            System.err.println("Se interrumpio la operacion.");
         }
         return null;
     }
@@ -94,14 +93,17 @@ public class CarreraRepository implements Repository<CarreraBase, CarreraModel>{
     @Override
     public boolean update(UUID id,CarreraBase item) {
         try{
-            HttpPut request = new HttpPut(host+id.toString());
-            request.setHeader("Content-Type", "application/json");
-            request.setEntity(new StringEntity(mapper.writeValueAsString(item)));
-            CloseableHttpResponse response = httpClient.execute(request);
-            CarreraModel carrera = mapper.readValue(EntityUtils.toString(response.getEntity()),CarreraModel.class);
-            if (response.getCode() == 200) return true;
-        }catch (Exception ex) {
-            return false;
+            HttpRequest request = HttpRequest.newBuilder().uri(new URI(host)).POST(HttpRequest.BodyPublishers.ofString(mapper.writeValueAsString(item))).build();
+            HttpResponse<String> response = client.send(request,HttpResponse.BodyHandlers.ofString());
+            CarreraModel carreraModel = mapper.readValue(response.body(), CarreraModel.class);
+            return response.statusCode()==200;
+        }catch (URISyntaxException urisex){
+            System.err.println("El URI no es valido");
+        }catch (IOException ioex){
+            System.err.println("Ocurrio un error de E/S o el cliente se cerro inesperadamente.");
+        }
+        catch (InterruptedException intex){
+            System.err.println("Se interrumpio la operacion.");
         }
         return false;
     }
@@ -109,11 +111,16 @@ public class CarreraRepository implements Repository<CarreraBase, CarreraModel>{
     @Override
     public boolean remove(UUID id) {
         try{
-            HttpDelete request = new HttpDelete(host+id.toString());
-            CloseableHttpResponse response = httpClient.execute(request);
-            if(response.getCode() == 204) return true;
-        }catch (Exception ex){
-            return false;
+            HttpRequest request = HttpRequest.newBuilder().uri(new URI(host+"/"+id)).DELETE().build();
+            HttpResponse<String> response = client.send(request,HttpResponse.BodyHandlers.ofString());
+            return response.statusCode() == 204;
+        }catch (URISyntaxException urisex){
+            System.err.println("El URI no es valido");
+        }catch (IOException ioex){
+            System.err.println("Ocurrio un error de E/S o el cliente se cerro inesperadamente.");
+        }
+        catch (InterruptedException intex){
+            System.err.println("Se interrumpio la operacion.");
         }
         return false;
     }
