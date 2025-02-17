@@ -118,7 +118,7 @@ public class AsesorRepository implements Repository<AsesorBase, AsesorModel>{
     @Override
     public boolean remove(UUID id) {
         try{
-            HttpRequest request = HttpRequest.newBuilder().uri(new URI(host+"/"+id)).DELETE().build();
+            HttpRequest request = HttpRequest.newBuilder().uri(new URI(host+id)).DELETE().build();
             HttpResponse<String> response = client.send(request,HttpResponse.BodyHandlers.ofString());
             return response.statusCode() == 204;
         }catch (URISyntaxException urisex){

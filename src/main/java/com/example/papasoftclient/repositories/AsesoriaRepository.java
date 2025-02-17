@@ -80,6 +80,7 @@ public class AsesoriaRepository implements Repository<AsesoriaBase, AsesoriaMode
         try{
             HttpRequest request = HttpRequest.newBuilder().uri(new URI(host)).POST(HttpRequest.BodyPublishers.ofString(mapper.writeValueAsString(item))).build();
             HttpResponse<String> response = client.send(request,HttpResponse.BodyHandlers.ofString());
+            AsesoriaModel asesoriaModel = mapper.readValue(response.body(), AsesoriaModel.class);
             return response.statusCode()==200;
         }catch (URISyntaxException urisex){
             System.err.println("El URI no es valido");
@@ -95,7 +96,7 @@ public class AsesoriaRepository implements Repository<AsesoriaBase, AsesoriaMode
     @Override
     public boolean remove(UUID id) {
         try{
-            HttpRequest request = HttpRequest.newBuilder().uri(new URI(host+"/"+id)).DELETE().build();
+            HttpRequest request = HttpRequest.newBuilder().uri(new URI(host+id)).DELETE().build();
             HttpResponse<String> response = client.send(request,HttpResponse.BodyHandlers.ofString());
             return response.statusCode() == 204;
         }catch (URISyntaxException urisex){
