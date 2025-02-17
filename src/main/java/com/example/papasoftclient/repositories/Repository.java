@@ -3,6 +3,7 @@ package com.example.papasoftclient.repositories;
 
 
 import com.example.papasoftclient.models.Page;
+import com.example.papasoftclient.models.SalonPage;
 
 import java.util.UUID;
 

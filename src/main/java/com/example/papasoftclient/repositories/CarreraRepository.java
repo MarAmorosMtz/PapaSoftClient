@@ -58,7 +58,10 @@ public class CarreraRepository implements Repository<CarreraBase, CarreraModel>{
     @Override
     public CarreraModel search(UUID id) {
         try{
-            HttpRequest request = HttpRequest.newBuilder().uri(new URI(host+id.toString())).GET().build();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(new URI(host+id.toString()))
+                    .GET()
+                    .build();
             HttpResponse<String> response = client.send(request,HttpResponse.BodyHandlers.ofString());
             if(response.statusCode()==200) return mapper.readValue(response.body(), CarreraModel.class);
         }catch (URISyntaxException urisex){
@@ -75,7 +78,11 @@ public class CarreraRepository implements Repository<CarreraBase, CarreraModel>{
     @Override
     public UUID save(CarreraBase item) {
         try{
-            HttpRequest request = HttpRequest.newBuilder().uri(new URI(host)).POST(HttpRequest.BodyPublishers.ofString(mapper.writeValueAsString(item))).build();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .version(HttpClient.Version.HTTP_1_1)
+                    .uri(new URI(host))
+                    .POST(HttpRequest.BodyPublishers.ofString(mapper.writeValueAsString(item)))
+                    .build();
             HttpResponse<String> response = client.send(request,HttpResponse.BodyHandlers.ofString());
             CarreraModel carreraModel = mapper.readValue(response.body(), CarreraModel.class);
             if(response.statusCode()==201) return carreraModel.getId();
@@ -93,9 +100,12 @@ public class CarreraRepository implements Repository<CarreraBase, CarreraModel>{
     @Override
     public boolean update(UUID id,CarreraBase item) {
         try{
-            HttpRequest request = HttpRequest.newBuilder().uri(new URI(host)).POST(HttpRequest.BodyPublishers.ofString(mapper.writeValueAsString(item))).build();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .version(HttpClient.Version.HTTP_1_1)
+                    .uri(new URI(host+id))
+                    .PUT(HttpRequest.BodyPublishers.ofString(mapper.writeValueAsString(item)))
+                    .build();
             HttpResponse<String> response = client.send(request,HttpResponse.BodyHandlers.ofString());
-            CarreraModel carreraModel = mapper.readValue(response.body(), CarreraModel.class);
             return response.statusCode()==200;
         }catch (URISyntaxException urisex){
             System.err.println("El URI no es valido");
@@ -111,7 +121,7 @@ public class CarreraRepository implements Repository<CarreraBase, CarreraModel>{
     @Override
     public boolean remove(UUID id) {
         try{
-            HttpRequest request = HttpRequest.newBuilder().uri(new URI(host+"/"+id)).DELETE().build();
+            HttpRequest request = HttpRequest.newBuilder().uri(new URI(host+id)).DELETE().build();
             HttpResponse<String> response = client.send(request,HttpResponse.BodyHandlers.ofString());
             return response.statusCode() == 204;
         }catch (URISyntaxException urisex){

@@ -1,79 +1,93 @@
 package com.example.papasoftclient.repositories;
 
-import com.example.papasoftclient.models.AsesorPage;
-import com.example.papasoftclient.models.SalonBase;
-import com.example.papasoftclient.models.SalonModel;
-import com.example.papasoftclient.models.SalonPage;
-import com.example.papasoftclient.utils.HttpClient;
-import com.example.papasoftclient.utils.JsonMapper;
+import com.example.papasoftclient.models.*;
+
+
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.hc.client5.http.classic.methods.HttpDelete;
-import org.apache.hc.client5.http.classic.methods.HttpPost;
-import org.apache.hc.client5.http.classic.methods.HttpPut;
-import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
-import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
-import org.apache.hc.client5.http.classic.methods.HttpGet;
-import org.apache.hc.core5.http.io.entity.EntityUtils;
-import org.apache.hc.core5.http.io.entity.StringEntity;
+
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 
 import java.util.UUID;
 
 public class SalonRepository implements Repository<SalonBase, SalonModel>{
 
-    private CloseableHttpClient httpClient;
+    private HttpClient client;
     private ObjectMapper mapper;
     private String host;
 
+
     public SalonRepository() {
-        this.httpClient = HttpClient.getClient();
-        this.mapper = JsonMapper.getMapper();
+        this.client = HttpClient.newHttpClient();
+        this.mapper = new ObjectMapper();
         this.host = RestAPI.SALONES_ENDPOINT;
     }
 
     public SalonPage search(int page, int day, int month, int year, int hour, int minute) {
-        try{
-            HttpGet request = new HttpGet(host+"?pagina="+page
-                    +"&dia="+day
-                    +"&mes="+month+
-                    "&ano="+year+
-                    "&hora="+hour+
-                    "&minuto="+minute);
-            SalonPage salonPage = httpClient.execute(request,response->{
-                if (response.getCode() != 200) return null;
-                return mapper.readValue(EntityUtils.toString(response.getEntity()),SalonPage.class);
-            });
-            return salonPage;
-        }catch(Exception e){
-            e.printStackTrace();
-            return null;
+        try {
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(new URI(host + "?pagina=" + page
+                            + "&dia=" + day
+                            + "&mes=" + month
+                            + "&ano=" + year
+                            + "&hora=" + hour
+                            + "&minuto=" + minute))
+                    .GET()
+                    .build();
+
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+            if (response.statusCode() == 200) {
+                return mapper.readValue(response.body(), SalonPage.class);
+            }
+        } catch (URISyntaxException urisex) {
+            System.err.println("El URI no es válido.");
+        } catch (IOException ioex) {
+            System.err.println("Ocurrió un error de E/S o el cliente se cerró inesperadamente.");
+        } catch (InterruptedException intex) {
+            System.err.println("Se interrumpió la operación.");
         }
+
+        return null;
     }
 
     @Override
     public SalonPage search(int page) {
         try{
-            HttpGet request = new HttpGet(host+"?pagina="+page);
-            SalonPage salonPage = httpClient.execute(request,response->{
-                if (response.getCode() != 200) return null;
-                return mapper.readValue(EntityUtils.toString(response.getEntity()),SalonPage.class);
-            });
-            return salonPage;
-        }catch(Exception e){
-            e.printStackTrace();
-            return null;
+            HttpRequest request = HttpRequest.newBuilder().uri(new URI(host+"?pagina="+page)).GET().build();
+            HttpResponse<String> response = client.send(request,HttpResponse.BodyHandlers.ofString());
+            if(response.statusCode()==200) return mapper.readValue(response.body(), SalonPage.class);
+        }catch (URISyntaxException urisex){
+            System.err.println("El URI no es valido");
+        }catch (IOException ioex){
+            System.err.println("Ocurrio un error de E/S o el cliente se cerro inesperadamente.");
         }
+        catch (InterruptedException intex){
+            System.err.println("Se interrumpio la operacion.");
+        }
+        return null;
     }
 
     @Override
     public SalonModel search(UUID id) {
         try{
-            HttpGet request = new HttpGet(host+id.toString());
-            SalonModel salon = httpClient.execute(request,response->{
-                if (response.getCode() == 200) return null;
-                return mapper.readValue(EntityUtils.toString(response.getEntity()),SalonModel.class);
-            });
-        }catch (Exception ex){
-            return null;
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(new URI(host+id.toString()))
+                    .GET()
+                    .build();
+            HttpResponse<String> response = client.send(request,HttpResponse.BodyHandlers.ofString());
+            if(response.statusCode()==200) return mapper.readValue(response.body(), SalonModel.class);
+        }catch (URISyntaxException urisex){
+            System.err.println("El URI no es valido");
+        }catch (IOException ioex){
+            System.err.println("Ocurrio un error de E/S o el cliente se cerro inesperadamente.");
+        }
+        catch (InterruptedException intex){
+            System.err.println("Se interrumpio la operacion.");
         }
         return null;
     }
@@ -81,14 +95,21 @@ public class SalonRepository implements Repository<SalonBase, SalonModel>{
     @Override
     public UUID save(SalonBase item) {
         try{
-            HttpPost request = new HttpPost(host);
-            request.setHeader("Content-Type", "application/json");
-            request.setEntity(new StringEntity(mapper.writeValueAsString(item)));
-            CloseableHttpResponse response = httpClient.execute(request);
-            SalonModel salon = mapper.readValue(EntityUtils.toString(response.getEntity()),SalonModel.class);
-            if (response.getCode() == 201) return salon.getId();
-        }catch (Exception ex) {
-            return null;
+            HttpRequest request = HttpRequest.newBuilder()
+                    .version(HttpClient.Version.HTTP_1_1)
+                    .uri(new URI(host))
+                    .POST(HttpRequest.BodyPublishers.ofString(mapper.writeValueAsString(item)))
+                    .build();
+            HttpResponse<String> response = client.send(request,HttpResponse.BodyHandlers.ofString());
+            SalonModel salonModel = mapper.readValue(response.body(), SalonModel.class);
+            if(response.statusCode()==201) return salonModel.getId();
+        }catch (URISyntaxException urisex){
+            System.err.println("El URI no es valido");
+        }catch (IOException ioex){
+            System.err.println("Ocurrio un error de E/S o el cliente se cerro inesperadamente.");
+        }
+        catch (InterruptedException intex){
+            System.err.println("Se interrumpio la operacion.");
         }
         return null;
     }
@@ -96,29 +117,37 @@ public class SalonRepository implements Repository<SalonBase, SalonModel>{
     @Override
     public boolean update(UUID id,SalonBase item) {
         try{
-            HttpPut request = new HttpPut(host+id.toString());
-            request.setHeader("Content-Type", "application/json");
-            request.setEntity(new StringEntity(mapper.writeValueAsString(item)));
-            CloseableHttpResponse response = httpClient.execute(request);
-            if (response.getCode() == 200) return true;
-        }catch (Exception ex) {
-            ex.printStackTrace();
-            return false;
+            HttpRequest request = HttpRequest.newBuilder()
+                    .version(HttpClient.Version.HTTP_1_1)
+                    .uri(new URI(host+id))
+                    .PUT(HttpRequest.BodyPublishers.ofString(mapper.writeValueAsString(item)))
+                    .build();
+            HttpResponse<String> response = client.send(request,HttpResponse.BodyHandlers.ofString());
+            return response.statusCode()==200;
+        }catch (URISyntaxException urisex){
+            System.err.println("El URI no es valido");
+        }catch (IOException ioex){
+            System.err.println("Ocurrio un error de E/S o el cliente se cerro inesperadamente.");
+        }
+        catch (InterruptedException intex){
+            System.err.println("Se interrumpio la operacion.");
         }
         return false;
     }
 
     @Override
     public boolean remove(UUID id) {
-        try{
-            HttpDelete request = new HttpDelete(host+id.toString());
-            CloseableHttpResponse response = httpClient.execute(request);
-            if(response.getCode() == 204) return true;
-        }catch (Exception ex){
-            return false;
+        try {
+            HttpRequest request = HttpRequest.newBuilder().uri(new URI(host + id)).DELETE().build();
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            return response.statusCode() == 204;
+        } catch (URISyntaxException urisex) {
+            System.err.println("El URI no es valido");
+        } catch (IOException ioex) {
+            System.err.println("Ocurrio un error de E/S o el cliente se cerro inesperadamente.");
+        } catch (InterruptedException intex) {
+            System.err.println("Se interrumpio la operacion.");
         }
         return false;
     }
-
-
 }
