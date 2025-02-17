@@ -1,74 +1,78 @@
 package com.example.papasoftclient.repositories;
 
-import com.example.papasoftclient.models.AsesoradoBase;
-import com.example.papasoftclient.models.AsesoradoModel;
-import com.example.papasoftclient.models.AsesoradoPage;
-import com.example.papasoftclient.utils.HttpClient;
-import com.example.papasoftclient.utils.JsonMapper;
+import com.example.papasoftclient.models.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.hc.client5.http.classic.methods.HttpDelete;
-import org.apache.hc.client5.http.classic.methods.HttpGet;
-import org.apache.hc.client5.http.classic.methods.HttpPost;
-import org.apache.hc.client5.http.classic.methods.HttpPut;
-import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
-import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
-import org.apache.hc.core5.http.io.entity.EntityUtils;
-import org.apache.hc.core5.http.io.entity.StringEntity;
-
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.util.UUID;
 
-public class AsesoradoRepository implements Repository<AsesoradoBase,AsesoradoModel>{
+public class AsesoradoRepository implements Repository<AsesoradoBase, AsesoradoModel>{
 
-    private CloseableHttpClient httpClient;
+    private HttpClient client;
     private ObjectMapper mapper;
     private String host;
 
     public AsesoradoRepository() {
-        this.httpClient = HttpClient.getClient();
-        this.mapper = JsonMapper.getMapper();
+        this.client = HttpClient.newHttpClient();
+        this.mapper = new ObjectMapper();
         this.host = RestAPI.ASESORADOS_ENDPOINT;
     }
 
     @Override
+
     public AsesoradoPage search(int page) {
         try{
-            HttpGet request = new HttpGet(host+"?pagina="+page);
-            AsesoradoPage asesoradoPage = httpClient.execute(request,response->{
-                if (response.getCode() != 200) return null;
-                return mapper.readValue(EntityUtils.toString(response.getEntity()),AsesoradoPage.class);
-            });
-            return asesoradoPage;
-        }catch(Exception e){
-            e.printStackTrace();
-            return null;
+            HttpRequest request = HttpRequest.newBuilder().uri(new URI(host+"?pagina="+page)).GET().build();
+            HttpResponse<String> response = client.send(request,HttpResponse.BodyHandlers.ofString());
+            if(response.statusCode()==200) return mapper.readValue(response.body(), AsesoradoPage.class);
+        }catch (URISyntaxException urisex){
+            System.err.println("El URI no es valido");
+        }catch (IOException ioex){
+            System.err.println("Ocurrio un error de E/S o el cliente se cerro inesperadamente.");
         }
+        catch (InterruptedException intex){
+            System.err.println("Se interrumpio la operacion.");
+        }
+        return null;
     }
+
 
     @Override
     public AsesoradoModel search(UUID id) {
         try{
-            HttpGet request = new HttpGet(host+id.toString());
-            AsesoradoModel asesorado = httpClient.execute(request,response->{
-                if (response.getCode() != 200) return null;
-                return mapper.readValue(EntityUtils.toString(response.getEntity()),AsesoradoModel.class);
-            });
-            return asesorado;
-        }catch (Exception ex){
-            return null;
+            HttpRequest request = HttpRequest.newBuilder().uri(new URI(host+id.toString())).GET().build();
+            HttpResponse<String> response = client.send(request,HttpResponse.BodyHandlers.ofString());
+            if(response.statusCode()==200) return mapper.readValue(response.body(), AsesoradoModel.class);
+        }catch (URISyntaxException urisex){
+            System.err.println("El URI no es valido");
+        }catch (IOException ioex){
+            System.err.println("Ocurrio un error de E/S o el cliente se cerro inesperadamente.");
         }
+        catch (InterruptedException intex){
+            System.err.println("Se interrumpio la operacion.");
+        }
+        return null;
     }
+
 
     @Override
     public UUID save(AsesoradoBase item) {
         try{
-            HttpPost request = new HttpPost(host);
-            request.setHeader("Content-Type", "application/json");
-            request.setEntity(new StringEntity(mapper.writeValueAsString(item)));
-            CloseableHttpResponse response = httpClient.execute(request);
-            AsesoradoModel asesoradoModel = mapper.readValue(EntityUtils.toString(response.getEntity()),AsesoradoModel.class);
-            if (response.getCode() == 201) return asesoradoModel.getId();
-        }catch (Exception ex) {
-            return null;
+            HttpRequest request = HttpRequest.newBuilder().uri(new URI(host)).POST(HttpRequest.BodyPublishers.ofString(mapper.writeValueAsString(item))).build();
+            HttpResponse<String> response = client.send(request,HttpResponse.BodyHandlers.ofString());
+            AsesoradoModel asesoradoModel = mapper.readValue(response.body(), AsesoradoModel.class);
+            if(response.statusCode()==201) return asesoradoModel.getId();
+        }catch (URISyntaxException urisex){
+            System.err.println("El URI no es valido");
+        }catch (IOException ioex){
+            System.err.println("Ocurrio un error de E/S o el cliente se cerro inesperadamente.");
+        }
+        catch (InterruptedException intex){
+            System.err.println("Se interrumpio la operacion.");
         }
         return null;
     }
@@ -76,14 +80,17 @@ public class AsesoradoRepository implements Repository<AsesoradoBase,AsesoradoMo
     @Override
     public boolean update(UUID id,AsesoradoBase item) {
         try{
-            HttpPut request = new HttpPut(host+id.toString());
-            request.setHeader("Content-Type", "application/json");
-            request.setEntity(new StringEntity(mapper.writeValueAsString(item)));
-            CloseableHttpResponse response = httpClient.execute(request);
-            AsesoradoBase asesoradoBase = mapper.readValue(EntityUtils.toString(response.getEntity()),AsesoradoBase.class);
-            if (response.getCode() == 200) return true;
-        }catch (Exception ex) {
-            return false;
+            HttpRequest request = HttpRequest.newBuilder().uri(new URI(host)).POST(HttpRequest.BodyPublishers.ofString(mapper.writeValueAsString(item))).build();
+            HttpResponse<String> response = client.send(request,HttpResponse.BodyHandlers.ofString());
+            AsesoradoModel asesoradoModel = mapper.readValue(response.body(), AsesoradoModel.class);
+            return response.statusCode()==200;
+        }catch (URISyntaxException urisex){
+            System.err.println("El URI no es valido");
+        }catch (IOException ioex){
+            System.err.println("Ocurrio un error de E/S o el cliente se cerro inesperadamente.");
+        }
+        catch (InterruptedException intex){
+            System.err.println("Se interrumpio la operacion.");
         }
         return false;
     }
@@ -91,11 +98,16 @@ public class AsesoradoRepository implements Repository<AsesoradoBase,AsesoradoMo
     @Override
     public boolean remove(UUID id) {
         try{
-            HttpDelete request = new HttpDelete(host+id.toString());
-            CloseableHttpResponse response = httpClient.execute(request);
-            if(response.getCode() == 204) return true;
-        }catch (Exception ex){
-            return false;
+            HttpRequest request = HttpRequest.newBuilder().uri(new URI(host+"/"+id)).DELETE().build();
+            HttpResponse<String> response = client.send(request,HttpResponse.BodyHandlers.ofString());
+            return response.statusCode() == 204;
+        }catch (URISyntaxException urisex){
+            System.err.println("El URI no es valido");
+        }catch (IOException ioex){
+            System.err.println("Ocurrio un error de E/S o el cliente se cerro inesperadamente.");
+        }
+        catch (InterruptedException intex){
+            System.err.println("Se interrumpio la operacion.");
         }
         return false;
     }
