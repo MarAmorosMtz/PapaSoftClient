@@ -1,12 +1,13 @@
 package com.example.papasoftclient.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.time.LocalDate;
-import java.util.UUID;
 
 public class Alumno extends Persona{
     protected String num_ctrl;
     protected String telefono;
     protected String correo;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     protected LocalDate fecha_inscripcion;
     protected int semestre;
 

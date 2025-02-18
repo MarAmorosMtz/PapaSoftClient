@@ -1,11 +1,15 @@
 package com.example.papasoftclient.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.time.LocalDate;
-import java.util.Date;
+
 
 public class PeriodoBase {
     protected String nombre;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     protected LocalDate fecha_inicio;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     protected LocalDate fecha_fin;
 
     public PeriodoBase() {}

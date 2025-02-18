@@ -1,13 +1,13 @@
 package com.example.papasoftclient.models;
 
-import java.sql.Time;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.UUID;
-import java.sql.Date;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class AsesoriaBase {
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate fecha;
     private String hora;
     private String tema;

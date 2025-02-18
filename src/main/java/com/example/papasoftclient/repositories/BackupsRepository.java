@@ -1,42 +1,45 @@
 package com.example.papasoftclient.repositories;
 
-import com.example.papasoftclient.utils.HttpClient;
-import org.apache.hc.client5.http.classic.methods.HttpPost;
-import org.apache.hc.client5.http.entity.mime.FileBody;
-import org.apache.hc.client5.http.entity.mime.MultipartEntityBuilder;
-import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
-import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
-import org.apache.hc.core5.http.HttpEntity;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.http.HttpClient;
 import java.io.File;
 import java.io.IOException;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 
 public class BackupsRepository {
-    private CloseableHttpClient httpClient;
+
+    private HttpClient client;
+    private String host;
 
     public BackupsRepository(){
-        this.httpClient = HttpClient.getClient();
+        this.client = HttpClient.newHttpClient();
+        this.host = RestAPI.RESTORE_ENDPOINT;
     }
 
     public void backup(){
     }
 
     public boolean restore(File backupFile) {
-        try{
-            HttpPost uploadFile = new HttpPost(RestAPI.RESTORE_ENDPOINT);
-            MultipartEntityBuilder builder = MultipartEntityBuilder.create();
-            FileBody fileBody = new FileBody(backupFile);
-            builder.addPart("file", fileBody);
+        try {
 
-            HttpEntity multipartEntity = builder.build();
-            uploadFile.setEntity(multipartEntity);
-            CloseableHttpResponse respuesta = httpClient.execute(uploadFile);
-            if(respuesta.getCode()==200)return true;
-        }catch (IOException ioex){
-            ioex.printStackTrace();
+            HttpRequest.BodyPublisher fileBody = HttpRequest.BodyPublishers.ofFile(backupFile.toPath());
+
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(new URI(host))
+                    .header("Content-Type", "multipart/form-data")
+                    .POST(fileBody)
+                    .build();
+
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+            return response.statusCode() == 200;
+        } catch (IOException | InterruptedException | URISyntaxException e) {
+            e.printStackTrace();
             return false;
         }
-        return false;
     }
 
 }
