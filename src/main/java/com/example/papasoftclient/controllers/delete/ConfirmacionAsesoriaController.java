@@ -1,6 +1,5 @@
 package com.example.papasoftclient.controllers.delete;
 
-import com.example.papasoftclient.models.AsesorModel;
 import com.example.papasoftclient.models.AsesoriaModel;
 import com.example.papasoftclient.repositories.AsesoriaRepository;
 import com.example.papasoftclient.utils.Observable;

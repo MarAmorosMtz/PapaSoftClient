@@ -2,16 +2,13 @@ package com.example.papasoftclient.controllers.delete;
 
 import com.example.papasoftclient.models.MaestroModel;
 import com.example.papasoftclient.repositories.MaestroRepository;
-import com.example.papasoftclient.repositories.RestAPI;
+
 import com.example.papasoftclient.utils.Observable;
-import com.example.papasoftclient.utils.Observador;
-import com.fasterxml.jackson.databind.ObjectMapper;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
-import org.apache.hc.client5.http.impl.classic.HttpClients;
 
 public class ConfirmacionMaestroController extends Observable {
     @FXML

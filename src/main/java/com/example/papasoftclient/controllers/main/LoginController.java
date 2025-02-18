@@ -83,8 +83,6 @@ public class LoginController {
         LoginModel loginModel = new LoginModel(nombreUsuario,clave,tipoUsuario);
         boolean usuarioValido = loginRepository.login(loginModel);
 
-        usuarioValido = true;
-
         if(usuarioValido){
             Scene scene = new Scene(vista.load());
             Stage stage = new Stage();

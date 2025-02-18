@@ -6,13 +6,11 @@ import com.example.papasoftclient.repositories.MaestroRepository;
 import com.example.papasoftclient.repositories.RestAPI;
 import com.example.papasoftclient.utils.Observable;
 import com.example.papasoftclient.utils.Validate;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
-import org.apache.hc.client5.http.impl.classic.HttpClients;
+
 
 public class EditMaestroController extends Observable {
     @FXML

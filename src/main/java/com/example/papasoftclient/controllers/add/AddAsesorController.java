@@ -8,11 +8,11 @@ import com.example.papasoftclient.utils.Observable;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.stage.FileChooser;
+
 import javafx.stage.Stage;
 import com.example.papasoftclient.utils.Validate;
 
-import java.io.File;
+
 import java.sql.Date;
 
 public class AddAsesorController extends Observable {

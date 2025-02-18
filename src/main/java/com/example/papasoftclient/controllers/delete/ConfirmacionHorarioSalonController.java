@@ -1,9 +1,7 @@
 package com.example.papasoftclient.controllers.delete;
 
-import com.example.papasoftclient.models.HorarioAsesorModel;
 import com.example.papasoftclient.models.HorarioModel;
 import com.example.papasoftclient.models.HorarioSalonModel;
-import com.example.papasoftclient.repositories.HorariosAsesorRepository;
 import com.example.papasoftclient.repositories.HorariosSalonRepository;
 import com.example.papasoftclient.utils.Observable;
 import javafx.fxml.FXML;

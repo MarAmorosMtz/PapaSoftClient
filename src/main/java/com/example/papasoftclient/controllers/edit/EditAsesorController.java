@@ -4,9 +4,7 @@ import com.example.papasoftclient.models.*;
 import com.example.papasoftclient.repositories.AsesorRepository;
 import com.example.papasoftclient.repositories.AsesoradoRepository;
 import com.example.papasoftclient.repositories.CarreraRepository;
-import com.example.papasoftclient.repositories.RestAPI;
-import com.example.papasoftclient.utils.HttpClient;
-import com.example.papasoftclient.utils.JsonMapper;
+
 import com.example.papasoftclient.utils.Observable;
 import com.example.papasoftclient.utils.Validate;
 import javafx.collections.ObservableList;

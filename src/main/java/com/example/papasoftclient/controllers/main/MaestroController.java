@@ -8,7 +8,7 @@ import com.example.papasoftclient.models.MaestroPage;
 import com.example.papasoftclient.repositories.MaestroRepository;
 import com.example.papasoftclient.repositories.RestAPI;
 import com.example.papasoftclient.utils.Observador;
-import com.fasterxml.jackson.databind.ObjectMapper;
+
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,8 +22,7 @@ import javafx.scene.effect.GaussianBlur;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
-import org.apache.hc.client5.http.impl.classic.HttpClients;
+
 
 import java.io.IOException;
 

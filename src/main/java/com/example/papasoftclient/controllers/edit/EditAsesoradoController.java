@@ -5,18 +5,16 @@ import com.example.papasoftclient.models.CarreraModel;
 import com.example.papasoftclient.models.AsesoradoModel;
 import com.example.papasoftclient.repositories.AsesoradoRepository;
 import com.example.papasoftclient.repositories.CarreraRepository;
-import com.example.papasoftclient.repositories.RestAPI;
-import com.example.papasoftclient.utils.HttpClient;
-import com.example.papasoftclient.utils.JsonMapper;
+
 import com.example.papasoftclient.utils.Observable;
 import com.example.papasoftclient.utils.Validate;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.stage.FileChooser;
+
 import javafx.stage.Stage;
 
-import java.io.File;
+
 import java.sql.Date;
 
 public class EditAsesoradoController extends Observable {

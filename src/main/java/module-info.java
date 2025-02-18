@@ -6,13 +6,9 @@ module com.example.papasoftclient {
     requires com.dlsc.formsfx;
     requires net.synedra.validatorfx;
     requires eu.hansolo.tilesfx;
-    requires org.apache.httpcomponents.client5.httpclient5;
-    requires org.apache.httpcomponents.httpclient;
     requires com.fasterxml.jackson.core;
     requires com.fasterxml.jackson.databind;
     requires com.fasterxml.jackson.datatype.jsr310;
-    requires org.apache.httpcomponents.httpcore;
-    requires org.apache.httpcomponents.core5.httpcore5;
     requires java.sql;
     requires java.desktop;
     requires java.net.http;
