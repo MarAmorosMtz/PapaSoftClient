@@ -1,9 +1,6 @@
 package com.example.papasoftclient.models;
 
-import eu.hansolo.tilesfx.tools.DoubleExponentialSmoothingForLinearSeries;
-
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.UUID;
 
 public class AsesorBase extends Alumno {
