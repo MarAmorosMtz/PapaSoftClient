@@ -18,19 +18,25 @@ public class LoginRepository {
 
     public LoginRepository() {
         this.host = RestAPI.LOGIN_ENDPOINT;
-        this.client = HttpClient.newHttpClient();
+        this.client = HttpClient.newBuilder()
+                .followRedirects(HttpClient.Redirect.ALWAYS)
+                .build();
         this.mapper = new ObjectMapper();
     }
 
     public boolean login(LoginModel loginModel) {
         try {
             HttpRequest request = HttpRequest.newBuilder()
+                    .version(HttpClient.Version.HTTP_1_1)
                     .uri(new URI(host))
-                    .header("Content-Type", "application/json")
                     .POST(HttpRequest.BodyPublishers.ofString(mapper.writeValueAsString(loginModel)))
                     .build();
-
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+            /*if (response.statusCode() == 200) {
+                JsonNode jsonResponse = mapper.readTree(response.body());
+                return jsonResponse.get("success").asBoolean();
+            }*/
             return response.statusCode() == 200;
         } catch (URISyntaxException | IOException | InterruptedException ex) {
             ex.printStackTrace();
