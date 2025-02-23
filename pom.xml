@@ -138,7 +138,7 @@
                     <noManPages>true</noManPages>
                     <launcher>papasoft</launcher>
                     <jlinkImageName>papasoft_image</jlinkImageName>
-                    <jmodsPath>D:\Downloads\javafx-jmods-23.0.2</jmodsPath>
+                    <jmodsPath>${env.JFX_MODS}</jmodsPath>
                 </configuration>
             </plugin>
         </plugins>
