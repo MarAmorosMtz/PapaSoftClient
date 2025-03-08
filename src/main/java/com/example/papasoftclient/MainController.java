@@ -81,6 +81,8 @@ public class MainController {
                 return "backup/vistaBackup";
             case "btnAcercaDe":
                 return "ayuda/vistaAcercaDe";
+            case "btnMateriasAsesor":
+                return "asesorMateria/vistaAsesorMateria";
             default:
                 return null;
         }
