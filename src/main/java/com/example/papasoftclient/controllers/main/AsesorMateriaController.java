@@ -1,6 +1,8 @@
 package com.example.papasoftclient.controllers.main;
 
 import com.example.papasoftclient.Main;
+import com.example.papasoftclient.controllers.add.AddAsesorMateriaController;
+import com.example.papasoftclient.controllers.delete.ConfirmacionAsesorMateriaController;
 import com.example.papasoftclient.models.*;
 import com.example.papasoftclient.repositories.AsesorMateriaRepository;
 import com.example.papasoftclient.repositories.AsesorRepository;
@@ -13,9 +15,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -111,8 +117,15 @@ public class AsesorMateriaController implements Observador {
     @FXML
     private void handleButtonAction(ActionEvent event) throws IOException {
         if(listo()){
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/com/example/papasoftclient/asesorMateria.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/com/example/papasoftclient/asesorMateria/vistaAgregarAsesorMateria.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
+            AddAsesorMateriaController controller = fxmlLoader.getController();
+            controller.agregarObservador(this);
+            controller.setAsesor(comboAsesor.getValue().getId());
+            Stage newStage = new Stage();
+            newStage.setScene(scene);
+            newStage.setResizable(true);
+            newStage.show();
         }
     }
 
@@ -120,7 +133,28 @@ public class AsesorMateriaController implements Observador {
     private void edit(){}
 
     @FXML
-    private void delete(){}
+    private void delete() throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/com/example/papasoftclient/asesorMateria/vistaConfirmacionAsesorMateria.fxml"));
+        Parent parent = fxmlLoader.load();
+        int rowIndex = tablaMaterias.getSelectionModel().getSelectedIndex();
+
+        if(rowIndex != -1){
+            AsesorMateriaModel asesorMateriaModel = tablaMaterias.getItems().get(rowIndex);
+            System.out.println(asesorMateriaModel);
+            ConfirmacionAsesorMateriaController controller = fxmlLoader.getController();
+            controller.setAsesorMateria(asesorMateriaModel);
+            controller.agregarObservador(this);
+
+            Stage stage = new Stage(StageStyle.UNDECORATED);
+            stage.setScene(new Scene(parent));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initOwner(stage.getOwner());
+            stage.setMaximized(false);
+            stage.setResizable(true);
+
+            stage.show();
+        }
+    }
 
     @FXML
     public void actualizar(){ actualizarTabla(); }

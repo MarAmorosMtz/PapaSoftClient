@@ -12,7 +12,7 @@ public class AsesorMateriaBase {
         this.materia_id = materia;
     }
 
-    public UUID getAsesor(){
+    public UUID getAsesor_id(){
         return this.asesor_id;
     }
 

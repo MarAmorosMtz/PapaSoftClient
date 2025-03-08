@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="202.0" prefWidth="822.0" stylesheets="@../CSS/Util/confirmacionStyle.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.papasoftclient.controllers.delete.ConfirmacionHorarioSalonController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="202.0" prefWidth="822.0" stylesheets="@../CSS/Util/confirmacionStyle.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.papasoftclient.controllers.delete.ConfirmacionAsesorMateriaController">
    <left>
       <Pane prefHeight="227.0" prefWidth="30.0" styleClass="Pane" BorderPane.alignment="CENTER" />
    </left>

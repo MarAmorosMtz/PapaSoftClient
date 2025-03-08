@@ -33,7 +33,7 @@ public class AsesorMateriaModel {
 
     @Override
     public String toString(){
-        return this.asesor_id +" "+this.materia_id;
+        return this.asesor_id +" "+this.materia_id+" "+this.id;
     }
 
 }

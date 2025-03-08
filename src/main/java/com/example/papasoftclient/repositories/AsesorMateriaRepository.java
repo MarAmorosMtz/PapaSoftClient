@@ -26,15 +26,11 @@ public class AsesorMateriaRepository implements Repository<AsesorMateriaBase, As
         try{
             HttpRequest request = HttpRequest.newBuilder().uri(new URI(host+"?asesor="+asesor.toString())).GET().build();
             HttpResponse<String> response = client.send(request,HttpResponse.BodyHandlers.ofString());
-
-            System.out.println(response.body());
-
             if(response.statusCode()==200) return mapper.readValue(response.body(), AsesorMateriaPage.class);
         }catch (URISyntaxException urisex){
             System.err.println("El URI no es valido");
         }catch (IOException ioex){
             System.err.println("Ocurrio un error de E/S o el cliente se cerro inesperadamente.");
-            System.out.println(ioex);
         }
         catch (InterruptedException intex){
             System.err.println("Se interrumpio la operacion.");
