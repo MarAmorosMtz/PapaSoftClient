@@ -18,4 +18,5 @@ public class RestAPI {
     public static final String RESTORE_ENDPOINT = HOST+"/restoreBackup/";
     public static final String ASESOR_REPORT_ENDPOINT = HOST+"/asesores/reportes/";
     public static final String CARRERA_REPORT_ENDPOINT = HOST+"/carreras/reportes/";
+    public static final String ASESOR_MATERIA_ENDPOINT = HOST+"/asesor-materia/";
 }

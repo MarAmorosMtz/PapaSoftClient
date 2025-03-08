@@ -1,9 +1,7 @@
 package com.example.papasoftclient.repositories;
 
-
 import com.example.papasoftclient.models.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import java.io.IOException;
 import java.net.URI;
@@ -13,21 +11,39 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.UUID;
 
-public class AsesoriaRepository implements Repository<AsesoriaBase, AsesoriaModel>{
-
-    private java.net.http.HttpClient client;
+public class AsesorMateriaRepository implements Repository<AsesorMateriaBase, AsesorMateriaModel>{
+    private HttpClient client;
     private ObjectMapper mapper;
     private String host;
 
-    public AsesoriaRepository() {
+    public AsesorMateriaRepository(){
         this.client = HttpClient.newHttpClient();
         this.mapper = new ObjectMapper();
-        mapper.registerModule(new JavaTimeModule());
-        this.host = RestAPI.ASESORIAS_ENDPOINT;
+        this.host = RestAPI.ASESOR_MATERIA_ENDPOINT;
+    }
+
+    public AsesorMateriaPage all(UUID asesor){
+        try{
+            HttpRequest request = HttpRequest.newBuilder().uri(new URI(host+"?asesor="+asesor.toString())).GET().build();
+            HttpResponse<String> response = client.send(request,HttpResponse.BodyHandlers.ofString());
+
+            System.out.println(response.body());
+
+            if(response.statusCode()==200) return mapper.readValue(response.body(), AsesorMateriaPage.class);
+        }catch (URISyntaxException urisex){
+            System.err.println("El URI no es valido");
+        }catch (IOException ioex){
+            System.err.println("Ocurrio un error de E/S o el cliente se cerro inesperadamente.");
+            System.out.println(ioex);
+        }
+        catch (InterruptedException intex){
+            System.err.println("Se interrumpio la operacion.");
+        }
+        return null;
     }
 
     @Override
-    public AsesoriaPage search(int page) {
+    public AsesorMateriaPage search(int page){
         try {
             HttpRequest request = HttpRequest.newBuilder()
                     .version(HttpClient.Version.HTTP_1_1)
@@ -38,7 +54,7 @@ public class AsesoriaRepository implements Repository<AsesoriaBase, AsesoriaMode
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
             if (response.statusCode() == 200) {
-                return mapper.readValue(response.body(), AsesoriaPage.class);
+                return mapper.readValue(response.body(), AsesorMateriaPage.class);
             } else {
                 System.err.println("Error: Código de respuesta HTTP " + response.statusCode());
             }
@@ -57,11 +73,11 @@ public class AsesoriaRepository implements Repository<AsesoriaBase, AsesoriaMode
     }
 
     @Override
-    public AsesoriaModel search(UUID id) {
+    public AsesorMateriaModel search(UUID id){
         try{
             HttpRequest request = HttpRequest.newBuilder().uri(new URI(host+id.toString())).GET().build();
             HttpResponse<String> response = client.send(request,HttpResponse.BodyHandlers.ofString());
-            if(response.statusCode()==200) return mapper.readValue(response.body(), AsesoriaModel.class);
+            if(response.statusCode()==200) return mapper.readValue(response.body(), AsesorMateriaModel.class);
         }catch (URISyntaxException urisex){
             System.err.println("El URI no es valido");
         }catch (IOException ioex){
@@ -74,7 +90,7 @@ public class AsesoriaRepository implements Repository<AsesoriaBase, AsesoriaMode
     }
 
     @Override
-    public UUID save(AsesoriaBase item) {
+    public UUID save(AsesorMateriaBase item){
         try{
             HttpRequest request = HttpRequest.newBuilder()
                     .version(HttpClient.Version.HTTP_1_1)
@@ -82,8 +98,8 @@ public class AsesoriaRepository implements Repository<AsesoriaBase, AsesoriaMode
                     .POST(HttpRequest.BodyPublishers.ofString(mapper.writeValueAsString(item)))
                     .build();
             HttpResponse<String> response = client.send(request,HttpResponse.BodyHandlers.ofString());
-            AsesoriaModel asesoriaModel = mapper.readValue(response.body(), AsesoriaModel.class);
-            if(response.statusCode()==201) return asesoriaModel.getId();
+            AsesorMateriaModel asesorMateriaModel = mapper.readValue(response.body(), AsesorMateriaModel.class);
+            if(response.statusCode()==201) return asesorMateriaModel.getId();
         }catch (URISyntaxException urisex){
             System.err.println("El URI no es valido");
         }catch (IOException ioex){
@@ -96,7 +112,7 @@ public class AsesoriaRepository implements Repository<AsesoriaBase, AsesoriaMode
     }
 
     @Override
-    public boolean update(UUID id,AsesoriaBase item) {
+    public boolean update(UUID id, AsesorMateriaBase item){
         try{
             HttpRequest request = HttpRequest.newBuilder()
                     .version(HttpClient.Version.HTTP_1_1)
@@ -132,6 +148,5 @@ public class AsesoriaRepository implements Repository<AsesoriaBase, AsesoriaMode
         }
         return false;
     }
-
 
 }

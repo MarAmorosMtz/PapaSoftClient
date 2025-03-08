@@ -1,6 +1,5 @@
 package com.example.papasoftclient.models;
 
-import java.io.CharArrayReader;
 import java.util.UUID;
 
 public class MateriaModel{

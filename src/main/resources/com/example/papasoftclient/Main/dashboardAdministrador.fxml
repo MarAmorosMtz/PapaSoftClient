@@ -164,6 +164,15 @@
                                                             </ImageView>
                                                          </graphic>
                                                       </Button>
+                                                      <Button fx:id="btnMateriasAsesor" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonAction" styleClass="buttonDashBoard" text="MateriasAsesor">
+                                                         <graphic>
+                                                            <ImageView fitHeight="50.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@../media/salon.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </graphic>
+                                                      </Button>
                                                    </children>
                                                 </VBox>
                                              </content>
