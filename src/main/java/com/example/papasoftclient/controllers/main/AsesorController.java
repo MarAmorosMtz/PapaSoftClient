@@ -4,99 +4,52 @@ import com.example.papasoftclient.controllers.add.AddAsesorController;
 import com.example.papasoftclient.controllers.delete.ConfirmacionAsesorController;
 import com.example.papasoftclient.controllers.edit.EditAsesorController;
 import com.example.papasoftclient.models.*;
-import com.example.papasoftclient.repositories.AsesorRepository;
 import com.example.papasoftclient.utils.Observador;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Pagination;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.Button;
 import javafx.scene.effect.GaussianBlur;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
-import java.util.Date;
-import javafx.scene.effect.ColorAdjust;
 
 public class AsesorController implements Observador {
-    @FXML
-    TableView<AsesorModel> tablaAsesor;
-    @FXML
-    TableColumn<AsesorModel, String> columnaNumeroControl;
-    @FXML
-    TableColumn<AsesorModel, String> columnaNombre;
-    @FXML
-    TableColumn<AsesorModel, String> columnaApellidoP;
-    @FXML
-    TableColumn<AsesorModel, String> columnaApellidoM;
-    @FXML
-    TableColumn<AsesorModel, String> columnaCorreo;
-    @FXML
-    TableColumn<AsesorModel, String> columnaTelefono;
-    @FXML
-    TableColumn<AsesorModel, Date> columnaFecha;
-    @FXML
-    TableColumn<AsesorModel, Integer> columnaSemestre;
-    @FXML
-    TableColumn<AsesorModel, String> columnaCarrera;
-    @FXML
-    TableColumn<AsesorModel, String> columnaEstado;
-    @FXML
-    TableColumn<AsesorModel, String> columnaContrato;
-    @FXML
-    Pagination paginadorAsesor;
 
-    private AsesorRepository asesorRepository;
+    @FXML
+    AnchorPane anchorDisplay;
+    @FXML
+    Button swapButton;
 
-    public AsesorController(){
-        asesorRepository = new AsesorRepository();
-    }
+    private boolean vistaTabla = false;
+
+    private ScrollPaneAsesorController scrollController;
+    private TableViewAsesorController tableController;
 
     @FXML
     public void initialize() {
 
-        columnaNumeroControl.setCellValueFactory(new PropertyValueFactory<>("num_ctrl"));
-        columnaNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
-        columnaApellidoP.setCellValueFactory(new PropertyValueFactory<>("apellido_p"));
-        columnaApellidoM.setCellValueFactory(new PropertyValueFactory<>("apellido_m"));
-        columnaCorreo.setCellValueFactory(new PropertyValueFactory<>("correo"));
-        columnaTelefono.setCellValueFactory(new PropertyValueFactory<>("telefono"));
-        columnaFecha.setCellValueFactory(new PropertyValueFactory<>("fecha_inscripcion"));
-        columnaSemestre.setCellValueFactory(new PropertyValueFactory<>("semestre"));
-        columnaCarrera.setCellValueFactory(cellData ->
-                new SimpleStringProperty(cellData.getValue().getCarrera().getNombre())
-        );
-        columnaEstado.setCellValueFactory(cellData -> {
-            boolean activo = cellData.getValue().getActivo();
-            return new SimpleStringProperty(activo ? "Activo" : "No Activo");
-        });
-        columnaContrato.setCellValueFactory(new PropertyValueFactory<>("contrato"));
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/papasoftclient/asesor/vistaScrollPane.fxml"));
+            AnchorPane loadedAnchorPane = loader.load();
+            scrollController = loader.getController();
 
-        paginadorAsesor.setPageFactory(this::updateTable);
-    }
+            AnchorPane.setTopAnchor(loadedAnchorPane, 0.0);
+            AnchorPane.setLeftAnchor(loadedAnchorPane, 0.0);
+            AnchorPane.setRightAnchor(loadedAnchorPane, 0.0);
+            AnchorPane.setBottomAnchor(loadedAnchorPane, 0.0);
 
-    public void loadAsesores(AsesorPage page){
-        tablaAsesor.setItems(FXCollections.observableArrayList(page.getAsesores()));
-    }
+            anchorDisplay.getChildren().add(loadedAnchorPane);
 
-    public Node updateTable(int pageIndex){
-        AsesorPage tmp = asesorRepository.search(pageIndex+1);
-        if(tmp != null){
-            loadAsesores(tmp);
-            if(tmp.getPaginas() != paginadorAsesor.getPageCount()){
-                paginadorAsesor.setPageCount(tmp.getPaginas());
-            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
-        return tablaAsesor;
+
     }
 
     @FXML
@@ -107,7 +60,7 @@ public class AsesorController implements Observador {
         controller.agregarObservador(this);
         Scene scene = new Scene(parent);
         Stage stage = new Stage();
-        stage.initModality(Modality.APPLICATION_MODAL); // Hacer que el Stage sea modal
+        stage.initModality(Modality.APPLICATION_MODAL);
         stage.initOwner(stage.getOwner());
         stage.setResizable(true);
         stage.setMaximized(false);
@@ -117,67 +70,97 @@ public class AsesorController implements Observador {
 
     @FXML
     private void edit() throws IOException {
+        AsesorModel asesorModel;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/papasoftclient/asesor/vistaEditarAsesor.fxml"));
         Parent parent = loader.load();
-
-        int rowIndex = tablaAsesor.getSelectionModel().getSelectedIndex();
-
-        if(rowIndex != -1){
-            AsesorModel asesorModel = tablaAsesor.getItems().get(rowIndex);
-
-            boolean isActive = "Activo".equalsIgnoreCase(asesorModel.getActivoTexto());
-            asesorModel.setActivo(isActive);
-
-            EditAsesorController controller = loader.getController();
-            controller.agregarObservador(this);
-            controller.setModel(asesorModel);
-
-
-            Stage stage = new Stage();
-            stage.setScene(new Scene(parent));
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initOwner(stage.getOwner());
-            stage.setMaximized(false);
-            stage.setResizable(true);
-
-            stage.show();
+        if(!vistaTabla){
+            asesorModel = scrollController.getSelectedAsesor();
+        }else{
+            asesorModel = tableController.getSelectedAsesor();
         }
+        boolean isActive = "Activo".equalsIgnoreCase(asesorModel.getActivoTexto());
+        asesorModel.setActivo(isActive);
+
+        EditAsesorController controller = loader.getController();
+        controller.agregarObservador(this);
+        controller.setModel(asesorModel);
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(parent));
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initOwner(stage.getOwner());
+        stage.setMaximized(false);
+        stage.setResizable(true);
+
+        stage.show();
     }
 
     @FXML
     private void delete() throws IOException {
+
+        AsesorModel asesorModel;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/papasoftclient/asesor/vistaConfirmacionAsesor.fxml"));
         Parent parent = loader.load();
-        ConfirmacionAsesorController controller = loader.getController();
-        controller.agregarObservador(this);
-
-        int rowIndex = tablaAsesor.getSelectionModel().getSelectedIndex();
-
-        if (rowIndex != -1) {
-            AsesorModel asesorModel = tablaAsesor.getItems().get(rowIndex);
-            ConfirmacionAsesorController confirmacionController = loader.getController();
-            confirmacionController.setAsesor(asesorModel);
-
-            GaussianBlur blurEffect = new GaussianBlur();
-            blurEffect.setRadius(10);
-
-            Stage mainStage = (Stage) tablaAsesor.getScene().getWindow();
-            mainStage.getScene().getRoot().setEffect(blurEffect);
-
-            Stage stage = new Stage(StageStyle.UNDECORATED);
-            stage.setScene(new Scene(parent));
-            stage.initModality(Modality.APPLICATION_MODAL);
-
-            stage.setOnHiding(event -> mainStage.getScene().getRoot().setEffect(null));
-
-            stage.show();
+        if(!vistaTabla){
+            asesorModel = scrollController.getSelectedAsesor();
+        }else{
+            asesorModel = tableController.getSelectedAsesor();
+            tableController.actualizar();
         }
+        ConfirmacionAsesorController confirmacionController = loader.getController();
+        confirmacionController.agregarObservador(this);
+        confirmacionController.setAsesor(asesorModel);
+
+        GaussianBlur blurEffect = new GaussianBlur();
+        blurEffect.setRadius(10);
+
+        Stage mainStage = (Stage) anchorDisplay.getScene().getWindow();
+        mainStage.getScene().getRoot().setEffect(blurEffect);
+
+        Stage stage = new Stage(StageStyle.UNDECORATED);
+        stage.setScene(new Scene(parent));
+        stage.initModality(Modality.APPLICATION_MODAL);
+
+        stage.setOnHiding(event -> mainStage.getScene().getRoot().setEffect(null));
+
+        stage.show();
+    }
+
+    @FXML
+    private void switchView() throws IOException {
+        AnchorPane loadedAnchorPane;
+        if(vistaTabla){
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/papasoftclient/asesor/vistaScrollPane.fxml"));
+            loadedAnchorPane = loader.load();
+
+            scrollController = loader.getController();
+
+            swapButton.setText("Vista de Tabla");
+
+            vistaTabla = false;
+        }else{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/papasoftclient/asesor/vistaTableView.fxml"));
+            loadedAnchorPane = loader.load();
+
+            tableController = loader.getController();
+
+            swapButton.setText("Vista de Tarjetas");
+
+            vistaTabla = true;
+        }
+        AnchorPane.setTopAnchor(loadedAnchorPane, 0.0);
+        AnchorPane.setLeftAnchor(loadedAnchorPane, 0.0);
+        AnchorPane.setRightAnchor(loadedAnchorPane, 0.0);
+        AnchorPane.setBottomAnchor(loadedAnchorPane, 0.0);
+
+        anchorDisplay.getChildren().clear();
+        anchorDisplay.getChildren().add(loadedAnchorPane);
     }
 
 
     @Override
     public void actualizar() {
-        updateTable(paginadorAsesor.getCurrentPageIndex());
+        //updateTable(paginadorAsesor.getCurrentPageIndex());
     }
 
 }

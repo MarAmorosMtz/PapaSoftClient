@@ -15,6 +15,7 @@ module com.example.papasoftclient {
     opens com.example.papasoftclient.controllers.edit to javafx.fxml;
     opens com.example.papasoftclient.controllers.main to javafx.fxml;
     opens com.example.papasoftclient.models to javafx.base,com.fasterxml.jackson.databind;
+    opens com.example.papasoftclient.controllers.Utils to javafx.fxml;
 
     exports com.example.papasoftclient;
     exports com.example.papasoftclient.controllers.add;
