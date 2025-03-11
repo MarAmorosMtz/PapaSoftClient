@@ -65,6 +65,15 @@ public class AsesorController implements Observador {
         stage.setResizable(true);
         stage.setMaximized(false);
         stage.setScene(scene);
+
+        stage.setOnHiding(windowEvent -> {
+            if(!vistaTabla){
+                scrollController.actualizar();
+            }else{
+                tableController.actualizar();
+            }
+        });
+
         stage.show();
     }
 
@@ -91,6 +100,14 @@ public class AsesorController implements Observador {
         stage.initOwner(stage.getOwner());
         stage.setMaximized(false);
         stage.setResizable(true);
+
+        stage.setOnHiding(windowEvent -> {
+            if(!vistaTabla){
+                scrollController.actualizar();
+            }else{
+                tableController.actualizar();
+            }
+        });
 
         stage.show();
     }
@@ -121,7 +138,14 @@ public class AsesorController implements Observador {
         stage.setScene(new Scene(parent));
         stage.initModality(Modality.APPLICATION_MODAL);
 
-        stage.setOnHiding(event -> mainStage.getScene().getRoot().setEffect(null));
+        stage.setOnHiding(event -> {
+            mainStage.getScene().getRoot().setEffect(null);
+            if(!vistaTabla){
+                scrollController.actualizar();
+            }else{
+                tableController.actualizar();
+            }
+        });
 
         stage.show();
     }
@@ -155,12 +179,13 @@ public class AsesorController implements Observador {
 
         anchorDisplay.getChildren().clear();
         anchorDisplay.getChildren().add(loadedAnchorPane);
+
+        tableController.actualizar();
+        scrollController.actualizar();
     }
 
 
     @Override
-    public void actualizar() {
-        //updateTable(paginadorAsesor.getCurrentPageIndex());
-    }
+    public void actualizar() { }
 
 }

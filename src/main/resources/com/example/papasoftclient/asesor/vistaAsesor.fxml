@@ -26,7 +26,7 @@
                   </HBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="50.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Button fx:id="swapButton" mnemonicParsing="false" onAction="#switchView" text="Vista de Tabla" />
+                        <Button fx:id="swapButton" mnemonicParsing="false" onAction="#switchView" prefHeight="40.0" prefWidth="164.0" styleClass="btnEdit" text="Vista de Tabla" />
                         <Button mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="50.0" prefWidth="175.0" styleClass="btnAdd" text="✚ Nuevo Asesor" HBox.hgrow="SOMETIMES" />
                      </children>
                      <padding>

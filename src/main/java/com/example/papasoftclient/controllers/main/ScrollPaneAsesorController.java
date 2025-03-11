@@ -5,6 +5,7 @@ import com.example.papasoftclient.models.AsesorModel;
 import com.example.papasoftclient.models.AsesorPage;
 import com.example.papasoftclient.repositories.AsesorRepository;
 import com.example.papasoftclient.utils.ClickListener;
+import com.example.papasoftclient.utils.Observador;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -18,7 +19,7 @@ import javafx.scene.layout.VBox;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class ScrollPaneAsesorController {
+public class ScrollPaneAsesorController implements Observador {
     @FXML
     private GridPane grid;
 
@@ -51,7 +52,7 @@ public class ScrollPaneAsesorController {
             listener = this::setSelectedAsesor;
         }
         try {
-            for(int i = 0; i <= loadAsesores().size()-1; i++){
+            for(int i = 0; i <= loadAsesores().size()-1; i++) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/papasoftclient/asesor/vistaEntryAsesor.fxml"));
                 AnchorPane anchorPane = loader.load();
                 EntryController controller = loader.getController();
@@ -65,12 +66,12 @@ public class ScrollPaneAsesorController {
                     vbox.getStyleClass().add("selected");
                 });
 
-                if(column == maxColumns){
+                if (column == maxColumns) {
                     column = 0;
                     row++;
                 }
 
-                grid.add(anchorPane,column++, row);
+                grid.add(anchorPane, column++, row);
 
                 grid.setMinHeight(Region.USE_COMPUTED_SIZE);
                 grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
@@ -88,16 +89,35 @@ public class ScrollPaneAsesorController {
     }
 
     public ArrayList<AsesorModel> loadAsesores(){
-        AsesorPage tmp = asesorRepository.search(1);
-        return tmp.getAsesores();
+        int i = 1;
+        ArrayList<AsesorModel> asesores = new ArrayList<>();
+        AsesorPage tmp;
+        do {
+            tmp = asesorRepository.search(i);
+            if(tmp != null && !tmp.getAsesores().isEmpty()) {
+                asesores.addAll(tmp.getAsesores());
+            }
+            i++;
+        } while (tmp != null && !tmp.getAsesores().isEmpty());
+
+        return asesores;
     }
+
 
     private void clearSelections() {
         for (Node node : grid.getChildren()) {
             if (node instanceof AnchorPane) {
-                VBox vbox = (VBox) ((AnchorPane) node).getChildren().get(0);
+                VBox vbox = (VBox) ((AnchorPane) node).getChildren().getFirst();
                 vbox.getStyleClass().remove("selected");
             }
         }
     }
+
+    @Override
+    public void actualizar(){
+        grid.getChildren().clear();
+        clearSelections();
+        initialize();
+    }
+
 }

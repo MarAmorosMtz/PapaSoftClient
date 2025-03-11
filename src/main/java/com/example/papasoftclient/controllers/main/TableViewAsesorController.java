@@ -1,7 +1,5 @@
 package com.example.papasoftclient.controllers.main;
 
-import com.example.papasoftclient.controllers.delete.ConfirmacionAsesorController;
-import com.example.papasoftclient.controllers.edit.EditAsesorController;
 import com.example.papasoftclient.models.AsesorModel;
 import com.example.papasoftclient.models.AsesorPage;
 import com.example.papasoftclient.repositories.AsesorRepository;
@@ -9,20 +7,11 @@ import com.example.papasoftclient.utils.Observador;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Pagination;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.effect.GaussianBlur;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-
-import java.io.IOException;
 import java.util.Date;
 
 public class TableViewAsesorController implements Observador {
