@@ -61,6 +61,7 @@ public class MainController {
                 return "materia/vistaMateria";
             case "btnAsesores":
                 return "asesor/vistaAsesor";
+                //return "asesor/vistaLandingPageAsesores";
             case "btnAsesorados":
                 return "asesorado/vistaAsesorado";
             case "btnCarreras":

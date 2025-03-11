@@ -1,0 +1,10 @@
+.hboxTop{
+-fx-padding: 20px;
+}
+
+.label_top{
+-fx-text-fill: #00008b;
+-fx-font-family: verdana;
+-fx-font-size: 35px;
+-fx-font-weight: bold;
+}

@@ -1,0 +1,19 @@
+.vbox{
+-fx-spacing: 10px;
+-fx-padding: 10px;
+-fx-background-color: #ffffff;
+-fx-background-radius: 10;
+-fx-padding: 10;
+-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 5, 5);
+-fx-border-radius: 10;
+-fx-cursor: hand;
+}
+
+.vbox.selected{
+-fx-background-color: #b5d0ff;
+}
+
+.contentLabel{
+-fx-font-family: verdana;
+-fx-font-size: 15px;
+}
