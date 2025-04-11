@@ -173,6 +173,15 @@
                                                             </ImageView>
                                                          </graphic>
                                                       </Button>
+                                                      <Button fx:id="btnUsuarios" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonAction" styleClass="buttonDashBoard" text="Usuarios">
+                                                         <graphic>
+                                                            <ImageView fitHeight="50.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@../media/usuario.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </graphic>
+                                                      </Button>
                                                    </children>
                                                 </VBox>
                                              </content>

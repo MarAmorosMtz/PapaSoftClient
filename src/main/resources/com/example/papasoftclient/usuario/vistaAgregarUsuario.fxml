@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="592.0" prefWidth="499.0" styleClass="vBox" stylesheets="@../CSS/Util/agregarStyle.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.papasoftclient.controllers.add.AddUsuarioController">
+   <children>
+      <Label text="Agregar Usuario" />
+      <VBox prefHeight="114.0" prefWidth="449.0">
+         <children>
+            <Label text="Nombre:" />
+            <TextField fx:id="txtNombre" prefHeight="43.0" prefWidth="419.0" styleClass="textField" />
+         </children>
+      </VBox>
+      <VBox prefHeight="114.0" prefWidth="449.0">
+         <children>
+            <Label text="Clave:" />
+            <PasswordField fx:id="passwordField" prefHeight="43.0" prefWidth="419.0" styleClass="textField" />
+         </children>
+      </VBox>
+      <VBox prefHeight="114.0" prefWidth="449.0">
+         <children>
+            <Label text="Cargo:" />
+            <ComboBox fx:id="comboCargo" prefHeight="43.0" prefWidth="603.0" styleClass="textField" />
+         </children>
+      </VBox>
+      <HBox alignment="CENTER" prefHeight="108.0" prefWidth="422.0" styleClass="hBoxBottom">
+         <children>
+            <Button mnemonicParsing="false" onAction="#guardar" prefHeight="41.0" prefWidth="120.0" styleClass="btnGuardar" text="✔ Guardar" />
+            <Button fx:id="close" mnemonicParsing="false" onAction="#cancelar" prefHeight="41.0" prefWidth="120.0" styleClass="btnCancelar" text="✕ Cancelar" />
+         </children>
+      </HBox>
+   </children>
+</VBox>
