@@ -107,13 +107,10 @@
                   </VBox>
                   <VBox prefHeight="114.0" prefWidth="449.0">
                      <children>
-                        <Label text="Foto" visible="false" />
-                        <Button mnemonicParsing="false" onAction="#seleccionarImagen" styleClass="btnGuardar" text="Subir imagen" visible="false">
+                        <Label text="Foto" visible="true" />
+                        <Button mnemonicParsing="false" onAction="#seleccionarImagen" styleClass="btnGuardar" text="Subir imagen" visible="true">
                            <graphic>
                               <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../media/upload_image.png" />
-                                 </image>
                               </ImageView>
                            </graphic>
                         </Button>

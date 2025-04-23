@@ -4,12 +4,15 @@ import com.example.papasoftclient.models.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.UUID;
 
 public class AsesorRepository implements Repository<AsesorBase, AsesorModel>{
@@ -158,6 +161,55 @@ public class AsesorRepository implements Repository<AsesorBase, AsesorModel>{
         return false;
     }
 
+    public boolean uploadArchivosAsesor(String numCtrl, Path fotoPath, Path contratoPath) throws IOException, InterruptedException, URISyntaxException {
+        String boundary = UUID.randomUUID().toString();
+        String CRLF = "\r\n";
+
+        var byteStream = new ByteArrayOutputStream();
+        var writer = new StringBuilder();
+
+        // Campo de formulario num_ctrl
+        writer.append("--").append(boundary).append(CRLF);
+        writer.append("Content-Disposition: form-data; name=\"num_ctrl\"").append(CRLF).append(CRLF);
+        writer.append(numCtrl).append(CRLF);
+
+        // Campo de archivo foto
+        writer.append("--").append(boundary).append(CRLF);
+        writer.append("Content-Disposition: form-data; name=\"foto\"; filename=\"")
+                .append(fotoPath.getFileName()).append("\"").append(CRLF);
+        writer.append("Content-Type: ").append(Files.probeContentType(fotoPath)).append(CRLF).append(CRLF);
+        byteStream.write(writer.toString().getBytes());
+        byteStream.write(Files.readAllBytes(fotoPath));
+        byteStream.write(CRLF.getBytes());
+        writer.setLength(0);
+
+        // Campo de archivo contrato
+        writer.append("--").append(boundary).append(CRLF);
+        writer.append("Content-Disposition: form-data; name=\"contrato\"; filename=\"")
+                .append(contratoPath.getFileName()).append("\"").append(CRLF);
+        writer.append("Content-Type: ").append(Files.probeContentType(contratoPath)).append(CRLF).append(CRLF);
+        byteStream.write(writer.toString().getBytes());
+        byteStream.write(Files.readAllBytes(contratoPath));
+        byteStream.write(CRLF.getBytes());
+        writer.setLength(0);
+
+        // Fin del multipart
+        writer.append("--").append(boundary).append("--").append(CRLF);
+        byteStream.write(writer.toString().getBytes());
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(new URI(host + "/upload/"))
+                .header("Content-Type", "multipart/form-data; boundary=" + boundary)
+                .POST(HttpRequest.BodyPublishers.ofByteArray(byteStream.toByteArray()))
+                .build();
+
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        System.out.println("Status: " + response.statusCode());
+        System.out.println("Body: " + response.body());
+
+        return response.statusCode() == 201;
+    }
 
 }
 
