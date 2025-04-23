@@ -9,10 +9,12 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import com.example.papasoftclient.utils.Validate;
 
 
+import java.io.File;
 import java.sql.Date;
 
 public class AddAsesorController extends Observable {
@@ -35,12 +37,14 @@ public class AddAsesorController extends Observable {
     @FXML
     CheckBox chkActivo;
 
+    private boolean foto = false;
+
     private AsesorRepository asesorRepository;
     private CarreraRepository carreraRepository;
     private ObservableList<CarreraModel> catalogoCarreras;
 
-    //private File archivoSeleccionado;
-    //private File imagenSeleccionada;
+    private File archivoSeleccionado;
+    private File imagenSeleccionada;
 
 
     public void initialize(){
@@ -80,16 +84,11 @@ public class AddAsesorController extends Observable {
         if(comboCarrera.getSelectionModel().getSelectedItem() != null){ comboCarrera.getStyleClass().remove("error"); }
         else{ comboCarrera.getStyleClass().add("error"); err++; }
 
-        /*if(archivoSeleccionado == null | imagenSeleccionada == null){
-
-            Alert alerta = new Alert(Alert.AlertType.ERROR);
-            alerta.setTitle("Error");
-            alerta.setHeaderText("Se ha producido un error");
-            alerta.setContentText("Por favor seleccione todos los archivos");
-            alerta.showAndWait();
-
-            err++;
-        }*/
+        if(imagenSeleccionada == null){
+            foto = false;
+        }else{
+            foto = true;
+        }
 
         if(date.getValue() != null){
             if(Validate.date(Date.valueOf(date.getValue()))){ date.getStyleClass().remove("error"); }
@@ -104,9 +103,12 @@ public class AddAsesorController extends Observable {
             asesor.setApellido_m(txtApellidoM.getText());
             asesor.setCorreo(txtCorreo.getText());
             asesor.setTelefono(txtTelefono.getText());
-            //asesor.setFoto(imagenSeleccionada.getAbsolutePath());
+            if(foto){
+                asesor.setFoto(imagenSeleccionada.getAbsolutePath());
+            }else{
+                asesor.setFoto("");
+            }
             //asesor.setContrato(archivoSeleccionado.getAbsolutePath());
-            asesor.setFoto("");
             asesor.setContrato("");
             asesor.setFecha_inscripcion(date.getValue());
             asesor.setSemestre(spnSemestre.getValue());
@@ -129,26 +131,25 @@ public class AddAsesorController extends Observable {
     @FXML
     private void seleccionarArchivo() {
 
-        /*FileChooser fileChooser = new FileChooser();
+        FileChooser fileChooser = new FileChooser();
 
         fileChooser.setTitle("Seleccionar archivo");
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Todos los archivos", "*.pdf"));
 
         Stage stage = new Stage();
-        archivoSeleccionado = fileChooser.showOpenDialog(stage);*/
+        archivoSeleccionado = fileChooser.showOpenDialog(stage);
 
     }
 
     @FXML
     private void seleccionarImagen() {
 
-        /*FileChooser fileChooser = new FileChooser();
+        FileChooser fileChooser = new FileChooser();
 
         fileChooser.setTitle("Seleccionar archivo");
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Imagenes", "*.jpg", "*.png"));
 
         Stage stage = new Stage();
-        imagenSeleccionada = fileChooser.showOpenDialog(stage);*/
-
+        imagenSeleccionada = fileChooser.showOpenDialog(stage);
     }
 }

@@ -8,7 +8,6 @@ import com.example.papasoftclient.models.SalonPage;
 import java.util.UUID;
 
 public interface Repository<B,T> {
-
     public Page search(int page);
     public T search(UUID id);
     public UUID save(B item);

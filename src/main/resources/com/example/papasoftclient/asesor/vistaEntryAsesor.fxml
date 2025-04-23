@@ -10,10 +10,8 @@
    <children>
       <VBox fx:id="vbox" alignment="TOP_CENTER" prefHeight="251.0" prefWidth="257.0" styleClass="vbox" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ImageView fitHeight="177.0" fitWidth="178.0" pickOnBounds="true">
-               <image>
-                  <Image url="@../media/dummy.png" />
-               </image>
+            <ImageView fx:id="imagen" fitHeight="177.0" fitWidth="178.0" pickOnBounds="true">
+
             </ImageView>
             <Label fx:id="nombre" styleClass="contentLabel" text="Nombre" />
             <Label fx:id="numerocontrol" styleClass="contentLabel" text="Numero de control" />
