@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="839.0" prefWidth="734.0" styleClass="vBox" stylesheets="@../CSS/Util/agregarStyle.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.papasoftclient.controllers.add.AddAsesorController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="674.0" prefWidth="734.0" styleClass="vBox" stylesheets="@../CSS/Util/agregarStyle.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.papasoftclient.controllers.add.AddAsesorController">
    <children>
       <Label text="Agregar Asesor" />
       <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="892.0" prefWidth="684.0" styleClass="hBoxTop">
@@ -93,7 +93,7 @@
                   </VBox>
                   <VBox prefHeight="114.0" prefWidth="449.0">
                      <children>
-                        <HBox spacing="10.0" alignment="CENTER_LEFT">
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
                            <children>
                               <Label text="Activo:" />
                               <CheckBox fx:id="chkActivo" mnemonicParsing="false" />

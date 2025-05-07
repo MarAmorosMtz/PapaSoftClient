@@ -47,8 +47,8 @@ public class EntryController {
             state = "Inactivo";
         }
         try{
-            if(!asesor.getFoto().isEmpty()){
-                File file = new File(asesor.getFoto());
+            File file = new File(asesor.getFoto());
+            if(!asesor.getFoto().isEmpty() && file.exists()){
                 Image image = new Image(file.toURI().toString());
                 imagen.setImage(image);
             }else{

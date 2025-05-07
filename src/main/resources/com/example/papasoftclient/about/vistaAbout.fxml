@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="498.0" prefWidth="732.0" stylesheets="@../CSS/Util/aboutStyle.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.papasoftclient.controllers.main.aboutController" fx:id="penesito">
+<AnchorPane fx:id="penesito" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="732.0" stylesheets="@../CSS/Util/aboutStyle.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.papasoftclient.controllers.main.aboutController">
    <children>
       <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -30,7 +30,7 @@
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0" styleClass="vbox2" HBox.hgrow="ALWAYS">
                <children>
-                  <Label maxWidth="1.7976931348623157E308" prefHeight="33.0" prefWidth="503.0" text="PapaSoft Versión: 0.5.1 Preview" />
+                  <Label maxWidth="1.7976931348623157E308" prefHeight="33.0" prefWidth="503.0" text="PapaSoft Versión: 1.0.0" />
                   <Label layoutX="10.0" layoutY="240.0" maxWidth="1.7976931348623157E308" prefHeight="184.0" prefWidth="465.0" text="Este es un proyecto de mejora continua en el cual, como estudiantes de ingeniería en Sistemas, trabajamos en conjunto para brindar alta calidad en software. En caso de sugerencias de mejora o problemas al utilizar Papasoft, favor de ponerse en contacto." wrapText="true" />
                   <VBox spacing="8">
                      <VBox alignment="CENTER_LEFT" spacing="5">
@@ -46,21 +46,13 @@
                         <Hyperlink onAction="#handleEmail3" text="l21020366@veracruz.tecnm.mx" />
                      </VBox>
                      <VBox alignment="CENTER_LEFT" spacing="5">
-                        <Label style="-fx-font-size: 14px;" text="Ivan Pelayo Martinez - DBA" />
-                        <Hyperlink onAction="#handleEmail4" text="l21020418@veracruz.tecnm.mx" />
-                     </VBox>
-                     <VBox alignment="CENTER_LEFT" spacing="5">
                         <Label style="-fx-font-size: 14px;" text="Angel Eduardo Santiago Bautista - QA/Tester" />
                         <Hyperlink onAction="#handleEmail5" text="l21020459@veracruz.tecnm.mx" />
-                     </VBox>
-                     <VBox alignment="CENTER_LEFT" spacing="5">
-                        <Label style="-fx-font-size: 14px;" text="David Leon Salas - BackEnd/QA" />
-                        <Hyperlink onAction="#handleEmail6" text="l21020400@veracruz.tecnm.mx" />
                      </VBox>
                   </VBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="66.0" text="Salir" onAction="#salir" />
+                        <Button mnemonicParsing="false" onAction="#salir" prefHeight="30.0" prefWidth="66.0" text="Salir" />
                      </children>
                      <padding>
                         <Insets right="10.0" />
