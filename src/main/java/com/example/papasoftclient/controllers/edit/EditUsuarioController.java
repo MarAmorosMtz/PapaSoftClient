@@ -1,6 +1,5 @@
 package com.example.papasoftclient.controllers.edit;
 
-import com.example.papasoftclient.models.UsuarioBase;
 import com.example.papasoftclient.models.UsuarioModel;
 import com.example.papasoftclient.repositories.UsuarioRepository;
 import com.example.papasoftclient.utils.Observable;
@@ -57,5 +56,7 @@ public class EditUsuarioController extends Observable {
     public void setModel(UsuarioModel model){
         this.usuarioModel = model;
         this.txtNombre.setText(usuarioModel.getNombre());
+        this.passwordField.setText(usuarioModel.getClave());
+        this.comboCargo.getSelectionModel().select(usuarioModel.getTipo());
     }
 }

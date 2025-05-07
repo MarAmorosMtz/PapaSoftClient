@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="769.0" prefWidth="1515.0" stylesheets="@../CSS/Login/login.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.papasoftclient.controllers.main.LoginController">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="769.0" prefWidth="1381.0" stylesheets="@../CSS/Login/login.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.papasoftclient.controllers.main.LoginController">
    <children>
       <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -27,7 +27,7 @@
                <children>
                   <StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="621.0" prefWidth="1434.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <ImageView fx:id="imageView" fitHeight="595.0" fitWidth="1498.0" pickOnBounds="true">
+                        <ImageView fx:id="imageView" fitHeight="595.0" fitWidth="1498.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../media/bgVenus.jpg" />
                            </image>
@@ -49,7 +49,7 @@
                                                    <children>
                                                       <Label styleClass="labelForm" text="Acceso Coordinador" />
                                                       <TextField fx:id="usuarioCoordinador" promptText="Numero de Control" styleClass="labelForm" />
-                                                      <PasswordField fx:id="claveCoordinador" styleClass="labelForm" promptText="Contraseña" />
+                                                      <PasswordField fx:id="claveCoordinador" promptText="Contraseña" styleClass="labelForm" />
                                                       <Button fx:id="btn" mnemonicParsing="false" onAction="#entrar" text="Ingresar" />
                                                    </children>
                                                 </VBox>
@@ -65,7 +65,7 @@
                                                    <children>
                                                       <Label styleClass="labelForm" text="Acceso Secretario" />
                                                       <TextField fx:id="usuarioSecretario" promptText="Numero de Control" styleClass="labelForm" />
-                                                      <PasswordField fx:id="claveSecretario" styleClass="labelForm" promptText="Contraseña"/>
+                                                      <PasswordField fx:id="claveSecretario" promptText="Contraseña" styleClass="labelForm" />
                                                       <Button mnemonicParsing="false" onAction="#entrar" text="Ingresar" />
                                                    </children>
                                                 </VBox>
