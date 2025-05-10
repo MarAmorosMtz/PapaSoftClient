@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -122,6 +123,7 @@ public class MainController {
         Scene scene = new Scene(fxmlLoader.load());
         Stage stage = new Stage();
         stage.setScene(scene);
+        stage.initModality(Modality.APPLICATION_MODAL);
         stage.setMaximized(true);
         stage.setResizable(false);
         Stage stg = (Stage) btnLogOut.getScene().getWindow();
