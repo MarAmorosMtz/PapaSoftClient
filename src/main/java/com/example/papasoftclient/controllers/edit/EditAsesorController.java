@@ -54,7 +54,7 @@ public class EditAsesorController extends Observable {
     private AsesorModel asesor;
 
     //private File archivoSeleccionado;
-    private File imagenSeleccionada;
+    private String imagenSeleccionada;
 
     public void initialize(){
         inicializarSpinner();
@@ -118,7 +118,7 @@ public class EditAsesorController extends Observable {
                     activo.isSelected()
             );
             if(foto){
-                nuevoAsesor.setFoto(imagenSeleccionada.getAbsolutePath());
+                nuevoAsesor.setFoto(imagenSeleccionada);
             }else{
                 nuevoAsesor.setFoto("");
             }
@@ -152,6 +152,7 @@ public class EditAsesorController extends Observable {
         semestre.getValueFactory().setValue(this.asesor.getSemestre());
         activo.setSelected(this.asesor.getActivo());
         carrera.setValue(this.asesor.getCarrera());
+        imagenSeleccionada = this.asesor.getFoto();
 
     }
 
@@ -176,6 +177,6 @@ public class EditAsesorController extends Observable {
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Imagenes", "*.jpg", "*.png"));
 
         Stage stage = new Stage();
-        imagenSeleccionada = fileChooser.showOpenDialog(stage);
+        imagenSeleccionada =  fileChooser.showOpenDialog(stage).getAbsolutePath();
     }
 }
