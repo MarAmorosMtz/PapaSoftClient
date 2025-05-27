@@ -14,6 +14,7 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class AddAsesoradoController extends Observable {
     @FXML
@@ -55,6 +56,10 @@ public class AddAsesoradoController extends Observable {
         inicializarSpinner();
         catalogoCarreras = carreraRepository.getCatalogoCarreras();
         carrera.setItems(catalogoCarreras);
+
+        fechaInscripcion.setValue(LocalDate.now());
+        fechaInscripcion.setDisable(true);
+        fechaInscripcion.setStyle("-fx-opacity: 1;");
     }
 
     @FXML
@@ -81,11 +86,6 @@ public class AddAsesoradoController extends Observable {
 
         if(carrera.getSelectionModel().getSelectedItem() != null){ carrera.getStyleClass().remove("error"); }
         else{ carrera.getStyleClass().add("error"); err++; }
-
-        if(fechaInscripcion.getValue() != null){
-            if(Validate.date(Date.valueOf(fechaInscripcion.getValue()))){ fechaInscripcion.getStyleClass().remove("error"); }
-            else{ fechaInscripcion.getStyleClass().add("error"); err++; }
-        }else{ fechaInscripcion.getStyleClass().add("error"); err++; }
 
         /*if(horario == null){
 
