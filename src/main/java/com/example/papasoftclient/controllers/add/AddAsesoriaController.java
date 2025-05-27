@@ -13,6 +13,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class AddAsesoriaController extends Observable {
 
@@ -37,6 +38,8 @@ public class AddAsesoriaController extends Observable {
     private CheckBox confirmada;
     @FXML
     private Button btnCancelar;
+    @FXML
+    private ComboBox<PeriodoModel> comboPeriodo;
 
     private ChangeListener<Object> oyenteHorario = ((observable, oldValue, newValue) -> {
         if (selectorFecha.getValue() != null) {
@@ -53,30 +56,55 @@ public class AddAsesoriaController extends Observable {
     });
 
     private AsesorRepository asesorRepository;
-    private MateriaRepository materiaRepository;
+    private AsesorMateriaRepository asesorMateriaRepository;
     private SalonRepository salonRepository;
     private AsesoriaRepository asesoriaRepository;
     private AsesoradoRepository asesoradoRepository;
     private MaestroRepository maestroRepository;
+    private PeriodoRepository periodoRepository;
+    private MateriaRepository materiaRepository;
 
     public AddAsesoriaController() {
         materiaRepository = new MateriaRepository();
+        asesorMateriaRepository = new AsesorMateriaRepository();
         asesorRepository = new AsesorRepository();
         salonRepository = new SalonRepository();
         asesoriaRepository = new AsesoriaRepository();
         maestroRepository = new MaestroRepository();
         asesoradoRepository = new AsesoradoRepository();
+        periodoRepository = new PeriodoRepository();
     }
 
     public void initialize(){
         comboHorario.valueProperty().addListener(oyenteHorario);
         selectorFecha.valueProperty().addListener(oyenteFecha);
-        cargarMaterias();
+        comboAsesor.valueProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                cargarMaterias(newValue.getId());
+            }
+        });
+        cargarPeriodos();
         // cargarSalones();
         // cargarAsesores();
         cargarMaestros();
         cargarAsesorados();
         cargarHoras(this.comboHorario);
+    }
+
+    public void cargarPeriodos(){
+        ArrayList<PeriodoModel> listaAsesores = new ArrayList<PeriodoModel>();
+        PeriodoPage tmp = this.periodoRepository.search(1);
+        if(tmp != null) {
+            this.comboPeriodo.getItems().clear();
+            int paginas = tmp.getPaginas();
+            if(paginas > 0) {
+                this.comboPeriodo.getItems().addAll(FXCollections.observableArrayList(tmp.getPeriodos()));
+                for(int i=2; i<=paginas; i++) {
+                    tmp = this.periodoRepository.search(i);
+                    this.comboPeriodo.getItems().addAll(FXCollections.observableArrayList(tmp.getPeriodos()));
+                }
+            }
+        }
     }
 
     public void cargarHoras(ComboBox<String> comboBox) {
@@ -101,7 +129,8 @@ public class AddAsesoriaController extends Observable {
         int hora = parsedTime.getHour();
         int minuto = parsedTime.getMinute();
 
-        AsesorPage pagina = this.asesorRepository.search(1, dia, mes, ano, hora, minuto);
+
+        AsesorPage pagina = this.asesorRepository.searchFiltrado(comboPeriodo.getSelectionModel().getSelectedItem().getId(),1, dia, mes, ano, hora, minuto);
         if(pagina != null){
             this.comboAsesor.setItems(FXCollections.observableArrayList(pagina.getAsesores()));
             for(int i=2; i<=pagina.getPaginas(); i++){
@@ -110,12 +139,16 @@ public class AddAsesoriaController extends Observable {
         }
     }
 
-    private void cargarMaterias(){
-        MateriaPage pagina = this.materiaRepository.search(1);
+    private void cargarMaterias(UUID asesor){
+        AsesorMateriaPage pagina = this.asesorMateriaRepository.all(asesor);
+        ArrayList<MateriaModel> materias = new ArrayList<>();
+        for(AsesorMateriaModel m: pagina.getMaterias()){
+            materias.add(materiaRepository.search(m.getMateria_id()));
+        }
         if(pagina != null){
-            this.comboMateria.setItems(FXCollections.observableArrayList(pagina.getMaterias()));
+            this.comboMateria.setItems(FXCollections.observableArrayList(materias));
             for(int i=2; i<=pagina.getPaginas(); i++){
-                this.comboMateria.getItems().addAll(pagina.getMaterias());
+                this.comboMateria.getItems().addAll(materias);
             }
         }
     }
@@ -133,7 +166,7 @@ public class AddAsesoriaController extends Observable {
         int hora = parsedTime.getHour();
         int minuto = parsedTime.getMinute();
 
-        SalonPage pagina = this.salonRepository.search(1, dia, mes, ano, hora, minuto);
+        SalonPage pagina = this.salonRepository.searchFiltrado(comboPeriodo.getSelectionModel().getSelectedItem().getId(),1, dia, mes, ano, hora, minuto);
         if(pagina != null){
             this.comboSalon.setItems(FXCollections.observableArrayList(pagina.getSalones()));
             for(int i=2; i<=pagina.getPaginas(); i++){
@@ -215,6 +248,7 @@ public class AddAsesoriaController extends Observable {
                     confirmada.isSelected(),
                     listaAsesorados
             );
+            asesoria.setPeriodo(comboPeriodo.getSelectionModel().getSelectedItem().getId());
             asesoriaRepository.save(asesoria);
             this.notificar();
             cancelar();

@@ -14,6 +14,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class EditAsesoriaController extends Observable {
     @FXML
@@ -59,6 +60,7 @@ public class EditAsesoriaController extends Observable {
     private AsesoradoRepository asesoradoRepository;
     private MaestroRepository maestroRepository;
     private AsesoriaModel asesoriaModel;
+    private AsesorMateriaRepository asesorMateriaRepository;
     private ArrayList<DetalleAsesoradoModel> listaAsesorados = new ArrayList<>();
 
     public EditAsesoriaController() {
@@ -73,7 +75,6 @@ public class EditAsesoriaController extends Observable {
     public void initialize(){
         comboHorario.valueProperty().addListener(oyenteHorario);
         selectorFecha.valueProperty().addListener(oyenteFecha);
-        cargarMaterias();
         //cargarSalones();
         //cargarAsesores();
 //        cargarMaestros();
@@ -113,21 +114,25 @@ public class EditAsesoriaController extends Observable {
         int hora = parsedTime.getHour();
         int minuto = parsedTime.getMinute();
 
-        AsesorPage pagina = this.asesorRepository.search(1, dia, mes, ano, hora, minuto);
+        /*AsesorPage pagina = this.asesorRepository.searchFiltrado(asesoriaModel.getPeriodo(),1, dia, mes, ano, hora, minuto);
         if(pagina != null){
             this.comboAsesor.setItems(FXCollections.observableArrayList(pagina.getAsesores()));
             for(int i=2; i<=pagina.getPaginas(); i++){
                 this.comboAsesor.getItems().addAll(pagina.getAsesores());
             }
-        }
+        }*/
     }
 
-    private void cargarMaterias(){
-        MateriaPage pagina = this.materiaRepository.search(1);
+    private void cargarMaterias(UUID asesor){
+        AsesorMateriaPage pagina = this.asesorMateriaRepository.all(asesor);
+        ArrayList<MateriaModel> materias = new ArrayList<>();
+        for(AsesorMateriaModel m: pagina.getMaterias()){
+            materias.add(materiaRepository.search(m.getMateria_id()));
+        }
         if(pagina != null){
-            this.comboMateria.setItems(FXCollections.observableArrayList(pagina.getMaterias()));
+            this.comboMateria.setItems(FXCollections.observableArrayList(materias));
             for(int i=2; i<=pagina.getPaginas(); i++){
-                this.comboMateria.getItems().addAll(pagina.getMaterias());
+                this.comboMateria.getItems().addAll(materias);
             }
         }
     }
@@ -140,18 +145,12 @@ public class EditAsesoriaController extends Observable {
         int mes = selectedFecha.getMonthValue();
         int ano = selectedFecha.getYear();
 
-        LocalTime parsedTime;
-        try {
-            DateTimeFormatter timeFormatterWithSeconds = DateTimeFormatter.ofPattern("HH:mm:ss");
-            parsedTime = LocalTime.parse(selectedHorario, timeFormatterWithSeconds);
-        } catch (DateTimeParseException e) {
-            DateTimeFormatter timeFormatterWithoutSeconds = DateTimeFormatter.ofPattern("HH:mm");
-            parsedTime = LocalTime.parse(selectedHorario, timeFormatterWithoutSeconds);
-        }
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+        LocalTime parsedTime = LocalTime.parse(selectedHorario, timeFormatter);
         int hora = parsedTime.getHour();
         int minuto = parsedTime.getMinute();
 
-        SalonPage pagina = this.salonRepository.search(1, dia, mes, ano, hora, minuto);
+        SalonPage pagina = this.salonRepository.searchFiltrado(asesoriaModel.getPeriodo(),1, dia, mes, ano, hora, minuto);
         if(pagina != null){
             this.comboSalon.setItems(FXCollections.observableArrayList(pagina.getSalones()));
             for(int i=2; i<=pagina.getPaginas(); i++){
@@ -205,6 +204,7 @@ public class EditAsesoriaController extends Observable {
 
         cargarAsesores();
         cargarSalones();
+        //cargarMaterias(asesoriaModel.getAsesor().getId());
     }
 
     @FXML

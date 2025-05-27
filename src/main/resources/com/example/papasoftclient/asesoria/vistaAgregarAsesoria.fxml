@@ -63,6 +63,12 @@
                               <FlowPane prefHeight="42.0" prefWidth="337.0">
                                  <children>
                                     <CheckBox fx:id="confirmada" mnemonicParsing="false" text="Confirmada" />
+                                    <Label prefHeight="12.0" prefWidth="90.0" text="Periodo:" />
+                                    <ComboBox fx:id="comboPeriodo" prefHeight="28.0" prefWidth="158.0" styleClass="textField">
+                                       <FlowPane.margin>
+                                          <Insets />
+                                       </FlowPane.margin>
+                                    </ComboBox>
                                  </children>
                                  <padding>
                                     <Insets bottom="25.0" top="25.0" />

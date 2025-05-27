@@ -27,10 +27,11 @@ public class SalonRepository implements Repository<SalonBase, SalonModel>{
         this.host = RestAPI.SALONES_ENDPOINT;
     }
 
-    public SalonPage search(int page, int day, int month, int year, int hour, int minute) {
+    public SalonPage searchFiltrado(UUID periodoId, int page, int day, int month, int year, int hour, int minute) {
         try {
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(new URI(host + "?pagina=" + page
+                    .uri(new URI(host + "filtrar/?periodo=" + periodoId.toString()
+                            + "&pagina=" + page
                             + "&dia=" + day
                             + "&mes=" + month
                             + "&ano=" + year

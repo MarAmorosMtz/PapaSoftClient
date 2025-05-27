@@ -14,6 +14,7 @@ public class AsesoriaBase {
     private UUID materia, salon, asesor;
     private boolean confirmada;
     private ArrayList<DetalleAsesoradoModel> asesorados;
+    private UUID periodo;
 
     public AsesoriaBase(){}
 
@@ -91,4 +92,6 @@ public class AsesoriaBase {
     public void setAsesorados(ArrayList<DetalleAsesoradoModel> asesorados) {
         this.asesorados = asesorados;
     }
+    public void setPeriodo(UUID periodo){this.periodo = periodo;}
+    public UUID getPeriodo(){return this.periodo;}
 }
