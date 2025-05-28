@@ -41,6 +41,13 @@ public class AddAsesoriaController extends Observable {
     @FXML
     private ComboBox<PeriodoModel> comboPeriodo;
 
+    private ChangeListener<Object> oyentePeriodo = ((observable, oldValue, newValue) -> {
+        if(selectorFecha.getValue() != null || comboHorario.getValue() != null){
+            cargarAsesores();
+            cargarSalones();
+        }
+    });
+
     private ChangeListener<Object> oyenteHorario = ((observable, oldValue, newValue) -> {
         if (selectorFecha.getValue() != null) {
             cargarAsesores();
@@ -83,6 +90,7 @@ public class AddAsesoriaController extends Observable {
                 cargarMaterias(newValue.getId());
             }
         });
+        comboPeriodo.valueProperty().addListener(oyentePeriodo);
         cargarPeriodos();
         // cargarSalones();
         // cargarAsesores();

@@ -38,6 +38,7 @@ public class EditAsesoriaController extends Observable {
 //    private ComboBox<MaestroModel> comboMaestro1,comboMaestro2,comboMaestro3,comboMaestro4,comboMaestro5;
     @FXML
     private Button btnCancelar;
+    
 
     private ChangeListener<Object> oyenteHorario = ((observable, oldValue, newValue) -> {
         if (selectorFecha.getValue() != null) {
