@@ -104,6 +104,7 @@ public class AsesoriaRepository implements Repository<AsesoriaBase, AsesoriaMode
                     .PUT(HttpRequest.BodyPublishers.ofString(mapper.writeValueAsString(item)))
                     .build();
             HttpResponse<String> response = client.send(request,HttpResponse.BodyHandlers.ofString());
+            AsesoriaModel asesoriaModel = mapper.readValue(response.body(), AsesoriaModel.class);
             return response.statusCode()==200;
         }catch (URISyntaxException urisex){
             System.err.println("El URI no es valido");
