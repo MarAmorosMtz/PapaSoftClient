@@ -5,6 +5,11 @@ import java.time.LocalDate;
 import java.util.regex.Pattern;
 
 public class Validate {
+    public static boolean number(String str){
+        String regex = "^[0-9]+$";
+        return Pattern.matches(regex, str);
+    }
+
     public static boolean email(String email) {
         String regex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
         return Pattern.matches(regex, email);

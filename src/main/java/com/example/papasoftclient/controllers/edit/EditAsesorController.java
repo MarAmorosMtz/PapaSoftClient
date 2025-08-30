@@ -41,6 +41,9 @@ public class EditAsesorController extends Observable {
     CheckBox activo;
 
     @FXML
+    TextField chatId;
+
+    @FXML
     Button guardarBtn;
     @FXML
     Button cancelarBtn;
@@ -89,6 +92,14 @@ public class EditAsesorController extends Observable {
         if(carrera.getSelectionModel().getSelectedItem() != null){ carrera.getStyleClass().remove("error"); }
         else{ carrera.getStyleClass().add("error"); err++; }
 
+        if(chatId.getText()!=null){
+            if(Validate.number(chatId.getText())){ chatId.getStyleClass().remove("error"); }
+            else{ chatId.getStyleClass().add("error"); err++; }
+        }else{
+            carrera.getStyleClass().add("error");
+            err++;
+        }
+
         if(imagenSeleccionada == null){
             foto = false;
         }else{
@@ -115,7 +126,8 @@ public class EditAsesorController extends Observable {
                     "", //Contrato
                     "", //Foto
                     carrera.getSelectionModel().getSelectedItem().getId(),
-                    activo.isSelected()
+                    activo.isSelected(),
+                    chatId.getText()
             );
             if(foto){
                 nuevoAsesor.setFoto(imagenSeleccionada);
@@ -152,8 +164,8 @@ public class EditAsesorController extends Observable {
         semestre.getValueFactory().setValue(this.asesor.getSemestre());
         activo.setSelected(this.asesor.getActivo());
         carrera.setValue(this.asesor.getCarrera());
+        chatId.setText(this.asesor.getChat_id());
         imagenSeleccionada = this.asesor.getFoto();
-
     }
 
     @FXML

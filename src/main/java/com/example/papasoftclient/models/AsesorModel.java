@@ -11,40 +11,40 @@ public class AsesorModel extends Alumno{
     protected String contrato;
     protected boolean activo;
     protected String activoTexto;
+    protected String chat_id;
 
     public AsesorModel() {}
 
-    public AsesorModel(UUID id, CarreraModel carrera, String foto, String contrato) {
+    public AsesorModel(String nombre, String apellido_p, String apellido_m, String num_ctrl, String correo, String telefono, LocalDate fecha_inscripcion, int semestre, UUID id, CarreraModel carrera, String foto, String contrato, boolean activo, String activoTexto, String chat_id) {
+        super(nombre, apellido_p, apellido_m, num_ctrl, correo, telefono, fecha_inscripcion, semestre);
         this.id = id;
         this.carrera = carrera;
         this.foto = foto;
         this.contrato = contrato;
+        this.activo = activo;
+        this.activoTexto = activoTexto;
+        this.chat_id = chat_id;
     }
 
-    public AsesorModel(String num_ctrl, String correo, String telefono, LocalDate fecha_inscripcion, int semestre, UUID id, CarreraModel carrera, String foto, String contrato, boolean activo) {
+    public AsesorModel(String num_ctrl, String correo, String telefono, LocalDate fecha_inscripcion, int semestre, UUID id, CarreraModel carrera, String foto, String contrato, boolean activo, String activoTexto, String chat_id) {
         super(num_ctrl, correo, telefono, fecha_inscripcion, semestre);
         this.id = id;
         this.carrera = carrera;
         this.foto = foto;
         this.contrato = contrato;
         this.activo = activo;
-    }
-
-    public AsesorModel(String num_ctrl, String correo, String telefono, LocalDate fecha_inscripcion, int semestre, UUID id, CarreraModel carrera, String foto, String contrato, String activoTexto) {
-        super(num_ctrl, correo, telefono, fecha_inscripcion, semestre);
-        this.id = id;
-        this.carrera = carrera;
-        this.foto = foto;
-        this.contrato = contrato;
         this.activoTexto = activoTexto;
+        this.chat_id = chat_id;
     }
 
-    public AsesorModel(String nombre, String apellido_p, String apellido_m, String num_ctrl, String correo, String telefono, LocalDate fecha_inscripcion, int semestre, UUID id, CarreraModel carrera, String foto, String contrato) {
-        super(nombre, apellido_p, apellido_m, num_ctrl, correo, telefono, fecha_inscripcion, semestre);
+    public AsesorModel(UUID id, CarreraModel carrera, String foto, String contrato, boolean activo, String activoTexto, String chat_id) {
         this.id = id;
         this.carrera = carrera;
         this.foto = foto;
         this.contrato = contrato;
+        this.activo = activo;
+        this.activoTexto = activoTexto;
+        this.chat_id = chat_id;
     }
 
     public UUID getId() {
@@ -94,6 +94,14 @@ public class AsesorModel extends Alumno{
     public void setActivoTexto(String activoTexto) {
         this.activoTexto = activoTexto;
         this.activo = "Activo".equalsIgnoreCase(activoTexto);
+    }
+
+    public String getChat_id() {
+        return chat_id;
+    }
+
+    public void setChat_id(String chat_id) {
+        this.chat_id = chat_id;
     }
 
     @Override

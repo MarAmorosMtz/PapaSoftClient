@@ -8,6 +8,7 @@ public class AsesorBase extends Alumno {
     private String foto;
     private UUID carrera;
     private boolean activo;
+    private String chat_id;
 
     public AsesorBase() {}
 
@@ -25,12 +26,13 @@ public class AsesorBase extends Alumno {
         this.activo = activo;
     }
 
-    public AsesorBase(String nombre, String apellido_p, String apellido_m, String num_ctrl, String correo, String telefono, LocalDate fecha_inscripcion, int semestre, String contrato, String foto, UUID carrera, boolean activo) {
+    public AsesorBase(String nombre, String apellido_p, String apellido_m, String num_ctrl, String correo, String telefono, LocalDate fecha_inscripcion, int semestre, String contrato, String foto, UUID carrera, boolean activo, String chat_id) {
         super(nombre, apellido_p, apellido_m, num_ctrl, correo, telefono, fecha_inscripcion, semestre);
         this.contrato = contrato;
         this.foto = foto;
         this.carrera = carrera;
         this.activo = activo;
+        this.chat_id = chat_id;
     }
 
     public String getContrato() {
@@ -63,5 +65,13 @@ public class AsesorBase extends Alumno {
 
     public void setActivo(boolean estado) {
         this.activo = estado;
+    }
+
+    public String getChat_id() {
+        return chat_id;
+    }
+
+    public void setChat_id(String chat_id) {
+        this.chat_id = chat_id;
     }
 }

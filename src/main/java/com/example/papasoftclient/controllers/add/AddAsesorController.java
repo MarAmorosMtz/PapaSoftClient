@@ -37,6 +37,9 @@ public class AddAsesorController extends Observable {
     @FXML
     CheckBox chkActivo;
 
+    @FXML
+    TextField chatId;
+
     private boolean foto = false;
 
     private AsesorRepository asesorRepository;
@@ -95,6 +98,12 @@ public class AddAsesorController extends Observable {
             else{ date.getStyleClass().add("error"); err++; }
         }else{ date.getStyleClass().add("error"); err++; }
 
+        if(chatId.getText() != null){
+            if(Validate.number(chatId.getText())){
+                chatId.getStyleClass().remove("error");
+            }else{ chatId.getStyleClass().add("error"); err++; }
+        }else{ chatId.getStyleClass().add("error"); err++; }
+
 
         if(err == 0){
             asesor.setNum_ctrl(txtNControl.getText());
@@ -114,6 +123,7 @@ public class AddAsesorController extends Observable {
             asesor.setSemestre(spnSemestre.getValue());
             asesor.setCarrera(comboCarrera.getSelectionModel().getSelectedItem().getId());
             asesor.setActivo(chkActivo.isSelected());
+            asesor.setChat_id(chatId.getText());
 
             asesorRepository.save(asesor);
             this.notificar();
