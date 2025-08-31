@@ -40,7 +40,7 @@ public class Validate {
     }
 
     public static boolean word(String word){
-        String regex = "^[a-zA-Z0-9 ]{3,50}$";
+        String regex = "^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ ]{3,50}$";
         return Pattern.matches(regex, word);
     }
 }
