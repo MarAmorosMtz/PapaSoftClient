@@ -93,11 +93,6 @@ public class AddAsesorController extends Observable {
             foto = true;
         }
 
-        if(date.getValue() != null){
-            if(Validate.date(Date.valueOf(date.getValue()))){ date.getStyleClass().remove("error"); }
-            else{ date.getStyleClass().add("error"); err++; }
-        }else{ date.getStyleClass().add("error"); err++; }
-
         if(chatId.getText() != null){
             if(Validate.number(chatId.getText())){
                 chatId.getStyleClass().remove("error");

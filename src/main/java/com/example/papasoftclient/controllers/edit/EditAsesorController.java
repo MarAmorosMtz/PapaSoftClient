@@ -106,13 +106,6 @@ public class EditAsesorController extends Observable {
             foto = true;
         }
 
-        if(fechaInscripcion.getValue() != null){
-            if(Validate.date(Date.valueOf(fechaInscripcion.getValue()))){ fechaInscripcion.getStyleClass().remove("error"); }
-            else{ fechaInscripcion.getStyleClass().add("error"); err++; }
-        }else{ fechaInscripcion.getStyleClass().add("error"); err++; }
-
-
-
         if(err == 0){
             AsesorBase nuevoAsesor = new AsesorBase(
                     nombre.getText(),
