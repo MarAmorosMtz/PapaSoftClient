@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="769.0" prefWidth="1381.0" stylesheets="@../CSS/Login/login.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.papasoftclient.controllers.main.LoginController">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="769.0" prefWidth="1381.0" stylesheets="@../CSS/Login/login.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.papasoftclient.controllers.main.LoginController">
    <children>
       <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -48,8 +48,8 @@
                                                 <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" styleClass="vBoxForm" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                    <children>
                                                       <Label styleClass="labelForm" text="Acceso Coordinador" />
-                                                      <TextField fx:id="usuarioCoordinador" promptText="Usuario" styleClass="labelForm" />
-                                                      <PasswordField fx:id="claveCoordinador" promptText="Contraseña" styleClass="labelForm" />
+                                                      <TextField fx:id="usuarioCoordinador" onKeyPressed="#teclaPresionada" promptText="Usuario" styleClass="labelForm" />
+                                                      <PasswordField fx:id="claveCoordinador" onKeyPressed="#teclaPresionada" promptText="Contraseña" styleClass="labelForm" />
                                                       <Button fx:id="btn" mnemonicParsing="false" onAction="#entrar" text="Ingresar" />
                                                    </children>
                                                 </VBox>
@@ -64,8 +64,8 @@
                                                 <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" styleClass="vBoxForm" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                    <children>
                                                       <Label styleClass="labelForm" text="Acceso Secretario" />
-                                                      <TextField fx:id="usuarioSecretario" promptText="Usuario" styleClass="labelForm" />
-                                                      <PasswordField fx:id="claveSecretario" promptText="Contraseña" styleClass="labelForm" />
+                                                      <TextField fx:id="usuarioSecretario" onKeyPressed="#teclaPresionada" promptText="Usuario" styleClass="labelForm" />
+                                                      <PasswordField fx:id="claveSecretario" onKeyPressed="#teclaPresionada" promptText="Contraseña" styleClass="labelForm" />
                                                       <Button mnemonicParsing="false" onAction="#entrar" text="Ingresar" />
                                                    </children>
                                                 </VBox>

@@ -8,6 +8,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
@@ -52,16 +54,10 @@ public class LoginController {
     }
 
     @FXML
-    private void handleButtonAction() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Main/Main.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.setMaximized(true);
-        stage.setResizable(false);
-        Stage stg = (Stage) btn.getScene().getWindow();
-        stg.close();
-        stage.show();
+    private void teclaPresionada(KeyEvent keyEvent) throws IOException {
+        if(keyEvent.getCode() == KeyCode.ENTER){
+            this.entrar();
+        }
     }
 
     @FXML
@@ -99,8 +95,5 @@ public class LoginController {
             alert.setContentText("Usuario o contraseña incorrectos.");
             alert.showAndWait();
         }
-
-
-
     }
 }
