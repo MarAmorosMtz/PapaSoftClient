@@ -77,9 +77,9 @@ public class LoginController {
             vista = vistaSecretario;
         }
         LoginModel loginModel = new LoginModel(nombreUsuario,clave,tipoUsuario);
-        boolean usuarioValido = loginRepository.login(loginModel);
+        int statusCode = loginRepository.login(loginModel);
 
-        if(usuarioValido){
+        if(statusCode==200){
             Scene scene = new Scene(vista.load());
             Stage stage = new Stage();
             stage.setTitle("PapaSoft");
@@ -90,9 +90,22 @@ public class LoginController {
             stage.show();
         }else{
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
+
             alert.setHeaderText(null);
-            alert.setContentText("Usuario o contraseña incorrectos.");
+            if(statusCode == 400){
+                alert.setTitle("Error al iniciar sesión");
+                alert.setContentText("Usuario o contraseña no válidos. Verifique que no estén vacíos.");
+            }else if(statusCode == 401){
+                alert.setTitle("Error de autenticación");
+                alert.setContentText("Usuario o contraseña incorrectos.");
+            }else if(statusCode == 404){
+                alert.setTitle("Error de conexión");
+                alert.setContentText("No fue posible conectarse al servicio. Contacte al administrador del sistema.");
+            }else {
+                alert.setTitle("Error inesperado");
+                alert.setContentText("Código HTTP "+statusCode+" contacte al administrador del sistema.");
+            }
+
             alert.showAndWait();
         }
     }

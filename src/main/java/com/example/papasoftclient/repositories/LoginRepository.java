@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 import java.io.IOException;
+import java.net.ConnectException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.http.HttpClient;
@@ -24,7 +25,7 @@ public class LoginRepository {
         this.mapper = new ObjectMapper();
     }
 
-    public boolean login(LoginModel loginModel) {
+    public int login(LoginModel loginModel) {
         try {
             HttpRequest request = HttpRequest.newBuilder()
                     .version(HttpClient.Version.HTTP_1_1)
@@ -33,14 +34,12 @@ public class LoginRepository {
                     .build();
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-            /*if (response.statusCode() == 200) {
-                JsonNode jsonResponse = mapper.readTree(response.body());
-                return jsonResponse.get("success").asBoolean();
-            }*/
-            return response.statusCode() == 200;
-        } catch (URISyntaxException | IOException | InterruptedException ex) {
-            ex.printStackTrace();
-            return false;
+            return response.statusCode();
+        } catch (ConnectException cne){
+            return 404;
+        }
+        catch (URISyntaxException | IOException | InterruptedException ex) {
+            return 500;
         }
     }
 }
