@@ -59,6 +59,13 @@ public class AddAsesorController extends Observable {
         SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 12, 1, 1);
         spnSemestre.setValueFactory(valueFactory);
         spnSemestre.setEditable(false);
+
+        txtCorreo.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if(txtNControl.getText()!=null && !txtNControl.getText().isEmpty() && (txtCorreo.getText()==null || txtCorreo.getText().isEmpty())){
+                txtCorreo.setText(String.format("L%s@veracruz.tecnm.mx",txtNControl.getText()));
+                txtCorreo.selectAll();
+            }
+        });
     }
 
     @FXML

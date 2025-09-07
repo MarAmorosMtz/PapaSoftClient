@@ -65,6 +65,13 @@ public class EditAsesorController extends Observable {
         asesorRepository = new AsesorRepository();
         catalogoCarreras = carreraRepository.getCatalogoCarreras();
         carrera.setItems(catalogoCarreras);
+
+        correo.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if(numCtrl.getText()!=null && !numCtrl.getText().isEmpty() && (correo.getText()==null || correo.getText().isEmpty())){
+                correo.setText(String.format("L%s@veracruz.tecnm.mx",numCtrl.getText()));
+                correo.selectAll();
+            }
+        });
     }
 
     @FXML
