@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="543.0" prefWidth="734.0" styleClass="vBox" stylesheets="@../CSS/Util/agregarStyle.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.papasoftclient.controllers.edit.EditAsesoradoController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="543.0" prefWidth="734.0" styleClass="vBox" stylesheets="@../CSS/Util/agregarStyle.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.papasoftclient.controllers.edit.EditAsesoradoController">
    <children>
       <Label text="Editar Asesorado" />
       <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="621.0" prefWidth="684.0" styleClass="hBoxTop">
@@ -67,7 +67,7 @@
                   <VBox prefHeight="114.0" prefWidth="449.0">
                      <children>
                         <Label text="Fecha de Inscripcion:" />
-                        <DatePicker fx:id="fechaInscripcion" maxWidth="1.7976931348623157E308" prefHeight="43.0" prefWidth="235.0" styleClass="textField" />
+                        <DatePicker fx:id="fechaInscripcion" editable="true" maxWidth="1.7976931348623157E308" prefHeight="43.0" prefWidth="235.0" styleClass="textField" />
                      </children>
                   </VBox>
                   <VBox prefHeight="114.0" prefWidth="449.0">
