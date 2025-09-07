@@ -13,6 +13,8 @@ import javafx.scene.control.*;
 
 import javafx.stage.Stage;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.sql.Date;
 import java.time.LocalDate;
 
@@ -58,8 +60,13 @@ public class AddAsesoradoController extends Observable {
         carrera.setItems(catalogoCarreras);
 
         fechaInscripcion.setValue(LocalDate.now());
-        fechaInscripcion.setDisable(true);
-        fechaInscripcion.setStyle("-fx-opacity: 1;");
+
+        correo.focusedProperty().addListener((observable, oldValue, newValue) -> {
+           if(numCtrl.getText()!=null && !numCtrl.getText().isEmpty() && (correo.getText()==null || correo.getText().isEmpty())){
+               correo.setText(String.format("L%s@veracruz.tecnm.mx",numCtrl.getText()));
+               correo.selectAll();
+           }
+        });
     }
 
     @FXML
