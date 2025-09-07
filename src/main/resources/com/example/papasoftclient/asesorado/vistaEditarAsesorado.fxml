@@ -21,13 +21,7 @@
                   <VBox prefHeight="114.0" prefWidth="449.0">
                      <children>
                         <Label text="No. de Control:" />
-                        <TextField fx:id="numCtrl" prefHeight="43.0" prefWidth="419.0" promptText="Ejemlpo: 21020339" styleClass="textField" />
-                     </children>
-                  </VBox>
-                  <VBox prefHeight="114.0" prefWidth="449.0">
-                     <children>
-                        <Label text="Nombre(s):" />
-                        <TextField fx:id="nombre" prefHeight="43.0" prefWidth="419.0" promptText="Ejemlpo: Kevin Antoine" styleClass="textField" />
+                        <TextField fx:id="numCtrl" prefHeight="43.0" prefWidth="419.0" promptText="Ejemplo: 21020339" styleClass="textField" />
                      </children>
                   </VBox>
                   <VBox prefHeight="114.0" prefWidth="449.0">
@@ -38,14 +32,20 @@
                   </VBox>
                   <VBox prefHeight="114.0" prefWidth="449.0">
                      <children>
-                        <Label text="Apellido Materno:" />
-                        <TextField fx:id="apellidoM" prefHeight="43.0" prefWidth="419.0" promptText="Ejemplo: Luna" styleClass="textField" />
+                        <Label text="Carrera:" />
+                        <ComboBox fx:id="carrera" maxWidth="1.7976931348623157E308" prefHeight="43.0" prefWidth="150.0" styleClass="textField" />
                      </children>
                   </VBox>
                   <VBox prefHeight="114.0" prefWidth="449.0">
                      <children>
-                        <Label text="Carrera:" />
-                        <ComboBox fx:id="carrera" maxWidth="1.7976931348623157E308" prefHeight="43.0" prefWidth="150.0" styleClass="textField" />
+                        <Label text="Fecha de Inscripción:" />
+                        <DatePicker fx:id="fechaInscripcion" editable="true" maxWidth="1.7976931348623157E308" prefHeight="43.0" prefWidth="235.0" styleClass="textField" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="114.0" prefWidth="449.0">
+                     <children>
+                        <Label text="Teléfono:" />
+                        <TextField fx:id="telefono" prefHeight="43.0" prefWidth="419.0" promptText="Ejemplo: 2294583230" styleClass="textField" />
                      </children>
                   </VBox>
                </children>
@@ -54,26 +54,26 @@
                <children>
                   <VBox prefHeight="114.0" prefWidth="449.0">
                      <children>
-                        <Label text="Correo electronico:" />
-                        <TextField fx:id="correo" prefHeight="43.0" prefWidth="419.0" promptText="Ejemlpo: L21020339@veracruz.tecnm.mx" styleClass="textField" />
+                        <Label text="Nombre(s):" />
+                        <TextField fx:id="nombre" prefHeight="43.0" prefWidth="419.0" promptText="Ejemplo: Mar Antoine" styleClass="textField" />
                      </children>
                   </VBox>
                   <VBox prefHeight="114.0" prefWidth="449.0">
                      <children>
-                        <Label text="Telefono:" />
-                        <TextField fx:id="telefono" prefHeight="43.0" prefWidth="419.0" promptText="Ejemlpo: 2294583230" styleClass="textField" />
-                     </children>
-                  </VBox>
-                  <VBox prefHeight="114.0" prefWidth="449.0">
-                     <children>
-                        <Label text="Fecha de Inscripcion:" />
-                        <DatePicker fx:id="fechaInscripcion" editable="true" maxWidth="1.7976931348623157E308" prefHeight="43.0" prefWidth="235.0" styleClass="textField" />
+                        <Label text="Apellido Materno:" />
+                        <TextField fx:id="apellidoM" prefHeight="43.0" prefWidth="419.0" promptText="Ejemplo: Martínez" styleClass="textField" />
                      </children>
                   </VBox>
                   <VBox prefHeight="114.0" prefWidth="449.0">
                      <children>
                         <Label text="Semestre:" />
                         <Spinner fx:id="semestre" editable="true" maxWidth="1.7976931348623157E308" prefHeight="43.0" styleClass="textField" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="114.0" prefWidth="449.0">
+                     <children>
+                        <Label text="Correo Electrónico:" />
+                        <TextField fx:id="correo" prefHeight="43.0" prefWidth="419.0" promptText="Ejemplo: L21020339@veracruz.tecnm.mx" styleClass="textField" />
                      </children>
                   </VBox>
                   <VBox prefHeight="114.0" prefWidth="449.0">
