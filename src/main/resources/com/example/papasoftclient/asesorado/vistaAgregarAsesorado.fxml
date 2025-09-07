@@ -38,13 +38,13 @@
                   </VBox>
                   <VBox prefHeight="114.0" prefWidth="449.0">
                      <children>
-                        <Label text="Fecha de Inscripcion:" />
+                        <Label text="Fecha de Inscripción:" />
                         <DatePicker fx:id="fechaInscripcion" editable="true" maxWidth="1.7976931348623157E308" prefHeight="43.0" prefWidth="235.0" styleClass="textField" />
                      </children>
                   </VBox>
                   <VBox prefHeight="114.0" prefWidth="449.0">
                      <children>
-                        <Label text="Telefono:" />
+                        <Label text="Teléfono:" />
                         <TextField fx:id="telefono" prefHeight="43.0" prefWidth="419.0" promptText="Ejemplo: 2294583230" styleClass="textField" />
                      </children>
                   </VBox>
