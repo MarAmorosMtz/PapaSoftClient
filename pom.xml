@@ -138,7 +138,6 @@
                     <noManPages>true</noManPages>
                     <launcher>papasoft</launcher>
                     <jlinkImageName>papasoft_image</jlinkImageName>
-                    <jmodsPath>${env.JFX_MODS}</jmodsPath>
                 </configuration>
             </plugin>
         </plugins>
