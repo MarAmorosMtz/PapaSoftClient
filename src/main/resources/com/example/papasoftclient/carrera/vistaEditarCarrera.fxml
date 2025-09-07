@@ -12,7 +12,7 @@
       <VBox prefHeight="114.0" prefWidth="449.0">
          <children>
             <Label text="Nombre:" />
-            <TextField fx:id="carrera" prefHeight="43.0" prefWidth="419.0" promptText="Ejemlpo: Ing. Industrial" styleClass="textField" />
+            <TextField fx:id="carrera" prefHeight="43.0" prefWidth="419.0" promptText="Ejemplo: Ing. Industrial" styleClass="textField" />
          </children>
       </VBox>
       <HBox alignment="CENTER" prefHeight="108.0" prefWidth="422.0" styleClass="hBoxBottom">

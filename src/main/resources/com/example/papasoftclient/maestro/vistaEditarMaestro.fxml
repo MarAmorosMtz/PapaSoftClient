@@ -12,19 +12,19 @@
       <VBox prefHeight="114.0" prefWidth="449.0">
          <children>
             <Label text="Nombre(s) del maestro:" />
-            <TextField prefHeight="43.0" prefWidth="419.0" promptText="Ejemlpo: Kevin Antoine" styleClass="textField" fx:id="txtNombre"/>
+            <TextField prefHeight="43.0" prefWidth="419.0" promptText="Ejemplo: Kevin Antoine" styleClass="textField" fx:id="txtNombre"/>
          </children>
       </VBox>
       <VBox prefHeight="114.0" prefWidth="449.0">
          <children>
             <Label text="Apellido paterno maestro:" />
-            <TextField prefHeight="43.0" prefWidth="419.0" promptText="Ejemlpo: Amoros" styleClass="textField" fx:id="txtApellidoP"/>
+            <TextField prefHeight="43.0" prefWidth="419.0" promptText="Ejemplo: Amoros" styleClass="textField" fx:id="txtApellidoP"/>
          </children>
       </VBox>
       <VBox prefHeight="114.0" prefWidth="449.0">
          <children>
             <Label text="RFC del maestro:" />
-            <TextField prefHeight="43.0" prefWidth="419.0" promptText="Ejemlpo: Luna" styleClass="textField" fx:id="txtApellidoM"/>
+            <TextField prefHeight="43.0" prefWidth="419.0" promptText="Ejemplo: Luna" styleClass="textField" fx:id="txtApellidoM"/>
          </children>
       </VBox>
       <HBox alignment="CENTER" prefHeight="108.0" prefWidth="422.0" styleClass="hBoxBottom">
