@@ -1,0 +1,51 @@
+# Archivo: .github/workflows/build-and-release.yml
+
+name: Build and Release JavaFX App
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write # Permite que el workflow escriba en el repositorio (para crear releases)
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest # Usa una máquina virtual de Ubuntu para el build
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 24
+        uses: actions/setup-java@v5
+        with:
+          java-version: '24'
+          distribution: 'temurin'
+          cache: 'maven' # O 'gradle' si usas Gradle
+
+      - name: Build with Maven
+        run: |
+          mvn clean javafx:jlink
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v1.0.${{ github.run_number }}
+          release_name: Release v1.0.${{ github.run_number }}
+          draft: false
+          prerelease: false
+
+      - name: Upload jlink package to Release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./target/jlink-package-folder/ # Reemplaza con la ruta de tu paquete jlink
+          asset_name: myapp-v1.0.${{ github.run_number }}.zip # Nombre del archivo a subir
+          asset_content_type: application/zip
