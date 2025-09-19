@@ -122,7 +122,6 @@ public class AsesorController implements Observador {
             asesorModel = scrollController.getSelectedAsesor();
         }else{
             asesorModel = tableController.getSelectedAsesor();
-            tableController.actualizar();
         }
         ConfirmacionAsesorController confirmacionController = loader.getController();
         confirmacionController.agregarObservador(this);
@@ -156,20 +155,14 @@ public class AsesorController implements Observador {
         if(vistaTabla){
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/papasoftclient/asesor/vistaScrollPane.fxml"));
             loadedAnchorPane = loader.load();
-
             scrollController = loader.getController();
-
             swapButton.setText("Vista de Tabla");
-
             vistaTabla = false;
         }else{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/papasoftclient/asesor/vistaTableView.fxml"));
             loadedAnchorPane = loader.load();
-
             tableController = loader.getController();
-
             swapButton.setText("Vista de Tarjetas");
-
             vistaTabla = true;
         }
         AnchorPane.setTopAnchor(loadedAnchorPane, 0.0);
@@ -179,9 +172,6 @@ public class AsesorController implements Observador {
 
         anchorDisplay.getChildren().clear();
         anchorDisplay.getChildren().add(loadedAnchorPane);
-
-        tableController.actualizar();
-        scrollController.actualizar();
     }
 
 

@@ -48,15 +48,16 @@ public class ScrollPaneAsesorController implements Observador {
     public void initialize(){
         int column = 0;
         int row = 1;
-        if(!loadAsesores().isEmpty()){
+        ArrayList<AsesorModel> asesores = loadAsesores();
+        if(!asesores.isEmpty()){
             listener = this::setSelectedAsesor;
         }
         try {
-            for(int i = 0; i <= loadAsesores().size()-1; i++) {
+            for(int i = 0; i <= asesores.size()-1; i++) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/papasoftclient/asesor/vistaEntryAsesor.fxml"));
                 AnchorPane anchorPane = loader.load();
                 EntryController controller = loader.getController();
-                controller.setData(loadAsesores().get(i), listener);
+                controller.setData(asesores.get(i), listener);
 
 
                 VBox vbox = (VBox) anchorPane.getChildren().getFirst();
@@ -89,17 +90,17 @@ public class ScrollPaneAsesorController implements Observador {
     }
 
     public ArrayList<AsesorModel> loadAsesores(){
-        int i = 1;
+        System.out.println("Trayendo asesores...");
         ArrayList<AsesorModel> asesores = new ArrayList<>();
-        AsesorPage tmp;
-        do {
-            tmp = asesorRepository.search(i);
-            if(tmp != null && !tmp.getAsesores().isEmpty()) {
-                asesores.addAll(tmp.getAsesores());
+        AsesorPage pagina  = asesorRepository.search(1);
+        if(pagina != null){
+            asesores.addAll(pagina.getAsesores());
+            int totalPages = pagina.getPaginas();
+            for(int i=2; i <= totalPages; i++){
+                pagina = asesorRepository.search(i);
+                asesores.addAll(pagina.getAsesores());
             }
-            i++;
-        } while (tmp != null && !tmp.getAsesores().isEmpty());
-
+        }
         return asesores;
     }
 
