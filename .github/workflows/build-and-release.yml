@@ -31,7 +31,8 @@ jobs:
 
       - name: Compress jlink package
         run: |
-          zip -r papasoft_image.zip ./target/papasoft_image
+          cd ./target
+          zip -r papasoft_image.zip papasoft_image/
         shell: bash
 
       - name: Create Release
