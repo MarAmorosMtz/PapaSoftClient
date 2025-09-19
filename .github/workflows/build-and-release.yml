@@ -29,6 +29,11 @@ jobs:
         run: |
           mvn clean javafx:jlink
 
+      - name: Compress jlink package
+        run: |
+          zip -r papasoft_image.zip ./target/papasoft_image
+        shell: bash
+
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -46,6 +51,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./target/papasoft_image/ # Reemplaza con la ruta de tu paquete jlink
-          asset_name: myapp-v1.0.${{ github.run_number }}.zip # Nombre del archivo a subir
+          asset_path: ./papasoft_image.zip
+          asset_name: papasoft-client-v1.0.${{ github.run_number }}.zip
           asset_content_type: application/zip
