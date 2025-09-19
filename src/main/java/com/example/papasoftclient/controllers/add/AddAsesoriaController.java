@@ -189,7 +189,7 @@ public class AddAsesoriaController extends Observable {
         if(pagina != null){
             maestros.addAll(pagina.getMaestros());
             for(int i=2; i<=pagina.getPaginas(); i++){
-                maestros.addAll(pagina.getMaestros());
+                maestros.addAll(maestroRepository.search(i).getMaestros());
             }
         }
         this.comboMaestro1.setItems(FXCollections.observableArrayList(maestros));
@@ -205,7 +205,7 @@ public class AddAsesoriaController extends Observable {
         if(pagina != null){
             asesorados.addAll(pagina.getAsesorados());
             for(int i=2; i<=pagina.getPaginas(); i++){
-                asesorados.addAll(pagina.getAsesorados());
+                asesorados.addAll(asesoradoRepository.search(i).getAsesorados());
             }
         }
         this.comboAsesorado1.setItems(FXCollections.observableArrayList(asesorados));
