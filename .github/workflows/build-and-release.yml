@@ -52,6 +52,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./papasoft_image.zip
+          asset_path: ./target/papasoft_image.zip
           asset_name: papasoft-client-v1.0.${{ github.run_number }}.zip
           asset_content_type: application/zip
