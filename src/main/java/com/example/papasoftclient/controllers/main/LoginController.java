@@ -3,6 +3,7 @@ package com.example.papasoftclient.controllers.main;
 import com.example.papasoftclient.Main;
 import com.example.papasoftclient.models.LoginModel;
 import com.example.papasoftclient.repositories.LoginRepository;
+import com.example.papasoftclient.utils.SessionStore;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -87,6 +88,8 @@ public class LoginController {
             stage.setMaximized(true);
             Stage cerrar = (Stage)usuarioCoordinador.getScene().getWindow();
             cerrar.close();
+            SessionStore.getUsername(nombreUsuario);
+            SessionStore.setAccountType(tipoUsuario);
             stage.show();
         }else{
             Alert alert = new Alert(Alert.AlertType.ERROR);
