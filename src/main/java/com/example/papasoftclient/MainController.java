@@ -122,9 +122,9 @@ public class MainController {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Login/Login.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         Stage stage = new Stage();
+        stage.setTitle("Login");
         stage.setScene(scene);
         stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setMaximized(true);
         stage.setResizable(false);
         Stage stg = (Stage) btnLogOut.getScene().getWindow();
         stg.close();

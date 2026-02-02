@@ -18,23 +18,15 @@ import java.io.IOException;
 
 public class LoginController {
     @FXML
-    Button btn;
+    Button loginBtn;
     @FXML
-    PasswordField pass;
+    RadioButton coordinatorOption;
     @FXML
-    HBox bottomHBox;
+    RadioButton secretaryOption;
     @FXML
-    ImageView imageView;
+    TextField usernameField;
     @FXML
-    TabPane tabLogin;
-    @FXML
-    TextField usuarioSecretario;
-    @FXML
-    PasswordField claveSecretario;
-    @FXML
-    TextField usuarioCoordinador;
-    @FXML
-    PasswordField claveCoordinador;
+    PasswordField passwordField;
 
     LoginRepository loginRepository;
 
@@ -44,52 +36,44 @@ public class LoginController {
 
     @FXML
     private void initialize(){
-        bottomHBox.widthProperty().addListener((obs, oldVal, newVal) -> {
-            imageView.setFitWidth(newVal.doubleValue());
-        });
-
-        bottomHBox.heightProperty().addListener((obs, oldVal, newVal) -> {
-            imageView.setFitHeight(newVal.doubleValue());
-        });
-
     }
 
     @FXML
-    private void teclaPresionada(KeyEvent keyEvent) throws IOException {
+    private void onKeyPressed(KeyEvent keyEvent) throws IOException {
         if(keyEvent.getCode() == KeyCode.ENTER){
-            this.entrar();
+            this.login();
         }
     }
 
     @FXML
-    private void entrar() throws IOException {
-        FXMLLoader vista;
+    private void login() throws IOException {
+        FXMLLoader view;
         FXMLLoader vistaAdministrador = new FXMLLoader(Main.class.getResource("/com/example/papasoftclient/Main/dashboardAdministrador.fxml"));
         FXMLLoader vistaSecretario = new FXMLLoader(Main.class.getResource("/com/example/papasoftclient/Main/dashboardSecretario.fxml"));
-        int tipoUsuario = tabLogin.getSelectionModel().getSelectedIndex();
-        String nombreUsuario="",clave="";
-        if(tipoUsuario == 0){
-            nombreUsuario = usuarioCoordinador.getText();
-            clave = claveCoordinador.getText();
-            vista = vistaAdministrador;
+        int userType=1;     //1 para secretarios, 0 para coordinador
+        String username="",password="";
+        username = usernameField.getText();
+        password = passwordField.getText();
+        if(coordinatorOption.isSelected()){
+            view = vistaAdministrador;
+            userType = 0;
         }else {
-            nombreUsuario = usuarioSecretario.getText();
-            clave = claveSecretario.getText();
-            vista = vistaSecretario;
+            view = vistaSecretario;
+            userType = 1;
         }
-        LoginModel loginModel = new LoginModel(nombreUsuario,clave,tipoUsuario);
+        LoginModel loginModel = new LoginModel(username,password,userType);
         int statusCode = loginRepository.login(loginModel);
 
         if(statusCode==200){
-            Scene scene = new Scene(vista.load());
+            Scene scene = new Scene(view.load());
             Stage stage = new Stage();
             stage.setTitle("PapaSoft");
             stage.setScene(scene);
             stage.setMaximized(true);
-            Stage cerrar = (Stage)usuarioCoordinador.getScene().getWindow();
+            Stage cerrar = (Stage)usernameField.getScene().getWindow();
             cerrar.close();
-            SessionStore.getUsername(nombreUsuario);
-            SessionStore.setAccountType(tipoUsuario);
+            SessionStore.getUsername(username);
+            SessionStore.setAccountType(userType);
             stage.show();
         }else{
             Alert alert = new Alert(Alert.AlertType.ERROR);
