@@ -35,24 +35,24 @@
                                     <Label text="Tipo de Reporte:" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                                     <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="25.0" GridPane.columnIndex="1">
                                        <children>
-                                          <RadioButton fx:id="radioMateria" mnemonicParsing="false" onAction="#handleRadioAction" styleClass="radioButton" text="Carrera">
+                                          <RadioButton fx:id="subjectOption" mnemonicParsing="false" onAction="#handlePeriodicitySelection" styleClass="radioButton" text="Carrera">
                                              <toggleGroup>
                                                 <ToggleGroup fx:id="tipoReporte" />
                                              </toggleGroup>
                                           </RadioButton>
-                                          <RadioButton fx:id="radioAsesor" mnemonicParsing="false" onAction="#handleRadioAction" styleClass="radioButton" text="Asesor" toggleGroup="$tipoReporte" />
+                                          <RadioButton fx:id="tutorOption" mnemonicParsing="false" onAction="#handlePeriodicitySelection" styleClass="radioButton" text="Asesor" toggleGroup="$tipoReporte" />
                                        </children>
                                     </VBox>
                                     <Label text="Periodicidad:" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
                                     <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="25.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                        <children>
-                                          <RadioButton fx:id="radioMensual" mnemonicParsing="false" onAction="#handleRadioAction" styleClass="radioButton" text="Mensual">
+                                          <RadioButton fx:id="monthlyOption" mnemonicParsing="false" onAction="#handlePeriodicitySelection" styleClass="radioButton" text="Mensual">
                                              <toggleGroup>
                                                 <ToggleGroup fx:id="periodicidad" />
                                              </toggleGroup>
                                           </RadioButton>
-                                          <RadioButton fx:id="radioSemestral" mnemonicParsing="false" onAction="#handleRadioAction" styleClass="radioButton" text="Semestral" toggleGroup="$periodicidad" />
-                                          <RadioButton fx:id="radioTotal" mnemonicParsing="false" onAction="#handleRadioAction" styleClass="radioButton" text="Total" toggleGroup="$periodicidad" />
+                                          <RadioButton fx:id="biannualOption" mnemonicParsing="false" onAction="#handlePeriodicitySelection" styleClass="radioButton" text="Semestral" toggleGroup="$periodicidad" />
+                                          <RadioButton fx:id="totalOption" mnemonicParsing="false" onAction="#handlePeriodicitySelection" styleClass="radioButton" text="Total" toggleGroup="$periodicidad" />
                                        </children>
                                     </VBox>
                                  </children>
@@ -86,7 +86,7 @@
                                                       <Insets top="9.0" />
                                                    </padding>
                                                 </Label>
-                                                <ComboBox fx:id="comboAño" maxWidth="1.7976931348623157E308" prefHeight="39.0" prefWidth="156.0" styleClass="comboBox" HBox.hgrow="ALWAYS" promptText="Selecciona un año">
+                                                <ComboBox fx:id="yearSelector" maxWidth="1.7976931348623157E308" prefHeight="39.0" prefWidth="156.0" styleClass="comboBox" HBox.hgrow="ALWAYS" promptText="Selecciona un año">
                                                    <HBox.margin>
                                                       <Insets right="10.0" />
                                                    </HBox.margin></ComboBox>
@@ -99,7 +99,7 @@
                                                       <Insets top="9.0" />
                                                    </padding>
                                                 </Label>
-                                                <ComboBox fx:id="comboMes" maxWidth="1.7976931348623157E308" prefHeight="39.0" prefWidth="155.0" styleClass="comboBox" HBox.hgrow="ALWAYS" promptText="Selecciona un mes">
+                                                <ComboBox fx:id="monthSelector" maxWidth="1.7976931348623157E308" prefHeight="39.0" prefWidth="155.0" styleClass="comboBox" HBox.hgrow="ALWAYS" promptText="Selecciona un mes">
                                                    <HBox.margin>
                                                       <Insets right="10.0" />
                                                    </HBox.margin></ComboBox>
@@ -110,7 +110,7 @@
                                           <Insets right="2.0" />
                                        </padding>
                                     </VBox>
-                                    <ComboBox fx:id="comboPeriodo" maxWidth="1.7976931348623157E308" prefHeight="36.0" prefWidth="180.0" styleClass="comboBox" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" promptText="Selecciona un periodo">
+                                    <ComboBox fx:id="periodSelector" maxWidth="1.7976931348623157E308" prefHeight="36.0" prefWidth="180.0" styleClass="comboBox" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" promptText="Selecciona un periodo">
                                        <GridPane.margin>
                                           <Insets left="3.0" right="10.0" />
                                        </GridPane.margin>
@@ -128,7 +128,7 @@
             </HBox>
             <HBox alignment="CENTER_RIGHT" prefHeight="85.0" prefWidth="835.0" VBox.vgrow="NEVER">
                <children>
-                  <Button fx:id="botonHecho" mnemonicParsing="false" onAction="#generarReporte" prefHeight="46.0" prefWidth="118.0" styleClass="Button" text="Hecho" />
+                  <Button fx:id="generateReportButton" mnemonicParsing="false" onAction="#generateReport" prefHeight="46.0" prefWidth="118.0" styleClass="Button" text="Hecho" />
                </children>
                <padding>
                   <Insets right="20.0" />
