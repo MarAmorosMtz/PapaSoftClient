@@ -1,12 +1,12 @@
-package com.example.papasoftclient;
+package com.example.papasoftclient.controllers.main;
 
+import com.example.papasoftclient.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -21,25 +21,6 @@ public class MainController {
 
     @FXML
     public void initialize() {
-        String imagePath = getClass().getResource("media/login_background.jpg").toExternalForm();
-
-        BackgroundImage backgroundImage = new BackgroundImage(
-                new Image(imagePath),
-                BackgroundRepeat.NO_REPEAT,
-                BackgroundRepeat.NO_REPEAT,
-                BackgroundPosition.CENTER,
-                new BackgroundSize(
-                        BackgroundSize.AUTO,
-                        BackgroundSize.AUTO,
-                        false,
-                        false,
-                        true,
-                        true
-                )
-        );
-
-        // Establecer la imagen como fondo
-        vista.setBackground(new Background(backgroundImage));
     }
 
     @FXML
@@ -48,7 +29,7 @@ public class MainController {
 
         String fxml = getViewForButton(clickedButton);
         if (fxml != null) {
-            loadView(fxml);
+            loadView("/com/example/papasoftclient/" + fxml);
         }
     }
 
@@ -74,7 +55,7 @@ public class MainController {
             case "btnHorarios":
                 return "horarios/vistaHorarios";
             case "btnReportes":
-                return "reporte/vistaReporte";
+                return "reporte/Reportes";
             case "btnHorariosSalones":
                 return "horariosSalon/vistaHorariosSalon";
             case "btnHorariosAsesores":
