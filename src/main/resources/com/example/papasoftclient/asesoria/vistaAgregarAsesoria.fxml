@@ -11,8 +11,9 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="651.0" prefWidth="744.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.papasoftclient.controllers.add.AddAsesoriaController">
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="651.0" prefWidth="744.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.papasoftclient.controllers.add.AddAsesoriaController">
    <content>
       <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1051.0" prefWidth="734.0" styleClass="vBox" stylesheets="@../CSS/Util/agregarStyle.css">
          <children>
@@ -21,10 +22,10 @@
                <children>
                   <VBox maxWidth="1.7976931348623157E308" prefHeight="496.0" prefWidth="350.0">
                      <children>
-                        <VBox prefHeight="114.0" prefWidth="449.0">
+                        <VBox prefHeight="200.0" prefWidth="327.0">
                            <children>
-                              <Label text="Fecha:" />
-                              <DatePicker fx:id="selectorFecha" maxWidth="1.7976931348623157E308" prefHeight="43.0" prefWidth="235.0" promptText="Selecciona una fecha" styleClass="textField" />
+                              <Label prefHeight="12.0" prefWidth="90.0" text="Periodo:" />
+                              <ComboBox fx:id="comboPeriodo" prefHeight="33.0" prefWidth="301.0" styleClass="textField" />
                            </children>
                         </VBox>
                         <VBox prefHeight="114.0" prefWidth="449.0">
@@ -39,14 +40,20 @@
                               <ComboBox fx:id="comboAsesor" maxWidth="1.7976931348623157E308" prefHeight="43.0" promptText="Asigna un asesor" styleClass="textField" />
                            </children>
                         </VBox>
+                        <VBox prefHeight="114.0" prefWidth="449.0">
+                           <children>
+                              <Label text="Tema:" />
+                              <TextField fx:id="tema" styleClass="textField" />
+                           </children>
+                        </VBox>
                      </children>
                   </VBox>
                   <VBox maxWidth="1.7976931348623157E308" prefHeight="496.0" prefWidth="359.0">
                      <children>
                         <VBox prefHeight="114.0" prefWidth="449.0">
                            <children>
-                              <Label text="Materia:" />
-                              <ComboBox fx:id="comboMateria" maxWidth="1.7976931348623157E308" prefHeight="43.0" promptText="Asigna una materia" styleClass="textField" />
+                              <Label text="Fecha:" />
+                              <DatePicker fx:id="selectorFecha" maxWidth="1.7976931348623157E308" prefHeight="43.0" prefWidth="235.0" promptText="Selecciona una fecha" styleClass="textField" />
                            </children>
                         </VBox>
                         <VBox prefHeight="114.0" prefWidth="449.0">
@@ -55,27 +62,25 @@
                               <ComboBox fx:id="comboSalon" maxWidth="1.7976931348623157E308" prefHeight="43.0" promptText="Asigna un salon" styleClass="textField" />
                            </children>
                         </VBox>
-                        <VBox prefHeight="114.0" prefWidth="449.0" />
                         <VBox prefHeight="114.0" prefWidth="449.0">
                            <children>
-                              <Label text="Tema:" />
-                              <TextField fx:id="tema" styleClass="textField" />
-                              <FlowPane prefHeight="42.0" prefWidth="337.0">
-                                 <children>
-                                    <CheckBox fx:id="confirmada" mnemonicParsing="false" text="Confirmada" />
-                                    <Label prefHeight="12.0" prefWidth="90.0" text="Periodo:" />
-                                    <ComboBox fx:id="comboPeriodo" prefHeight="28.0" prefWidth="158.0" styleClass="textField">
-                                       <FlowPane.margin>
-                                          <Insets />
-                                       </FlowPane.margin>
-                                    </ComboBox>
-                                 </children>
-                                 <padding>
-                                    <Insets bottom="25.0" top="25.0" />
-                                 </padding>
-                              </FlowPane>
+                              <Label text="Materia:" />
+                              <ComboBox fx:id="comboMateria" maxWidth="1.7976931348623157E308" prefHeight="43.0" promptText="Asigna una materia" styleClass="textField" />
                            </children>
                         </VBox>
+                        <VBox prefHeight="114.0" prefWidth="449.0" />
+                        <FlowPane prefHeight="42.0" prefWidth="337.0">
+                           <children>
+                              <CheckBox fx:id="confirmada" contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="25.0" prefWidth="210.0" text="Confirmada">
+                                 <font>
+                                    <Font name="Verdana Bold" size="14.0" />
+                                 </font>
+                              </CheckBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="25.0" top="25.0" />
+                           </padding>
+                        </FlowPane>
                      </children>
                   </VBox>
                </children>

@@ -17,90 +17,88 @@ import java.time.LocalDate;
 
 public class ReporteController {
     @FXML
-    RadioButton radioMateria;
+    RadioButton subjectOption;
     @FXML
-    RadioButton radioAsesor;
+    RadioButton tutorOption;
     @FXML
-    RadioButton radioMensual;
+    RadioButton monthlyOption;
     @FXML
-    RadioButton radioSemestral;
+    RadioButton biannualOption;
     @FXML
-    RadioButton radioTotal;
+    RadioButton totalOption;
     @FXML
-    ComboBox<PeriodoModel> comboPeriodo;
+    ComboBox<PeriodoModel> periodSelector;
     @FXML
-    ComboBox<String> comboAño;
+    ComboBox<String> yearSelector;
     @FXML
-    ComboBox<String> comboMes;
+    ComboBox<String> monthSelector;
     @FXML
-    Button botonHecho;
+    Button generateReportButton;
 
     private PeriodoRepository periodoRepository;
     private ObservableList<PeriodoModel> catalogoPeriodo;
 
     @FXML
     public void initialize(){
-
         periodoRepository = new PeriodoRepository();
-        comboPeriodo.setDisable(true);
         catalogoPeriodo = periodoRepository.getCatalogoPeriodo();
-        comboPeriodo.setItems(catalogoPeriodo);
-
-        comboAño.setDisable(true);
-        comboMes.setDisable(true);
-        meses();
-        anios();
+        if(catalogoPeriodo.isEmpty()){
+            periodSelector.setDisable(true);
+        }
+        periodSelector.setItems(catalogoPeriodo);
+        fillMonthDropdown();
+        fillYearDropdown();
     }
 
-    private void meses(){
+    private void fillMonthDropdown(){
         for(int i=1; i<=12; i++){
-            comboMes.getItems().add(String.valueOf(i));
+            monthSelector.getItems().add(String.valueOf(i));
         }
     }
 
-    private void anios(){
+    private void fillYearDropdown(){
         int year = LocalDate.now().getYear();
         for(int i=2000; i<=year; i++){
-            comboAño.getItems().add(String.valueOf(i));
+            yearSelector.getItems().add(String.valueOf(i));
         }
     }
 
 
     @FXML
-    private void handleRadioAction(){
-        comboPeriodo.setDisable(false);
-        comboAño.setDisable(false);
-        comboMes.setDisable(false);
-        if(radioTotal.isSelected()){
-            comboPeriodo.setDisable(true);
-            comboAño.setDisable(true);
-            comboMes.setDisable(true);
-        } else if (radioMensual.isSelected()) {
-            comboPeriodo.setDisable(true);
-        } else if (radioSemestral.isSelected()) {
-            comboMes.setDisable(true);
-            comboAño.setDisable(true);
+    private void handlePeriodicitySelection(){
+        if(totalOption.isSelected()){
+            periodSelector.setDisable(true);
+            yearSelector.setDisable(true);
+            monthSelector.setDisable(true);
+        } else if (monthlyOption.isSelected()) {
+            periodSelector.setDisable(true);
+            monthSelector.setDisable(false);
+            yearSelector.setDisable(false);
+        } else if (biannualOption.isSelected()) {
+            periodSelector.setDisable(false);
+            monthSelector.setDisable(true);
+            yearSelector.setDisable(true);
         }else{
-            comboPeriodo.setDisable(true);
-            comboAño.setDisable(true);
-            comboMes.setDisable(true);
+            periodSelector.setDisable(true);
+            yearSelector.setDisable(true);
+            monthSelector.setDisable(true);
         }
     }
 
     @FXML
-    private void generarReporte(){
+    private void generateReport(){
         String url = null;
-        if(radioAsesor.isSelected()){
+        if(tutorOption.isSelected()){
             url = RestAPI.ASESOR_REPORT_ENDPOINT;
-        }else if(radioMateria.isSelected()){
+        }else if(subjectOption.isSelected()){
             url = RestAPI.CARRERA_REPORT_ENDPOINT;
         }
-        if(!url.isEmpty() & radioSemestral.isSelected()){
-            PeriodoModel model = comboPeriodo.getSelectionModel().getSelectedItem();
+        if(!url.isEmpty() & biannualOption.isSelected()){
+            PeriodoModel model = periodSelector.getSelectionModel().getSelectedItem();
             url += "?periodo="+model.getId();
-        }else if(!url.isEmpty() & radioMensual.isSelected()){
-            int mes = Integer.parseInt(comboMes.getSelectionModel().getSelectedItem());
-            int anio = Integer.parseInt(comboAño.getSelectionModel().getSelectedItem());
+        }else if(!url.isEmpty() & monthlyOption.isSelected()){
+            int mes = Integer.parseInt(monthSelector.getSelectionModel().getSelectedItem());
+            int anio = Integer.parseInt(yearSelector.getSelectionModel().getSelectedItem());
             url += "?mes="+mes+"&anio="+anio+"";
         }
 

@@ -7,6 +7,7 @@ import com.example.papasoftclient.controllers.edit.EditAsesoriaController;
 import com.example.papasoftclient.models.*;
 import com.example.papasoftclient.repositories.AsesoriaRepository;
 import com.example.papasoftclient.utils.Observador;
+import com.example.papasoftclient.utils.SessionStore;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -15,10 +16,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Pagination;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -43,7 +46,10 @@ public class AsesoriaController implements Observador {
     TableColumn<AsesoriaModel, String> columnaSalon;
     @FXML
     TableColumn<AsesoriaModel, String> columnaEstado;
-
+    @FXML
+    Button eliminarAsesoria;
+    @FXML
+    Button editarAsesoria;
     @FXML
     Pagination paginadorAsesoria;
 
@@ -53,6 +59,10 @@ public class AsesoriaController implements Observador {
 
     @FXML
     public void initialize() {
+        if(SessionStore.getAccountType()==1){
+            ((Pane) eliminarAsesoria.getParent()).getChildren().remove(eliminarAsesoria);
+        }
+
         columnaEstado.setCellValueFactory(cellData -> {
                     boolean confirmada = cellData.getValue().getConfirmada();
                     return new SimpleStringProperty(confirmada ? "Confirmada":"Sin confirmar");
