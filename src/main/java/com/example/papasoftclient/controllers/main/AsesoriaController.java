@@ -60,7 +60,8 @@ public class AsesoriaController implements Observador {
     @FXML
     public void initialize() {
         if(SessionStore.getAccountType()==1){
-            ((Pane) eliminarAsesoria.getParent()).getChildren().remove(eliminarAsesoria);
+            editarAsesoria.setDisable(true);
+            eliminarAsesoria.setDisable(true);
         }
 
         columnaEstado.setCellValueFactory(cellData -> {

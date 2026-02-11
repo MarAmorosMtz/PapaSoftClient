@@ -72,7 +72,7 @@ public class LoginController {
             stage.setMaximized(true);
             Stage cerrar = (Stage)usernameField.getScene().getWindow();
             cerrar.close();
-            SessionStore.getUsername(username);
+            SessionStore.setUsername(username);
             SessionStore.setAccountType(userType);
             stage.show();
         }else{
