@@ -13,10 +13,10 @@ public class AsesoriaModel {
     private MateriaModel materia;
     private SalonModel salon;
     private AsesorModel asesor;
+    private PeriodoModel periodo;
     private UUID id;
     private boolean confirmada;
     private ArrayList<DetalleAsesoradoModel> asesorados;
-    private UUID periodo;
 
     public AsesoriaModel() {}
 
@@ -115,6 +115,6 @@ public class AsesoriaModel {
         this.asesorados = asesorados;
     }
 
-    public void setPeriodo(UUID periodo){this.periodo = periodo;}
-    public UUID getPeriodo(){return this.periodo;}
+    public void setPeriodo(PeriodoModel periodo){this.periodo = periodo;}
+    public PeriodoModel getPeriodo(){return this.periodo;}
 }
