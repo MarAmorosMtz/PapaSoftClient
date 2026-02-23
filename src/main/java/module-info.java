@@ -8,6 +8,7 @@ module com.example.papasoftclient {
     requires java.sql;
     requires java.desktop;
     requires java.net.http;
+    requires javafx.graphics;
 
     opens com.example.papasoftclient to javafx.fxml;
     opens com.example.papasoftclient.controllers.add to javafx.fxml;
