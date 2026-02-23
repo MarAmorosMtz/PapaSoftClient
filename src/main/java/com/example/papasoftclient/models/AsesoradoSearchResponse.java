@@ -19,6 +19,14 @@ public class AsesoradoSearchResponse {
         this.apellido_m = apellido_m;
     }
 
+    public AsesoradoSearchResponse(AsesoradoModel asesorado){
+        this.id = asesorado.getId();
+        this.num_ctrl = asesorado.getNum_ctrl();
+        this.nombre = asesorado.getNombre();
+        this.apellido_p = asesorado.getApellido_p();
+        this.apellido_m = asesorado.getApellido_m();
+    }
+
     public UUID getId() {
         return id;
     }
