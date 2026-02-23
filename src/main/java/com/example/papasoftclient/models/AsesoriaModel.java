@@ -1,9 +1,7 @@
 package com.example.papasoftclient.models;
-import java.sql.Time;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.UUID;
-import java.sql.Date;
 
 public class AsesoriaModel {
 
@@ -16,31 +14,21 @@ public class AsesoriaModel {
     private PeriodoModel periodo;
     private UUID id;
     private boolean confirmada;
-    private ArrayList<DetalleAsesoradoModel> asesorados;
+    private ArrayList<DetalleAsesoriaExpanded> asesorados;
 
     public AsesoriaModel() {}
 
-    public AsesoriaModel(LocalDate fecha, String hora, MateriaModel materia, SalonModel salon, AsesorModel asesor, String tema, UUID id, boolean confirmada) {
+    public AsesoriaModel(LocalDate fecha, String hora, String tema, MateriaModel materia, SalonModel salon, AsesorModel asesor, PeriodoModel periodo, UUID id, boolean confirmada, ArrayList<DetalleAsesoriaExpanded> asesorados) {
         this.fecha = fecha;
         this.hora = hora;
+        this.tema = tema;
         this.materia = materia;
         this.salon = salon;
         this.asesor = asesor;
-        this.tema = tema;
+        this.periodo = periodo;
         this.id = id;
         this.confirmada = confirmada;
-    }
-
-    public AsesoriaModel(LocalDate fecha, String hora, MateriaModel materia, SalonModel salon, AsesorModel asesor, String tema, UUID id,boolean confirmada, ArrayList<DetalleAsesoradoModel> asesorados) {
-        this.fecha = fecha;
-        this.hora = hora;
-        this.materia = materia;
-        this.salon = salon;
-        this.asesor = asesor;
-        this.tema = tema;
-        this.id = id;
         this.asesorados = asesorados;
-        this.confirmada = confirmada;
     }
 
     public LocalDate getFecha() {
@@ -107,14 +95,31 @@ public class AsesoriaModel {
         this.confirmada = confirmada;
     }
 
-    public ArrayList<DetalleAsesoradoModel> getAsesorados() {
+    public ArrayList<DetalleAsesoriaExpanded> getAsesorados() {
         return asesorados;
     }
 
-    public void setAsesorados(ArrayList<DetalleAsesoradoModel> asesorados) {
+    public void setAsesorados(ArrayList<DetalleAsesoriaExpanded> asesorados) {
         this.asesorados = asesorados;
     }
 
     public void setPeriodo(PeriodoModel periodo){this.periodo = periodo;}
+
     public PeriodoModel getPeriodo(){return this.periodo;}
+
+    @Override
+    public String toString() {
+        return "AsesoriaModel{" +
+                "fecha=" + fecha +
+                ", hora='" + hora + '\'' +
+                ", tema='" + tema + '\'' +
+                ", materia=" + materia +
+                ", salon=" + salon +
+                ", asesor=" + asesor +
+                ", periodo=" + periodo +
+                ", id=" + id +
+                ", confirmada=" + confirmada +
+                ", asesorados=" + asesorados +
+                '}';
+    }
 }
