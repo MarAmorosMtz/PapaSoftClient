@@ -86,6 +86,54 @@ public class AsesoradoRepository implements Repository<AsesoradoBase, AsesoradoM
         return null;
     }
 
+    public AsesoradoPage searchByControl(String numCtrl, int page){
+        try{
+            HttpRequest request = HttpRequest.newBuilder().uri(new URI(host+"search?num_ctrl="+numCtrl+"&pagina="+Integer.toString(page))).GET().build();
+            HttpResponse<String> response = client.send(request,HttpResponse.BodyHandlers.ofString());
+            if(response.statusCode()==200) return mapper.readValue(response.body(), AsesoradoPage.class);
+        }catch (URISyntaxException urisex){
+            System.err.println("El URI no es valido");
+        }catch (IOException ioex){
+            System.err.println("Ocurrio un error de E/S o el cliente se cerro inesperadamente.");
+        }
+        catch (InterruptedException intex){
+            System.err.println("Se interrumpio la operacion.");
+        }
+        return null;
+    }
+
+    public AsesoradoPage searchByName(String name, int page){
+        try{
+            HttpRequest request = HttpRequest.newBuilder().uri(new URI(host+"search?nombre="+name+"&pagina="+Integer.toString(page))).GET().build();
+            HttpResponse<String> response = client.send(request,HttpResponse.BodyHandlers.ofString());
+            if(response.statusCode()==200) return mapper.readValue(response.body(), AsesoradoPage.class);
+        }catch (URISyntaxException urisex){
+            System.err.println("El URI no es valido");
+        }catch (IOException ioex){
+            System.err.println("Ocurrio un error de E/S o el cliente se cerro inesperadamente.");
+        }
+        catch (InterruptedException intex){
+            System.err.println("Se interrumpio la operacion.");
+        }
+        return null;
+    }
+
+    public AsesoradoPage searchByLastname(String lastname, int page){
+        try{
+            HttpRequest request = HttpRequest.newBuilder().uri(new URI(host+"search?apellido="+lastname+"&pagina="+Integer.toString(page))).GET().build();
+            HttpResponse<String> response = client.send(request,HttpResponse.BodyHandlers.ofString());
+            if(response.statusCode()==200) return mapper.readValue(response.body(), AsesoradoPage.class);
+        }catch (URISyntaxException urisex){
+            System.err.println("El URI no es valido");
+        }catch (IOException ioex){
+            System.err.println("Ocurrio un error de E/S o el cliente se cerro inesperadamente.");
+        }
+        catch (InterruptedException intex){
+            System.err.println("Se interrumpio la operacion.");
+        }
+        return null;
+    }
+
     @Override
     public UUID save(AsesoradoBase item) {
         try{
