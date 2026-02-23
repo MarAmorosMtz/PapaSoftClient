@@ -230,21 +230,21 @@ public class AddAsesoriaController extends Observable {
 
         if(err == 0){
 
-            ArrayList<DetalleAsesoradoModel> listaAsesorados = new ArrayList<>();
+            ArrayList<DetalleAsesoriaModel> listaAsesorados = new ArrayList<>();
             if(this.comboAsesorado1.getSelectionModel().getSelectedItem() != null && this.comboMaestro1.getSelectionModel().getSelectedItem() != null){
-                listaAsesorados.add(new DetalleAsesoradoModel(this.comboAsesorado1.getValue().getId(),this.comboMaestro1.getValue().getId()));
+                listaAsesorados.add(new DetalleAsesoriaModel(this.comboAsesorado1.getValue().getId(),this.comboMaestro1.getValue().getId()));
             }
             if(this.comboAsesorado2.getSelectionModel().getSelectedItem() != null && this.comboMaestro2.getSelectionModel().getSelectedItem() != null){
-                listaAsesorados.add(new DetalleAsesoradoModel(this.comboAsesorado2.getValue().getId(),this.comboMaestro2.getValue().getId()));
+                listaAsesorados.add(new DetalleAsesoriaModel(this.comboAsesorado2.getValue().getId(),this.comboMaestro2.getValue().getId()));
             }
             if (this.comboAsesorado3.getSelectionModel().getSelectedItem() != null && this.comboMaestro3.getSelectionModel().getSelectedItem() != null){
-                listaAsesorados.add(new DetalleAsesoradoModel(this.comboAsesorado3.getValue().getId(),this.comboMaestro3.getValue().getId()));
+                listaAsesorados.add(new DetalleAsesoriaModel(this.comboAsesorado3.getValue().getId(),this.comboMaestro3.getValue().getId()));
             }
             if(this.comboAsesorado4.getSelectionModel().getSelectedItem() != null && this.comboMaestro4.getSelectionModel().getSelectedItem() != null){
-                listaAsesorados.add(new DetalleAsesoradoModel(this.comboAsesorado4.getValue().getId(),this.comboMaestro4.getValue().getId()));
+                listaAsesorados.add(new DetalleAsesoriaModel(this.comboAsesorado4.getValue().getId(),this.comboMaestro4.getValue().getId()));
             }
             if(this.comboAsesorado5.getSelectionModel().getSelectedItem() != null && this.comboMaestro5.getSelectionModel().getSelectedItem() != null){
-                listaAsesorados.add(new DetalleAsesoradoModel(this.comboAsesorado5.getValue().getId(),this.comboMaestro5.getValue().getId()));
+                listaAsesorados.add(new DetalleAsesoriaModel(this.comboAsesorado5.getValue().getId(),this.comboMaestro5.getValue().getId()));
             }
 
             asesoria = new AsesoriaBase(selectorFecha.getValue(),
