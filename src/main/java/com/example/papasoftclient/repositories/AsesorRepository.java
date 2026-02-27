@@ -13,6 +13,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.UUID;
 
 public class AsesorRepository implements Repository<AsesorBase, AsesorModel>{
@@ -60,17 +61,16 @@ public class AsesorRepository implements Repository<AsesorBase, AsesorModel>{
 
 
 
-    public AsesorPage searchFiltrado(UUID periodoId, int page, int day, int month, int year, int hour, int minute) {
+    public AsesorPage filterByDateHourAndSubject(int page, LocalDate date, String time, UUID materia) {
         try{
             HttpRequest request = HttpRequest.newBuilder()
                     .version(HttpClient.Version.HTTP_1_1)
-                    .uri(new URI(host + "filtrar/?periodo=" + periodoId.toString()
-                            + "&pagina=" + page
-                            + "&dia=" + day
-                            + "&mes=" + month
-                            + "&ano=" + year
-                            + "&hora=" + hour
-                            + "&minuto=" + minute)).GET().build();
+                    .uri(new URI(host + "search/?"
+                            + "pagina=" + page
+                            + "&fecha=" + date.toString()
+                            + "&hora=" + time
+                            + "&materia="+ materia
+                    )).GET().build();
             HttpResponse<String> response = client.send(request,HttpResponse.BodyHandlers.ofString());
             if(response.statusCode()==200) return mapper.readValue(response.body(), AsesorPage.class);
         }catch (URISyntaxException urisex){
