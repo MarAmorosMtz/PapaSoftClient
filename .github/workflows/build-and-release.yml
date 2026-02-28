@@ -8,33 +8,14 @@ on:
       - main
 
 permissions:
-  contents: write # Permite que el workflow escriba en el repositorio (para crear releases)
+  contents: write
 
 jobs:
-  build-and-publish:
-    runs-on: ubuntu-latest # Usa una máquina virtual de Ubuntu para el build
-    
+  create-release:
+    runs-on: ubuntu-latest
+    outputs:
+      upload_url: ${{ steps.create_release.outputs.upload_url }}
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
-
-      - name: Set up JDK 24
-        uses: actions/setup-java@v5
-        with:
-          java-version: '24'
-          distribution: 'temurin'
-          cache: 'maven' # O 'gradle' si usas Gradle
-
-      - name: Build with Maven
-        run: |
-          mvn clean javafx:jlink
-
-      - name: Compress jlink package
-        run: |
-          cd ./target
-          zip -r papasoft_image.zip papasoft_image/
-        shell: bash
-
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -46,12 +27,62 @@ jobs:
           draft: false
           prerelease: false
 
-      - name: Upload jlink package to Release
+  build-linux:
+    needs: create-release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK 24
+        uses: actions/setup-java@v4
+        with:
+          java-version: '24'
+          distribution: 'temurin'
+          cache: 'maven'
+
+      - name: Build with Maven
+        run: mvn clean javafx:jlink
+
+      - name: Compress Linux package
+        run: |
+          cd ./target
+          zip -r papasoft_linux.zip papasoft_image/
+
+      - name: Upload Linux Asset
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./target/papasoft_image.zip
-          asset_name: papasoft-client-v1.0.${{ github.run_number }}.zip
+          upload_url: ${{ needs.create-release.outputs.upload_url }}
+          asset_path: ./target/papasoft_linux.zip
+          asset_name: papasoft-client-linux-v1.0.${{ github.run_number }}.zip
+          asset_content_type: application/zip
+
+  build-windows:
+    needs: create-release
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 24
+        uses: actions/setup-java@v4
+        with:
+          java-version: '24'
+          distribution: 'temurin'
+          cache: 'maven'
+
+      - name: Build with Maven (Windows)
+        run: mvn clean javafx:jlink
+
+      - name: Compress Windows package
+        run: |
+          Compress-Archive -Path target/papasoft_image/* -DestinationPath target/papasoft_windows.zip
+
+      - name: Upload Windows Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ needs.create-release.outputs.upload_url }}
+          asset_path: ./target/papasoft_windows.zip
+          asset_name: papasoft-client-windows-v1.0.${{ github.run_number }}.zip
           asset_content_type: application/zip
