@@ -73,38 +73,42 @@ public class AddAsesoriaController extends Observable {
     }
 
     private ChangeListener<Object> oyentePeriodo = ((observable, oldValue, newValue) -> {
-        if(selectorFecha.getValue() != null || comboHorario.getValue() != null){
+        if(selectorFecha.getValue() != null && comboHorario.getValue() != null){
             if(comboMateria.getValue()!=null){
                 cargarAsesores();
+                comboAsesor.setDisable(false);
             }
             cargarSalones();
+            comboSalon.setDisable(false);
         }
     });
 
     private ChangeListener<Object> oyenteHorario = ((observable, oldValue, newValue) -> {
-        if (selectorFecha.getValue() != null) {
+        if (comboPeriodo.getValue()!=null && selectorFecha.getValue() != null) {
             if(comboMateria.getValue()!=null){
                 cargarAsesores();
+                comboAsesor.setDisable(false);
             }
             cargarSalones();
+            comboSalon.setDisable(false);
         }
     });
 
     private ChangeListener<Object> oyenteFecha = ((observable, oldValue, newValue) -> {
-        if (comboHorario.getValue() != null) {
+        if (comboPeriodo.getValue()!=null && comboHorario.getValue() != null) {
             if(comboMateria.getValue()!=null){
                 cargarAsesores();
+                comboAsesor.setDisable(false);
             }
             cargarSalones();
+            comboSalon.setDisable(false);
         }
     });
 
     private ChangeListener<Object> oyenteMateria = ((observable, oldValue, newValue) -> {
         if(comboPeriodo.getValue()!=null && selectorFecha.getValue()!=null && comboHorario.getValue()!=null){
-            if(comboMateria.getValue()!=null){
-                cargarAsesores();
-                comboAsesor.setDisable(false);
-            }
+            cargarAsesores();
+            comboAsesor.setDisable(false);
             cargarSalones();
             comboSalon.setDisable(false);
         }
