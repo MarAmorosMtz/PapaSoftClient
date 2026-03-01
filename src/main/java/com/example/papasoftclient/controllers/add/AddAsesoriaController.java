@@ -232,7 +232,9 @@ public class AddAsesoriaController extends Observable {
                 listaAsesorados.add(new DetalleAsesoriaModel(this.comboAsesorado5.getValue().getId(),this.comboMaestro5.getValue().getId()));
             }
 
-            asesoria = new AsesoriaBase(selectorFecha.getValue(),
+            asesoria = new AsesoriaBase(
+                    comboPeriodo.getValue().getId(),
+                    selectorFecha.getValue(),
                     comboHorario.getValue(),
                     comboMateria.getValue().getId(),
                     comboSalon.getValue().getId(),
