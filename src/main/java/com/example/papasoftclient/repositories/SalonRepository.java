@@ -12,6 +12,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 public class SalonRepository implements Repository<SalonBase, SalonModel>{
@@ -27,17 +28,14 @@ public class SalonRepository implements Repository<SalonBase, SalonModel>{
         this.host = RestAPI.SALONES_ENDPOINT;
     }
 
-    public SalonPage searchFiltrado(UUID periodoId, int page, int day, int month, int year, int hour, int minute) {
+    public SalonPage filterByDateAndHour(int pagina, LocalDate fecha, String hora) {
         try {
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(new URI(host + "filtrar/?periodo=" + periodoId.toString()
-                            + "&pagina=" + page
-                            + "&dia=" + day
-                            + "&mes=" + month
-                            + "&ano=" + year
-                            + "&hora=" + hour
-                            + "&minuto=" + minute))
-                    .GET()
+                    .uri(new URI(host + "/search?"
+                            + "pagina=" + pagina
+                            + "&fecha=" + fecha
+                            + "&hora=" + hora
+                    )).GET()
                     .build();
 
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
@@ -77,7 +75,7 @@ public class SalonRepository implements Repository<SalonBase, SalonModel>{
     public SalonModel search(UUID id) {
         try{
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(new URI(host+id.toString()))
+                    .uri(new URI("/"+host+id.toString()))
                     .GET()
                     .build();
             HttpResponse<String> response = client.send(request,HttpResponse.BodyHandlers.ofString());
@@ -120,7 +118,7 @@ public class SalonRepository implements Repository<SalonBase, SalonModel>{
         try{
             HttpRequest request = HttpRequest.newBuilder()
                     .version(HttpClient.Version.HTTP_1_1)
-                    .uri(new URI(host+id))
+                    .uri(new URI("/"+host+id))
                     .PUT(HttpRequest.BodyPublishers.ofString(mapper.writeValueAsString(item)))
                     .build();
             HttpResponse<String> response = client.send(request,HttpResponse.BodyHandlers.ofString());
@@ -139,7 +137,7 @@ public class SalonRepository implements Repository<SalonBase, SalonModel>{
     @Override
     public boolean remove(UUID id) {
         try {
-            HttpRequest request = HttpRequest.newBuilder().uri(new URI(host + id)).DELETE().build();
+            HttpRequest request = HttpRequest.newBuilder().uri(new URI("/"+host + id)).DELETE().build();
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
             return response.statusCode() == 204;
         } catch (URISyntaxException urisex) {

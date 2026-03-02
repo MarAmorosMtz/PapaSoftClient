@@ -62,7 +62,7 @@ public class EditAsesoriaController extends Observable {
     private MaestroRepository maestroRepository;
     private AsesoriaModel asesoriaModel;
     private AsesorMateriaRepository asesorMateriaRepository;
-    private ArrayList<DetalleAsesoradoModel> listaAsesorados = new ArrayList<>();
+    private ArrayList<DetalleAsesoriaModel> listaAsesorados = new ArrayList<>();
 
     public EditAsesoriaController() {
         materiaRepository = new MateriaRepository();
@@ -145,13 +145,9 @@ public class EditAsesoriaController extends Observable {
         int dia = selectedFecha.getDayOfMonth();
         int mes = selectedFecha.getMonthValue();
         int ano = selectedFecha.getYear();
+        LocalTime parsedTime = LocalTime.parse(selectedHorario, DateTimeFormatter.ISO_LOCAL_TIME);
 
-        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
-        LocalTime parsedTime = LocalTime.parse(selectedHorario, timeFormatter);
-        int hora = parsedTime.getHour();
-        int minuto = parsedTime.getMinute();
-
-        SalonPage pagina = this.salonRepository.searchFiltrado(asesoriaModel.getPeriodo(),1, dia, mes, ano, hora, minuto);
+        SalonPage pagina = this.salonRepository.filterByDateAndHour(1, selectedFecha, parsedTime.toString());
         if(pagina != null){
             this.comboSalon.setItems(FXCollections.observableArrayList(pagina.getSalones()));
             for(int i=2; i<=pagina.getPaginas(); i++){
@@ -201,7 +197,7 @@ public class EditAsesoriaController extends Observable {
         comboAsesor.setValue(this.asesoriaModel.getAsesor());
         confirmada.setSelected(this.asesoriaModel.getConfirmada());
         tema.setText(this.asesoriaModel.getTema());
-        this.listaAsesorados = this.asesoriaModel.getAsesorados();
+        //this.listaAsesorados = this.asesoriaModel.getAsesorados();
 
         cargarAsesores();
         cargarSalones();
@@ -213,6 +209,7 @@ public class EditAsesoriaController extends Observable {
         AsesoriaBase asesoria;
 
         asesoria = new AsesoriaBase(
+                null,
                 selectorFecha.getValue(),
                 comboHorario.getValue(),
                 comboMateria.getValue().getId(),

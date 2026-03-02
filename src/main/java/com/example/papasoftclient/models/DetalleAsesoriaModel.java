@@ -2,13 +2,13 @@ package com.example.papasoftclient.models;
 
 import java.util.UUID;
 
-public class DetalleAsesoradoModel {
+public class DetalleAsesoriaModel {
     private UUID asesorado;
     private UUID maestro;
 
-    public DetalleAsesoradoModel() {}
+    public DetalleAsesoriaModel() {}
 
-    public DetalleAsesoradoModel(UUID asesorado, UUID maestro) {
+    public DetalleAsesoriaModel(UUID asesorado, UUID maestro) {
         this.asesorado = asesorado;
         this.maestro = maestro;
     }
