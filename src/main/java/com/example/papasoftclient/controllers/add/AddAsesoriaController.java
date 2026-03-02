@@ -243,7 +243,6 @@ public class AddAsesoriaController extends Observable {
                     confirmada.isSelected(),
                     listaAsesorados
             );
-            asesoria.setPeriodo(comboPeriodo.getSelectionModel().getSelectedItem().getId());
             asesoriaRepository.save(asesoria);
             this.notificar();
             cancelar();
