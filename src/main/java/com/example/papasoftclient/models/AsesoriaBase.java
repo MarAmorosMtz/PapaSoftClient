@@ -18,15 +18,16 @@ public class AsesoriaBase {
 
     public AsesoriaBase(){}
 
-    public AsesoriaBase(LocalDate fecha, String hora, UUID materia, UUID salon, UUID asesor, String tema, boolean confirmada,ArrayList<DetalleAsesoriaModel> asesorados) {
+    public AsesoriaBase(UUID periodo, LocalDate fecha, String hora, UUID materia, UUID salon, UUID asesor, String tema, boolean confirmada,ArrayList<DetalleAsesoriaModel> asesorados) {
+        this.periodo = periodo;
         this.fecha = fecha;
         this.hora = hora;
         this.materia = materia;
-        this.salon = salon;
         this.asesor = asesor;
+        this.salon = salon;
         this.tema = tema;
-        this.asesorados = asesorados;
         this.confirmada = confirmada;
+        this.asesorados = asesorados;
     }
 
     public LocalDate getFecha() {
