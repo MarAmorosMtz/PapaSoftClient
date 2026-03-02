@@ -6,6 +6,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Pagination?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -19,7 +20,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.papasoftclient.controllers.edit.NewEditAsesoriaController">
    <children>
       <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
          <tabs>
@@ -44,7 +45,7 @@
                                     <VBox spacing="10.0">
                                        <children>
                                           <Label text="Periodo" />
-                                          <ComboBox promptText="Seleccione un periodo" VBox.vgrow="ALWAYS" />
+                                          <ComboBox fx:id="selectorPeriodo" promptText="Seleccione un periodo" VBox.vgrow="ALWAYS" />
                                        </children>
                                        <GridPane.margin>
                                           <Insets />
@@ -56,7 +57,7 @@
                                     <VBox spacing="10.0" GridPane.rowIndex="1">
                                        <children>
                                           <Label text="Horario" />
-                                          <ComboBox promptText="Seleccione un horario" VBox.vgrow="ALWAYS" />
+                                          <ComboBox fx:id="selectorHora" promptText="Seleccione un horario" VBox.vgrow="ALWAYS" />
                                        </children>
                                        <GridPane.margin>
                                           <Insets />
@@ -65,28 +66,10 @@
                                           <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                                        </padding>
                                     </VBox>
-                                    <VBox spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                       <children>
-                                          <Label text="Salón" />
-                                          <ComboBox promptText="Seleccione un salón" VBox.vgrow="ALWAYS" />
-                                       </children>
-                                       <padding>
-                                          <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-                                       </padding>
-                                    </VBox>
                                     <VBox spacing="10.0" GridPane.columnIndex="1">
                                        <children>
                                           <Label text="Fecha" />
-                                          <DatePicker VBox.vgrow="ALWAYS" />
-                                       </children>
-                                       <padding>
-                                          <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-                                       </padding>
-                                    </VBox>
-                                    <VBox spacing="10.0" GridPane.rowIndex="2">
-                                       <children>
-                                          <Label text="Materia" />
-                                          <ComboBox promptText="Selecciona una materia" VBox.vgrow="ALWAYS" />
+                                          <DatePicker fx:id="selectorFecha" VBox.vgrow="ALWAYS" />
                                        </children>
                                        <padding>
                                           <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
@@ -95,7 +78,7 @@
                                     <VBox spacing="10.0" GridPane.rowIndex="3">
                                        <children>
                                           <Label text="Tema" />
-                                          <TextField VBox.vgrow="ALWAYS" />
+                                          <TextField fx:id="campoTema" VBox.vgrow="ALWAYS" />
                                        </children>
                                        <padding>
                                           <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
@@ -103,7 +86,25 @@
                                     </VBox>
                                     <VBox spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                        <children>
-                                          <CheckBox mnemonicParsing="false" text="Confirmada" />
+                                          <CheckBox fx:id="verificadorAsesoria" mnemonicParsing="false" text="Confirmada" />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                       </padding>
+                                    </VBox>
+                                    <VBox spacing="10.0" GridPane.rowIndex="2">
+                                       <children>
+                                          <Label text="Asesor" />
+                                          <ComboBox fx:id="selectorAsesor" disable="true" prefHeight="25.0" prefWidth="195.0" promptText="Seleccione un asesor" VBox.vgrow="ALWAYS" />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                       </padding>
+                                    </VBox>
+                                    <VBox spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                       <children>
+                                          <Label text="Materia" />
+                                          <ComboBox fx:id="selectorMateria" promptText="Selecciona una materia" VBox.vgrow="ALWAYS" />
                                        </children>
                                        <padding>
                                           <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
@@ -111,8 +112,8 @@
                                     </VBox>
                                     <VBox spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                        <children>
-                                          <Label text="Asesor" />
-                                          <ComboBox prefHeight="25.0" prefWidth="195.0" promptText="Seleccione un asesor" VBox.vgrow="ALWAYS" />
+                                          <Label text="Salón" />
+                                          <ComboBox fx:id="selectorSalon" disable="true" promptText="Seleccione un salón" VBox.vgrow="ALWAYS" />
                                        </children>
                                        <padding>
                                           <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
@@ -139,52 +140,56 @@
                                  <children>
                                     <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
                                        <children>
-                                          <GridPane alignment="CENTER" VBox.vgrow="ALWAYS">
+                                          <GridPane alignment="CENTER" VBox.vgrow="NEVER">
                                              <columnConstraints>
-                                                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" percentWidth="15.0" />
-                                                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" percentWidth="75.0" />
-                                                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" percentWidth="10.0" />
+                                                <ColumnConstraints halignment="LEFT" hgrow="NEVER" minWidth="10.0" />
+                                                <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" />
+                                                <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="1.7976931348623157E308" minWidth="10.0" />
                                              </columnConstraints>
                                              <rowConstraints>
                                                 <RowConstraints valignment="CENTER" vgrow="ALWAYS" />
                                              </rowConstraints>
                                              <children>
-                                                <ComboBox promptText="Filtros" />
-                                                <TextField GridPane.columnIndex="1" />
-                                                <Button alignment="CENTER" mnemonicParsing="false" text="Buscar" GridPane.columnIndex="2" />
+                                                <ComboBox fx:id="selectorFiltros" promptText="Filtros" />
+                                                <TextField fx:id="campoBusqueda" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" />
+                                                <Button fx:id="botonBuscar" alignment="CENTER" mnemonicParsing="false" onAction="#buscarAsesoradoAction" text="Buscar" GridPane.columnIndex="2">
+                                                   <GridPane.margin>
+                                                      <Insets left="10.0" />
+                                                   </GridPane.margin></Button>
                                              </children>
                                              <padding>
                                                 <Insets bottom="15.0" top="15.0" />
                                              </padding>
                                           </GridPane>
-                                          <TableView VBox.vgrow="ALWAYS">
+                                          <TableView fx:id="tablaBusquedaAsesorados" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="400.0">
                                              <columns>
-                                                <TableColumn minWidth="-1.0" prefWidth="75.0" text="Control" />
-                                                <TableColumn prefWidth="75.0" text="Nombre" />
+                                                <TableColumn fx:id="columnaControlBusqueda" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="75.0" text="Control" />
+                                                <TableColumn fx:id="columnaNombreBusqueda" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="75.0" text="Nombre" />
                                              </columns>
                                           </TableView>
+                                          <Pagination fx:id="paginadorBusqueda" maxPageIndicatorCount="1" pageCount="1" VBox.vgrow="NEVER" />
                                        </children>
-                                    </VBox>
-                                    <VBox alignment="CENTER" spacing="15.0">
-                                       <children>
-                                          <Button mnemonicParsing="false" text="Agregar" />
-                                          <Button mnemonicParsing="false" text="Eliminar" />
-                                       </children>
-                                       <padding>
+                                       <HBox.margin>
                                           <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-                                       </padding>
+                                       </HBox.margin>
                                     </VBox>
-                                    <TableView HBox.hgrow="ALWAYS">
+                                    <VBox alignment="CENTER" spacing="15.0" HBox.hgrow="NEVER">
+                                       <children>
+                                          <Button fx:id="botonAgregarAlumno" mnemonicParsing="false" onAction="#agregarAsesoradoAction" text="Agregar" VBox.vgrow="ALWAYS" />
+                                          <Button fx:id="botonEliminarAlumno" mnemonicParsing="false" onAction="#eliminarAsesoradoAction" text="Eliminar" VBox.vgrow="ALWAYS" />
+                                       </children>
+                                    </VBox>
+                                    <TableView fx:id="tablaAsesoradosAgregados" editable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="400.0" prefHeight="600.0" HBox.hgrow="ALWAYS">
                                        <columns>
-                                          <TableColumn prefWidth="75.0" text="Control" />
-                                          <TableColumn prefWidth="75.0" text="Nombre" />
-                                          <TableColumn prefWidth="75.0" text="Profesor" />
+                                          <TableColumn fx:id="columnaControlAsesorados" editable="false" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="120.0" text="Numero de Control" />
+                                          <TableColumn fx:id="columnaNombreAsesorados" editable="false" minWidth="0.0" prefWidth="65.0" text="Nombre" />
+                                          <TableColumn fx:id="columnaMaestroAsesorados" minWidth="0.0" prefWidth="55.0" text="Maestro" />
                                        </columns>
+                                       <HBox.margin>
+                                          <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                       </HBox.margin>
                                     </TableView>
                                  </children>
-                                 <padding>
-                                    <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
-                                 </padding>
                               </HBox>
                            </children>
                         </VBox>
@@ -194,13 +199,13 @@
             </Tab>
          </tabs>
       </TabPane>
-      <FlowPane alignment="CENTER" columnHalignment="CENTER" hgap="20.0" prefHeight="64.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
+      <FlowPane alignment="CENTER" columnHalignment="CENTER" hgap="20.0" VBox.vgrow="NEVER">
          <children>
-            <Button mnemonicParsing="false" text="Guardar" />
-            <Button mnemonicParsing="false" text="Cancelar" />
+            <Button fx:id="botonGuardarAsesoria" mnemonicParsing="false" onAction="#guardarAsesoriaAction" text="Guardar" />
+            <Button fx:id="botonCancelar" mnemonicParsing="false" onAction="#cancelarAction" text="Cancelar" />
          </children>
          <padding>
-            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+            <Insets bottom="15.0" top="15.0" />
          </padding>
       </FlowPane>
    </children>
