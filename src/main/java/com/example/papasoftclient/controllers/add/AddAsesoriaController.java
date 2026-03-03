@@ -149,7 +149,8 @@ public class AddAsesoriaController extends Observable {
                 1,
                 selectorFecha.getValue(),
                 comboHorario.getValue(),
-                comboMateria.getValue().getId()
+                comboMateria.getValue().getId(),
+                1
         );
         if(pagina != null){
             this.comboAsesor.getItems().clear();

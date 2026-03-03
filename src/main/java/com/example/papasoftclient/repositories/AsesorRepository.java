@@ -61,7 +61,7 @@ public class AsesorRepository implements Repository<AsesorBase, AsesorModel>{
 
 
 
-    public AsesorPage filterByDateHourAndSubject(int page, LocalDate date, String time, UUID materia) {
+    public AsesorPage filterByDateHourAndSubject(int page, LocalDate date, String time, UUID materia, int estado) {
         try{
             HttpRequest request = HttpRequest.newBuilder()
                     .version(HttpClient.Version.HTTP_1_1)
@@ -70,6 +70,7 @@ public class AsesorRepository implements Repository<AsesorBase, AsesorModel>{
                             + "&fecha=" + date.toString()
                             + "&hora=" + time
                             + "&materia="+ materia
+                            + "&estado=" + estado
                     )).GET().build();
             HttpResponse<String> response = client.send(request,HttpResponse.BodyHandlers.ofString());
             if(response.statusCode()==200) return mapper.readValue(response.body(), AsesorPage.class);

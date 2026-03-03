@@ -252,12 +252,12 @@ public class NewEditAsesoriaController extends Observable {
         System.out.println("Recargando asesores...");
         if(selectorFecha.getValue()==null || selectorHora.getValue()==null || selectorMateria.getValue()==null)return;
         this.limpiarSeleccionAsesor();
-        AsesorPage page = asesorRepository.filterByDateHourAndSubject(1, selectorFecha.getValue(),selectorHora.getValue(), selectorMateria.getValue().getId());
+        AsesorPage page = asesorRepository.filterByDateHourAndSubject(1, selectorFecha.getValue(),selectorHora.getValue(), selectorMateria.getValue().getId(),1);
         if(page!=null){
             selectorAsesor.setItems(FXCollections.observableArrayList(page.getAsesores()));
             int totalCount = page.getPaginas();
             for(int i=2; i<=totalCount; i++){
-                page = asesorRepository.filterByDateHourAndSubject(i, selectorFecha.getValue(),selectorHora.getValue(), selectorMateria.getValue().getId());
+                page = asesorRepository.filterByDateHourAndSubject(i, selectorFecha.getValue(),selectorHora.getValue(), selectorMateria.getValue().getId(),1);
                 selectorAsesor.getItems().addAll(page.getAsesores());
             }
         }
