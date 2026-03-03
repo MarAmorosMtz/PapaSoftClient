@@ -113,16 +113,13 @@ public class AddAsesoriaController extends Observable {
     });
 
     public void cargarPeriodos(){
-        PeriodoPage tmp = this.periodoRepository.search(1);
-        if(tmp != null) {
+        PeriodoPage pagina = this.periodoRepository.search(1);
+        if(pagina != null) {
             this.comboPeriodo.getItems().clear();
-            int paginas = tmp.getPaginas();
-            if(paginas > 0) {
-                this.comboPeriodo.getItems().addAll(FXCollections.observableArrayList(tmp.getPeriodos()));
-                for(int i=2; i<=paginas; i++) {
-                    tmp = this.periodoRepository.search(i);
-                    this.comboPeriodo.getItems().addAll(FXCollections.observableArrayList(tmp.getPeriodos()));
-                }
+            this.comboPeriodo.setItems(FXCollections.observableArrayList(pagina.getPeriodos()));
+            for(int i=2; i<=pagina.getPaginas(); i++) {
+                pagina = this.periodoRepository.search(i);
+                this.comboPeriodo.getItems().addAll(pagina.getPeriodos());
             }
         }
     }
@@ -130,7 +127,6 @@ public class AddAsesoriaController extends Observable {
     public void cargarHoras(ComboBox<String> comboBox) {
         comboBox.getItems().clear();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-
         for (int hour = 8; hour <= 18; hour++) {
             comboBox.getItems().add(LocalTime.of(hour, 0).format(formatter));
         }
@@ -138,39 +134,44 @@ public class AddAsesoriaController extends Observable {
 
     private void cargarMaterias(){
         MateriaPage pagina = this.materiaRepository.search(1);
-        ArrayList<MateriaModel> materias = new ArrayList<>();
-        for(MateriaModel m: pagina.getMaterias()){
-            materias.add(materiaRepository.search(m.getId()));
-        }
         if(pagina != null){
-            this.comboMateria.setItems(FXCollections.observableArrayList(materias));
+            this.comboMateria.getItems().clear();
+            this.comboMateria.setItems(FXCollections.observableArrayList(pagina.getMaterias()));
             for(int i=2; i<=pagina.getPaginas(); i++){
-                this.comboMateria.getItems().addAll(materias);
+                pagina = this.materiaRepository.search(i);
+                this.comboMateria.getItems().addAll(pagina.getMaterias());
             }
         }
     }
 
     private void cargarAsesores(){
-        String selectedHorario = comboHorario.getSelectionModel().getSelectedItem();
-        LocalDate selectedFecha = selectorFecha.getValue();
-
-        AsesorPage pagina = this.asesorRepository.filterByDateHourAndSubject(1, selectedFecha,selectedHorario, comboMateria.getValue().getId());
+        AsesorPage pagina = this.asesorRepository.filterByDateHourAndSubject(
+                1,
+                selectorFecha.getValue(),
+                comboHorario.getValue(),
+                comboMateria.getValue().getId()
+        );
         if(pagina != null){
+            this.comboAsesor.getItems().clear();
             this.comboAsesor.setItems(FXCollections.observableArrayList(pagina.getAsesores()));
             for(int i=2; i<=pagina.getPaginas(); i++){
+                pagina = this.asesorRepository.search(i);
                 this.comboAsesor.getItems().addAll(pagina.getAsesores());
             }
         }
     }
 
     private void cargarSalones(){
-        String selectedHorario = comboHorario.getSelectionModel().getSelectedItem();
-        LocalDate selectedFecha = selectorFecha.getValue();
-
-        SalonPage pagina = this.salonRepository.filterByDateAndHour(1, selectedFecha, selectedHorario);
+        SalonPage pagina = this.salonRepository.filterByDateAndHour(
+                1,
+                selectorFecha.getValue(),
+                comboHorario.getValue()
+        );
         if(pagina != null){
+            this.comboSalon.getItems().clear();
             this.comboSalon.setItems(FXCollections.observableArrayList(pagina.getSalones()));
             for(int i=2; i<=pagina.getPaginas(); i++){
+                pagina = this.salonRepository.search(i);
                 this.comboSalon.getItems().addAll(pagina.getSalones());
             }
         }
@@ -182,7 +183,8 @@ public class AddAsesoriaController extends Observable {
         if(pagina != null){
             maestros.addAll(pagina.getMaestros());
             for(int i=2; i<=pagina.getPaginas(); i++){
-                maestros.addAll(maestroRepository.search(i).getMaestros());
+                pagina = this.maestroRepository.search(i);
+                maestros.addAll(pagina.getMaestros());
             }
         }
         this.comboMaestro1.setItems(FXCollections.observableArrayList(maestros));
@@ -198,7 +200,8 @@ public class AddAsesoriaController extends Observable {
         if(pagina != null){
             asesorados.addAll(pagina.getAsesorados());
             for(int i=2; i<=pagina.getPaginas(); i++){
-                asesorados.addAll(asesoradoRepository.search(i).getAsesorados());
+                pagina = this.asesoradoRepository.search(i);
+                asesorados.addAll(pagina.getAsesorados());
             }
         }
         this.comboAsesorado1.setItems(FXCollections.observableArrayList(asesorados));
